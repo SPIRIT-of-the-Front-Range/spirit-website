@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import PageCover from '../components/editorial/PageCover.astro';
+import Spread from '../components/editorial/Spread.astro';
+import Plate from '../components/editorial/Plate.astro';
+import Marginalia from '../components/editorial/Marginalia.astro';
+import { getCollection, render } from 'astro:content';
+
+const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
+const renderedPrograms = await Promise.all(
+  programs.map(async p => {
+    const { Content } = await render(p);
+    return { entry: p, Content };
+  })
+);
+
+// Per-program photo + tone assignments
+const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | 'sage' | 'grass'; plate: string }> = {
+  'commons-teach-ins':       { photo: '/images/community/gathering-02.jpg', tone: 'sage',  plate: 'Plate XII'  },
+  'solidarity-suppers':      { photo: '/images/community/gathering-04.jpg', tone: 'clay',  plate: 'Plate XIII' },
+  'neighborhood-resiliency': { photo: '/images/community/gathering-09.jpg', tone: 'creek', plate: 'Plate XIV'  },
+  'allocation-rounds':       { photo: '/images/community/gathering-07.jpg', tone: 'grass', plate: 'Plate XV'   },
+};
+---
+
+<Base title="Programs" description="Living pathways into bioregional participation — Commons Teach-Ins, Solidarity Suppers, Neighborhood Resiliency, Allocation Rounds.">
+
+  <PageCover
+    folio="06"
+    sectionLabel="Programs"
+    eyebrow="Live & upcoming · open enrollment"
+    title="Living pathways"
+    italicTitle="into bioregional participation."
+    subtitle="SPIRIT's programs are how the Commons becomes practice. They are how strangers become neighbors, and how neighborhoods become resilient. There are no prerequisites; only the willingness to show up."
+    imageSrc="/images/community/gathering-04.jpg"
+    imageAlt="Overhead view of ceremony offerings on grass during a Solidarity Supper."
+    plate=""
+    plateCaption="Solidarity Supper · August"
+    treatment="duotone-clay-deep"
+    brightness={0.65}
+  />
+
+  {/* PROGRAM SPREADS */}
+  {renderedPrograms.map(({ entry, Content }, i) => {
+    const slug = entry.id.replace(/^\d+-/, '').replace(/\.md$/, '');
+    const v = programVisuals[slug] || programVisuals['commons-teach-ins'];
+    const flip = i % 2 === 1;
+    const num = String(i + 1).padStart(2, '0');
+    return (
+      <Spread folio={`06.${i+1}`} section={`VI.${num} · ${entry.data.title}`} bg={i % 2 === 0 ? 'bone' : 'bone-pale'} class={i > 0 ? 'border-t border-ink' : ''}>
+        <div class="px-5 lg:px-12 py-section">
+          <div class={`grid grid-cols-12 gap-6 lg:gap-14 items-start ${flip ? 'lg:[&>*:first-child]:lg:order-2' : ''}`}>
+
+            {/* Photo side */}
+            <div class={`col-span-12 lg:col-span-5 ${flip ? 'lg:col-start-8' : ''}`}>
+              <Plate
+                src={v.photo}
+                alt={entry.data.title}
+                treatment={`duotone-${v.tone === 'grass' ? 'sage' : v.tone}` as any}
+                label={v.plate}
+                caption={`a glimpse of ${entry.data.title.toLowerCase()}`}
+                folio={`p. ${i + 1}`}
+                ratio="4/5"
+                kenBurns={true}
+              />
+            </div>
+
+            {/* Text side */}
+            <div class={`col-span-12 lg:col-span-7 ${flip ? 'lg:col-start-1 lg:row-start-1' : 'lg:col-start-6'}`}>
+              <div class="flex items-baseline justify-between gap-3 mb-3">
+                <span class={`folio-num text-6xl lg:text-7xl text-${v.tone}-deep`}>{num}</span>
+                {entry.data.abbrev && (
+                  <span class="sticker sticker-bone">{entry.data.abbrev}</span>
+                )}
+              </div>
+              <p class={`eyebrow text-${v.tone}-deep mb-2`}>Pillar · {entry.data.pillarLabel}</p>
+              <h2 class={`display-m text-ink leading-[0.95] mb-6 break-words`}>
+                {entry.data.title}.
+              </h2>
+              <div class="text-body-lg text-shadow leading-snug max-w-2xl prose-program">
+                <Content />
+              </div>
+              <div class="mt-8 flex items-baseline justify-between gap-3 pt-4 border-t border-rule">
+                <span class={`caption text-${v.tone}-deep`}>● {entry.data.status}</span>
+                <a href="/connect/" class={`no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-${v.tone}-deep hover:text-clay-deep`}>
+                  ★ Get on the list →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Spread>
+    );
+  })}
+
+  {/* CTA — get involved */}
+  <Spread folio="06.x" section="VI · also" bg="ink">
+    <div class="px-5 lg:px-12 py-section on-dark text-center">
+      <p class="eyebrow mb-4" style="color:#E8B58A;">★ Other ways to get involved</p>
+      <h2 class="display-l max-w-3xl mx-auto leading-[1.0] mb-6" style="color:#F7EFD8;">
+        Become a founding member of the <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">Front Range Commons.</span>
+      </h2>
+      <p class="text-body-lg max-w-2xl mx-auto leading-snug mb-8" style="color: rgba(247,239,216,0.85);">
+        Help shape what bioregional coordination looks like in practice — join working groups, propose initiatives, and share what you know.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/the-commons/" class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">★ Read about the Commons</a>
+        <a href="/connect/" class="btn-line" style="border-color: rgba(242,234,216,0.85); color:#F2EAD8;">✉ Reach out</a>
+      </div>
+    </div>
+  </Spread>
+
+</Base>
+
+<style>
+  .prose-program :global(p) { margin-block: 0.75rem; line-height: 1.55; }
+  .prose-program :global(p:first-child) { margin-top: 0; }
+  .prose-program :global(em) { font-style: italic; color: var(--color-clay-deep); }
+  .prose-program :global(strong) { font-weight: 700; color: var(--color-ink); }
+  .prose-program :global(ol), .prose-program :global(ul) { padding-left: 1.5rem; margin-block: 0.75rem; }
+  .prose-program :global(ol) { list-style: decimal; }
+  .prose-program :global(ul) { list-style: disc; }
+  .prose-program :global(li) { margin-block: 0.25rem; }
+  .py-section { padding-block: var(--spacing-section); }
+</style>

@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import PageCover from '../components/editorial/PageCover.astro';
+import Spread from '../components/editorial/Spread.astro';
+import CatalogEntry from '../components/editorial/CatalogEntry.astro';
+import Marginalia from '../components/editorial/Marginalia.astro';
+import { getCollection, render } from 'astro:content';
+
+const entries = (await getCollection('catalog')).sort((a, b) => a.data.order - b.data.order);
+
+const renderedEntries = await Promise.all(
+  entries.map(async e => {
+    const { Content } = await render(e);
+    return { entry: e, Content };
+  })
+);
+
+const byKind = renderedEntries.reduce((acc, { entry }) => {
+  const k = entry.data.kind;
+  acc[k] = (acc[k] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+---
+
+<Base title="The Catalog" description="A curated index of bioregional resources — books, organizations, tools, practices, and places that root us in the work.">
+
+  <PageCover
+    folio="05"
+    sectionLabel="Catalog"
+    eyebrow="Curated by the stewards · updated as the work grows"
+    title="Access to"
+    italicTitle="bioregional tools."
+    subtitle="An always-growing, opinionated index of the books, organizations, tools, places, and practices that have shaped our work — and might shape yours. In the spirit of Stewart Brand's old catalog: an item is included only if it is useful, in print, and not already common knowledge."
+    imageSrc="/images/community/gathering-02.jpg"
+    imageAlt="Driftwood resting in shallow water at the edge of a creek."
+    plate=""
+    plateCaption="driftwood · creek edge"
+    treatment="duotone-clay-deep"
+    brightness={0.6}
+  />
+
+  {/* TABLE OF CONTENTS */}
+  <Spread folio="05.0" section="V.0 · Sections" bg="bone-pale" class="border-y border-ink">
+    <div class="px-5 lg:px-12 py-12 lg:py-16">
+      <div class="grid grid-cols-12 items-baseline gap-6">
+        <div class="col-span-12 lg:col-span-4">
+          <span class="folio-num text-6xl text-clay-deep">05.0</span>
+          <p class="eyebrow mt-3">Sections in this issue</p>
+        </div>
+        <div class="col-span-12 lg:col-span-8">
+          <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4 caption text-ink">
+            {Object.entries(byKind).map(([kind, count]) => (
+              <li class="flex items-baseline justify-between border-b border-rule pb-1">
+                <span class="font-bold text-clay-deep">●  {kind}</span>
+                <span class="text-shadow">{String(count).padStart(2,'0')}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Spread>
+
+  {/* CATALOG ENTRIES */}
+  <Spread folio="05.1" section="V.i · Entries" bg="bone">
+    <div class="px-5 lg:px-12 pt-section pb-section">
+      <div class="grid grid-cols-12 gap-6 lg:gap-10">
+
+        <aside class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
+          <Marginalia number="01">
+            <strong>How this catalog works.</strong> Each entry has a curator. Each curator vouches for the item personally. We do not aggregate; we recommend.
+          </Marginalia>
+          <Marginalia>
+            Want to suggest an addition? <a href="/connect/" class="text-creek-deep underline">Write to us</a>. We add slowly, by consensus.
+          </Marginalia>
+          <Marginalia>
+            ★ Items in this issue: <strong class="text-clay-deep">{renderedEntries.length}</strong>.
+          </Marginalia>
+        </aside>
+
+        <div class="col-span-12 lg:col-span-9">
+          <div class="rule-bold mb-2"></div>
+          <div class="space-y-4">
+            {renderedEntries.map(({ entry, Content }, i) => (
+              <CatalogEntry
+                number={i + 1}
+                title={entry.data.title}
+                kind={entry.data.kind}
+                source={entry.data.source}
+                url={entry.data.url}
+                price={entry.data.price}
+                curator={entry.data.curator}
+                tone={entry.data.tone}
+              >
+                <div class="catalog-prose">
+                  <Content />
+                </div>
+              </CatalogEntry>
+            ))}
+          </div>
+          <div class="rule-bold mt-2"></div>
+
+          <p class="text-center mt-12 caption text-shadow">
+            ✦ end of issue · more in next printing ✦
+          </p>
+        </div>
+      </div>
+    </div>
+  </Spread>
+
+</Base>
+
+<style>
+  .pt-section { padding-top: var(--spacing-section); }
+  .pb-section { padding-bottom: var(--spacing-section); }
+  .py-section { padding-block: var(--spacing-section); }
+  .catalog-prose :global(p) { margin-block: 0.4rem; }
+  .catalog-prose :global(p:first-child) { margin-top: 0; }
+  .catalog-prose :global(em) { font-style: italic; color: var(--color-clay-deep); }
+  .catalog-prose :global(strong) { font-weight: 700; color: var(--color-ink); }
+</style>

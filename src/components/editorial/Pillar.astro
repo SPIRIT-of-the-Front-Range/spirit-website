@@ -1,0 +1,32 @@
+---
+// Pillar card — used on home + mission + programs to display the four pillars
+interface Props {
+  number: string;
+  name: string;
+  tone: 'clay' | 'creek' | 'sage' | 'grass';
+  glyph?: string;
+}
+const { number, name, tone, glyph = '✦' } = Astro.props;
+
+const toneMap: Record<string, { bg: string; text: string; border: string }> = {
+  clay:  { bg: 'bg-clay/10',  text: 'text-clay-deep',  border: 'border-clay' },
+  creek: { bg: 'bg-creek/10', text: 'text-creek-deep', border: 'border-creek' },
+  sage:  { bg: 'bg-sage/15',  text: 'text-sage-deep',  border: 'border-sage' },
+  grass: { bg: 'bg-grass/15', text: 'text-grass-deep', border: 'border-grass' },
+};
+const t = toneMap[tone];
+---
+
+<article class="pillar group relative">
+  <header class="flex items-baseline gap-3 mb-3">
+    <span class={`num-badge ${t.text}`}>N° {number}</span>
+    <span class={`flex-1 ${t.border} border-t mt-3`} />
+    <span class={`text-lg ${t.text}`} aria-hidden="true">{glyph}</span>
+  </header>
+  <h3 class={`font-display font-bold text-xl tracking-tight uppercase mb-3 ${t.text}`}>
+    {name}
+  </h3>
+  <div class="text-shadow leading-relaxed">
+    <slot />
+  </div>
+</article>

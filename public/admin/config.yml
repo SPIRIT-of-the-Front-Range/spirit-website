@@ -1,0 +1,129 @@
+# Decap CMS configuration
+# https://decapcms.org/docs/configuration-options/
+#
+# To edit content:
+#   LOCAL DEV: run `npm run cms` in another terminal — Decap connects via local proxy, no auth needed
+#   PRODUCTION: requires GitHub OAuth App + proxy (see EDITOR-GUIDE.md)
+
+# Local dev mode — connects to decap-server proxy (run via `npm run cms`)
+local_backend: true
+
+backend:
+  name: github
+  repo: SPIRIT-of-the-Front-Range/spirit-website
+  branch: main
+  # OAuth proxy URL — uncomment + configure for production
+  # base_url: https://decap-oauth.your-worker.workers.dev
+
+# Where uploaded images live
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Editorial workflow (creates PRs instead of direct commits)
+publish_mode: editorial_workflow
+
+# Site URL for "View Live" links
+site_url: https://www.spiritofthefrontrange.org
+display_url: https://www.spiritofthefrontrange.org
+logo_url: /favicon.svg
+
+# Locale
+locale: 'en'
+
+collections:
+
+  # --- STEWARDS (team members) -----------------------------------
+  - name: stewards
+    label: "Stewards (Team)"
+    label_singular: "Steward"
+    folder: "src/content/stewards"
+    create: true
+    delete: true
+    slug: "{{order}}-{{slug}}"
+    identifier_field: name
+    summary: "{{name}} — {{role}}"
+    sortable_fields: ['order', 'name']
+    fields:
+      - { label: "Name", name: name, widget: string }
+      - { label: "Role / Title", name: role, widget: string, hint: "e.g. 'Stewarding Director · Legal Representative'" }
+      - { label: "Email", name: email, widget: string, required: false }
+      - { label: "Pronouns", name: pronouns, widget: string, required: false }
+      - { label: "Photo", name: photo, widget: image, required: false }
+      - { label: "Display order", name: order, widget: number, default: 99, hint: "Lower numbers display first" }
+      - label: "Bio (long)"
+        name: body
+        widget: markdown
+        hint: "Rich text — appears on the steward's card"
+
+  # --- PROGRAMS --------------------------------------------------
+  - name: programs
+    label: "Programs"
+    label_singular: "Program"
+    folder: "src/content/programs"
+    create: true
+    delete: true
+    slug: "{{order}}-{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{status}}"
+    sortable_fields: ['order', 'title', 'status']
+    fields:
+      - { label: "Title", name: title, widget: string }
+      - { label: "Abbreviation", name: abbrev, widget: string, required: false, hint: "e.g. 'CTI'" }
+      - label: "Pillar"
+        name: pillar
+        widget: select
+        required: false
+        options: ['allocation', 'coordination', 'belonging', 'culturing']
+      - { label: "Pillar label", name: pillarLabel, widget: string, required: false, hint: "Display name for the pillar" }
+      - { label: "Short description", name: shortDescription, widget: text, hint: "1-2 sentences for cards & summaries" }
+      - label: "Status"
+        name: status
+        widget: select
+        options: ['active', 'upcoming', 'concluded']
+        default: 'active'
+      - { label: "Display order", name: order, widget: number, default: 99 }
+      - { label: "Next event date", name: nextEventDate, widget: string, required: false }
+      - { label: "Next event URL", name: nextEventUrl, widget: string, required: false }
+      - label: "Description (long)"
+        name: body
+        widget: markdown
+
+  # --- CATALOG (the WEC-style index) -----------------------------
+  - name: catalog
+    label: "Catalog Entries"
+    label_singular: "Catalog Entry"
+    folder: "src/content/catalog"
+    create: true
+    delete: true
+    slug: "{{order}}-{{slug}}"
+    identifier_field: title
+    summary: "[{{kind}}] {{title}}"
+    sortable_fields: ['order', 'title', 'kind']
+    fields:
+      - { label: "Title", name: title, widget: string }
+      - label: "Kind"
+        name: kind
+        widget: select
+        options: ['book', 'organization', 'tool', 'practice', 'place', 'podcast', 'essay']
+      - { label: "Author / By", name: author, widget: string, required: false }
+      - { label: "Source / Publisher", name: source, widget: string, required: false, hint: "e.g. 'Cambridge University Press · 1990'" }
+      - { label: "URL", name: url, widget: string, required: false }
+      - { label: "Price", name: price, widget: string, required: false, hint: "e.g. '$28', 'Free', 'Open'" }
+      - { label: "Year", name: year, widget: string, required: false }
+      - label: "Pillars"
+        name: pillars
+        widget: select
+        multiple: true
+        required: false
+        options: ['allocation', 'coordination', 'belonging', 'culturing']
+      - { label: "Curator", name: curator, widget: string, required: false, hint: "Who recommends this?" }
+      - label: "Color tone"
+        name: tone
+        widget: select
+        options: ['clay', 'creek', 'sage', 'grass']
+        default: 'clay'
+      - { label: "Display order", name: order, widget: number, default: 99 }
+      - label: "Curator's note"
+        name: body
+        widget: markdown
+        hint: "Why does this belong in the catalog?"

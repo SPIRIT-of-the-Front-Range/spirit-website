@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+import Header from '../components/primitives/Header.astro';
+import Footer from '../components/primitives/Footer.astro';
+import SvgFilters from '../components/primitives/SvgFilters.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'SPIRIT of the Front Range',
+  description = 'A bioregional backbone non-profit supporting local resilience and bioregional regeneration along Colorado\'s Front Range.',
+  ogImage = '/images/og-default.jpg',
+} = Astro.props;
+
+const fullTitle = title === 'SPIRIT of the Front Range'
+  ? title
+  : `${title} · SPIRIT of the Front Range`;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {/* Favicon */}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* Open Graph */}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {/* Theme color */}
+    <meta name="theme-color" content="#F2EAD8" />
+  </head>
+  <body>
+    {/* Skip link */}
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-ink focus:text-bone focus:px-3 focus:py-2 focus:z-50 font-mono text-xs uppercase tracking-wider">
+      Skip to content
+    </a>
+
+    <SvgFilters />
+    <Header />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

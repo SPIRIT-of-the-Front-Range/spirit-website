@@ -1,0 +1,115 @@
+---
+const nav = [
+  { href: '/mission/',     label: 'Mission' },
+  { href: '/programs/',    label: 'Programs' },
+  { href: '/the-commons/', label: 'The Commons' },
+  { href: '/stewards/',    label: 'Stewards' },
+  { href: '/catalog/',     label: 'Catalog' },
+  { href: '/connect/',     label: 'Connect' },
+];
+
+const path = Astro.url.pathname;
+const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
+---
+
+{/* Masthead — true periodical nameplate */}
+<header class="site-header bg-bone relative z-30">
+
+  {/* Top thin strip — quiet site banner (hidden on home where cover provides masthead) */}
+  <div class={`border-b border-ink ${path === '/' ? 'lg:hidden' : ''}`}>
+    <div class="almanac-edge flex items-center justify-between gap-4 py-2 text-[10px] sm:text-[11px]">
+      <span class="font-mono uppercase tracking-[0.22em] text-shadow font-bold">
+        SPIRIT of the Front Range
+      </span>
+      <span class="font-mono uppercase tracking-[0.22em] text-shadow">
+        {today}
+      </span>
+    </div>
+  </div>
+
+  {/* Main masthead — nameplate row */}
+  <div class="border-b-4 border-ink">
+    <div class="almanac-edge grid grid-cols-12 items-center gap-4 py-3 lg:py-4">
+
+      {/* Left: meta */}
+      <div class="col-span-3 lg:col-span-2 flex items-center gap-3">
+        <span class="hidden lg:flex flex-col leading-none gap-1">
+          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">No. 01</span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">est. 2024</span>
+        </span>
+      </div>
+
+      {/* Center: nameplate — hand-drawn wordmark */}
+      <a href="/" class="col-span-6 lg:col-span-8 no-underline flex justify-center" aria-label="SPIRIT of the Front Range — home">
+        <img
+          src="/images/logos/wordmark-sm.png"
+          alt="SPIRIT of the Front Range"
+          width="600"
+          height="335"
+          class="block w-auto h-12 sm:h-14 lg:h-16 object-contain wordmark-img"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+
+      {/* Right: donate */}
+      <div class="col-span-3 lg:col-span-2 flex justify-end items-center">
+        <a href="/donate/" class="hidden lg:inline-flex btn-ink !py-2 !px-3 !text-[10px]">
+          ✦ Fund
+        </a>
+        {/* Mobile menu toggle */}
+        <details class="lg:hidden relative">
+          <summary class="list-none cursor-pointer p-2" aria-label="Open menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <line x1="3" y1="7"  x2="21" y2="7"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="17" x2="21" y2="17"/>
+            </svg>
+          </summary>
+          <div class="absolute right-0 top-full mt-2 w-64 bg-bone border-2 border-ink p-4 z-40">
+            <ul class="flex flex-col gap-1">
+              {nav.map(item => (
+                <li>
+                  <a href={item.href} class="block no-underline font-mono uppercase text-[11px] tracking-[0.18em] py-2.5 text-ink hover:text-clay-deep">
+                    → {item.label}
+                  </a>
+                </li>
+              ))}
+              <li class="border-t-2 border-ink pt-3 mt-2">
+                <a href="/donate/" class="block no-underline font-mono uppercase text-[11px] tracking-[0.2em] font-bold py-2 text-clay-deep">
+                  ✦ Fund the Commons
+                </a>
+              </li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  {/* Nav strip — under masthead */}
+  <nav aria-label="Primary" class="hidden lg:block border-b border-ink bg-bone">
+    <div class="almanac-edge">
+      <ul class="flex items-stretch justify-center gap-0 -mx-2">
+        {nav.map((item, i) => {
+          const active = path === item.href || (item.href !== '/' && path.startsWith(item.href));
+          return (
+            <li class="contents">
+              <a
+                href={item.href}
+                class:list={[
+                  'no-underline px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] font-bold transition-colors text-center',
+                  active ? 'text-clay-deep' : 'text-ink hover:text-clay-deep'
+                ]}
+              >
+                {String(i + 1).padStart(2, '0')} · {item.label}
+              </a>
+              {i < nav.length - 1 && <span class="text-rule self-center" aria-hidden="true">·</span>}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </nav>
+</header>

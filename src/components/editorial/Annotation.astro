@@ -1,0 +1,66 @@
+---
+// Hand-drawn annotation arrow — for marginal "see this" gestures
+interface Props {
+  variant?: 'arrow-down' | 'arrow-up' | 'arrow-right' | 'arrow-left' | 'circle' | 'underline' | 'star';
+  rotation?: number;
+  class?: string;
+  color?: string;
+}
+const {
+  variant = 'arrow-right',
+  rotation = 0,
+  class: className = '',
+  color = 'currentColor',
+} = Astro.props;
+---
+
+<svg
+  viewBox="0 0 100 100"
+  class={`annotation ${className}`}
+  style={`transform: rotate(${rotation}deg);`}
+  fill="none"
+  stroke={color}
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {variant === 'arrow-right' && (
+    <g>
+      <path d="M 8 50 Q 35 30, 70 50 T 92 48" />
+      <path d="M 82 38 L 92 48 L 80 56" />
+    </g>
+  )}
+  {variant === 'arrow-down' && (
+    <g>
+      <path d="M 50 8 Q 38 30, 50 60 T 48 92" />
+      <path d="M 38 80 L 48 92 L 60 82" />
+    </g>
+  )}
+  {variant === 'arrow-up' && (
+    <g>
+      <path d="M 48 92 Q 60 70, 48 40 T 50 8" />
+      <path d="M 38 18 L 48 8 L 60 16" />
+    </g>
+  )}
+  {variant === 'arrow-left' && (
+    <g>
+      <path d="M 92 50 Q 65 70, 30 50 T 8 52" />
+      <path d="M 18 62 L 8 52 L 20 44" />
+    </g>
+  )}
+  {variant === 'circle' && (
+    <ellipse cx="50" cy="50" rx="42" ry="36" stroke-dasharray="0" transform="rotate(-8 50 50)" />
+  )}
+  {variant === 'underline' && (
+    <path d="M 6 56 Q 30 48, 50 54 T 94 50" />
+  )}
+  {variant === 'star' && (
+    <g stroke-width="2">
+      <line x1="50" y1="10" x2="50" y2="90" />
+      <line x1="10" y1="50" x2="90" y2="50" />
+      <line x1="22" y1="22" x2="78" y2="78" />
+      <line x1="78" y1="22" x2="22" y2="78" />
+    </g>
+  )}
+</svg>

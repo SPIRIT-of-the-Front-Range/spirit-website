@@ -1,0 +1,99 @@
+---
+// Reusable page cover spread — full-bleed photo + headline + meta
+interface Props {
+  folio: string;            // "02" — issue number
+  sectionLabel: string;     // "I · Mission"
+  eyebrow?: string;
+  title: string;
+  italicTitle?: string;     // italic part of title (renders as serif italic light)
+  subtitle?: string;
+  imageSrc: string;
+  imageAlt: string;
+  plate: string;            // "Plate IX"
+  plateCaption: string;     // "Wildflowers · Boulder Foothills"
+  treatment?: 'natural' | 'duotone-clay-deep' | 'duotone-creek' | 'duotone-sage' | 'duotone-ink' | 'duotone-clay';
+  brightness?: number;      // 0.5-1.0
+  align?: 'left' | 'right';
+}
+const {
+  folio,
+  sectionLabel,
+  eyebrow,
+  title,
+  italicTitle,
+  subtitle,
+  imageSrc,
+  imageAlt,
+  plate,
+  plateCaption,
+  treatment = 'natural',
+  brightness = 0.7,
+  align = 'left',
+} = Astro.props;
+
+const treatmentClass =
+  treatment === 'natural' ? '' :
+  treatment === 'duotone-clay-deep' ? 'duotone-clay-deep-img' :
+  `duotone-${treatment.replace('duotone-', '')}`;
+---
+
+<section class="page-cover relative overflow-hidden bg-ink" style="min-height: clamp(560px, 70svh, 920px);">
+
+  {/* Background photo */}
+  <div class={`absolute inset-0 photo ${treatmentClass}`} aria-hidden="true">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      class="w-full h-full object-cover ken-burns"
+      loading="eager"
+      style={`filter: brightness(${brightness}); will-change: transform;`}
+    />
+  </div>
+
+  {/* Vignette — stronger on lower half where the headline sits */}
+  <div class="absolute inset-0 pointer-events-none"
+       style="background:
+         linear-gradient(180deg, rgba(31,30,27,0.55) 0%, rgba(31,30,27,0.18) 22%, rgba(31,30,27,0.12) 38%, rgba(31,30,27,0.42) 58%, rgba(31,30,27,0.72) 82%, rgba(31,30,27,0.92) 100%);"></div>
+
+  {/* Section label strip — TOP, in normal flow */}
+  <div class="relative z-10 px-5 lg:px-12 pt-5 lg:pt-7 flex items-baseline justify-between gap-3 caption" style="color: rgba(247,239,216,0.85);">
+    <span style="color:#E8B58A;">{sectionLabel}</span>
+    <span class="hidden sm:inline opacity-70">SPIRIT of the Front Range</span>
+    <span class="font-display font-extrabold text-base lg:text-lg" style="color: rgba(247,239,216,0.95);">— {folio} —</span>
+  </div>
+
+  {/* Cover content — flex column, plate caption at bottom in flow */}
+  <div class={`relative z-10 px-5 lg:px-12 pb-5 lg:pb-7 flex flex-col ${align === 'right' ? 'items-end text-right' : 'items-start text-left'}`}
+       style="min-height: calc(clamp(560px, 70svh, 920px) - 4rem);">
+
+    {/* Title block — pushed to bottom of available space */}
+    <div class={`flex-1 flex flex-col justify-end max-w-5xl w-full anim-fade-up ${align === 'right' ? 'ml-auto' : ''}`}>
+      {eyebrow && (
+        <p class="eyebrow mb-4" style="color: #E8B58A; letter-spacing: 0.22em;">★ {eyebrow}</p>
+      )}
+      <h1 class="leading-[0.86]" style="color: #F7EFD8; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 1.4rem + 5.6vw, 9rem); letter-spacing: -0.035em;">
+        <span class="block">{title}</span>
+        {italicTitle && (
+          <span class="block italic font-serif font-light tracking-tighter" style="font-weight:300;">{italicTitle}</span>
+        )}
+      </h1>
+      {subtitle && (
+        <p class="font-serif italic leading-tight mt-10 lg:mt-12 max-w-3xl"
+           style="font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.45rem); color: #F7EFD8;">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    {/* Image caption strip — at bottom in flow with breathing room */}
+    <div class="w-full mt-10 lg:mt-12 pt-3 border-t border-bone-pale/40 grid grid-cols-12 gap-3 caption" style="color: rgba(247,239,216,0.85);">
+      <span class="col-span-4 lg:col-span-3"><span style="color:#E8B58A;">●</span> {sectionLabel}</span>
+      <span class="col-span-4 lg:col-span-6 text-center hidden sm:block">{plateCaption}</span>
+      <span class="col-span-4 lg:col-span-3 text-right opacity-75">photographed for SPIRIT</span>
+    </div>
+  </div>
+
+  <style>
+    .duotone-clay-deep-img img { filter: url('#duo-clay-deep') brightness(var(--photo-bright, 0.75)); }
+  </style>
+</section>

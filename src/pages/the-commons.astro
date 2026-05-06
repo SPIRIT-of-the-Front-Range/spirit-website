@@ -1,0 +1,185 @@
+---
+import Base from '../layouts/Base.astro';
+import PageCover from '../components/editorial/PageCover.astro';
+import Spread from '../components/editorial/Spread.astro';
+import Plate from '../components/editorial/Plate.astro';
+import PullQuote from '../components/editorial/PullQuote.astro';
+import Marginalia from '../components/editorial/Marginalia.astro';
+import BioregionMap from '../components/interactive/BioregionMap.astro';
+---
+
+<Base title="The Commons" description="The Front Range Commons — a proposal-in-formation for a decentralized, member-governed network for cultural and ecological stewardship.">
+
+  <PageCover
+    folio="03"
+    sectionLabel="The Commons"
+    eyebrow="A parallel entity · Spirit feeds, does not control"
+    title="The Front Range"
+    italicTitle="Commons."
+    subtitle="A proposal-in-formation for a decentralized, member-governed network dedicated to cultural and ecological stewardship, and community-led resource allocation."
+    imageSrc="/images/community/gathering-08.jpg"
+    imageAlt="Water pooled in a red rock crevice, reflecting sky."
+    plate=""
+    plateCaption="water in red rock · fountain formation"
+    treatment="duotone-creek"
+    brightness={0.65}
+  />
+
+  {/* IN BRIEF + MAP */}
+  <Spread folio="03.1" section="III.i · In Brief" bg="bone">
+    <div class="px-5 lg:px-12 py-section">
+      <div class="grid grid-cols-12 gap-6 lg:gap-14 items-start">
+
+        <div class="col-span-12 lg:col-span-7">
+          <span class="folio-num text-7xl text-creek-deep mb-6 block">03.i</span>
+          <div class="rule-double mb-6"></div>
+          <p class="eyebrow eyebrow-creek mb-3">In brief</p>
+          <h2 class="display-l text-ink leading-[0.95] mb-6">
+            A lattice for <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">collective stewardship.</span>
+          </h2>
+          <div class="text-body-lg text-ink leading-snug space-y-4 dropcap max-w-2xl">
+            <p>
+              The FRC intends to be a space where anyone can contribute, propose projects, share resources, and participate in organizational governance. Commoners elect a <strong>Wisdom Council</strong>, which appoints <strong>Common Stewards</strong> who run the day-to-day operations.
+            </p>
+            <p>
+              SPIRIT is reframed as the <em class="text-clay-deep">lattice</em> — the minimum institutional infrastructure required to make Commons activity possible. Spirit holds the legal vessel and fiduciary obligations. The Commons holds the actual stewardship of the place.
+            </p>
+            <p>
+              A funding cascade was agreed: the first funds raised go to Spirit's ops, the next tranche funds Common Steward stipends, and everything beyond that flows into a Commons grant pool — <strong>at least 50%</strong> of total raise targeted at programmatic disbursement.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-5">
+          <BioregionMap />
+        </div>
+      </div>
+    </div>
+  </Spread>
+
+  {/* GLOSSARY SPREAD */}
+  <Spread folio="03.2" section="III.ii · Glossary" bg="bone-pale" class="border-y border-ink">
+    <div class="px-5 lg:px-12 py-section">
+      <div class="rule-bold mb-6"></div>
+      <div class="grid grid-cols-12 gap-6 mb-12 items-end">
+        <div class="col-span-12 lg:col-span-7">
+          <p class="eyebrow mb-3">A working glossary</p>
+          <h2 class="display-l text-ink leading-[0.95]">
+            Begin with <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">the words.</span>
+          </h2>
+        </div>
+        <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
+          <p class="caption text-shadow">★ language is the first instrument of the Commons</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-x-12 gap-y-12">
+
+        <article>
+          <p class="num-badge text-clay-deep mb-2">N° 01</p>
+          <h3 class="font-display font-bold text-h2 text-ink leading-tight mb-1">Bioregion</h3>
+          <p class="caption-italic mb-3">noun · /ˈbaɪoʊˌridʒən/</p>
+          <p class="text-body text-ink leading-relaxed">
+            A geographically and hydrologically defined area characterized by distinct ecological features that together form a coherent biocultural home. <span class="text-clay-deep">The Front Range is one</span>: a long, narrow corridor where the Rocky Mountains meet the Great Plains, defined by its watersheds, its transitional ecologies, and the communities that call it home.
+          </p>
+        </article>
+
+        <article>
+          <p class="num-badge text-creek-deep mb-2">N° 02</p>
+          <h3 class="font-display font-bold text-h2 text-ink leading-tight mb-1">The Commons</h3>
+          <p class="caption-italic mb-3">noun · /ðə ˈkɒmənz/</p>
+          <p class="text-body text-ink leading-relaxed">
+            The living realities of shared place — the commonality of the ecologies and resources for which all residents of a place share responsibility, and on which all residents depend. <span class="text-creek-deep">It is not an abstraction.</span> It is the water you drink, the air you breathe, the soil that grows your food.
+          </p>
+        </article>
+
+        <article>
+          <p class="num-badge text-sage-deep mb-2">N° 03</p>
+          <h3 class="font-display font-bold text-h2 text-ink leading-tight mb-1">Bioregional Commons</h3>
+          <p class="caption-italic mb-3">noun phrase</p>
+          <p class="text-body text-ink leading-relaxed">
+            A Bioregional Commons recognizes the wellbeing of human and natural systems — neighborhoods, watersheds, ecosystems, soil — as <span class="text-sage-deep">shared resources</span> that the people who live in and depend on that land collectively steward.
+          </p>
+        </article>
+
+        <article>
+          <p class="num-badge text-grass-deep mb-2">N° 04</p>
+          <h3 class="font-display font-bold text-h2 text-ink leading-tight mb-1">Why Bioregional?</h3>
+          <p class="caption-italic mb-3">a question worth answering</p>
+          <p class="text-body text-ink leading-relaxed">
+            Commoning on a bioregional level directs our attentions and energies to where we can directly relate to the consequences of our stewardship. <span class="text-clay-deep font-serif italic">You cannot fork a watershed. You cannot exit a wildfire.</span>
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </Spread>
+
+  {/* PULL QUOTE */}
+  <div class="bg-bone py-section">
+    <div class="container-narrow">
+      <PullQuote>
+        The next generation of civic infrastructure will not come from legislatures or Silicon Valley. It will come from communities that learn to govern their shared resources with care, creativity, and mutual accountability.
+      </PullQuote>
+    </div>
+  </div>
+
+  {/* RELATIONSHIP — Spirit / Commons */}
+  <Spread folio="03.3" section="III.iii · Relationship" bg="bone" class="border-t border-ink">
+    <div class="px-5 lg:px-12 py-section">
+      <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+
+        <div class="col-span-12 lg:col-span-4">
+          <span class="folio-num text-7xl text-clay-deep mb-6 block">03.iii</span>
+          <Marginalia number="05">
+            A <strong>two-bodied</strong> design: Spirit holds the institutional vessel; the Commons holds the practice. Each protects the other from collapse into the other's logic.
+          </Marginalia>
+        </div>
+
+        <div class="col-span-12 lg:col-span-8">
+          <div class="rule-double mb-6"></div>
+          <p class="eyebrow mb-3">The relationship</p>
+          <h2 class="display-l text-ink leading-[0.95] mb-10">
+            Spirit feeds and protects the Commons but <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">does not control it.</span>
+          </h2>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="paper p-6">
+              <p class="eyebrow eyebrow-clay mb-3">SPIRIT</p>
+              <p class="font-display font-bold text-h3 text-ink mb-3 leading-tight">The Lattice</p>
+              <ul class="space-y-2 text-body text-shadow">
+                <li>● 501(c)(3) legal vessel</li>
+                <li>● Stewardship Council (sociocratic)</li>
+                <li>● Five operating circles</li>
+                <li>● Appointments, not elections</li>
+                <li>● Fiduciary &amp; legal compliance</li>
+                <li>● Transitional Stewards</li>
+              </ul>
+            </div>
+            <div class="paper p-6">
+              <p class="eyebrow eyebrow-creek mb-3">THE COMMONS</p>
+              <p class="font-display font-bold text-h3 text-ink mb-3 leading-tight">The Body</p>
+              <ul class="space-y-2 text-body text-shadow">
+                <li>● Member-governed</li>
+                <li>● Wisdom Council (elected)</li>
+                <li>● Common Stewards (appointed)</li>
+                <li>● Quadratic voting on grants</li>
+                <li>● Bioregional decision-making</li>
+                <li>● Open to all denizens</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <a href="https://www.frontrangecommons.org/" rel="noopener" class="btn-line">◇ Visit the Commons site →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Spread>
+
+</Base>
+
+<style>
+  .py-section { padding-block: var(--spacing-section); }
+</style>

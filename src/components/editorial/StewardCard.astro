@@ -1,0 +1,32 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  email?: string;
+  number?: number | string;
+}
+const { name, role, email, number } = Astro.props;
+---
+
+<article class="steward-card paper p-6 lg:p-7 relative">
+  {number && (
+    <span class="num-badge absolute top-3 right-4 text-clay-deep">N° {number}</span>
+  )}
+
+  <header class="mb-4">
+    <p class="eyebrow eyebrow-creek mb-2">{role}</p>
+    <h3 class="font-display text-h2 text-ink leading-tight">{name}</h3>
+  </header>
+
+  <div class="text-body text-shadow leading-relaxed">
+    <slot />
+  </div>
+
+  {email && (
+    <footer class="mt-4 pt-4 border-t border-rule">
+      <a href={`mailto:${email}`} class="no-underline font-mono text-caption text-creek-deep hover:text-clay-deep break-all">
+        {email}
+      </a>
+    </footer>
+  )}
+</article>

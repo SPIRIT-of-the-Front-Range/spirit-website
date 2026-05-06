@@ -1,0 +1,44 @@
+---
+interface Props {
+  abbrev?: string;
+  title: string;
+  pillar?: string;
+  status?: 'active' | 'upcoming' | 'concluded';
+  number?: number | string;
+}
+const { abbrev, title, pillar, status = 'active', number } = Astro.props;
+
+const statusClass: Record<string, string> = {
+  active:    'text-clay-deep',
+  upcoming:  'text-creek-deep',
+  concluded: 'text-shadow',
+};
+---
+
+<article class="program-card relative pt-7 pb-6 border-t-2 border-ink group">
+  <header class="flex items-baseline justify-between gap-4 mb-1">
+    <div class="flex items-baseline gap-3">
+      {number && <span class="num-badge text-clay-deep">N° {number}</span>}
+      {abbrev && (
+        <span class="font-mono text-xs uppercase tracking-[0.18em] font-bold text-shadow">
+          {abbrev}
+        </span>
+      )}
+    </div>
+    {status && (
+      <span class={`font-mono text-micro uppercase tracking-[0.16em] font-bold ${statusClass[status]}`}>
+        ● {status}
+      </span>
+    )}
+  </header>
+
+  <h3 class="display-m text-ink mb-3 leading-tight">{title}</h3>
+
+  {pillar && (
+    <p class="eyebrow eyebrow-sage mb-4">{pillar}</p>
+  )}
+
+  <div class="text-body text-shadow leading-relaxed">
+    <slot />
+  </div>
+</article>

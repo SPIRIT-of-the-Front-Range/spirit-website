@@ -1,0 +1,56 @@
+---
+// Full-bleed photograph with massive overlaid quote
+interface Props {
+  src: string;
+  alt: string;
+  attribution?: string;
+  treatment?: 'natural' | 'warm' | 'bw' | 'duotone-clay-deep' | 'duotone-creek' | 'duotone-ink';
+  align?: 'left' | 'right' | 'center';
+  height?: string;          // e.g. "85vh"
+  folio?: string;
+}
+const {
+  src,
+  alt,
+  attribution,
+  treatment = 'duotone-ink',
+  align = 'left',
+  height = 'min(75vh, 720px)',
+  folio,
+} = Astro.props;
+
+const treatmentClass =
+  treatment === 'natural' ? '' :
+  treatment === 'warm'    ? 'photo-warm' :
+  treatment === 'bw'      ? 'photo-bw'   :
+  treatment === 'duotone-clay-deep' ? 'duotone-clay-deep-img' :
+  `duotone-${treatment.replace('duotone-', '')}`;
+---
+
+<section class="quote-photo relative overflow-hidden" style={`height: ${height};`}>
+  <div class:list={['photo absolute inset-0', treatmentClass]}>
+    <img src={src} alt={alt} class="ken-burns" style="will-change:transform;" />
+  </div>
+
+  {/* dark vignette for text legibility */}
+  <div class="absolute inset-0 pointer-events-none"
+       style="background: linear-gradient(180deg, rgba(31,30,27,0.05) 0%, rgba(31,30,27,0.15) 30%, rgba(31,30,27,0.55) 100%);"></div>
+
+  <div class={`quote-content absolute inset-0 flex flex-col justify-end px-6 sm:px-12 lg:px-20 pb-12 lg:pb-20 ${align === 'right' ? 'items-end text-right' : align === 'center' ? 'items-center text-center' : 'items-start text-left'}`}>
+    <blockquote class={`pullquote-serif text-bone-pale max-w-5xl ${align === 'center' ? 'mx-auto' : ''}`}
+                style="font-size: clamp(1.85rem, 1.4rem + 2.6vw, 4.6rem);">
+      <slot />
+    </blockquote>
+    {attribution && (
+      <footer class="mt-6 caption text-bone-pale/85" style="letter-spacing: 0.22em;">— {attribution}</footer>
+    )}
+  </div>
+
+  {folio && (
+    <span class="absolute top-6 right-6 lg:top-10 lg:right-10 caption text-bone-pale/70">{folio}</span>
+  )}
+</section>
+
+<style>
+  .duotone-clay-deep-img img { filter: url('#duo-clay-deep'); }
+</style>

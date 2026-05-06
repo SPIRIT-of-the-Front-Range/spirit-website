@@ -1,0 +1,90 @@
+---
+// Four-pillar weaving — Allocation, Coordination, Belonging, Culturing
+// Four threads braid into one as you scroll
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+
+const pillars = [
+  { name: 'Allocation',   color: '#B8704D', y: 60,  delay: 0 },
+  { name: 'Coordination', color: '#5C7E8A', y: 110, delay: 100 },
+  { name: 'Belonging',    color: '#8FA48B', y: 160, delay: 200 },
+  { name: 'Culturing',    color: '#A8AB7A', y: 210, delay: 300 },
+];
+---
+
+<div class={`pillar-weave relative ${className}`}>
+  <svg viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet" class="w-full h-auto block" aria-hidden="true">
+    {/* Background paper rule */}
+    <line x1="40" y1="270" x2="760" y2="270" stroke="#C8B998" stroke-width="1" />
+
+    {/* Four threads — start parallel, then weave to center */}
+    {pillars.map((p, i) => (
+      <g>
+        <path
+          d={`M 60 ${p.y}
+              C 240 ${p.y}, 320 140, 400 140
+              S 560 ${p.y}, 740 ${p.y}`}
+          fill="none"
+          stroke={p.color}
+          stroke-width="3"
+          stroke-linecap="round"
+          opacity="0.9"
+          class="thread"
+          style={`animation-delay: ${p.delay}ms`}
+        />
+        {/* Pillar label — left */}
+        <text
+          x="40"
+          y={p.y + 4}
+          text-anchor="end"
+          font-family="JetBrains Mono, monospace"
+          font-size="11"
+          letter-spacing="0.16em"
+          fill="#2A2A28"
+          font-weight="700"
+        >
+          {p.name.toUpperCase()}
+        </text>
+      </g>
+    ))}
+
+    {/* Knot at the center */}
+    <circle cx="400" cy="140" r="6" fill="#2A2A28" />
+
+    {/* Right side: emerging unified label */}
+    <text
+      x="760"
+      y="144"
+      text-anchor="end"
+      font-family="Bricolage Grotesque Variable, sans-serif"
+      font-size="14"
+      font-weight="700"
+      letter-spacing="-0.01em"
+      fill="#2A2A28"
+    >
+      → THE COMMONS
+    </text>
+  </svg>
+</div>
+
+<style>
+  .pillar-weave .thread {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: draw 2200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pillar-weave .thread {
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+  }
+</style>

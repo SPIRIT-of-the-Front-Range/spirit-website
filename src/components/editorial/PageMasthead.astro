@@ -1,0 +1,32 @@
+---
+// Page-level masthead — used at the top of interior pages
+// Treats the page like a section of a journal: volume, issue, dateline
+interface Props {
+  eyebrow: string;       // e.g., "VOL. I · ISSUE 02"
+  title: string;
+  subtitle?: string;
+  dateline?: string;
+}
+const { eyebrow, title, subtitle, dateline } = Astro.props;
+---
+
+<section class="page-masthead container-edit pt-10 lg:pt-16 pb-10">
+  <div class="rule-double mb-6" />
+
+  <div class="flex items-baseline justify-between flex-wrap gap-4 mb-6">
+    <p class="eyebrow eyebrow-clay">{eyebrow}</p>
+    {dateline && <p class="font-mono text-micro uppercase tracking-[0.18em] text-shadow">{dateline}</p>}
+  </div>
+
+  <h1 class="display-xl text-ink max-w-5xl leading-[0.95] mb-6">
+    {title}
+  </h1>
+
+  {subtitle && (
+    <p class="text-body-lg text-shadow max-w-2xl font-serif italic leading-snug">
+      {subtitle}
+    </p>
+  )}
+
+  <div class="rule mt-10" />
+</section>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  number?: string | number;
+  class?: string;
+}
+const { number, class: className = '' } = Astro.props;
+---
+
+<aside class={`marginalia ${className}`}>
+  {number && <span class="num-badge block mb-1">N° {number}</span>}
+  <slot />
+</aside>

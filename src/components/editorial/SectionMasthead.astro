@@ -1,0 +1,22 @@
+---
+// Section masthead — newsprint-style heading with rule, eyebrow, dateline
+interface Props {
+  eyebrow?: string;
+  title: string;
+  dateline?: string;
+  class?: string;
+}
+const { eyebrow, title, dateline, class: className = '' } = Astro.props;
+---
+
+<header class={`section-masthead pt-12 pb-8 ${className}`}>
+  <div class="rule-bold mb-5" />
+  <div class="flex items-baseline justify-between gap-6 flex-wrap mb-3">
+    {eyebrow && <p class="eyebrow eyebrow-clay">{eyebrow}</p>}
+    {dateline && <p class="font-mono text-micro uppercase tracking-[0.16em] text-shadow">{dateline}</p>}
+  </div>
+  <h2 class="display-l text-ink max-w-4xl leading-[1.02]">
+    {title}
+  </h2>
+  <div class="rule mt-6" />
+</header>

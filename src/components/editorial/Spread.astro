@@ -1,0 +1,41 @@
+---
+// A "spread" — fills the viewport with a designed composition
+// Each spread has a folio number, a section label, and a distinct layout
+interface Props {
+  folio: string;            // "01", "02", etc
+  section: string;          // "Cover", "Philosophy", etc
+  bg?: 'bone' | 'bone-pale' | 'bone-deep' | 'ink' | 'image';
+  edge?: boolean;           // if true, no padding (full bleed)
+  minHeight?: string;
+  class?: string;
+  id?: string;
+}
+const {
+  folio,
+  section,
+  bg = 'bone',
+  edge = false,
+  minHeight = 'auto',
+  class: className = '',
+  id,
+} = Astro.props;
+
+const bgClass = {
+  bone: 'bg-bone',
+  'bone-pale': 'bg-bone-pale',
+  'bone-deep': 'bg-bone-deep',
+  ink: 'bg-ink text-bone-pale',
+  image: '',
+}[bg];
+---
+
+<section id={id} class={`spread relative w-full ${bgClass} ${className}`} style={`min-height: ${minHeight}; scroll-margin-top: 6rem;`}>
+  <slot />
+
+  {/* Section anchor in corner — always present */}
+  <div class="absolute top-3 lg:top-5 right-3 lg:right-5 flex items-baseline gap-2 pointer-events-none z-20">
+    <span class="caption" style="color: inherit; opacity: 0.65;">{section}</span>
+    <span class="rule h-px w-6 lg:w-12" style="background: currentColor; opacity: 0.4;"></span>
+    <span class="font-display font-extrabold text-base lg:text-lg" style="color: inherit; opacity: 0.85;">— {folio} —</span>
+  </div>
+</section>

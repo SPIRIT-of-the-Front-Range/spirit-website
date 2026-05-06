@@ -1,0 +1,29 @@
+{
+  "name": "spirit-of-the-front-range",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Spirit of the Front Range — a bioregional backbone non-profit. Whole Earth Catalog meets Front Range.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "cms": "decap-server"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.2.6",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.4.1",
+    "@fontsource-variable/bricolage-grotesque": "^5.2.5",
+    "@fontsource-variable/fraunces": "^5.2.5",
+    "@fontsource-variable/public-sans": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "@tailwindcss/vite": "^4.0.6",
+    "astro": "^5.7.0",
+    "tailwindcss": "^4.0.6"
+  },
+  "devDependencies": {
+    "decap-server": "^3.4.1"
+  }
+}

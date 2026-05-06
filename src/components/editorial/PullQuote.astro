@@ -1,0 +1,21 @@
+---
+interface Props {
+  attribution?: string;
+  class?: string;
+}
+const { attribution, class: className = '' } = Astro.props;
+---
+
+<blockquote class={`pull-quote relative py-8 ${className}`}>
+  <span class="absolute -top-2 -left-2 lg:-left-6 font-serif text-clay-deep text-7xl leading-none opacity-50" aria-hidden="true">
+    "
+  </span>
+  <p class="pullquote relative z-10">
+    <slot />
+  </p>
+  {attribution && (
+    <footer class="mt-4 font-mono text-micro uppercase tracking-[0.18em] text-shadow">
+      — {attribution}
+    </footer>
+  )}
+</blockquote>

@@ -1,0 +1,541 @@
+@import "tailwindcss";
+
+/* === Self-hosted fonts === */
+@import "@fontsource-variable/bricolage-grotesque/index.css";
+@import "@fontsource-variable/public-sans/index.css";
+@import "@fontsource-variable/fraunces/index.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/700.css";
+
+/* ===================================================================
+   FRONT RANGE ALMANAC — Design Tokens
+   Hand-arranged 1970s field almanac × Whole Earth Catalog
+   =================================================================== */
+
+@theme {
+  /* Palette */
+  --color-bone:       #F2EAD8;
+  --color-bone-deep:  #E5D9BF;
+  --color-bone-pale:  #FAF4E5;
+  --color-ink:        #1F1E1B;
+  --color-ink-soft:   #2A2A28;
+  --color-shadow:     #4A4A45;
+  --color-mist:       #8A8678;
+  --color-grass:      #A8AB7A;
+  --color-grass-deep: #6E7048;
+  --color-sage:       #8FA48B;
+  --color-sage-deep:  #4F6B4D;
+  --color-creek:      #5C7E8A;
+  --color-creek-deep: #2F4F5C;
+  --color-clay:       #B8704D;
+  --color-clay-deep:  #7E4226;
+  --color-rust:       #8C3D1F;
+  --color-sky:        #C9D6DC;
+  --color-rule:       #B8A878;
+
+  /* Typography */
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Public Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale — fluid, scales generously up to ultrawide displays */
+  --text-micro:      clamp(0.7rem, 0.62rem + 0.22vw, 0.85rem);
+  --text-caption:    clamp(0.8rem, 0.72rem + 0.24vw, 1rem);
+  --text-body:       clamp(0.98rem, 0.92rem + 0.28vw, 1.18rem);
+  --text-body-lg:    clamp(1.15rem, 1rem + 0.55vw, 1.55rem);
+  --text-lead:       clamp(1.4rem, 1.15rem + 0.85vw, 2.15rem);
+  --text-h3:         clamp(1.35rem, 1.15rem + 0.8vw, 2rem);
+  --text-h2:         clamp(1.75rem, 1.4rem + 1.5vw, 3.1rem);
+  --text-h1:         clamp(2.3rem, 1.7rem + 2.4vw, 4.4rem);
+  --text-display-m:  clamp(2.6rem, 1.9rem + 2.8vw, 5.4rem);
+  --text-display-l:  clamp(3.4rem, 2.4rem + 4vw, 7.6rem);
+  --text-display-xl: clamp(4.4rem, 2.8rem + 6vw, 10.8rem);
+  --text-display-2xl: clamp(5.4rem, 3.4rem + 8vw, 14.4rem);
+  --text-mega:       clamp(6.4rem, 3.8rem + 10vw, 18rem);
+
+  /* Section rhythm */
+  --spacing-section: clamp(5rem, 3.5rem + 5vw, 9rem);
+}
+
+/* ===================================================================
+   Base
+   =================================================================== */
+
+@layer base {
+  :root {
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    background: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bone);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.15  0 0 0 0 0.13  0 0 0 0.045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--color-clay); color: var(--color-bone); }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+    color: var(--color-ink);
+    font-feature-settings: "ss01", "ss02";
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-clay);
+    transition: color 200ms ease, text-decoration-color 200ms ease;
+  }
+  a:hover { color: var(--color-clay-deep); text-decoration-color: var(--color-ink); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+  }
+
+  strong { font-weight: 700; color: var(--color-ink); }
+  em { font-style: italic; }
+
+  hr { border: none; border-top: 1px solid var(--color-rule); margin-block: 2rem; }
+  img { display: block; max-width: 100%; height: auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ===================================================================
+   Editorial primitives
+   =================================================================== */
+
+@layer components {
+
+  /* === Page edges & folio margins === */
+
+  .almanac-wrap {
+    width: 100%;
+    max-width: 1640px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 0.5rem + 2vw, 2rem);
+  }
+
+  .almanac-edge {
+    width: 100%;
+    padding-inline: clamp(1rem, 0.5rem + 2vw, 2rem);
+  }
+
+  .container-edit {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 1rem + 1.5vw, 2.5rem);
+  }
+
+  .container-narrow {
+    width: 100%;
+    max-width: 44rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 1rem + 1.5vw, 2.5rem);
+  }
+
+  /* === Folio: page-number-style markers in margins === */
+
+  .folio {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-shadow);
+    font-weight: 700;
+  }
+
+  .folio-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-feature-settings: "tnum";
+    line-height: 0.85;
+    color: var(--color-clay-deep);
+  }
+
+  /* === Newspaper rules === */
+
+  .rule           { height: 1px;  background: var(--color-rule); border: none; }
+  .rule-bold      { height: 4px;  background: var(--color-ink); border: none; }
+  .rule-double    { height: 6px;  border-top: 1px solid var(--color-ink); border-bottom: 1px solid var(--color-ink); background: transparent; }
+  .rule-triple    {
+    height: 9px;
+    border-top: 1px solid var(--color-ink);
+    border-bottom: 3px solid var(--color-ink);
+    background: var(--color-bone);
+    box-shadow: inset 0 4px 0 0 var(--color-bone), inset 0 5px 0 0 var(--color-ink);
+  }
+
+  /* === Eyebrows & captions === */
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-clay-deep);
+    font-weight: 700;
+  }
+
+  .caption {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-shadow);
+    line-height: 1.4;
+  }
+
+  .caption-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-caption);
+    color: var(--color-shadow);
+    line-height: 1.5;
+  }
+
+  /* === Display sizes === */
+
+  .display-mega {
+    font-family: var(--font-display);
+    font-size: var(--text-mega);
+    font-weight: 800;
+    line-height: 0.82;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .display-2xl {
+    font-family: var(--font-display);
+    font-size: var(--text-display-2xl);
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: -0.035em;
+  }
+
+  .display-xl {
+    font-family: var(--font-display);
+    font-size: var(--text-display-xl);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .display-l {
+    font-family: var(--font-display);
+    font-size: var(--text-display-l);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+  }
+
+  .display-m {
+    font-family: var(--font-display);
+    font-size: var(--text-display-m);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.022em;
+  }
+
+  /* === Drop cap, marginalia === */
+
+  .dropcap::first-letter {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 5.5em;
+    float: left;
+    line-height: 0.82;
+    margin-right: 0.08em;
+    margin-top: 0.02em;
+    color: var(--color-clay-deep);
+    font-feature-settings: "ss01";
+  }
+
+  .marginalia {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    line-height: 1.45;
+    color: var(--color-shadow);
+    border-left: 2px solid var(--color-clay);
+    padding-left: 0.85rem;
+  }
+
+  /* === Pull quote === */
+
+  .pullquote-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+    font-feature-settings: "ss01";
+  }
+
+  /* === Body text columns === */
+
+  .body-cols-2 {
+    column-count: 1;
+    column-gap: 2.25rem;
+  }
+  @media (min-width: 880px) {
+    .body-cols-2 {
+      column-count: 2;
+      column-rule: 1px solid color-mix(in oklab, var(--color-rule) 60%, transparent);
+    }
+  }
+
+  .body-cols-3 {
+    column-count: 1;
+    column-gap: 2rem;
+  }
+  @media (min-width: 720px)  { .body-cols-3 { column-count: 2; } }
+  @media (min-width: 1100px) { .body-cols-3 { column-count: 3; } }
+
+  /* === Photographic treatments === */
+
+  /* Wrap any <img> in .photo-* to apply treatment */
+  .photo {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* True duotone via SVG filter (defined globally in Layout) */
+  .duotone-clay     img { filter: url('#duo-clay'); }
+  .duotone-sage     img { filter: url('#duo-sage'); }
+  .duotone-creek    img { filter: url('#duo-creek'); }
+  .duotone-ink      img { filter: url('#duo-ink'); }
+
+  /* Soft warmth treatment — keeps color but pushes warm */
+  .photo-warm img {
+    filter: contrast(1.08) saturate(0.85) sepia(0.12) brightness(0.97);
+  }
+
+  /* B&W high contrast */
+  .photo-bw img {
+    filter: grayscale(1) contrast(1.18) brightness(0.95);
+  }
+
+  /* Risograph paper grain overlay */
+  .photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.15  0 0 0 0 0.13  0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Halftone-ish hatch overlay (denser) */
+  .photo-hatch::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(135deg,
+        color-mix(in oklab, var(--color-ink) 25%, transparent) 0 1px,
+        transparent 1px 4px);
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* === Photo with caption — behaves like a printed plate === */
+
+  .plate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .plate-caption {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-shadow);
+  }
+  .plate-caption .label { color: var(--color-clay-deep); font-weight: 700; }
+  .plate-caption .rule  { height: 1px; background: var(--color-rule); }
+
+  /* === Tab sticker — like a library label === */
+
+  .sticker {
+    display: inline-block;
+    background: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    padding: 0.35rem 0.6rem 0.3rem;
+    line-height: 1;
+  }
+  .sticker-clay  { background: var(--color-clay-deep); color: var(--color-bone-pale); }
+  .sticker-creek { background: var(--color-creek-deep); color: var(--color-bone-pale); }
+  .sticker-sage  { background: var(--color-sage-deep); color: var(--color-bone-pale); }
+  .sticker-bone  { background: var(--color-bone-deep); color: var(--color-ink); }
+
+  /* === CTA buttons === */
+
+  .btn-ink {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--color-ink); color: var(--color-bone);
+    font-family: var(--font-mono); font-size: var(--text-micro); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    padding: 0.95rem 1.35rem; text-decoration: none;
+    transition: background 200ms ease, transform 200ms ease;
+    border: 1px solid var(--color-ink);
+  }
+  .btn-ink:hover { background: var(--color-clay-deep); border-color: var(--color-clay-deep); color: var(--color-bone); transform: translateY(-1px); }
+
+  .btn-line {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: transparent; color: var(--color-ink);
+    font-family: var(--font-mono); font-size: var(--text-micro); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    padding: 0.85rem 1.25rem; text-decoration: none;
+    border: 1px solid var(--color-ink);
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .btn-line:hover { background: var(--color-ink); color: var(--color-bone); }
+
+  /* === Folio number in margin === */
+
+  .pagefolio {
+    position: absolute;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--color-clay-deep);
+    pointer-events: none;
+    user-select: none;
+    line-height: 0.8;
+  }
+
+  /* === Section masthead === */
+
+  .section-rule {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .section-rule .rule { height: 2px; background: var(--color-ink); }
+
+  /* === ON-DARK context: rewrites text-color tokens that would be illegible === */
+  .on-dark {
+    color: #F2EAD8;
+  }
+  .on-dark p { color: rgba(242, 234, 216, 0.92); }
+  .on-dark strong { color: #F7EFD8; font-weight: 700; }
+  .on-dark em { color: #E8B58A; font-style: italic; }
+  .on-dark a {
+    color: #F7EFD8;
+    text-decoration-color: #E8B58A;
+  }
+  .on-dark a:hover { color: #E8B58A; text-decoration-color: #F7EFD8; }
+
+  .on-dark .caption,
+  .on-dark .text-shadow,
+  .on-dark .text-ink {
+    color: rgba(242, 234, 216, 0.78);
+  }
+  .on-dark .eyebrow { color: #E8B58A; }
+  .on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4, .on-dark h5, .on-dark h6 {
+    color: #F7EFD8;
+  }
+  .on-dark .rule { background: rgba(242, 234, 216, 0.5); }
+  .on-dark .rule-bold { background: #E8B58A; }
+  .on-dark .num-badge { color: #E8B58A; }
+}
+
+/* ===================================================================
+   Animations — slow, weather-like
+   =================================================================== */
+
+@layer utilities {
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-up-soft {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(1.06); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes ken-burns {
+    from { transform: scale(1) translate(0, 0); }
+    to   { transform: scale(1.08) translate(-1.5%, 1%); }
+  }
+  @keyframes draw-stroke {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .anim-fade-up   { animation: fade-up 1100ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .anim-fade-soft { animation: fade-up-soft 800ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .anim-scale-in  { animation: scale-in 1500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  /* Ken Burns slow zoom on hero photographs — only when in view */
+  @supports (animation-timeline: view()) {
+    .ken-burns {
+      animation: ken-burns linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    .pan-up {
+      animation: pan-up linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+
+  @keyframes pan-up {
+    from { transform: translateY(40px); }
+    to   { transform: translateY(-40px); }
+  }
+}

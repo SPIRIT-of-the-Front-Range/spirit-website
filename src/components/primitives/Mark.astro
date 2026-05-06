@@ -1,0 +1,46 @@
+---
+// Spirit of the Front Range — wordmark + sun/mountain glyph
+interface Props {
+  variant?: 'full' | 'compact' | 'glyph';
+  class?: string;
+}
+const { variant = 'full', class: className = '' } = Astro.props;
+---
+
+{variant === 'glyph' && (
+  <svg viewBox="0 0 64 64" class={className} aria-hidden="true">
+    <defs>
+      <radialGradient id="sun-g" cx="50%" cy="55%" r="50%">
+        <stop offset="0%" stop-color="#E8A77C" />
+        <stop offset="100%" stop-color="#B8704D" />
+      </radialGradient>
+    </defs>
+    {/* Sun */}
+    <circle cx="32" cy="28" r="14" fill="url(#sun-g)" />
+    {/* Mountains */}
+    <path d="M 0 56 L 14 36 L 22 44 L 32 28 L 44 42 L 52 34 L 64 56 Z" fill="#2A2A28" />
+    {/* Foreground rule */}
+    <line x1="0" y1="56" x2="64" y2="56" stroke="#2A2A28" stroke-width="2" />
+  </svg>
+)}
+
+{variant === 'compact' && (
+  <span class={`inline-flex items-baseline gap-2 ${className}`}>
+    <svg viewBox="0 0 32 32" class="h-5 w-5 -translate-y-px" aria-hidden="true">
+      <circle cx="16" cy="13" r="7" fill="#B8704D" />
+      <path d="M 0 28 L 7 18 L 11 22 L 16 13 L 22 21 L 26 17 L 32 28 Z" fill="#2A2A28" />
+    </svg>
+    <span class="font-display font-bold tracking-tight text-ink">SPIRIT</span>
+  </span>
+)}
+
+{variant === 'full' && (
+  <span class={`inline-flex flex-col items-start ${className}`}>
+    <span class="font-mono text-[0.65rem] uppercase tracking-[0.22em] text-shadow leading-none mb-1">
+      Of the Front Range
+    </span>
+    <span class="font-display font-bold tracking-[-0.02em] text-ink leading-none text-2xl sm:text-[1.75rem]">
+      SPIRIT
+    </span>
+  </span>
+)}

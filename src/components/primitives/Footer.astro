@@ -1,0 +1,77 @@
+---
+import Mark from './Mark.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer mt-32 border-t-4 border-ink bg-bone">
+  <div class="container-edit py-16">
+
+    {/* Top: tagline */}
+    <div class="grid lg:grid-cols-12 gap-10 mb-12">
+      <div class="lg:col-span-7">
+        <p class="eyebrow eyebrow-clay mb-4">Feeling inspired? Let's weave.</p>
+        <h2 class="display-l text-ink max-w-3xl">
+          Inquiries. Projects. Partnerships. <em class="font-serif italic font-normal text-clay-deep">Knowledge.</em>
+        </h2>
+        <p class="mt-6 text-body-lg text-shadow max-w-xl">
+          We would love to hear from you.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/connect/" class="no-underline inline-flex items-center gap-2 bg-ink text-bone px-5 py-3 text-xs font-mono uppercase tracking-[0.18em] font-bold hover:bg-clay-deep transition-colors">
+            ✦ Get involved
+          </a>
+          <a href="/donate/" class="no-underline inline-flex items-center gap-2 border border-ink px-5 py-3 text-xs font-mono uppercase tracking-[0.18em] font-bold text-ink hover:bg-ink hover:text-bone transition-colors">
+            ◇ Fund the Commons
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 grid sm:grid-cols-2 gap-8">
+        <div>
+          <p class="eyebrow mb-3">Site</p>
+          <ul class="flex flex-col gap-2">
+            <li><a href="/mission/" class="no-underline text-ink hover:text-clay-deep">Mission</a></li>
+            <li><a href="/programs/" class="no-underline text-ink hover:text-clay-deep">Programs</a></li>
+            <li><a href="/the-commons/" class="no-underline text-ink hover:text-clay-deep">The Commons</a></li>
+            <li><a href="/stewards/" class="no-underline text-ink hover:text-clay-deep">Stewards</a></li>
+            <li><a href="/catalog/" class="no-underline text-ink hover:text-clay-deep">Catalog</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow mb-3">Reach us</p>
+          <ul class="flex flex-col gap-2">
+            <li><a href="mailto:hello@spiritofthefrontrange.org" class="no-underline text-ink hover:text-clay-deep break-all">hello@spiritofthefrontrange.org</a></li>
+            <li><a href="https://www.themysteryworks.com/" class="no-underline text-ink hover:text-clay-deep" rel="noopener">Mystery Works podcast →</a></li>
+            <li><a href="https://www.frontrangecommons.org/" class="no-underline text-ink hover:text-clay-deep" rel="noopener">Front Range Commons →</a></li>
+            <li><a href="/admin/index.html" class="no-underline text-shadow hover:text-clay-deep text-xs font-mono uppercase tracking-[0.14em] mt-2">Editor sign-in</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule mb-6" />
+
+    {/* Bottom: colophon */}
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <Mark variant="compact" />
+        <p class="font-mono text-micro uppercase tracking-[0.16em] text-shadow">
+          A 501(c)(3) bioregional backbone non-profit
+        </p>
+      </div>
+      <div class="font-mono text-micro uppercase tracking-[0.14em] text-shadow flex flex-wrap gap-x-4 gap-y-1">
+        <span>© {year} Spirit of the Front Range</span>
+        <span aria-hidden="true">·</span>
+        <span>Rooted in the ethics of institutional self-negation</span>
+      </div>
+    </div>
+
+    {/* Final ornament */}
+    <div class="mt-10 flex items-center justify-center gap-3 font-mono text-shadow text-xs">
+      <span class="rule grow" />
+      <span aria-hidden="true">✦  ◆  ✦</span>
+      <span class="rule grow" />
+    </div>
+  </div>
+</footer>

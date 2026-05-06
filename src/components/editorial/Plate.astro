@@ -1,0 +1,59 @@
+---
+// A photographic "plate" — image + caption in classic almanac style
+// Caption: [LABEL] · — body — · [folio]
+interface Props {
+  src: string;
+  alt: string;
+  treatment?: 'natural' | 'warm' | 'bw' | 'duotone-clay' | 'duotone-sage' | 'duotone-creek' | 'duotone-ink';
+  hatch?: boolean;
+  label?: string;
+  caption?: string;
+  folio?: string | number;
+  ratio?: string;          // e.g. "3/4", "16/9"
+  class?: string;
+  kenBurns?: boolean;
+  loading?: 'eager' | 'lazy';
+}
+const {
+  src,
+  alt,
+  treatment = 'warm',
+  hatch = false,
+  label,
+  caption,
+  folio,
+  ratio,
+  class: className = '',
+  kenBurns = false,
+  loading = 'lazy',
+} = Astro.props;
+
+const treatmentClass =
+  treatment === 'natural' ? '' :
+  treatment === 'warm'    ? 'photo-warm' :
+  treatment === 'bw'      ? 'photo-bw'   :
+  `duotone-${treatment.replace('duotone-', '')}`;
+---
+
+<figure class={`plate ${className}`}>
+  <div
+    class:list={['photo', treatmentClass, hatch && 'photo-hatch']}
+    style={ratio ? `aspect-ratio: ${ratio};` : ''}
+  >
+    <img
+      src={src}
+      alt={alt}
+      loading={loading}
+      class={kenBurns ? 'ken-burns' : ''}
+      style="will-change: transform;"
+    />
+  </div>
+
+  {(label || caption || folio) && (
+    <figcaption class="plate-caption">
+      <span class="label">{label || ''}</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>{caption}{folio ? ` · ${folio}` : ''}</span>
+    </figcaption>
+  )}
+</figure>

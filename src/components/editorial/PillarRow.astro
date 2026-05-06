@@ -1,0 +1,49 @@
+---
+import Plate from './Plate.astro';
+
+interface Props {
+  number: string;          // "01"
+  name: string;
+  tone: 'clay' | 'creek' | 'sage' | 'grass';
+  imageSrc: string;
+  imageAlt: string;
+  imageLabel?: string;
+  imageCaption?: string;
+  flip?: boolean;          // image on left if true
+}
+const { number, name, tone, imageSrc, imageAlt, imageLabel, imageCaption, flip = false } = Astro.props;
+
+const toneClass = `text-${tone}-deep`;
+const duotone = `duotone-${tone === 'grass' ? 'sage' : tone}`;
+---
+
+<article class:list={['pillar-row grid lg:grid-cols-12 gap-8 lg:gap-14 items-start py-10 lg:py-16 border-t border-ink', flip && 'lg:[&>*:first-child]:order-2']}>
+
+  {/* Image side */}
+  <div class={`lg:col-span-5 ${flip ? 'lg:col-start-8' : ''}`}>
+    <Plate
+      src={imageSrc}
+      alt={imageAlt}
+      treatment={duotone as any}
+      label={imageLabel}
+      caption={imageCaption}
+      folio={`Pl. ${number}`}
+      ratio="4/5"
+    />
+  </div>
+
+  {/* Text side */}
+  <div class={`lg:col-span-6 ${flip ? 'lg:col-start-2 lg:row-start-1' : 'lg:col-start-7'}`}>
+    <div class="flex items-baseline gap-6 mb-4">
+      <span class={`folio-num text-7xl ${toneClass}`}>{number}</span>
+      <span class={`eyebrow text-${tone}-deep`}>Pillar · {name}</span>
+    </div>
+    <h3 class={`display-l ${toneClass} mb-6`}>
+      {name}.
+    </h3>
+    <div class="text-body-lg text-shadow leading-snug max-w-xl">
+      <slot />
+    </div>
+  </div>
+
+</article>
