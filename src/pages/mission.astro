@@ -6,6 +6,7 @@ import Plate from '../components/editorial/Plate.astro';
 import PullQuote from '../components/editorial/PullQuote.astro';
 import Marginalia from '../components/editorial/Marginalia.astro';
 import PillarWeave from '../components/interactive/PillarWeave.astro';
+const BASE = import.meta.env.BASE_URL;
 ---
 
 <Base title="Mission" description="Spirit's vision, mission, and strategy for a flourishing Front Range bioregion.">
@@ -228,7 +229,7 @@ import PillarWeave from '../components/interactive/PillarWeave.astro';
     <p class="font-serif italic text-h1 text-ink max-w-3xl mx-auto leading-snug mb-8">
       We come together for something beautiful.
     </p>
-    <a href="/the-commons/" class="btn-ink">★ Read about the Commons →</a>
+    <a href={`${BASE}the-commons/`} class="btn-ink">★ Read about the Commons →</a>
   </section>
 
 </Base>

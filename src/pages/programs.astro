@@ -83,7 +83,7 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
               </div>
               <div class="mt-8 flex items-baseline justify-between gap-3 pt-4 border-t border-rule">
                 <span class={`caption text-${v.tone}-deep`}>● {entry.data.status}</span>
-                <a href="/connect/" class={`no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-${v.tone}-deep hover:text-clay-deep`}>
+                <a href={`${BASE}connect/`} class={`no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-${v.tone}-deep hover:text-clay-deep`}>
                   ★ Get on the list →
                 </a>
               </div>
@@ -105,8 +105,8 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
         Help shape what bioregional coordination looks like in practice — join working groups, propose initiatives, and share what you know.
       </p>
       <div class="flex flex-wrap gap-3 justify-center">
-        <a href="/the-commons/" class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">★ Read about the Commons</a>
-        <a href="/connect/" class="btn-line" style="border-color: rgba(242,234,216,0.85); color:#F2EAD8;">✉ Reach out</a>
+        <a href={`${BASE}the-commons/`} class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">★ Read about the Commons</a>
+        <a href={`${BASE}connect/`} class="btn-line" style="border-color: rgba(242,234,216,0.85); color:#F2EAD8;">✉ Reach out</a>
       </div>
     </div>
   </Spread>

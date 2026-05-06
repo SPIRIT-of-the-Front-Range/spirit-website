@@ -20,6 +20,7 @@ const byKind = renderedEntries.reduce((acc, { entry }) => {
   acc[k] = (acc[k] || 0) + 1;
   return acc;
 }, {} as Record<string, number>);
+const BASE = import.meta.env.BASE_URL;
 ---
 
 <Base title="The Catalog" description="A curated index of bioregional resources — books, organizations, tools, practices, and places that root us in the work.">
@@ -71,7 +72,7 @@ const byKind = renderedEntries.reduce((acc, { entry }) => {
             <strong>How this catalog works.</strong> Each entry has a curator. Each curator vouches for the item personally. We do not aggregate; we recommend.
           </Marginalia>
           <Marginalia>
-            Want to suggest an addition? <a href="/connect/" class="text-creek-deep underline">Write to us</a>. We add slowly, by consensus.
+            Want to suggest an addition? <a href={`${BASE}connect/`} class="text-creek-deep underline">Write to us</a>. We add slowly, by consensus.
           </Marginalia>
           <Marginalia>
             ★ Items in this issue: <strong class="text-clay-deep">{renderedEntries.length}</strong>.
