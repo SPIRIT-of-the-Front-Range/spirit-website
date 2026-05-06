@@ -49,8 +49,8 @@
   --text-h2:         clamp(1.75rem, 1.4rem + 1.5vw, 3.1rem);
   --text-h1:         clamp(2.3rem, 1.7rem + 2.4vw, 4.4rem);
   --text-display-m:  clamp(2.6rem, 1.9rem + 2.8vw, 5.4rem);
-  --text-display-l:  clamp(3.4rem, 2.4rem + 4vw, 7.6rem);
-  --text-display-xl: clamp(4.4rem, 2.8rem + 6vw, 10.8rem);
+  --text-display-l:  clamp(2.6rem, 1.7rem + 4.5vw, 7.6rem);
+  --text-display-xl: clamp(3rem, 1.9rem + 6vw, 10.8rem);
   --text-display-2xl: clamp(5.4rem, 3.4rem + 8vw, 14.4rem);
   --text-mega:       clamp(6.4rem, 3.8rem + 10vw, 18rem);
 
@@ -97,6 +97,10 @@
     color: var(--color-ink);
     font-feature-settings: "ss01", "ss02";
     text-wrap: balance;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
   }
 
   p { text-wrap: pretty; }

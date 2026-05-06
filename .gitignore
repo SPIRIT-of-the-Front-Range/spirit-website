@@ -28,4 +28,5 @@ pnpm-debug.log*
 
 # QA / playwright screenshots — local dev artifacts only
 qa-*.png
+mob-*.png
 .playwright-mcp/
