@@ -50,10 +50,10 @@ const treatmentClass =
     />
   </div>
 
-  {/* Vignette — stronger on lower half where the headline sits */}
+  {/* Vignette — keep the bottom 60% darker so the title + subtitle stay legible on busy photos */}
   <div class="absolute inset-0 pointer-events-none"
        style="background:
-         linear-gradient(180deg, rgba(31,30,27,0.55) 0%, rgba(31,30,27,0.18) 22%, rgba(31,30,27,0.12) 38%, rgba(31,30,27,0.42) 58%, rgba(31,30,27,0.72) 82%, rgba(31,30,27,0.92) 100%);"></div>
+         linear-gradient(180deg, rgba(31,30,27,0.55) 0%, rgba(31,30,27,0.20) 18%, rgba(31,30,27,0.18) 32%, rgba(31,30,27,0.55) 55%, rgba(31,30,27,0.78) 80%, rgba(31,30,27,0.92) 100%);"></div>
 
   {/* Section label strip — TOP, in normal flow */}
   <div class="relative z-10 px-5 lg:px-12 pt-5 lg:pt-7 flex items-baseline justify-between gap-3 caption" style="color: rgba(247,239,216,0.85);">

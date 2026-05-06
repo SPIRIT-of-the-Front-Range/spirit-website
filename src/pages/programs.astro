@@ -48,7 +48,7 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
     const flip = i % 2 === 1;
     const num = String(i + 1).padStart(2, '0');
     return (
-      <Spread folio={`06.${i+1}`} section={`VI.${num} · ${entry.data.title}`} bg={i % 2 === 0 ? 'bone' : 'bone-pale'} class={i > 0 ? 'border-t border-ink' : ''}>
+      <Spread folio={`06.${i+1}`} section={entry.data.title} bg={i % 2 === 0 ? 'bone' : 'bone-pale'} class={i > 0 ? 'border-t border-ink' : ''}>
         <div class="px-5 lg:px-12 py-section">
           <div class={`grid grid-cols-12 gap-6 lg:gap-14 items-start ${flip ? 'lg:[&>*:first-child]:lg:order-2' : ''}`}>
 
@@ -58,9 +58,8 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
                 src={v.photo}
                 alt={entry.data.title}
                 treatment={`duotone-${v.tone === 'grass' ? 'sage' : v.tone}` as any}
-                label={v.plate}
-                caption={`a glimpse of ${entry.data.title.toLowerCase()}`}
-                folio={`p. ${i + 1}`}
+                label={`a glimpse of`}
+                caption={entry.data.title.toLowerCase()}
                 ratio="4/5"
                 kenBurns={true}
               />
