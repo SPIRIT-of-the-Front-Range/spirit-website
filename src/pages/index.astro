@@ -21,7 +21,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
 
     {/* Background photo — full bleed */}
     <div class="absolute inset-0 photo duotone-cover" aria-hidden="true">
-      <img src="/images/community/gathering-04.jpg" alt="" class="w-full h-full object-cover ken-burns" loading="eager" />
+      <img src={`${import.meta.env.BASE_URL}images/community/gathering-04.jpg`} alt="" class="w-full h-full object-cover ken-burns" loading="eager" />
     </div>
 
     {/* Vignette — darken top + bottom for type legibility */}
@@ -144,7 +144,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
       <div class="col-span-12 lg:col-span-5 relative bg-ink min-h-[60svh] lg:min-h-0">
         <div class="absolute inset-0 photo">
           <img
-            src="/images/community/gathering-01.jpg"
+            src={`${import.meta.env.BASE_URL}images/community/gathering-01.jpg`}
             alt="A creek at dusk in a mountain valley with fall-yellow aspen reflected in still water."
             class="w-full h-full object-cover ken-burns"
             loading="lazy"
@@ -176,7 +176,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
   {/* ====================================================== */}
   <section id="steward-note" class="relative" style="scroll-margin-top: 6rem;">
     <QuotePhoto
-      src="/images/community/gathering-11.jpg"
+      src={`${import.meta.env.BASE_URL}images/community/gathering-11.jpg`}
       alt="Sunset over the silhouetted Front Range with sun rays radiating through the mountain ridge."
       treatment="duotone-clay-deep"
       attribution="Benjamin Life · Governance Director"
@@ -205,7 +205,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
       <div class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-3 mb-10 lg:mb-14">
         {[2, 5, 7, 8, 9, 12].map((n, i) => (
           <div class="contact-thumb relative aspect-[4/3] photo">
-            <img src={`/images/community/gathering-${String(n).padStart(2,'0')}.jpg`} alt="" class="w-full h-full object-cover" loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/community/gathering-${String(n).padStart(2,'0')}.jpg`} alt="" class="w-full h-full object-cover" loading="lazy" />
             <span class="absolute bottom-1 left-1.5 caption text-bone-pale/95 text-[8px] tracking-[0.18em]">P. {String(i+1).padStart(2,'0')}</span>
           </div>
         ))}
@@ -333,7 +333,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
             <h3 class="display-m text-ink leading-[0.92]">Allocation.</h3>
           </div>
           <div class="aspect-[5/3] mb-4 photo duotone-clay">
-            <img src="/images/community/gathering-09.jpg" alt="Hands washing freshly-pulled carrots under a stream of water in a garden." loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/community/gathering-09.jpg`} alt="Hands washing freshly-pulled carrots under a stream of water in a garden." loading="lazy" />
           </div>
           <p class="caption text-clay-deep mb-3">— Plate III · harvest, summer</p>
           <p class="text-body text-ink leading-snug mb-4 flex-1">
@@ -353,7 +353,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
             <h3 class="display-m text-ink leading-[0.92]">Coordination.</h3>
           </div>
           <div class="aspect-[5/3] mb-4 photo duotone-creek">
-            <img src="/images/community/gathering-07.jpg" alt="A still pond at dusk reflecting trees and dramatic clouds." loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/community/gathering-07.jpg`} alt="A still pond at dusk reflecting trees and dramatic clouds." loading="lazy" />
           </div>
           <p class="caption text-creek-deep mb-3">— Plate IV · pond, Boulder Creek watershed</p>
           <p class="text-body text-ink leading-snug mb-4 flex-1">
@@ -373,7 +373,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
             <h3 class="display-m text-ink leading-[0.92]">Belonging.</h3>
           </div>
           <div class="aspect-[5/3] mb-4 photo duotone-sage">
-            <img src="/images/community/gathering-06.jpg" alt="Hands holding and blessing a person during a Listeners' Council." loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/community/gathering-06.jpg`} alt="Hands holding and blessing a person during a Listeners' Council." loading="lazy" />
           </div>
           <p class="caption text-sage-deep mb-3">— Plate V · Listeners' Council, blessing</p>
           <p class="text-body text-ink leading-snug mb-4 flex-1">
@@ -393,7 +393,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
             <h3 class="display-m text-ink leading-[0.92]">Culturing.</h3>
           </div>
           <div class="aspect-[5/3] mb-4 photo duotone-sage">
-            <img src="/images/community/gathering-04.jpg" alt="Overhead view of ceremony offerings on grass." loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/community/gathering-04.jpg`} alt="Overhead view of ceremony offerings on grass." loading="lazy" />
           </div>
           <p class="caption text-grass-deep mb-3">— Plate VI · offerings, Solidarity Supper</p>
           <p class="text-body text-ink leading-snug mb-4 flex-1">
@@ -446,7 +446,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
             <article class="program-cat md:grid md:[grid-template-rows:subgrid] md:row-span-6 flex flex-col gap-y-3 md:gap-y-0">
               {/* row 1: photo */}
               <div class="aspect-[4/5] photo duotone-cover md:mb-2">
-                <img src={`/images/community/gathering-${photoNum}.jpg`} alt="" class="ken-burns" loading="lazy" />
+                <img src={`${import.meta.env.BASE_URL}images/community/gathering-${photoNum}.jpg`} alt="" class="ken-burns" loading="lazy" />
               </div>
               {/* row 2: number + sticker */}
               <div class="flex items-baseline justify-between gap-2">
@@ -485,7 +485,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
       {/* LEFT — full-bleed photo with overlaid map */}
       <div class="col-span-12 lg:col-span-5 relative bg-creek-deep min-h-[60vh] lg:min-h-0 border-r border-ink">
         <div class="absolute inset-0 photo duotone-creek">
-          <img src="/images/community/gathering-08.jpg" alt="Water pooled in a red rock crevice." class="w-full h-full object-cover ken-burns" loading="lazy" />
+          <img src={`${import.meta.env.BASE_URL}images/community/gathering-08.jpg`} alt="Water pooled in a red rock crevice." class="w-full h-full object-cover ken-burns" loading="lazy" />
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-creek-deep/70"></div>
         <div class="absolute bottom-0 left-0 right-0 p-6 text-bone-pale">
@@ -553,7 +553,7 @@ const programs = (await getCollection('programs')).sort((a, b) => a.data.order -
   <Spread folio="08" section="Funding" bg="image" minHeight="100svh" class="donate-spread overflow-hidden" id="funding">
 
     <div class="absolute inset-0 photo" aria-hidden="true">
-      <img src="/images/community/gathering-02.jpg" alt="" class="w-full h-full object-cover ken-burns" loading="lazy" style="filter: contrast(1.05) brightness(0.5) saturate(0.8);" />
+      <img src={`${import.meta.env.BASE_URL}images/community/gathering-02.jpg`} alt="" class="w-full h-full object-cover ken-burns" loading="lazy" style="filter: contrast(1.05) brightness(0.5) saturate(0.8);" />
     </div>
     <div class="absolute inset-0 pointer-events-none"
          style="background:

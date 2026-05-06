@@ -17,7 +17,7 @@ import PillarWeave from '../components/interactive/PillarWeave.astro';
     title="A more beautiful"
     italicTitle="Front Range."
     subtitle="A regenerating, flourishing bioregion — now and for future generations — cultured by living relational networks and governed by Commons infrastructure."
-    imageSrc="/images/community/gathering-05.jpg"
+    imageSrc={`${import.meta.env.BASE_URL}images/community/gathering-05.jpg`}
     imageAlt="Wildflowers and pine boughs on the Front Range with mountains beyond."
     plate=""
     plateCaption="Wildflowers · early summer · Boulder foothills"
@@ -55,7 +55,7 @@ import PillarWeave from '../components/interactive/PillarWeave.astro';
             </div>
             <div class="col-span-12 lg:col-span-5">
               <Plate
-                src="/images/community/gathering-01.jpg"
+                src={`${import.meta.env.BASE_URL}images/community/gathering-01.jpg`}
                 alt="A creek at dusk in a mountain valley, fall-yellow aspen reflected in still water."
                 treatment="warm"
                 label="Plate X"
@@ -96,7 +96,7 @@ import PillarWeave from '../components/interactive/PillarWeave.astro';
             </div>
             <div class="col-span-12 lg:col-span-5">
               <Plate
-                src="/images/community/gathering-04.jpg"
+                src={`${import.meta.env.BASE_URL}images/community/gathering-04.jpg`}
                 alt="Overhead view of Solidarity Supper offerings — pink dahlia, gourds, prayer ties laid on grass with feet in moccasins."
                 treatment="warm"
                 label="Plate XI"

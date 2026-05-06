@@ -12,8 +12,8 @@ backend:
   name: github
   repo: SPIRIT-of-the-Front-Range/spirit-website
   branch: main
-  # OAuth proxy URL — uncomment + configure for production
-  # base_url: https://decap-oauth.your-worker.workers.dev
+  base_url: https://spirit-decap-oauth.benjamin-7c2.workers.dev
+  auth_endpoint: /auth
 
 # Where uploaded images live
 media_folder: "public/images/uploads"

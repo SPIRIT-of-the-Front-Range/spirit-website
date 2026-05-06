@@ -42,7 +42,7 @@ const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric
       {/* Center: nameplate — hand-drawn wordmark */}
       <a href="/" class="col-span-6 lg:col-span-8 no-underline flex justify-center" aria-label="SPIRIT of the Front Range — home">
         <img
-          src="/images/logos/wordmark-sm.png"
+          src={`${import.meta.env.BASE_URL}images/logos/wordmark-sm.png`}
           alt="SPIRIT of the Front Range"
           width="600"
           height="335"

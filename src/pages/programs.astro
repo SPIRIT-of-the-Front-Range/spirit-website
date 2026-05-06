@@ -15,11 +15,12 @@ const renderedPrograms = await Promise.all(
 );
 
 // Per-program photo + tone assignments
+const BASE = import.meta.env.BASE_URL;
 const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | 'sage' | 'grass'; plate: string }> = {
-  'commons-teach-ins':       { photo: '/images/community/gathering-02.jpg', tone: 'sage',  plate: 'Plate XII'  },
-  'solidarity-suppers':      { photo: '/images/community/gathering-04.jpg', tone: 'clay',  plate: 'Plate XIII' },
-  'neighborhood-resiliency': { photo: '/images/community/gathering-09.jpg', tone: 'creek', plate: 'Plate XIV'  },
-  'allocation-rounds':       { photo: '/images/community/gathering-07.jpg', tone: 'grass', plate: 'Plate XV'   },
+  'commons-teach-ins':       { photo: `${BASE}images/community/gathering-02.jpg`, tone: 'sage',  plate: 'Plate XII'  },
+  'solidarity-suppers':      { photo: `${BASE}images/community/gathering-04.jpg`, tone: 'clay',  plate: 'Plate XIII' },
+  'neighborhood-resiliency': { photo: `${BASE}images/community/gathering-09.jpg`, tone: 'creek', plate: 'Plate XIV'  },
+  'allocation-rounds':       { photo: `${BASE}images/community/gathering-07.jpg`, tone: 'grass', plate: 'Plate XV'   },
 };
 ---
 
@@ -32,7 +33,7 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
     title="Living pathways"
     italicTitle="into bioregional participation."
     subtitle="SPIRIT's programs are how the Commons becomes practice. They are how strangers become neighbors, and how neighborhoods become resilient. There are no prerequisites; only the willingness to show up."
-    imageSrc="/images/community/gathering-04.jpg"
+    imageSrc={`${import.meta.env.BASE_URL}images/community/gathering-04.jpg`}
     imageAlt="Overhead view of ceremony offerings on grass during a Solidarity Supper."
     plate=""
     plateCaption="Solidarity Supper · August"
