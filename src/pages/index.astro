@@ -59,8 +59,8 @@ const BASE = import.meta.env.BASE_URL;
           </div>
         </div>
 
-        {/* Interactive jump nav (right bottom) */}
-        <aside class="col-span-12 lg:col-span-5 lg:pl-6 lg:border-l border-bone-pale/40">
+        {/* Interactive jump nav (right bottom) — hidden on mobile */}
+        <aside class="hidden lg:block lg:col-span-5 lg:pl-6 lg:border-l border-bone-pale/40">
           <p class="block mb-3 font-bold text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#E8B58A;">★ Jump to —</p>
           <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[10px] font-mono uppercase tracking-[0.16em]">
             <li><a href="#philosophy" class="no-underline hover:text-clay group inline-flex items-center gap-1.5 transition-colors" style="color: rgba(247,239,216,0.95); text-decoration-color: rgba(232,181,138,0.6);"><span style="color:#E8B58A;">02 ·</span> <span class="group-hover:translate-x-0.5 transition-transform">Philosophy</span></a></li>
@@ -160,14 +160,6 @@ const BASE = import.meta.env.BASE_URL;
           </div>
         </div>
 
-        {/* Tiny inset diagram in top-right */}
-        <div class="absolute top-4 right-4 lg:top-6 lg:right-6 bg-bone p-2 border border-ink shadow-[3px_3px_0_0_rgba(31,30,27,0.85)] rotate-[-3deg]" style="width: 110px;">
-          <svg viewBox="0 0 100 60" class="w-full" aria-hidden="true">
-            <path d="M 0 50 L 25 28 L 40 36 L 55 18 L 75 32 L 100 50" fill="none" stroke="#1F1E1B" stroke-width="1.4"/>
-            <path d="M 50 50 Q 60 40, 70 45 T 100 42" fill="none" stroke="#5C7E8A" stroke-width="1.2"/>
-          </svg>
-          <p class="caption text-[8px] text-shadow tracking-[0.16em] mt-1 text-center">FIG. ◊  watershed</p>
-        </div>
       </div>
     </div>
   </Spread>
