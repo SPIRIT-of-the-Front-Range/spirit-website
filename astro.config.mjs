@@ -6,12 +6,12 @@ import tailwindcss from '@tailwindcss/vite';
 // Toggle this when DNS for the custom domain is configured.
 // While serving from spirit-of-the-front-range.github.io/spirit-website/
 // we need a base path so asset URLs resolve. When the custom domain
-// (www.spiritofthefrontrange.org) is live, set USE_CUSTOM_DOMAIN=true.
+// (spiritofthefrontrange.org) is live, set USE_CUSTOM_DOMAIN=true.
 const useCustomDomain = process.env.USE_CUSTOM_DOMAIN === 'true';
 
 export default defineConfig({
   site: useCustomDomain
-    ? 'https://www.spiritofthefrontrange.org'
+    ? 'https://spiritofthefrontrange.org'
     : 'https://spirit-of-the-front-range.github.io',
   base: useCustomDomain ? '/' : '/spirit-website/',
   integrations: [mdx(), sitemap()],
