@@ -27,7 +27,20 @@ const BASE = import.meta.env.BASE_URL;
     plateCaption="harvest · garden plot · summer"
     treatment="duotone-clay-deep"
     brightness={0.62}
-  />
+  >
+    {everyOrgReady && (
+      <a
+        slot="cta"
+        href={everyOrgUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+        class="btn-ink !py-4 !px-6 !text-sm"
+        style="background: #F2EAD8; color: #1F1E1B; border-color: #F2EAD8;"
+      >
+        ★ Donate via Every.org →
+      </a>
+    )}
+  </PageCover>
 
   {/* OPENING */}
   <Spread folio="08.1" section="Roots" bg="bone">

@@ -83,6 +83,11 @@ const treatmentClass =
           {subtitle}
         </p>
       )}
+      {Astro.slots.has('cta') && (
+        <div class="mt-8 lg:mt-10 flex flex-wrap gap-3">
+          <slot name="cta" />
+        </div>
+      )}
     </div>
 
     {/* Image caption strip — at bottom in flow with breathing room */}
