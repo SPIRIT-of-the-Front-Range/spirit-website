@@ -23,8 +23,8 @@ public_folder: "/images/uploads"
 publish_mode: editorial_workflow
 
 # Site URL for "View Live" links
-site_url: https://www.spiritofthefrontrange.org
-display_url: https://www.spiritofthefrontrange.org
+site_url: https://spiritofthefrontrange.org
+display_url: https://spiritofthefrontrange.org
 logo_url: /favicon.svg
 
 # Locale
