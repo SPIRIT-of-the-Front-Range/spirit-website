@@ -32,6 +32,145 @@ locale: 'en'
 
 collections:
 
+  # --- PAGES (one entry per route, edits live site copy) ---------
+  - name: pages
+    label: "Pages"
+    label_singular: "Page"
+    editor: { preview: false }
+    files:
+      - name: mission
+        label: "Mission page"
+        file: "src/content/pages/mission.md"
+        description: "Vision · Mission · Strategy · Commitments. Bodies use Markdown (bold/italic OK)."
+        fields:
+          - { label: "Browser tab title", name: title, widget: string }
+          - { label: "Meta description", name: description, widget: text, hint: "Shown in search results / link previews" }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Folio number", name: folio, widget: string, hint: "e.g. '02'" }
+              - { label: "Section label", name: sectionLabel, widget: string }
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic part)", name: italicTitle, widget: string, required: false }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Image", name: image, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Treatment"
+                name: treatment
+                widget: select
+                required: false
+                options: ['warm', 'cool', 'duotone-sage', 'duotone-creek', 'duotone-clay']
+                default: 'duotone-sage'
+              - { label: "Brightness (0–1)", name: brightness, widget: number, required: false, value_type: float, min: 0, max: 1, step: 0.05, default: 0.75 }
+
+          - label: "Vision spread"
+            name: vision
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Folio", name: folio, widget: string }
+              - { label: "Folio numeral (e.g. 02.i)", name: folioNum, widget: string }
+              - { label: "Marginalia number", name: marginaliaNumber, widget: string }
+              - { label: "Marginalia label", name: marginaliaLabel, widget: string }
+              - { label: "Marginalia body", name: marginaliaBody, widget: text }
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Headline", name: headline, widget: string }
+              - { label: "Headline (italic part)", name: italicHeadline, widget: string, required: false }
+              - { label: "Body (Markdown)", name: body, widget: markdown }
+              - { label: "Image", name: image, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Image caption", name: imageCaption, widget: string, required: false }
+
+          - label: "Mission spread"
+            name: mission
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Folio", name: folio, widget: string }
+              - { label: "Folio numeral", name: folioNum, widget: string }
+              - { label: "Marginalia number", name: marginaliaNumber, widget: string }
+              - { label: "Marginalia label", name: marginaliaLabel, widget: string }
+              - { label: "Marginalia body", name: marginaliaBody, widget: text }
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Headline", name: headline, widget: string }
+              - { label: "Headline (italic part)", name: italicHeadline, widget: string, required: false }
+              - { label: "Body (Markdown)", name: body, widget: markdown }
+              - { label: "Image", name: image, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Image caption", name: imageCaption, widget: string, required: false }
+
+          - label: "Pull quote"
+            name: pullQuote
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Quote text", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, required: false }
+
+          - label: "Strategy spread"
+            name: strategy
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Folio", name: folio, widget: string }
+              - { label: "Folio numeral", name: folioNum, widget: string }
+              - { label: "Marginalia number", name: marginaliaNumber, widget: string }
+              - { label: "Marginalia label", name: marginaliaLabel, widget: string }
+              - { label: "Marginalia body", name: marginaliaBody, widget: text }
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Headline", name: headline, widget: string }
+              - { label: "Headline (italic part)", name: italicHeadline, widget: string, required: false }
+              - { label: "Lead paragraph", name: lead, widget: text }
+              - { label: "Pillar-weave caption", name: pillarWeaveCaption, widget: string, required: false }
+              - label: "Pillars (4)"
+                name: pillars
+                widget: list
+                min: 4
+                max: 4
+                fields:
+                  - { label: "Number", name: number, widget: string }
+                  - label: "Tone"
+                    name: tone
+                    widget: select
+                    options: ['clay', 'creek', 'sage', 'grass']
+                  - { label: "Label", name: label, widget: string }
+                  - { label: "Body", name: body, widget: text }
+
+          - label: "Commitments triptych"
+            name: commitments
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Folio", name: folio, widget: string, required: false }
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Headline", name: headline, widget: string }
+              - label: "Items"
+                name: items
+                widget: list
+                fields:
+                  - { label: "Number", name: number, widget: string }
+                  - label: "Tone"
+                    name: tone
+                    widget: select
+                    options: ['clay', 'creek', 'sage', 'grass']
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Body", name: body, widget: text }
+
+          - label: "Closing"
+            name: closing
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Italic text", name: text, widget: string }
+              - { label: "CTA button label", name: ctaLabel, widget: string }
+              - { label: "CTA URL (relative path or full URL)", name: ctaUrl, widget: string }
+
   # --- STEWARDS (team members) -----------------------------------
   - name: stewards
     label: "Stewards (Team)"

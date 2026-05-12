@@ -1,6 +1,92 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const sectionFolio = z.object({
+  folio: z.string().optional(),
+  folioNum: z.string().optional(),
+  marginaliaNumber: z.string().optional(),
+  marginaliaLabel: z.string().optional(),
+  marginaliaBody: z.string().optional(),
+});
+
+const missionPageSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  cover: z.object({
+    folio: z.string(),
+    sectionLabel: z.string(),
+    eyebrow: z.string(),
+    title: z.string(),
+    italicTitle: z.string().optional(),
+    subtitle: z.string(),
+    image: z.string(),
+    imageAlt: z.string(),
+    plateCaption: z.string().optional(),
+    treatment: z.string().optional(),
+    brightness: z.number().optional(),
+  }),
+  vision: sectionFolio.extend({
+    eyebrow: z.string(),
+    headline: z.string(),
+    italicHeadline: z.string().optional(),
+    body: z.string(),
+    image: z.string(),
+    imageAlt: z.string(),
+    imageCaption: z.string().optional(),
+  }),
+  mission: sectionFolio.extend({
+    eyebrow: z.string(),
+    headline: z.string(),
+    italicHeadline: z.string().optional(),
+    body: z.string(),
+    image: z.string(),
+    imageAlt: z.string(),
+    imageCaption: z.string().optional(),
+  }),
+  pullQuote: z.object({
+    text: z.string(),
+    attribution: z.string().optional(),
+  }),
+  strategy: sectionFolio.extend({
+    eyebrow: z.string(),
+    headline: z.string(),
+    italicHeadline: z.string().optional(),
+    lead: z.string(),
+    pillarWeaveCaption: z.string().optional(),
+    pillars: z.array(z.object({
+      number: z.string(),
+      tone: z.enum(['clay', 'creek', 'sage', 'grass']),
+      label: z.string(),
+      body: z.string(),
+    })),
+  }),
+  commitments: z.object({
+    folio: z.string().optional(),
+    eyebrow: z.string(),
+    headline: z.string(),
+    items: z.array(z.object({
+      number: z.string(),
+      tone: z.enum(['clay', 'creek', 'sage', 'grass']),
+      title: z.string(),
+      body: z.string(),
+    })),
+  }),
+  closing: z.object({
+    eyebrow: z.string(),
+    text: z.string(),
+    ctaLabel: z.string(),
+    ctaUrl: z.string(),
+  }),
+});
+
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
+  schema: missionPageSchema.partial().extend({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
 const stewards = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/stewards' }),
   schema: z.object({
@@ -47,4 +133,4 @@ const catalog = defineCollection({
   }),
 });
 
-export const collections = { stewards, programs, catalog };
+export const collections = { pages, stewards, programs, catalog };

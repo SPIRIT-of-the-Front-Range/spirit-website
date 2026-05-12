@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageCover from '../components/editorial/PageCover.astro';
 import Spread from '../components/editorial/Spread.astro';
@@ -6,61 +7,75 @@ import Plate from '../components/editorial/Plate.astro';
 import PullQuote from '../components/editorial/PullQuote.astro';
 import Marginalia from '../components/editorial/Marginalia.astro';
 import PillarWeave from '../components/interactive/PillarWeave.astro';
+import { md, mdInline } from '../lib/md';
+
 const BASE = import.meta.env.BASE_URL;
+const entry = await getEntry('pages', 'mission');
+if (!entry) throw new Error('Missing content/pages/mission.md');
+const d = entry.data as any;
+
+const toneTextClass = {
+  clay: 'text-clay-deep',
+  creek: 'text-creek-deep',
+  sage: 'text-sage-deep',
+  grass: 'text-grass-deep',
+} as const;
+
+const toneEyebrowClass = {
+  clay: 'text-clay-deep',
+  creek: 'eyebrow-creek',
+  sage: 'eyebrow-sage',
+  grass: 'text-grass-deep',
+} as const;
 ---
 
-<Base title="Mission" description="Spirit's vision, mission, and strategy for a flourishing Front Range bioregion.">
+<Base title={d.title} description={d.description}>
 
   <PageCover
-    folio="02"
-    sectionLabel="Mission"
-    eyebrow="On vision, mission, & strategy"
-    title="A more beautiful"
-    italicTitle="Front Range."
-    subtitle="A regenerating, flourishing bioregion — now and for future generations — cultured by living relational networks and governed by Commons infrastructure."
-    imageSrc={`${import.meta.env.BASE_URL}images/community/gathering-05.jpg`}
-    imageAlt="Wildflowers and pine boughs on the Front Range with mountains beyond."
+    folio={d.cover.folio}
+    sectionLabel={d.cover.sectionLabel}
+    eyebrow={d.cover.eyebrow}
+    title={d.cover.title}
+    italicTitle={d.cover.italicTitle}
+    subtitle={d.cover.subtitle}
+    imageSrc={`${BASE}${d.cover.image}`}
+    imageAlt={d.cover.imageAlt}
     plate=""
-    plateCaption="Wildflowers · early summer · Boulder foothills"
-    treatment="duotone-sage"
-    brightness={0.75}
+    plateCaption={d.cover.plateCaption}
+    treatment={d.cover.treatment}
+    brightness={d.cover.brightness}
   />
 
   {/* SPREAD — VISION */}
-  <Spread folio="02.1" section="Vision" bg="bone">
+  <Spread folio={d.vision.folio} section="Vision" bg="bone">
     <div class="px-5 lg:px-12 pt-section pb-16">
       <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
         <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
-          <span class="folio-num text-7xl text-clay-deep">02.i</span>
-          <Marginalia number="01">
-            <strong>Vision.</strong> A picture of what is possible. Not a destination — a horizon to walk toward.
+          <span class="folio-num text-7xl text-clay-deep">{d.vision.folioNum}</span>
+          <Marginalia number={d.vision.marginaliaNumber}>
+            <strong>{d.vision.marginaliaLabel}</strong> {d.vision.marginaliaBody}
           </Marginalia>
         </div>
 
         <div class="col-span-12 lg:col-span-9">
           <div class="rule-double mb-6"></div>
-          <p class="eyebrow mb-3">Our Vision</p>
+          <p class="eyebrow mb-3">{d.vision.eyebrow}</p>
           <h2 class="display-l lg:display-xl text-ink leading-[0.95] lg:leading-[0.92] break-words mb-10 max-w-4xl">
-            Our vision is a <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">remembering.</span>
+            {d.vision.headline} {d.vision.italicHeadline && (
+              <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{d.vision.italicHeadline}</span>
+            )}
           </h2>
 
           <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start">
-            <div class="col-span-12 lg:col-span-7 text-body-lg text-ink leading-snug space-y-4 dropcap">
-              <p>
-                Remembering our <strong>embedded belonging</strong> to the living world invites us to reimagine our social, cultural, and economic systems in accordance with ecological webs of relationships.
-              </p>
-              <p>
-                We envision a future in which all beings experience collective liberation and flourishing — a future in which all people are empowered to steward their ecologies and participate in local regenerative economies.
-              </p>
-            </div>
+            <div class="col-span-12 lg:col-span-7 text-body-lg text-ink leading-snug space-y-4 dropcap" set:html={md(d.vision.body)}></div>
             <div class="col-span-12 lg:col-span-5">
               <Plate
-                src={`${import.meta.env.BASE_URL}images/community/gathering-01.jpg`}
-                alt="A creek at dusk in a mountain valley, fall-yellow aspen reflected in still water."
+                src={`${BASE}${d.vision.image}`}
+                alt={d.vision.imageAlt}
                 treatment="warm"
                 label="●"
-                caption="creek above Nederland"
+                caption={d.vision.imageCaption}
                 ratio="3/4"
               />
             </div>
@@ -71,36 +86,28 @@ const BASE = import.meta.env.BASE_URL;
   </Spread>
 
   {/* SPREAD — MISSION (sage tint) */}
-  <Spread folio="02.2" section="Mission" bg="bone-pale" class="border-y border-ink">
+  <Spread folio={d.mission.folio} section="Mission" bg="bone-pale" class="border-y border-ink">
     <div class="px-5 lg:px-12 pt-section pb-16">
       <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
         <div class="col-span-12 lg:col-span-9 lg:order-2">
           <div class="rule-double mb-6"></div>
-          <p class="eyebrow eyebrow-sage mb-3">Our Mission</p>
+          <p class="eyebrow eyebrow-sage mb-3">{d.mission.eyebrow}</p>
           <h2 class="display-l lg:display-xl text-ink leading-[0.95] lg:leading-[0.92] break-words mb-10 max-w-5xl">
-            We know the way is <span class="italic font-serif font-light text-sage-deep" style="font-weight:300;">together.</span>
+            {d.mission.headline} {d.mission.italicHeadline && (
+              <span class="italic font-serif font-light text-sage-deep" style="font-weight:300;">{d.mission.italicHeadline}</span>
+            )}
           </h2>
 
           <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start">
-            <div class="col-span-12 lg:col-span-7 text-body-lg text-ink leading-snug space-y-4">
-              <p>
-                SPIRIT exists to <strong>empower, weave, and coordinate</strong> a distributed movement of local leaders engaged in economic re-localization, indigenous revitalization, neighborhood resilience, and bioregional regeneration. By lifting up and connecting existing regenerative initiatives, projects, organizations, and communities, SPIRIT serves as <em class="text-sage-deep">connective tissue</em> for the bioregional movement on the Front Range.
-              </p>
-              <p>
-                We work for the Front Range Commons by building shared infrastructure, creating community-led grant-making rounds, and making regular rhythms of convening to nourish and connect the tenders of this place.
-              </p>
-              <p class="font-serif italic text-sage-deep">
-                Eventually, the Board of SPIRIT — we pray — will be comprised of indigenous leaders, elders, and devoted civic stewards who represent the demography of this bioregion.
-              </p>
-            </div>
+            <div class="col-span-12 lg:col-span-7 text-body-lg text-ink leading-snug space-y-4 mission-body" set:html={md(d.mission.body)}></div>
             <div class="col-span-12 lg:col-span-5">
               <Plate
-                src={`${import.meta.env.BASE_URL}images/community/gathering-04.jpg`}
-                alt="Overhead view of Solidarity Supper offerings — pink dahlia, gourds, prayer ties laid on grass with feet in moccasins."
+                src={`${BASE}${d.mission.image}`}
+                alt={d.mission.imageAlt}
                 treatment="warm"
                 label="●"
-                caption="offerings · Solidarity Supper"
+                caption={d.mission.imageCaption}
                 ratio="3/4"
               />
             </div>
@@ -108,9 +115,9 @@ const BASE = import.meta.env.BASE_URL;
         </div>
 
         <div class="col-span-12 lg:col-span-3 lg:order-1 lg:sticky lg:top-8 self-start space-y-5">
-          <span class="folio-num text-7xl text-sage-deep">02.ii</span>
-          <Marginalia number="02">
-            <strong>Mission.</strong> The work itself — what we do, every week, to walk toward the vision.
+          <span class="folio-num text-7xl text-sage-deep">{d.mission.folioNum}</span>
+          <Marginalia number={d.mission.marginaliaNumber}>
+            <strong>{d.mission.marginaliaLabel}</strong> {d.mission.marginaliaBody}
           </Marginalia>
         </div>
       </div>
@@ -120,66 +127,47 @@ const BASE = import.meta.env.BASE_URL;
   {/* PULL QUOTE */}
   <div class="bg-bone py-section">
     <div class="container-narrow">
-      <PullQuote attribution="Benjamin Life">
-        Our mutual interdependence is the basis of our mutual responsibility for care and reciprocity.
+      <PullQuote attribution={d.pullQuote.attribution}>
+        {d.pullQuote.text}
       </PullQuote>
     </div>
   </div>
 
   {/* SPREAD — STRATEGY */}
-  <Spread folio="02.3" section="Strategy" bg="bone">
+  <Spread folio={d.strategy.folio} section="Strategy" bg="bone">
     <div class="px-5 lg:px-12 pt-section pb-section">
       <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-12">
         <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
-          <span class="folio-num text-7xl text-creek-deep">02.iii</span>
-          <Marginalia number="03">
-            <strong>Strategy.</strong> How we work — the four pillars that organize all our activity.
+          <span class="folio-num text-7xl text-creek-deep">{d.strategy.folioNum}</span>
+          <Marginalia number={d.strategy.marginaliaNumber}>
+            <strong>{d.strategy.marginaliaLabel}</strong> {d.strategy.marginaliaBody}
           </Marginalia>
         </div>
         <div class="col-span-12 lg:col-span-9">
           <div class="rule-double mb-6"></div>
-          <p class="eyebrow eyebrow-creek mb-3">Our Strategy</p>
+          <p class="eyebrow eyebrow-creek mb-3">{d.strategy.eyebrow}</p>
           <h2 class="display-l lg:display-xl text-ink leading-[0.95] lg:leading-[0.92] break-words mb-8 max-w-5xl">
-            Real connections, in their <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">organic form.</span>
+            {d.strategy.headline} {d.strategy.italicHeadline && (
+              <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{d.strategy.italicHeadline}</span>
+            )}
           </h2>
           <p class="text-body-lg text-ink leading-snug max-w-3xl mb-10">
-            We serve the bioregion — human and other-than-human worlds. By weaving together our brilliances we create more possibilities for thriving, now and for future generations.
+            {d.strategy.lead}
           </p>
 
           <div class="my-12 max-w-2xl">
             <PillarWeave />
-            <p class="caption mt-3">fig. 5 · the four pillars braid into the Commons</p>
+            <p class="caption mt-3">{d.strategy.pillarWeaveCaption}</p>
           </div>
 
           <div class="grid sm:grid-cols-2 gap-x-8 gap-y-10 mt-12 pt-8 border-t border-rule">
-            <article>
-              <span class="folio-num text-3xl text-clay-deep mb-2 block">01</span>
-              <p class="eyebrow text-clay-deep mb-2">Allocation</p>
-              <p class="text-body text-shadow leading-snug">
-                Flowing resources to projects that regenerate our bioregion through quadratic funding for projects and mutual aid.
-              </p>
-            </article>
-            <article>
-              <span class="folio-num text-3xl text-creek-deep mb-2 block">02</span>
-              <p class="eyebrow eyebrow-creek mb-2">Coordination</p>
-              <p class="text-body text-shadow leading-snug">
-                Providing tools for coordination, collaboration, distributed decision-making and treasuries.
-              </p>
-            </article>
-            <article>
-              <span class="folio-num text-3xl text-sage-deep mb-2 block">03</span>
-              <p class="eyebrow eyebrow-sage mb-2">Belonging</p>
-              <p class="text-body text-shadow leading-snug">
-                Fostering a shared bioregional identity and facilitating exchange with other bioregions.
-              </p>
-            </article>
-            <article>
-              <span class="folio-num text-3xl text-grass-deep mb-2 block">04</span>
-              <p class="eyebrow text-grass-deep mb-2">Culturing</p>
-              <p class="text-body text-shadow leading-snug">
-                Fueling culture and ethics through gatherings, skill-shares, and trainings.
-              </p>
-            </article>
+            {d.strategy.pillars.map((p: any) => (
+              <article>
+                <span class={`folio-num text-3xl mb-2 block ${toneTextClass[p.tone as keyof typeof toneTextClass]}`}>{p.number}</span>
+                <p class={`eyebrow mb-2 ${toneEyebrowClass[p.tone as keyof typeof toneEyebrowClass]}`}>{p.label}</p>
+                <p class="text-body text-shadow leading-snug">{p.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </div>
@@ -187,47 +175,33 @@ const BASE = import.meta.env.BASE_URL;
   </Spread>
 
   {/* THREE COMMITMENTS triptych */}
-  <Spread folio="02.4" section="Commitments" bg="bone-deep" class="border-y border-ink">
+  <Spread folio={d.commitments.folio} section="Commitments" bg="bone-deep" class="border-y border-ink">
     <div class="px-5 lg:px-12 py-section">
       <div class="rule-bold mb-6"></div>
-      <p class="eyebrow mb-3">Backbone the regeneration of the Front Range</p>
+      <p class="eyebrow mb-3">{d.commitments.eyebrow}</p>
       <h2 class="display-l text-ink mb-12 max-w-3xl leading-[1.0]">
-        Three commitments that organize our work.
+        {d.commitments.headline}
       </h2>
 
       <div class="grid md:grid-cols-3 gap-x-10 gap-y-12">
-        <article>
-          <span class="folio-num text-5xl text-clay-deep mb-3 block">01</span>
-          <h3 class="font-display font-bold text-h2 text-ink mb-3 leading-tight">Story &amp; Resource Coordination</h3>
-          <p class="text-body text-shadow leading-snug">
-            Supporting neighborhoods and organizations to undertake diverse activities of cultural and ecological regeneration together — embedding themselves in place, learning from each other, and developing complexity and harmonics within the larger ecology of the Front Range.
-          </p>
-        </article>
-        <article>
-          <span class="folio-num text-5xl text-creek-deep mb-3 block">02</span>
-          <h3 class="font-display font-bold text-h2 text-ink mb-3 leading-tight">Bioregional Self-Determination</h3>
-          <p class="text-body text-shadow leading-snug">
-            The Front Range is our particular home — endless plains to the East, red deserts to the South, towering mountains to the West, high plains and river basins to the North. It is our job to take care of where we live.
-          </p>
-        </article>
-        <article>
-          <span class="folio-num text-5xl text-sage-deep mb-3 block">03</span>
-          <h3 class="font-display font-bold text-h2 text-ink mb-3 leading-tight">Complex Harmonies &amp; Ecotones</h3>
-          <p class="text-body text-shadow leading-snug">
-            Bioregional organization weaves organizations along the Front Range corridor — supporting cross-pollination at the ecological transitions where different biomes, neighborhoods, and ways of knowing meet.
-          </p>
-        </article>
+        {d.commitments.items.map((c: any) => (
+          <article>
+            <span class={`folio-num text-5xl mb-3 block ${toneTextClass[c.tone as keyof typeof toneTextClass]}`}>{c.number}</span>
+            <h3 class="font-display font-bold text-h2 text-ink mb-3 leading-tight" set:html={mdInline(c.title)}></h3>
+            <p class="text-body text-shadow leading-snug">{c.body}</p>
+          </article>
+        ))}
       </div>
     </div>
   </Spread>
 
   {/* CLOSING */}
   <section class="py-section text-center container-edit">
-    <p class="eyebrow mb-4">All for the Commons</p>
+    <p class="eyebrow mb-4">{d.closing.eyebrow}</p>
     <p class="font-serif italic text-h1 text-ink max-w-3xl mx-auto leading-snug mb-8">
-      We come together for something beautiful.
+      {d.closing.text}
     </p>
-    <a href={`${BASE}the-commons/`} class="btn-ink">★ Read about the Commons →</a>
+    <a href={`${BASE}${d.closing.ctaUrl}`} class="btn-ink">{d.closing.ctaLabel}</a>
   </section>
 
 </Base>
@@ -235,4 +209,8 @@ const BASE = import.meta.env.BASE_URL;
 <style>
   .py-section { padding-block: var(--spacing-section); }
   .pt-section { padding-top: var(--spacing-section); }
+  /* preserve italic emphasis color in the mission body */
+  .mission-body em { font-style: italic; color: var(--color-sage-deep); }
+  /* honor the last paragraph italic styling */
+  .mission-body p:last-child { font-family: var(--font-serif); font-style: italic; color: var(--color-sage-deep); }
 </style>
