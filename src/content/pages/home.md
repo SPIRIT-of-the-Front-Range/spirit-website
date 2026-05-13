@@ -5,15 +5,16 @@ seo:
     bioregional regeneration along Colorado's Front Range.
 homeCover:
   titleLine1: SPIRIT
-  primaryCtaLabel: ★ Read the Almanac
+  primaryCtaLabel: ★ Read the Map
   titleLine2: Front Range.
   secondaryCtaHref: donate/
   imageSrc: /images/community/gathering-04.jpg
   eyebrow: ★ We care for what we share
   captionLabel: Cover
-  imageAlt: ""
+  imageAlt: hands in together
   tagline: A bioregional backbone non-profit mobilizing neighborhoods for real
-    solidarity, ecological care, and the founding of a Front Range Commons.
+    solidarity, ecological stewardship, and the founding of a Front Range
+    Commons.
   titleSmall: of the
   secondaryCtaLabel: ◇ Fund
   primaryCtaHref: the-commons/
