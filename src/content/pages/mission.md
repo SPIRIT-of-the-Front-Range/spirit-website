@@ -8,7 +8,7 @@ cover:
   imageSrc: /images/community/gathering-05.jpg
   eyebrow: On vision, mission, & strategy
   imageAlt: Wildflowers and pine boughs on the Front Range with mountains beyond.
-  plateCaption: Wildflowers · early summer · Boulder foothills
+  plateCaption: wildflowers · early summer · foothills
   brightness: 0.75
   subtitle: A regenerating, flourishing bioregion — now and for future generations
     — cultured by living relational networks and governed by Commons
