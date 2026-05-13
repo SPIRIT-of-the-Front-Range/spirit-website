@@ -165,7 +165,7 @@ spreads:
     heading: The
     primaryCtaLabel: ★ Read the Commons
     secondaryCtaHref: https://www.frontrangecommons.org/
-    subEyebrow: Spirit feeds it · Spirit does not control it
+    subEyebrow: SPIRIT feeds it · SPIRIT does not control it
     eyebrow: A Parallel Body
     imageCaption: ★ water in red rock
     intro: Bioregional Commoning is a living movement that *roots* in place. That's
@@ -183,11 +183,11 @@ spreads:
   funding:
     footerRight: "→ next issue: Spring"
     footerLeft: ★ end of Issue 01
-    body: >
-      Your contribution supports **Commons Teach-Ins** that open understanding,
-      **Solidarity Suppers** that deepen relationship, **Neighborhood Resiliency
-      Programs** that build real preparedness, and **Allocation Rounds** that
-      put resources in the hands of communities doing the most vital work.
+    body: Your contribution supports **Commons Teach-Ins** that open understanding,
+      **Solidarity Suppers** that deepen relationships, **Neighborhood
+      Resiliency Programs** that build real preparedness, and **Allocation
+      Rounds** that put resources in the hands of communities doing the most
+      vital work.
     heading: Every donation moves toward a more
     cascadeTitle: ★ The Funding Cascade
     primaryCtaLabel: ★ Fund the Bioregion
@@ -198,11 +198,11 @@ spreads:
     cascadeCaption: driftwood · creek edge · 2024
     headingTail: " Front Range."
     italicHeading: connected
-    secondaryCtaLabel: ◇ Learn the cascade
+    secondaryCtaLabel: ◇ Explore the funding cascade
     primaryCtaHref: donate/
     cascadeTiers:
       - number: "01"
-        title: Spirit Operations
+        title: SPIRIT Operations
         caption: salaries · infrastructure · compliance
       - number: "02"
         title: Commons Steward Stipends
