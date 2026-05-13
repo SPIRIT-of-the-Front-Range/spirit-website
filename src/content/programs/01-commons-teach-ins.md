@@ -1,10 +1,13 @@
 ---
-title: "Commons Teach-Ins"
-abbrev: "CTI"
-pillar: "culturing"
-pillarLabel: "Culturing"
-shortDescription: "Educational sessions exploring the historical, social, ecological, and cultural roots of the Commons."
-status: "active"
+title: Commons Teach-Ins
+abbrev: CTI
+pillar: culturing
+pillarLabel: Culturing
+shortDescription: Community experiments and educational sessions exploring the
+  historical, social, ecological, and cultural roots of the Commons. In
+  different community homes, practicing sharing what we care for, and caring for
+  what we share together.
+status: active
 order: 1
 ---
 
