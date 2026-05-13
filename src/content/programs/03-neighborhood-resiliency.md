@@ -10,4 +10,4 @@ shortDescription: "We coordinate trainings for resiliency from extant and new
 status: active
 order: 3
 ---
-We coordinate trainings for resiliency from extant and new community teachings on ecologically regenerative practices, growing and foraging food + medicine, mutual aid networking, community risk assessment and emergency preparedness.
+Resiliency and regeneration work is already underway, and SPIRIT seeks to coordinate organizations, neighborhoods, teachers, and students to share knowledge, skills, and stories.
