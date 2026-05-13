@@ -19,7 +19,7 @@ homeCover:
   secondaryCtaLabel: ◇ Fund
   primaryCtaHref: the-commons/
   captionLocation: The Mystery Works · August · Boulder
-  captionCredit: Photography by True To Essence
+  captionCredit: Photos by True To Essence
 spreads:
   philosophy:
     body: >-
