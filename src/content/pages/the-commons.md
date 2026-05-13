@@ -20,19 +20,19 @@ spreads:
   inBrief:
     sectionLabel: In Brief
     eyebrow: In brief
-    heading: A lattice for
+    heading: An infrastructural lattice for
     italicHeading: collective stewardship.
-    body: >
+    body: >-
       The FRC intends to be a space where anyone can contribute, propose
       projects, share resources, and participate in organizational governance.
       Commoners elect a **Wisdom Council**, which appoints **Common Stewards**
       who run the day-to-day operations.
 
 
-      SPIRIT is reframed as the *lattice* — the minimum institutional infrastructure required to make Commons activity possible. Spirit holds the legal vessel and fiduciary obligations. The Commons holds the actual stewardship of the place.
+      SPIRIT is framed as the *lattice* — the minimum institutional infrastructure required to make Commons activity possible. SPIRIT holds the legal vessel and fiduciary obligations, and the Commons holds the actual stewardship of our shared place.
 
 
-      A funding cascade was agreed: the first funds raised go to Spirit's ops, the next tranche funds Common Steward stipends, and everything beyond that flows into a Commons grant pool — **at least 50%** of total raise targeted at programmatic disbursement.
+      A funding cascade is proposed: the first funds raised go to SPIRIT operations, the next tranche of funds to Commons Steward stipends, and everything beyond that flows into a Commons grant pool — **at least 50%** of total raise targeted at programmatic disbursement.
   glossary:
     sectionLabel: Glossary
     eyebrow: A working glossary
