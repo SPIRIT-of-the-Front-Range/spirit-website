@@ -18,7 +18,7 @@ homeCover:
   secondaryCtaLabel: ◇ Fund
   primaryCtaHref: the-commons/
   captionLocation: Solidarity Supper · August · Boulder
-  captionCredit: photographed for SPIRIT · 2024
+  captionCredit: photographed by Kathleen Marie Rose
 spreads:
   philosophy:
     body: >-
