@@ -18,7 +18,7 @@ homeCover:
   titleSmall: of the
   secondaryCtaLabel: ◇ Fund
   primaryCtaHref: the-commons/
-  captionLocation: Solidarity Supper · August · Boulder
+  captionLocation: The Mystery Works · August · Boulder
   captionCredit: photographed by Kathleen Marie Rose
 spreads:
   philosophy:
