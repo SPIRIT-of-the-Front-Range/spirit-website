@@ -5,8 +5,8 @@ pillar: culturing
 pillarLabel: Culturing
 shortDescription: Cultural experiments and educational sessions exploring the
   historical, social, ecological, and cultural roots of the Commons. In
-  different community homes, practicing sharing what we care for, and caring for
-  what we share together.
+  different community homes, we cook together communally and practice sharing
+  what we care for, and caring for what we share together.
 status: active
 order: 1
 ---
