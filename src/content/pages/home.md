@@ -13,8 +13,8 @@ homeCover:
   captionLabel: Cover
   imageAlt: hands in together
   tagline: A bioregional backbone non-profit mobilizing neighborhoods for real
-    solidarity, ecological stewardship, and the founding of a Front Range
-    Commons.
+    solidarity, cultural regeneration, and ecological stewardship towards the
+    founding of a Front Range Commons.
   titleSmall: of the
   secondaryCtaLabel: ◇ Fund
   primaryCtaHref: the-commons/
