@@ -17,21 +17,20 @@ cover:
   title: A more beautiful
 spreads:
   vision:
-    body: >
+    body: >-
       Remembering our **embedded belonging** to the living world invites us to
       reimagine our social, cultural, and economic systems in accordance with
       ecological webs of relationships.
 
 
-      We envision a future in which all beings experience collective liberation and flourishing — a future in which all people are empowered to steward their ecologies and participate in local regenerative economies.
+      We envision a future in which all beings experience collective liberation and flourishing — a future in which all people steward their ecologies and participate in mutually-beneficial civic coordination.
     heading: Our vision is a
     eyebrow: Our Vision
     imageCaption: creek above Nederland
     imageAlt: A creek at dusk in a mountain valley, fall-yellow aspen reflected in
       still water.
     sectionLabel: Vision
-    marginalia: "**Vision.** A picture of what is possible. Not a destination — a
-      horizon to walk toward."
+    marginalia: "**Vision.** Sight of what is possible, a horizon to walk toward together."
     italicHeading: remembering.
     image: /images/community/gathering-01.jpg
   mission:
