@@ -11,7 +11,7 @@ cover:
   plateCaption: wildflowers · early summer · foothills
   brightness: 0.75
   subtitle: A regenerating, flourishing bioregion — now and for future generations
-    — cultured by living relational networks and governed by Commons
+    — cultured by living relational networks and coordinated through Commons
     infrastructure.
   treatment: duotone-sage
   title: A more beautiful
