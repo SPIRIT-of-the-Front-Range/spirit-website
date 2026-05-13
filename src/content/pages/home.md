@@ -23,15 +23,15 @@ homeCover:
 spreads:
   philosophy:
     body: >-
-      Here in the Front Range of the Rocky Mountains, we live within our
-      different neighborhoods, and we also live in an ecology, in a bioregion,
-      in a watershed.
+      Here in the Front Range of the Rocky Mountains, we live in our homes,
+      within our different neighborhoods, *and* we also live in an ecology, in a
+      bioregion, in a watershed.
 
 
-      We drink from an aquifer shared by every being around us. The mountain air we each breathe knows nothing of county lines. Sharing this place, we are **all connected to each other** through the lands that hold us here.
+      We drink from springs and aquifers shared by every being around us. The mountain air we each breathe knows nothing of county lines. Sharing this place, we are **all connected to each other** through the lands that hold us here.
 
 
-      Core to the philosophy of SPIRIT is the recognition that the most meaningful unit of collective life is not the county or the state — it is the bioregion. A living landscape defined by watershed, ecology, and the human and other-than-human communities nested within them.
+      Core to the philosophy of SPIRIT is the recognition that the most meaningful unit of collective life is not the county or the state — it is the bioregion. A living landscape defined by watershed, ecology, and the human and other-than-human communities nested within them. Here, we are all home.
     heading: We belong to
     italicLine: Nature is what we are, just like a forest, a high-mountain desert,
       or a wetland.
@@ -44,7 +44,7 @@ spreads:
     marginaliaNumber: N° 02.1
     imagePlate: Plate II
   stewardsNote:
-    sectionLabel: A Steward's note
+    sectionLabel: A Steward's Note
     subLabel: ↳ on the impossibility of enclosure
     quote: Our mutual relationship to where we live *implies* our mutual
       responsibility for that place. This relationship cannot be enclosed
@@ -52,19 +52,19 @@ spreads:
     attribution: Benjamin Life · Governance Director
   vessel:
     editorsNoteTitle: Editor's note
-    body: >
+    body: >-
       **This institution exists to serve the Commons, not to perpetuate
       itself.** We are a non-profit acting as the vessel that interfaces with
-      the existing world of foundations, governments, and formal partnerships.
+      the existing world of foundations, governments, and formal partnerships. 
 
 
       We are a transitional stewardship team handling the institutional work: education and programming, grant management, fiscal sponsorship, and legal operations. All of this aims toward the establishment of the Front Range Commons — a parallel, member-governed network for cultural and ecological stewardship and community-led resource allocation.
 
 
-      Spirit operates by sociocratic consent inside its *Stewardship Council*. Five circles — Admin, Culture, Story, Programming, Finance — hold the weekly work. The Board's role is reduced to legal oversight only; the operational center lives at the Council.
+      SPIRIT operates by sociocratic consent inside of its *Stewardship Council*. Five circles — Admin, Culture, Story, Programming, Finance — hold the daily work. The Board's role is reduced to legal oversight only; the operational center lives in the Council.
 
 
-      **The team is transitional.** Eventually, we hope, the Board will be comprised of Indigenous leaders, elders, and devoted civic stewards who represent the demography of this bioregion. The aim is to be replaced.
+      **The team is transitional.** Eventually, we hope, the Board will be comprised of Indigenous leaders, elders, and devoted civic stewards who represent the demography of this bioregion. The aim of SPIRIT is to be replaced by the Commons.
     heading: A 501(c)(3) building
     primaryCtaLabel: ◇ Meet the Stewards
     secondaryCtaHref: mission/
@@ -79,15 +79,15 @@ spreads:
     languageNoteAttribution: — Benjamin Life · April 2026
     secondaryCtaLabel: ◇ Strategy & Theory
     primaryCtaHref: stewards/
-    editorsNoteBody: "We are neither the Commons nor a substitute for it. Spirit is
+    editorsNoteBody: "We are neither the Commons nor a substitute for it. SPIRIT is
       the institutional *vessel*: it holds the legal weight so that the Commons
-      can hold the practice."
+      can hold the practices."
   pillars:
     sectionLabel: Four Pillars
     eyebrow: Section V · A Catalog of Pillars
     heading: Four threads,
     italicHeading: braided into one weave.
-    intro: Each pillar is a strategic thread organizing Spirit's activity. They are
+    intro: Each pillar is a strategic thread organizing SPIRIT's activity. They are
       not separable — every program touches all four — but naming them makes the
       work *legible*.
     caption: ↓ see also p. 06 (programs) for active expressions of each pillar
@@ -95,6 +95,18 @@ spreads:
       fig. 04 (lattice)
     items:
       - number: "01"
+        color: creek
+        pillar: Pillar · Coordination
+        title: Coordination.
+        body: Providing tools for **distributed decision-making and treasuries**. SPIRIT
+          operates by sociocratic consent inside the Stewardship Council; the
+          Commons will use quadratic voting on grant allocation. We create
+          coordination infrastructure for stewardship of what we share,
+          fostering our resiliency, solidarity, and know-how from neighborhood
+          to bioregion.
+        outcome: coherent collective will
+        photoCaption: — pond · Boulder Creek watershed
+      - number: "02"
         color: clay
         pillar: Pillar · Allocation
         title: Allocation.
@@ -105,16 +117,6 @@ spreads:
           programmatic disbursement.
         outcome: fairly-distributed care
         photoCaption: — harvest, summer
-      - number: "02"
-        color: creek
-        pillar: Pillar · Coordination
-        title: Coordination.
-        body: Providing tools for **distributed decision-making and treasuries**. Spirit
-          operates by sociocratic consent inside the Stewardship Council; the
-          Commons will use quadratic voting on grant allocation. Decision-making
-          infrastructure is itself a regenerative practice.
-        outcome: coherent collective will
-        photoCaption: — pond · Boulder Creek watershed
       - number: "03"
         color: sage
         pillar: Pillar · Belonging
@@ -122,7 +124,7 @@ spreads:
         body: Fostering a **shared bioregional identity** through Solidarity Suppers,
           long walks, and Listeners' Councils. We center community leaders and
           elders — particularly our Indigenous relatives whose knowledge of this
-          place precedes any of our institutions.
+          place predates any of our institutions.
         outcome: real, embodied solidarity
         photoCaption: — Listeners' Council · blessing
       - number: "04"
@@ -139,10 +141,10 @@ spreads:
     footnote: "↳ also forthcoming: Regenerative Project Allocation Rounds (Pillar 01)"
     heading: Living pathways into
     ctaLabel: → All Programs
-    caption: ★ all programs are free or pay-what-you-can
+    caption: ★ all programs are designed for accessibility
     eyebrow: Section VI · Live Programs
-    intro: Open enrollment. No prerequisites. Subscribe at [Connect](connect/) to be
-      notified when programs open in your area.
+    intro: We learn together. Subscribe at [Connect](connect/) to be notified when
+      programs commence in your area.
     sectionLabel: Programs
     italicHeading: bioregional participation.
     ctaHref: programs/
