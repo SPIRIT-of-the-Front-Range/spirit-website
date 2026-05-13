@@ -3,8 +3,12 @@ import Base from '../layouts/Base.astro';
 import PageCover from '../components/editorial/PageCover.astro';
 import Spread from '../components/editorial/Spread.astro';
 import Plate from '../components/editorial/Plate.astro';
-import Marginalia from '../components/editorial/Marginalia.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, getEntry } from 'astro:content';
+import { basePath, resolveLink } from '../lib/paths';
+
+const entry = await getEntry('pages', 'programs');
+if (!entry) throw new Error('Missing src/content/pages/programs.md');
+const { seo, cover, spreads } = entry.data;
 
 const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
 const renderedPrograms = await Promise.all(
@@ -14,7 +18,8 @@ const renderedPrograms = await Promise.all(
   })
 );
 
-// Per-program photo + tone assignments
+// Per-program photo + tone assignments. Editable visuals would belong in the
+// programs collection schema — kept here for now since photos rarely change.
 const BASE = import.meta.env.BASE_URL;
 const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | 'sage' | 'grass'; plate: string }> = {
   'commons-teach-ins':       { photo: `${BASE}images/community/gathering-02.jpg`, tone: 'sage',  plate: 'Plate XII'  },
@@ -22,33 +27,36 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
   'neighborhood-resiliency': { photo: `${BASE}images/community/gathering-09.jpg`, tone: 'creek', plate: 'Plate XIV'  },
   'allocation-rounds':       { photo: `${BASE}images/community/gathering-07.jpg`, tone: 'grass', plate: 'Plate XV'   },
 };
+
+const primaryLink = spreads?.getInvolved ? resolveLink(spreads.getInvolved.primaryCtaHref) : null;
+const secondaryLink = spreads?.getInvolved ? resolveLink(spreads.getInvolved.secondaryCtaHref) : null;
 ---
 
-<Base title="Programs" description="Living pathways into bioregional participation — Commons Teach-Ins, Solidarity Suppers, Neighborhood Resiliency, Allocation Rounds.">
+<Base title={seo.title} description={seo.description}>
 
   <PageCover
     folio="06"
     sectionLabel="Programs"
-    eyebrow="Live & upcoming · open enrollment"
-    title="Living pathways"
-    italicTitle="into bioregional participation."
-    subtitle="SPIRIT's programs are how the Commons becomes practice. They are how strangers become neighbors, and how neighborhoods become resilient. There are no prerequisites; only the willingness to show up."
-    imageSrc={`${import.meta.env.BASE_URL}images/community/gathering-04.jpg`}
-    imageAlt="Overhead view of ceremony offerings on grass during a Solidarity Supper."
+    eyebrow={cover.eyebrow}
+    title={cover.title}
+    italicTitle={cover.italicTitle}
+    subtitle={cover.subtitle}
+    imageSrc={basePath(cover.imageSrc)}
+    imageAlt={cover.imageAlt}
     plate=""
-    plateCaption="Solidarity Supper · August"
-    treatment="duotone-clay-deep"
-    brightness={0.65}
+    plateCaption={cover.plateCaption}
+    treatment={cover.treatment}
+    brightness={cover.brightness}
   />
 
-  {/* PROGRAM SPREADS */}
-  {renderedPrograms.map(({ entry, Content }, i) => {
-    const slug = entry.id.replace(/^\d+-/, '').replace(/\.md$/, '');
+  {/* PROGRAM SPREADS — dynamic from the programs collection */}
+  {renderedPrograms.map(({ entry: program, Content }, i) => {
+    const slug = program.id.replace(/^\d+-/, '').replace(/\.md$/, '');
     const v = programVisuals[slug] || programVisuals['commons-teach-ins'];
     const flip = i % 2 === 1;
     const num = String(i + 1).padStart(2, '0');
     return (
-      <Spread folio={`06.${i+1}`} section={entry.data.title} bg={i % 2 === 0 ? 'bone' : 'bone-pale'} class={i > 0 ? 'border-t border-ink' : ''}>
+      <Spread folio={`06.${i+1}`} section={program.data.title} bg={i % 2 === 0 ? 'bone' : 'bone-pale'} class={i > 0 ? 'border-t border-ink' : ''}>
         <div class="px-5 lg:px-12 py-section">
           <div class={`grid grid-cols-12 gap-6 lg:gap-14 items-start ${flip ? 'lg:[&>*:first-child]:lg:order-2' : ''}`}>
 
@@ -56,10 +64,10 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
             <div class={`col-span-12 lg:col-span-5 ${flip ? 'lg:col-start-8' : ''}`}>
               <Plate
                 src={v.photo}
-                alt={entry.data.title}
+                alt={program.data.title}
                 treatment={`duotone-${v.tone === 'grass' ? 'sage' : v.tone}` as any}
                 label={`a glimpse of`}
-                caption={entry.data.title.toLowerCase()}
+                caption={program.data.title.toLowerCase()}
                 ratio="4/5"
                 kenBurns={true}
               />
@@ -69,19 +77,19 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
             <div class={`col-span-12 lg:col-span-7 ${flip ? 'lg:col-start-1 lg:row-start-1' : 'lg:col-start-6'}`}>
               <div class="flex items-baseline justify-between gap-3 mb-3">
                 <span class={`folio-num text-6xl lg:text-7xl text-${v.tone}-deep`}>{num}</span>
-                {entry.data.abbrev && (
-                  <span class="sticker sticker-bone">{entry.data.abbrev}</span>
+                {program.data.abbrev && (
+                  <span class="sticker sticker-bone">{program.data.abbrev}</span>
                 )}
               </div>
-              <p class={`eyebrow text-${v.tone}-deep mb-2`}>Pillar · {entry.data.pillarLabel}</p>
+              <p class={`eyebrow text-${v.tone}-deep mb-2`}>Pillar · {program.data.pillarLabel}</p>
               <h2 class={`display-m text-ink leading-[0.95] mb-6 break-words`}>
-                {entry.data.title}.
+                {program.data.title}.
               </h2>
               <div class="text-body-lg text-shadow leading-snug max-w-2xl prose-program">
                 <Content />
               </div>
               <div class="mt-8 flex items-baseline justify-between gap-3 pt-4 border-t border-rule">
-                <span class={`caption text-${v.tone}-deep`}>● {entry.data.status}</span>
+                <span class={`caption text-${v.tone}-deep`}>● {program.data.status}</span>
                 <a href={`${BASE}connect/`} class={`no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-${v.tone}-deep hover:text-clay-deep`}>
                   ★ Get on the list →
                 </a>
@@ -94,21 +102,23 @@ const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | '
   })}
 
   {/* CTA — get involved */}
-  <Spread folio="06.x" section="Get involved" bg="ink">
-    <div class="px-5 lg:px-12 py-section on-dark text-center">
-      <p class="eyebrow mb-4" style="color:#E8B58A;">★ Other ways to get involved</p>
-      <h2 class="display-l max-w-3xl mx-auto leading-[1.0] mb-6" style="color:#F7EFD8;">
-        Become a founding member of the <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">Front Range Commons.</span>
-      </h2>
-      <p class="text-body-lg max-w-2xl mx-auto leading-snug mb-8" style="color: rgba(247,239,216,0.85);">
-        Help shape what bioregional coordination looks like in practice — join working groups, propose initiatives, and share what you know.
-      </p>
-      <div class="flex flex-wrap gap-3 justify-center">
-        <a href={`${BASE}the-commons/`} class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">★ Read about the Commons</a>
-        <a href={`${BASE}connect/`} class="btn-line" style="border-color: rgba(242,234,216,0.85); color:#F2EAD8;">✉ Reach out</a>
+  {spreads?.getInvolved && primaryLink && secondaryLink && (
+    <Spread folio="06.x" section={spreads.getInvolved.sectionLabel} bg="ink">
+      <div class="px-5 lg:px-12 py-section on-dark text-center">
+        <p class="eyebrow mb-4" style="color:#E8B58A;">{spreads.getInvolved.eyebrow}</p>
+        <h2 class="display-l max-w-3xl mx-auto leading-[1.0] mb-6" style="color:#F7EFD8;">
+          {spreads.getInvolved.heading} <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">{spreads.getInvolved.italicHeading}</span>
+        </h2>
+        <p class="text-body-lg max-w-2xl mx-auto leading-snug mb-8" style="color: rgba(247,239,216,0.85);">
+          {spreads.getInvolved.body}
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <a href={primaryLink.href} rel={primaryLink.rel} class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">{spreads.getInvolved.primaryCtaLabel}</a>
+          <a href={secondaryLink.href} rel={secondaryLink.rel} class="btn-line" style="border-color: rgba(242,234,216,0.85); color:#F2EAD8;">{spreads.getInvolved.secondaryCtaLabel}</a>
+        </div>
       </div>
-    </div>
-  </Spread>
+    </Spread>
+  )}
 
 </Base>
 

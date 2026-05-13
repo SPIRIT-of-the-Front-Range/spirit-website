@@ -1,16 +1,19 @@
 ---
-const BASE = import.meta.env.BASE_URL;
-const nav = [
-  { href: `${BASE}mission/`,     label: 'Mission' },
-  { href: `${BASE}programs/`,    label: 'Programs' },
-  { href: `${BASE}the-commons/`, label: 'The Commons' },
-  { href: `${BASE}stewards/`,    label: 'Stewards' },
-  { href: `${BASE}catalog/`,     label: 'Catalog' },
-  { href: `${BASE}connect/`,     label: 'Connect' },
-];
+import { getEntry } from 'astro:content';
+import { basePath, resolveLink } from '../../lib/paths';
+
+const settings = await getEntry('settings', 'site');
+if (!settings) throw new Error('Missing src/content/settings/site.md');
+const { siteName, issueNumber, establishedYear, wordmarkSrc, header } = settings.data;
+
+const nav = header.nav.map((item) => ({
+  label: item.label,
+  link: resolveLink(item.href),
+}));
 
 const path = Astro.url.pathname;
 const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
+const donateLink = resolveLink('donate/');
 ---
 
 {/* Masthead — true periodical nameplate */}
@@ -20,7 +23,7 @@ const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric
   <div class={`border-b border-ink ${path === '/' ? 'lg:hidden' : ''}`}>
     <div class="almanac-edge flex items-center justify-between gap-4 py-2 text-[10px] sm:text-[11px]">
       <span class="font-mono uppercase tracking-[0.22em] text-shadow font-bold">
-        SPIRIT of the Front Range
+        {siteName}
       </span>
       <span class="font-mono uppercase tracking-[0.22em] text-shadow">
         {today}
@@ -35,16 +38,16 @@ const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric
       {/* Left: meta */}
       <div class="col-span-3 lg:col-span-2 flex items-center gap-3">
         <span class="hidden lg:flex flex-col leading-none gap-1">
-          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">No. 01</span>
-          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">est. 2026</span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">{issueNumber}</span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">{establishedYear}</span>
         </span>
       </div>
 
       {/* Center: nameplate — hand-drawn wordmark */}
-      <a href={BASE} class="col-span-6 lg:col-span-8 no-underline flex justify-center" aria-label="SPIRIT of the Front Range — home">
+      <a href={basePath('')} class="col-span-6 lg:col-span-8 no-underline flex justify-center" aria-label={`${siteName} — home`}>
         <img
-          src={`${import.meta.env.BASE_URL}images/logos/wordmark-sm.png`}
-          alt="SPIRIT of the Front Range"
+          src={basePath(wordmarkSrc)}
+          alt={siteName}
           width="600"
           height="335"
           class="block w-auto h-12 sm:h-14 lg:h-16 object-contain wordmark-img"
@@ -55,8 +58,8 @@ const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric
 
       {/* Right: donate */}
       <div class="col-span-3 lg:col-span-2 flex justify-end items-center">
-        <a href={`${BASE}donate/`} class="hidden lg:inline-flex btn-ink !py-2 !px-3 !text-[10px]">
-          ✦ Fund
+        <a href={donateLink.href} class="hidden lg:inline-flex btn-ink !py-2 !px-3 !text-[10px]">
+          {header.donateLabel}
         </a>
         {/* Mobile menu toggle */}
         <details class="lg:hidden relative">
@@ -71,14 +74,14 @@ const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric
             <ul class="flex flex-col gap-1">
               {nav.map(item => (
                 <li>
-                  <a href={item.href} class="block no-underline font-mono uppercase text-[11px] tracking-[0.18em] py-2.5 text-ink hover:text-clay-deep">
+                  <a href={item.link.href} rel={item.link.rel} class="block no-underline font-mono uppercase text-[11px] tracking-[0.18em] py-2.5 text-ink hover:text-clay-deep">
                     → {item.label}
                   </a>
                 </li>
               ))}
               <li class="border-t-2 border-ink pt-3 mt-2">
-                <a href={`${BASE}donate/`} class="block no-underline font-mono uppercase text-[11px] tracking-[0.2em] font-bold py-2 text-clay-deep">
-                  ✦ Fund the Bioregion
+                <a href={donateLink.href} class="block no-underline font-mono uppercase text-[11px] tracking-[0.2em] font-bold py-2 text-clay-deep">
+                  {header.mobileDonateLabel}
                 </a>
               </li>
             </ul>
@@ -94,11 +97,12 @@ const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric
     <div class="almanac-edge">
       <ul class="flex items-stretch justify-center gap-0 -mx-2">
         {nav.map((item, i) => {
-          const active = path === item.href || (item.href !== '/' && path.startsWith(item.href));
+          const active = path === item.link.href || (item.link.href !== '/' && path.startsWith(item.link.href));
           return (
             <li class="contents">
               <a
-                href={item.href}
+                href={item.link.href}
+                rel={item.link.rel}
                 class:list={[
                   'no-underline px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] font-bold transition-colors text-center',
                   active ? 'text-clay-deep' : 'text-ink hover:text-clay-deep'

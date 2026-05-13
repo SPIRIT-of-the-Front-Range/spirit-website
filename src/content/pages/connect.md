@@ -1,0 +1,66 @@
+---
+seo:
+  title: "Connect"
+  description: "Reach out, come to an event, join the Front Range Commons, or fund the work."
+
+cover:
+  eyebrow: "Reach out · Come to an event · Join the Commons"
+  title: "Connect"
+  italicTitle: "with us."
+  subtitle: "We are in the early days of this work, and it is growing like something real and resilient — not like a viral flash in the pan."
+  imageSrc: "/images/community/gathering-07.jpg"
+  imageAlt: "A still pond at dusk reflecting trees and dramatic clouds."
+  plateCaption: "pond at dusk · Boulder Creek watershed"
+  treatment: "duotone-creek"
+  brightness: 0.65
+
+spreads:
+  fourWays:
+    sectionLabel: "Four Ways"
+    marginaliaPrimary: "We answer email. Sometimes slowly. Always personally."
+    marginaliaSecondary: "★ The fastest way to feel the work is to come to an event."
+    eyebrow: "★ Feeling inspired? Let's talk."
+    heading: "Inquiries. Projects. Collaborations."
+    italicHeading: "Knowledge."
+    subheading: "We would love to hear from you."
+    cards:
+      - number: "01"
+        color: "clay"
+        eyebrow: "Come to an event"
+        title: "Calendar & Programs"
+        body: "Check the calendar for upcoming community gatherings — Commons Teach-Ins, Solidarity Suppers, and Neighborhood Resiliency sessions."
+        ctaLabel: "◇ See programs →"
+        ctaHref: "programs/"
+      - number: "02"
+        color: "creek"
+        eyebrow: "Reach out directly"
+        title: "Email us"
+        body: "Send us an email — for inquiries, partnerships, or simply to say hello."
+        ctaLabel: "✉ hello@spiritofthefrontrange.org"
+        ctaHref: "mailto:hello@spiritofthefrontrange.org"
+      - number: "03"
+        color: "sage"
+        eyebrow: "Join the Commons"
+        title: "Founding Membership"
+        body: "Become a founding member of the Front Range Commons and help shape what bioregional coordination looks like in practice."
+        ctaLabel: "★ The Commons →"
+        ctaHref: "https://www.frontrangecommons.org/"
+      - number: "04"
+        color: "grass"
+        eyebrow: "Fund the Bioregion"
+        title: "Tax-deductible Gift"
+        body: "Your contribution supports programming, community-led allocation rounds, and shared infrastructure."
+        ctaLabel: "◈ Donate →"
+        ctaHref: "donate/"
+
+  newsletter:
+    sectionLabel: "Newsletter"
+    eyebrow: "★ Newsletter"
+    heading: "Slow letters from"
+    italicHeading: "the bioregion."
+    body: "Occasional dispatches — event invitations, program openings, dispatches from the work. We do not send often. We do not sell your address. Ever."
+    formAction: "https://formspree.io/f/your-form-id"
+    formEyebrow: "★ Subscribe"
+    submitLabel: "★ Subscribe"
+    footnote: "Submissions go to hello@spiritofthefrontrange.org"
+---

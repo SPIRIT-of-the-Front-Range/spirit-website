@@ -15,9 +15,11 @@ backend:
   base_url: https://spirit-decap-oauth.benjamin-7c2.workers.dev
   auth_endpoint: /auth
 
-# Where uploaded images live
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+# Where uploaded images live — broadened to cover all of /images so the CMS
+# media library can browse existing photos in community/, programs/, etc.
+# New editor uploads go to the root of this folder.
+media_folder: "public/images"
+public_folder: "/images"
 
 # Editorial workflow (creates PRs instead of direct commits)
 publish_mode: editorial_workflow
@@ -31,6 +33,849 @@ logo_url: /favicon.svg
 locale: 'en'
 
 collections:
+
+  # --- SITE SETTINGS (header / footer / nav / donate URL) --------
+  # Affects every page. Edit cautiously.
+  - name: settings
+    label: "Site settings"
+    label_singular: "Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: site
+        label: "Site settings"
+        file: "src/content/settings/site.md"
+        fields:
+          - { label: "Site name", name: siteName, widget: string, hint: "Appears in masthead, footer, copyright" }
+          - { label: "Issue number", name: issueNumber, widget: string, default: "No. 01" }
+          - { label: "Established year", name: establishedYear, widget: string, default: "est. 2026" }
+          - { label: "Wordmark image", name: wordmarkSrc, widget: image, hint: "The hand-drawn nameplate logo in the header" }
+
+          - label: "Header"
+            name: header
+            widget: object
+            fields:
+              - { label: "Desktop donate button label", name: donateLabel, widget: string, default: "✦ Fund" }
+              - { label: "Mobile donate label (in menu)", name: mobileDonateLabel, widget: string, default: "✦ Fund the Bioregion" }
+              - label: "Primary nav"
+                name: nav
+                widget: list
+                fields:
+                  - { label: "Label", name: label, widget: string }
+                  - { label: "Link", name: href, widget: string, hint: "Relative path like 'mission/'" }
+
+          - label: "Footer"
+            name: footer
+            widget: object
+            fields:
+              - label: "Tagline"
+                name: tagline
+                widget: object
+                fields:
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Body", name: body, widget: string }
+              - { label: "Primary CTA label", name: primaryCtaLabel, widget: string }
+              - { label: "Primary CTA link", name: primaryCtaHref, widget: string }
+              - { label: "Secondary CTA label", name: secondaryCtaLabel, widget: string }
+              - { label: "Secondary CTA link", name: secondaryCtaHref, widget: string }
+              - { label: "Site column title", name: siteColumnTitle, widget: string, default: "Site" }
+              - label: "Site column links"
+                name: siteLinks
+                widget: list
+                fields:
+                  - { label: "Label", name: label, widget: string }
+                  - { label: "Link", name: href, widget: string }
+              - { label: "Reach-us column title", name: reachUsTitle, widget: string, default: "Reach us" }
+              - { label: "Contact email", name: email, widget: string }
+              - label: "External links (podcast, FRC, etc.)"
+                name: externalLinks
+                widget: list
+                fields:
+                  - { label: "Label", name: label, widget: string }
+                  - { label: "Link", name: href, widget: string, hint: "Full https:// URL" }
+              - { label: "Editor sign-in label", name: editorSignInLabel, widget: string, default: "Editor sign-in" }
+              - { label: "Colophon", name: colophon, widget: string }
+              - { label: "Copyright suffix", name: copyrightSuffix, widget: string }
+
+          - label: "Donation"
+            name: donation
+            widget: object
+            fields:
+              - { label: "Every.org URL", name: url, widget: string, hint: "Full donation URL with all parameters" }
+              - { label: "Donation flow is live", name: ready, widget: boolean, hint: "When OFF, donate page shows a fallback contact card instead of the Every.org button" }
+
+  # --- PAGES (singleton files per page) --------------------------
+  # Each page has a fixed set of slots. Editors fill content into
+  # slots — they cannot add new spreads or change layout. Treatments
+  # and colors are constrained to closed lists.
+  - name: pages
+    label: "Pages"
+    label_singular: "Page"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: mission
+        label: "Mission"
+        file: "src/content/pages/mission.md"
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Description", name: description, widget: text }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string, hint: "Plain text portion of the page title" }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string, hint: "Italic colored words that close the title" }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-sage'
+              - { label: "Brightness (0.4–1.0)", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.75 }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+
+              - label: "Vision spread"
+                name: vision
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Vision" }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Marginalia (sidebar note)", name: marginalia, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link', 'heading-three'] }
+                  - { label: "Image", name: image, widget: image }
+                  - { label: "Image alt text", name: imageAlt, widget: string }
+                  - { label: "Image caption", name: imageCaption, widget: string }
+
+              - label: "Mission spread"
+                name: mission
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Mission" }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Marginalia (sidebar note)", name: marginalia, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Italic closing note", name: italicNote, widget: text, required: false, hint: "Optional italic-styled paragraph rendered after the body, in section color" }
+                  - { label: "Image", name: image, widget: image }
+                  - { label: "Image alt text", name: imageAlt, widget: string }
+                  - { label: "Image caption", name: imageCaption, widget: string }
+
+              - label: "Strategy spread"
+                name: strategy
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Strategy" }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Marginalia (sidebar note)", name: marginalia, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Intro paragraph", name: intro, widget: text }
+                  - { label: "Pillar diagram caption", name: weaveCaption, widget: string }
+                  - label: "Pillars (four)"
+                    name: pillars
+                    widget: list
+                    min: 4
+                    max: 4
+                    fields:
+                      - { label: "Number", name: number, widget: string, hint: "e.g. '01'" }
+                      - label: "Accent color"
+                        name: color
+                        widget: select
+                        options: ['clay', 'creek', 'sage', 'grass']
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Body", name: body, widget: text }
+
+              - label: "Commitments spread"
+                name: commitments
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Commitments" }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+                  - label: "Commitments (three)"
+                    name: items
+                    widget: list
+                    min: 3
+                    max: 3
+                    fields:
+                      - { label: "Number", name: number, widget: string }
+                      - label: "Accent color"
+                        name: color
+                        widget: select
+                        options: ['clay', 'creek', 'sage', 'grass']
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Body", name: body, widget: text }
+
+          - label: "Pull quote"
+            name: pullQuote
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string }
+
+          - label: "Closing CTA"
+            name: closing
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Button label", name: ctaLabel, widget: string }
+              - { label: "Button link", name: ctaHref, widget: string, hint: "Relative path, e.g. 'the-commons/'" }
+
+      # --- CONNECT page -------------------------------------------
+      - name: connect
+        label: "Connect"
+        file: "src/content/pages/connect.md"
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Description", name: description, widget: text }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-creek'
+              - { label: "Brightness (0.4–1.0)", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.65 }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+
+              - label: "Four Ways spread"
+                name: fourWays
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Four Ways" }
+                  - { label: "Primary marginalia (with N° 01 badge)", name: marginaliaPrimary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Secondary marginalia", name: marginaliaSecondary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Subheading (italic line)", name: subheading, widget: string }
+                  - label: "Cards (exactly four)"
+                    name: cards
+                    widget: list
+                    min: 4
+                    max: 4
+                    fields:
+                      - { label: "Number", name: number, widget: string, hint: "e.g. '01'" }
+                      - label: "Accent color"
+                        name: color
+                        widget: select
+                        options: ['clay', 'creek', 'sage', 'grass']
+                      - { label: "Eyebrow", name: eyebrow, widget: string }
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Body", name: body, widget: text }
+                      - { label: "CTA label", name: ctaLabel, widget: string }
+                      - { label: "CTA link", name: ctaHref, widget: string, hint: "Relative path ('programs/'), mailto: link, or full https:// URL" }
+
+              - label: "Newsletter spread"
+                name: newsletter
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Newsletter" }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Body", name: body, widget: text }
+                  - { label: "Form action URL", name: formAction, widget: string, hint: "Where the form posts to (Formspree, ConvertKit, etc.)" }
+                  - { label: "Form eyebrow", name: formEyebrow, widget: string, default: "★ Subscribe" }
+                  - { label: "Submit button label", name: submitLabel, widget: string, default: "★ Subscribe" }
+                  - { label: "Footnote", name: footnote, widget: string }
+
+      # --- DONATE page --------------------------------------------
+      - name: donate
+        label: "Donate"
+        file: "src/content/pages/donate.md"
+        fields:
+          - { label: "SEO", name: seo, widget: object, collapsed: true, fields: [
+              { label: "Title", name: title, widget: string },
+              { label: "Description", name: description, widget: text },
+            ] }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-clay-deep'
+              - { label: "Brightness (0.4–1.0)", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.62 }
+              - { label: "Donate button label (on cover)", name: donateCtaLabel, widget: string, required: false }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+
+              - label: "Roots spread"
+                name: roots
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Primary marginalia", name: marginaliaPrimary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Secondary marginalia", name: marginaliaSecondary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading (text after italic)", name: headingTail, widget: string, required: false }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+
+              - label: "Cascade spread (dark)"
+                name: cascade
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - label: "Tiers (three)"
+                    name: tiers
+                    widget: list
+                    min: 3
+                    max: 3
+                    fields:
+                      - { label: "Number", name: number, widget: string }
+                      - { label: "Tier label", name: tier, widget: string }
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Body", name: body, widget: text }
+
+              - label: "Contribute spread"
+                name: contribute
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - { label: "Donate button label", name: donateCtaLabel, widget: string }
+                  - { label: "Fallback eyebrow (when Every.org not ready)", name: fallbackEyebrow, widget: string }
+                  - { label: "Fallback heading", name: fallbackHeading, widget: string }
+                  - { label: "Fallback body", name: fallbackBody, widget: text }
+                  - { label: "Fallback CTA label", name: fallbackCtaLabel, widget: string }
+                  - { label: "Fallback CTA link", name: fallbackCtaHref, widget: string }
+                  - { label: "Tax note", name: taxNote, widget: text }
+
+          - label: "Pull quote"
+            name: pullQuote
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, required: false }
+
+      # --- STEWARDS page ------------------------------------------
+      - name: stewards-page
+        label: "Stewards (page)"
+        file: "src/content/pages/stewards.md"
+        fields:
+          - { label: "SEO", name: seo, widget: object, collapsed: true, fields: [
+              { label: "Title", name: title, widget: string },
+              { label: "Description", name: description, widget: text },
+            ] }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-ink'
+              - { label: "Brightness (0.4–1.0)", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.62 }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+
+              - label: "Manifesto spread"
+                name: manifesto
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Primary marginalia", name: marginaliaPrimary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Secondary marginalia", name: marginaliaSecondary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+
+              - label: "Team spread"
+                name: team
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+                  - { label: "Count label", name: countLabel, widget: string, default: "N = 5", hint: "The 'As of [month]' date is computed automatically." }
+
+              - label: "Future Board spread"
+                name: futureBoard
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+
+          - label: "Pull quote"
+            name: pullQuote
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, required: false }
+
+      # --- PROGRAMS page ------------------------------------------
+      - name: programs-page
+        label: "Programs (page)"
+        file: "src/content/pages/programs.md"
+        fields:
+          - { label: "SEO", name: seo, widget: object, collapsed: true, fields: [
+              { label: "Title", name: title, widget: string },
+              { label: "Description", name: description, widget: text },
+            ] }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-clay-deep'
+              - { label: "Brightness", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.65 }
+
+          - label: "Get-involved spread (dark CTA)"
+            name: spreads
+            widget: object
+            fields:
+              - label: "Get involved"
+                name: getInvolved
+                widget: object
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Body", name: body, widget: text }
+                  - { label: "Primary CTA label", name: primaryCtaLabel, widget: string }
+                  - { label: "Primary CTA link", name: primaryCtaHref, widget: string }
+                  - { label: "Secondary CTA label", name: secondaryCtaLabel, widget: string }
+                  - { label: "Secondary CTA link", name: secondaryCtaHref, widget: string }
+
+      # --- CATALOG page -------------------------------------------
+      - name: catalog-page
+        label: "Catalog (page)"
+        file: "src/content/pages/catalog.md"
+        fields:
+          - { label: "SEO", name: seo, widget: object, collapsed: true, fields: [
+              { label: "Title", name: title, widget: string },
+              { label: "Description", name: description, widget: text },
+            ] }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-clay-deep'
+              - { label: "Brightness", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.6 }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+              - label: "Sections (table of contents)"
+                name: sections
+                widget: object
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+
+              - label: "Entries (catalog body)"
+                name: entries
+                widget: object
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Primary marginalia", name: marginaliaPrimary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Secondary marginalia", name: marginaliaSecondary, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Issue footer", name: issueFooter, widget: string }
+
+      # --- THE COMMONS page ---------------------------------------
+      - name: the-commons
+        label: "The Commons"
+        file: "src/content/pages/the-commons.md"
+        fields:
+          - { label: "SEO", name: seo, widget: object, collapsed: true, fields: [
+              { label: "Title", name: title, widget: string },
+              { label: "Description", name: description, widget: text },
+            ] }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-creek'
+              - { label: "Brightness", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.65 }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+              - label: "In Brief spread"
+                name: inBrief
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+
+              - label: "Glossary spread"
+                name: glossary
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Caption (right side)", name: caption, widget: string }
+                  - label: "Terms"
+                    name: terms
+                    widget: list
+                    min: 1
+                    fields:
+                      - { label: "Number", name: number, widget: string, hint: "e.g. 'N° 01'" }
+                      - label: "Accent color"
+                        name: color
+                        widget: select
+                        options: ['clay', 'creek', 'sage', 'grass']
+                      - { label: "Term", name: term, widget: string }
+                      - { label: "Pronunciation / part of speech", name: pronunciation, widget: string }
+                      - { label: "Definition", name: body, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+
+              - label: "Relationship spread"
+                name: relationship
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Marginalia", name: marginalia, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - label: "SPIRIT card"
+                    name: spiritCard
+                    widget: object
+                    fields:
+                      - { label: "Eyebrow", name: eyebrow, widget: string }
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Bullet items", name: items, widget: list, field: { label: "Item", name: item, widget: string } }
+                  - label: "Commons card"
+                    name: commonsCard
+                    widget: object
+                    fields:
+                      - { label: "Eyebrow", name: eyebrow, widget: string }
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Bullet items", name: items, widget: list, field: { label: "Item", name: item, widget: string } }
+                  - { label: "CTA label", name: ctaLabel, widget: string }
+                  - { label: "CTA link", name: ctaHref, widget: string }
+
+          - label: "Pull quote"
+            name: pullQuote
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, required: false }
+
+      # --- HOME page ----------------------------------------------
+      - name: home
+        label: "Home"
+        file: "src/content/pages/home.md"
+        fields:
+          - { label: "SEO", name: seo, widget: object, collapsed: true, fields: [
+              { label: "Title", name: title, widget: string },
+              { label: "Description", name: description, widget: text },
+            ] }
+
+          - label: "Home cover"
+            name: homeCover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title — line 1 (large)", name: titleLine1, widget: string, hint: "e.g. 'SPIRIT'" }
+              - { label: "Title — small italic", name: titleSmall, widget: string, hint: "e.g. 'of the'" }
+              - { label: "Title — line 2 (italic)", name: titleLine2, widget: string, hint: "e.g. 'Front Range.'" }
+              - { label: "Tagline", name: tagline, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string, required: false }
+              - { label: "Primary CTA label", name: primaryCtaLabel, widget: string }
+              - { label: "Primary CTA link", name: primaryCtaHref, widget: string }
+              - { label: "Secondary CTA label", name: secondaryCtaLabel, widget: string }
+              - { label: "Secondary CTA link", name: secondaryCtaHref, widget: string }
+              - { label: "Caption — label", name: captionLabel, widget: string }
+              - { label: "Caption — location", name: captionLocation, widget: string }
+              - { label: "Caption — credit", name: captionCredit, widget: string }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+              - label: "Philosophy spread"
+                name: philosophy
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Italic closing line", name: italicLine, widget: text }
+                  - { label: "Marginalia (bottom)", name: marginalia, widget: string }
+                  - { label: "Marginalia number", name: marginaliaNumber, widget: string, default: "N° 02.1" }
+                  - { label: "Photo caption", name: imageCaption, widget: string }
+                  - { label: "Photo plate label", name: imagePlate, widget: string, default: "Plate II" }
+
+              - label: "Steward's note spread"
+                name: stewardsNote
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Sub-label", name: subLabel, widget: string }
+                  - { label: "Quote (markdown)", name: quote, widget: markdown, minimal: true, buttons: ['italic', 'bold'] }
+                  - { label: "Attribution", name: attribution, widget: string }
+
+              - label: "Vessel spread"
+                name: vessel
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Primary CTA label", name: primaryCtaLabel, widget: string }
+                  - { label: "Primary CTA link", name: primaryCtaHref, widget: string }
+                  - { label: "Secondary CTA label", name: secondaryCtaLabel, widget: string }
+                  - { label: "Secondary CTA link", name: secondaryCtaHref, widget: string }
+                  - { label: "Editor's note title", name: editorsNoteTitle, widget: string }
+                  - { label: "Editor's note body", name: editorsNoteBody, widget: markdown, minimal: true, buttons: ['bold', 'italic'] }
+                  - { label: "Language note title", name: languageNoteTitle, widget: string }
+                  - { label: "Language note quote", name: languageNoteQuote, widget: markdown, minimal: true, buttons: ['italic'] }
+                  - { label: "Language note attribution", name: languageNoteAttribution, widget: string }
+                  - { label: "Diagram caption", name: diagramCaption, widget: string, default: "Fig. 04 · the lattice" }
+
+              - label: "Pillars spread (Four Pillars)"
+                name: pillars
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Intro", name: intro, widget: text }
+                  - { label: "Caption", name: caption, widget: string }
+                  - { label: "Footnote", name: footnote, widget: string }
+                  - label: "Pillars (exactly four)"
+                    name: items
+                    widget: list
+                    min: 4
+                    max: 4
+                    fields:
+                      - { label: "Number", name: number, widget: string }
+                      - label: "Accent color"
+                        name: color
+                        widget: select
+                        options: ['clay', 'creek', 'sage', 'grass']
+                      - { label: "Pillar eyebrow", name: pillar, widget: string }
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Body", name: body, widget: text }
+                      - { label: "Outcome", name: outcome, widget: string }
+                      - { label: "Photo caption", name: photoCaption, widget: string }
+
+              - label: "Programs teaser spread"
+                name: programsTeaser
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Intro (markdown — supports links)", name: intro, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Caption", name: caption, widget: string }
+                  - { label: "Footnote", name: footnote, widget: string }
+                  - { label: "CTA label", name: ctaLabel, widget: string }
+                  - { label: "CTA link", name: ctaHref, widget: string }
+
+              - label: "Commons teaser spread"
+                name: commonsTeaser
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Sub-eyebrow", name: subEyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - { label: "Intro (italic)", name: intro, widget: markdown, minimal: true, buttons: ['italic', 'bold'] }
+                  - { label: "Body", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+                  - { label: "Sticker quote", name: stickerQuote, widget: text }
+                  - { label: "Sticker label", name: stickerLabel, widget: string, default: "N° 07.1" }
+                  - { label: "Image caption", name: imageCaption, widget: string }
+                  - { label: "Image overlay text", name: imageOverlay, widget: text }
+                  - { label: "Primary CTA label", name: primaryCtaLabel, widget: string }
+                  - { label: "Primary CTA link", name: primaryCtaHref, widget: string }
+                  - { label: "Secondary CTA label", name: secondaryCtaLabel, widget: string }
+                  - { label: "Secondary CTA link", name: secondaryCtaHref, widget: string }
+
+              - label: "Funding spread (back cover)"
+                name: funding
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - { label: "Body", name: body, widget: markdown, minimal: true, buttons: ['bold', 'italic'] }
+                  - { label: "Primary CTA label", name: primaryCtaLabel, widget: string }
+                  - { label: "Primary CTA link", name: primaryCtaHref, widget: string }
+                  - { label: "Secondary CTA label", name: secondaryCtaLabel, widget: string }
+                  - { label: "Secondary CTA link", name: secondaryCtaHref, widget: string }
+                  - { label: "Cascade box title", name: cascadeTitle, widget: string }
+                  - label: "Cascade tiers (three)"
+                    name: cascadeTiers
+                    widget: list
+                    min: 3
+                    max: 3
+                    fields:
+                      - { label: "Number", name: number, widget: string }
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Caption", name: caption, widget: string }
+                  - { label: "Cascade caption", name: cascadeCaption, widget: string }
+                  - { label: "Footer — left", name: footerLeft, widget: string }
+                  - { label: "Footer — center", name: footerCenter, widget: string }
+                  - { label: "Footer — right", name: footerRight, widget: string }
 
   # --- STEWARDS (team members) -----------------------------------
   - name: stewards

@@ -3,153 +3,156 @@ import Base from '../layouts/Base.astro';
 import PageCover from '../components/editorial/PageCover.astro';
 import Spread from '../components/editorial/Spread.astro';
 import Marginalia from '../components/editorial/Marginalia.astro';
-const BASE = import.meta.env.BASE_URL;
+import { getEntry } from 'astro:content';
+import { basePath, resolveLink } from '../lib/paths';
+import { mdToInline } from '../lib/markdown';
+
+const entry = await getEntry('pages', 'connect');
+if (!entry) throw new Error('Missing src/content/pages/connect.md');
+const { seo, cover, spreads } = entry.data;
+
+// Connect's card eyebrow classes differ from mission's (eyebrow-clay vs text-clay-deep)
+// — preserve original visual identity per page.
+const cardClasses = {
+  clay: { folio: 'text-clay-deep', eyebrow: 'eyebrow eyebrow-clay', link: 'text-clay-deep' },
+  creek: { folio: 'text-creek-deep', eyebrow: 'eyebrow eyebrow-creek', link: 'text-creek-deep' },
+  sage: { folio: 'text-sage-deep', eyebrow: 'eyebrow eyebrow-sage', link: 'text-sage-deep' },
+  grass: { folio: 'text-grass-deep', eyebrow: 'eyebrow text-grass-deep', link: 'text-grass-deep' },
+} as const;
 ---
 
-<Base title="Connect" description="Reach out, come to an event, join the Front Range Commons, or fund the work.">
+<Base title={seo.title} description={seo.description}>
 
   <PageCover
     folio="07"
     sectionLabel="Connect"
-    eyebrow="Reach out · Come to an event · Join the Commons"
-    title="Connect"
-    italicTitle="with us."
-    subtitle="We are in the early days of this work, and it is growing like something real and resilient — not like a viral flash in the pan."
-    imageSrc={`${import.meta.env.BASE_URL}images/community/gathering-07.jpg`}
-    imageAlt="A still pond at dusk reflecting trees and dramatic clouds."
+    eyebrow={cover.eyebrow}
+    title={cover.title}
+    italicTitle={cover.italicTitle}
+    subtitle={cover.subtitle}
+    imageSrc={basePath(cover.imageSrc)}
+    imageAlt={cover.imageAlt}
     plate=""
-    plateCaption="pond at dusk · Boulder Creek watershed"
-    treatment="duotone-creek"
-    brightness={0.65}
+    plateCaption={cover.plateCaption}
+    treatment={cover.treatment}
+    brightness={cover.brightness}
   />
 
   {/* FOUR WAYS */}
-  <Spread folio="07.1" section="Four Ways" bg="bone">
-    <div class="px-5 lg:px-12 py-section">
-      <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-10">
-        <div class="col-span-12 lg:col-span-4 lg:sticky lg:top-8 self-start space-y-5">
-          <span class="folio-num text-7xl text-clay-deep">07.i</span>
-          <Marginalia number="01">
-            We answer email. Sometimes slowly. Always personally.
-          </Marginalia>
-          <Marginalia>
-            ★ The fastest way to feel the work is to come to an event.
-          </Marginalia>
-        </div>
+  {spreads?.fourWays && (
+    <Spread folio="07.1" section={spreads.fourWays.sectionLabel} bg="bone">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-10">
+          <div class="col-span-12 lg:col-span-4 lg:sticky lg:top-8 self-start space-y-5">
+            <span class="folio-num text-7xl text-clay-deep">07.i</span>
+            <Marginalia number="01">
+              <Fragment set:html={mdToInline(spreads.fourWays.marginaliaPrimary)} />
+            </Marginalia>
+            <Marginalia>
+              <Fragment set:html={mdToInline(spreads.fourWays.marginaliaSecondary)} />
+            </Marginalia>
+          </div>
 
-        <div class="col-span-12 lg:col-span-8">
-          <div class="rule-double mb-6"></div>
-          <p class="eyebrow mb-3">★ Feeling inspired? Let's talk.</p>
-          <h2 class="display-l text-ink break-words leading-[0.95] mb-6">
-            Inquiries. Projects. Collaborations. <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">Knowledge.</span>
-          </h2>
-          <p class="text-body-lg text-shadow italic font-serif leading-snug mb-10 max-w-2xl">
-            We would love to hear from you.
-          </p>
+          <div class="col-span-12 lg:col-span-8">
+            <div class="rule-double mb-6"></div>
+            <p class="eyebrow mb-3">{spreads.fourWays.eyebrow}</p>
+            <h2 class="display-l text-ink break-words leading-[0.95] mb-6">
+              {spreads.fourWays.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.fourWays.italicHeading}</span>
+            </h2>
+            <p class="text-body-lg text-shadow italic font-serif leading-snug mb-10 max-w-2xl">
+              {spreads.fourWays.subheading}
+            </p>
 
-          <div class="grid sm:grid-cols-2 gap-6">
-
-            <article class="paper p-6">
-              <span class="folio-num text-3xl text-clay-deep mb-1 block">01</span>
-              <p class="eyebrow eyebrow-clay mb-2">Come to an event</p>
-              <h3 class="font-display font-bold text-h3 text-ink leading-tight mb-3">Calendar &amp; Programs</h3>
-              <p class="text-body text-shadow leading-relaxed mb-4">
-                Check the calendar for upcoming community gatherings — Commons Teach-Ins, Solidarity Suppers, and Neighborhood Resiliency sessions.
-              </p>
-              <a href={`${BASE}programs/`} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-clay-deep hover:text-ink">◇ See programs →</a>
-            </article>
-
-            <article class="paper p-6">
-              <span class="folio-num text-3xl text-creek-deep mb-1 block">02</span>
-              <p class="eyebrow eyebrow-creek mb-2">Reach out directly</p>
-              <h3 class="font-display font-bold text-h3 text-ink leading-tight mb-3">Email us</h3>
-              <p class="text-body text-shadow leading-relaxed mb-4">
-                Send us an email — for inquiries, partnerships, or simply to say hello.
-              </p>
-              <a href="mailto:hello@spiritofthefrontrange.org" class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-ink break-all">✉ hello@spiritofthefrontrange.org</a>
-            </article>
-
-            <article class="paper p-6">
-              <span class="folio-num text-3xl text-sage-deep mb-1 block">03</span>
-              <p class="eyebrow eyebrow-sage mb-2">Join the Commons</p>
-              <h3 class="font-display font-bold text-h3 text-ink leading-tight mb-3">Founding Membership</h3>
-              <p class="text-body text-shadow leading-relaxed mb-4">
-                Become a founding member of the Front Range Commons and help shape what bioregional coordination looks like in practice.
-              </p>
-              <a href="https://www.frontrangecommons.org/" rel="noopener" class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-sage-deep hover:text-ink">★ The Commons →</a>
-            </article>
-
-            <article class="paper p-6">
-              <span class="folio-num text-3xl text-grass-deep mb-1 block">04</span>
-              <p class="eyebrow text-grass-deep mb-2">Fund the Bioregion</p>
-              <h3 class="font-display font-bold text-h3 text-ink leading-tight mb-3">Tax-deductible Gift</h3>
-              <p class="text-body text-shadow leading-relaxed mb-4">
-                Your contribution supports programming, community-led allocation rounds, and shared infrastructure.
-              </p>
-              <a href={`${BASE}donate/`} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-grass-deep hover:text-ink">◈ Donate →</a>
-            </article>
-
+            <div class="grid sm:grid-cols-2 gap-6">
+              {spreads.fourWays.cards.map((c) => {
+                const link = resolveLink(c.ctaHref);
+                const classes = cardClasses[c.color];
+                return (
+                  <article class="paper p-6">
+                    <span class={`folio-num text-3xl ${classes.folio} mb-1 block`}>{c.number}</span>
+                    <p class={`${classes.eyebrow} mb-2`}>{c.eyebrow}</p>
+                    <h3 class="font-display font-bold text-h3 text-ink leading-tight mb-3">{c.title}</h3>
+                    <p class="text-body text-shadow leading-relaxed mb-4">
+                      {c.body}
+                    </p>
+                    <a
+                      href={link.href}
+                      rel={link.rel}
+                      class:list={[
+                        'no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold hover:text-ink',
+                        classes.link,
+                        link.isMailto && 'break-all',
+                      ]}
+                    >
+                      {c.ctaLabel}
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </Spread>
+    </Spread>
+  )}
 
   {/* NEWSLETTER FORM */}
-  <Spread folio="07.2" section="Newsletter" bg="bone-pale" class="border-y border-ink">
-    <div class="px-5 lg:px-12 py-section">
-      <div class="grid grid-cols-12 gap-6 lg:gap-12 items-center">
+  {spreads?.newsletter && (
+    <Spread folio="07.2" section={spreads.newsletter.sectionLabel} bg="bone-pale" class="border-y border-ink">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-center">
 
-        <div class="col-span-12 lg:col-span-6">
-          <span class="folio-num text-6xl text-creek-deep mb-4 block">07.ii</span>
-          <p class="eyebrow eyebrow-creek mb-3">★ Newsletter</p>
-          <h2 class="display-m text-ink leading-[1.0] mb-5">
-            Slow letters from <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">the bioregion.</span>
-          </h2>
-          <p class="text-body-lg text-shadow leading-snug max-w-lg">
-            Occasional dispatches — event invitations, program openings, dispatches from the work. We do not send often. We do not sell your address. Ever.
-          </p>
-        </div>
-
-        <div class="col-span-12 lg:col-span-6">
-          <form
-            class="paper p-6 lg:p-8 space-y-4"
-            action="https://formspree.io/f/your-form-id"
-            method="POST"
-          >
-            <p class="eyebrow eyebrow-clay">★ Subscribe</p>
-            <label class="block">
-              <span class="block caption mb-2">Name</span>
-              <input
-                type="text" name="name" required
-                class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none"
-              />
-            </label>
-            <label class="block">
-              <span class="block caption mb-2">Email</span>
-              <input
-                type="email" name="email" required
-                class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none"
-              />
-            </label>
-            <label class="block">
-              <span class="block caption mb-2">What brings you here? <span class="opacity-60">(optional)</span></span>
-              <textarea
-                name="message" rows="3"
-                class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none resize-y"
-              ></textarea>
-            </label>
-            <button type="submit" class="btn-ink w-full justify-center !py-3 cursor-pointer">
-              ★ Subscribe
-            </button>
-            <p class="caption text-shadow text-center">
-              Submissions go to hello@spiritofthefrontrange.org
+          <div class="col-span-12 lg:col-span-6">
+            <span class="folio-num text-6xl text-creek-deep mb-4 block">07.ii</span>
+            <p class="eyebrow eyebrow-creek mb-3">{spreads.newsletter.eyebrow}</p>
+            <h2 class="display-m text-ink leading-[1.0] mb-5">
+              {spreads.newsletter.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.newsletter.italicHeading}</span>
+            </h2>
+            <p class="text-body-lg text-shadow leading-snug max-w-lg">
+              {spreads.newsletter.body}
             </p>
-          </form>
+          </div>
+
+          <div class="col-span-12 lg:col-span-6">
+            <form
+              class="paper p-6 lg:p-8 space-y-4"
+              action={spreads.newsletter.formAction}
+              method="POST"
+            >
+              <p class="eyebrow eyebrow-clay">{spreads.newsletter.formEyebrow}</p>
+              <label class="block">
+                <span class="block caption mb-2">Name</span>
+                <input
+                  type="text" name="name" required
+                  class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none"
+                />
+              </label>
+              <label class="block">
+                <span class="block caption mb-2">Email</span>
+                <input
+                  type="email" name="email" required
+                  class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none"
+                />
+              </label>
+              <label class="block">
+                <span class="block caption mb-2">What brings you here? <span class="opacity-60">(optional)</span></span>
+                <textarea
+                  name="message" rows="3"
+                  class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none resize-y"
+                ></textarea>
+              </label>
+              <button type="submit" class="btn-ink w-full justify-center !py-3 cursor-pointer">
+                {spreads.newsletter.submitLabel}
+              </button>
+              <p class="caption text-shadow text-center">
+                {spreads.newsletter.footnote}
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </Spread>
+    </Spread>
+  )}
 
 </Base>
 

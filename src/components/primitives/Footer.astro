@@ -1,8 +1,18 @@
 ---
 import Mark from './Mark.astro';
+import { getEntry } from 'astro:content';
+import { basePath, resolveLink } from '../../lib/paths';
+
+const settings = await getEntry('settings', 'site');
+if (!settings) throw new Error('Missing src/content/settings/site.md');
+const { footer } = settings.data;
+
+const primaryCta = resolveLink(footer.primaryCtaHref);
+const secondaryCta = resolveLink(footer.secondaryCtaHref);
+const siteLinks = footer.siteLinks.map((l) => ({ label: l.label, link: resolveLink(l.href) }));
+const externalLinks = footer.externalLinks.map((l) => ({ label: l.label, link: resolveLink(l.href) }));
 
 const year = new Date().getFullYear();
-const BASE = import.meta.env.BASE_URL;
 ---
 
 <footer class="site-footer mt-32 border-t-4 border-ink bg-bone">
@@ -11,41 +21,40 @@ const BASE = import.meta.env.BASE_URL;
     {/* Top: tagline */}
     <div class="grid lg:grid-cols-12 gap-10 mb-12">
       <div class="lg:col-span-7">
-        <p class="eyebrow eyebrow-clay mb-4">Feeling inspired? Let's weave.</p>
+        <p class="eyebrow eyebrow-clay mb-4">{footer.tagline.eyebrow}</p>
         <h2 class="display-l text-ink max-w-3xl">
-          Inquiries. Projects. Partnerships. <em class="font-serif italic font-normal text-clay-deep">Knowledge.</em>
+          {footer.tagline.heading} <em class="font-serif italic font-normal text-clay-deep">{footer.tagline.italicHeading}</em>
         </h2>
         <p class="mt-6 text-body-lg text-shadow max-w-xl">
-          We would love to hear from you.
+          {footer.tagline.body}
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href={`${BASE}connect/`} class="no-underline inline-flex items-center gap-2 bg-ink text-bone px-5 py-3 text-xs font-mono uppercase tracking-[0.18em] font-bold hover:bg-clay-deep transition-colors">
-            ✦ Get involved
+          <a href={primaryCta.href} rel={primaryCta.rel} class="no-underline inline-flex items-center gap-2 bg-ink text-bone px-5 py-3 text-xs font-mono uppercase tracking-[0.18em] font-bold hover:bg-clay-deep transition-colors">
+            {footer.primaryCtaLabel}
           </a>
-          <a href={`${BASE}donate/`} class="no-underline inline-flex items-center gap-2 border border-ink px-5 py-3 text-xs font-mono uppercase tracking-[0.18em] font-bold text-ink hover:bg-ink hover:text-bone transition-colors">
-            ◇ Fund the Bioregion
+          <a href={secondaryCta.href} rel={secondaryCta.rel} class="no-underline inline-flex items-center gap-2 border border-ink px-5 py-3 text-xs font-mono uppercase tracking-[0.18em] font-bold text-ink hover:bg-ink hover:text-bone transition-colors">
+            {footer.secondaryCtaLabel}
           </a>
         </div>
       </div>
 
       <div class="lg:col-span-5 grid sm:grid-cols-2 gap-8">
         <div>
-          <p class="eyebrow mb-3">Site</p>
+          <p class="eyebrow mb-3">{footer.siteColumnTitle}</p>
           <ul class="flex flex-col gap-2">
-            <li><a href={`${BASE}mission/`} class="no-underline text-ink hover:text-clay-deep">Mission</a></li>
-            <li><a href={`${BASE}programs/`} class="no-underline text-ink hover:text-clay-deep">Programs</a></li>
-            <li><a href={`${BASE}the-commons/`} class="no-underline text-ink hover:text-clay-deep">The Commons</a></li>
-            <li><a href={`${BASE}stewards/`} class="no-underline text-ink hover:text-clay-deep">Stewards</a></li>
-            <li><a href={`${BASE}catalog/`} class="no-underline text-ink hover:text-clay-deep">Catalog</a></li>
+            {siteLinks.map((l) => (
+              <li><a href={l.link.href} rel={l.link.rel} class="no-underline text-ink hover:text-clay-deep">{l.label}</a></li>
+            ))}
           </ul>
         </div>
         <div>
-          <p class="eyebrow mb-3">Reach us</p>
+          <p class="eyebrow mb-3">{footer.reachUsTitle}</p>
           <ul class="flex flex-col gap-2">
-            <li><a href="mailto:hello@spiritofthefrontrange.org" class="no-underline text-ink hover:text-clay-deep break-all">hello@spiritofthefrontrange.org</a></li>
-            <li><a href="https://www.themysteryworks.com/" class="no-underline text-ink hover:text-clay-deep" rel="noopener">Mystery Works podcast →</a></li>
-            <li><a href="https://www.frontrangecommons.org/" class="no-underline text-ink hover:text-clay-deep" rel="noopener">Front Range Commons →</a></li>
-            <li><a href={`${import.meta.env.BASE_URL}admin/index.html`} class="no-underline text-shadow hover:text-clay-deep text-xs font-mono uppercase tracking-[0.14em] mt-2">Editor sign-in</a></li>
+            <li><a href={`mailto:${footer.email}`} class="no-underline text-ink hover:text-clay-deep break-all">{footer.email}</a></li>
+            {externalLinks.map((l) => (
+              <li><a href={l.link.href} rel={l.link.rel} class="no-underline text-ink hover:text-clay-deep">{l.label}</a></li>
+            ))}
+            <li><a href={basePath('admin/index.html')} class="no-underline text-shadow hover:text-clay-deep text-xs font-mono uppercase tracking-[0.14em] mt-2">{footer.editorSignInLabel}</a></li>
           </ul>
         </div>
       </div>
@@ -58,13 +67,13 @@ const BASE = import.meta.env.BASE_URL;
       <div class="flex items-center gap-4">
         <Mark variant="compact" />
         <p class="font-mono text-micro uppercase tracking-[0.16em] text-shadow">
-          A 501(c)(3) bioregional backbone non-profit
+          {footer.colophon}
         </p>
       </div>
       <div class="font-mono text-micro uppercase tracking-[0.14em] text-shadow flex flex-wrap gap-x-4 gap-y-1">
-        <span>© {year} Spirit of the Front Range</span>
+        <span>© {year} {settings.data.siteName}</span>
         <span aria-hidden="true">·</span>
-        <span>Rooted in the ethics of institutional self-negation</span>
+        <span>{footer.copyrightSuffix}</span>
       </div>
     </div>
 

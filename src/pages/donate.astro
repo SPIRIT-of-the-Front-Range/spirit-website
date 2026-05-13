@@ -2,31 +2,37 @@
 import Base from '../layouts/Base.astro';
 import PageCover from '../components/editorial/PageCover.astro';
 import Spread from '../components/editorial/Spread.astro';
-import Plate from '../components/editorial/Plate.astro';
 import Marginalia from '../components/editorial/Marginalia.astro';
 import PullQuote from '../components/editorial/PullQuote.astro';
-import { EVERY_ORG_URL, EVERY_ORG_READY } from '../lib/links';
+import { getEntry } from 'astro:content';
+import { basePath, resolveLink } from '../lib/paths';
+import { mdToHtml, mdToInline } from '../lib/markdown';
 
-const everyOrgUrl = EVERY_ORG_URL;
-const everyOrgReady = EVERY_ORG_READY;
-const BASE = import.meta.env.BASE_URL;
+const entry = await getEntry('pages', 'donate');
+if (!entry) throw new Error('Missing src/content/pages/donate.md');
+const { seo, cover, spreads, pullQuote } = entry.data;
+
+const settings = await getEntry('settings', 'site');
+if (!settings) throw new Error('Missing src/content/settings/site.md');
+const everyOrgUrl = settings.data.donation.url;
+const everyOrgReady = settings.data.donation.ready;
 ---
 
-<Base title="Fund the Bioregion" description="Support Spirit of the Front Range — a 501(c)(3) bioregional backbone non-profit.">
+<Base title={seo.title} description={seo.description}>
 
   <PageCover
     folio="08"
     sectionLabel="Funding"
-    eyebrow="A 501(c)(3) tax-deductible contribution"
-    title="Donate to"
-    italicTitle="SPIRIT."
-    subtitle="Support our programming, operations, and capacity to backbone the regenerative network of the Front Range."
-    imageSrc={`${import.meta.env.BASE_URL}images/community/gathering-09.jpg`}
-    imageAlt="Hands washing freshly-pulled carrots under a stream of water in a garden."
+    eyebrow={cover.eyebrow}
+    title={cover.title}
+    italicTitle={cover.italicTitle}
+    subtitle={cover.subtitle}
+    imageSrc={basePath(cover.imageSrc)}
+    imageAlt={cover.imageAlt}
     plate=""
-    plateCaption="harvest · garden plot · summer"
-    treatment="duotone-clay-deep"
-    brightness={0.62}
+    plateCaption={cover.plateCaption}
+    treatment={cover.treatment}
+    brightness={cover.brightness}
   >
     {everyOrgReady && (
       <a
@@ -37,135 +43,123 @@ const BASE = import.meta.env.BASE_URL;
         class="btn-ink !py-4 !px-6 !text-sm"
         style="background: #F2EAD8; color: #1F1E1B; border-color: #F2EAD8;"
       >
-        ★ Donate via Every.org →
+        {cover.donateCtaLabel}
       </a>
     )}
   </PageCover>
 
   {/* OPENING */}
-  <Spread folio="08.1" section="Roots" bg="bone">
-    <div class="px-5 lg:px-12 py-section">
-      <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+  {spreads?.roots && (
+    <Spread folio="08.1" section={spreads.roots.sectionLabel} bg="bone">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
-        <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
-          <span class="folio-num text-7xl text-clay-deep">08.i</span>
-          <Marginalia number="01">
-            <strong>Where the money goes.</strong> Less than 35% on administrative costs — well below charity watchdog thresholds. At least 50% to programmatic disbursement.
-          </Marginalia>
-          <Marginalia>
-            Donations will be processed through <strong>Every.org</strong> — a non-profit platform that takes 0% if you cover transaction fees.
-          </Marginalia>
-        </div>
+          <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
+            <span class="folio-num text-7xl text-clay-deep">08.i</span>
+            <Marginalia number="01">
+              <Fragment set:html={mdToInline(spreads.roots.marginaliaPrimary)} />
+            </Marginalia>
+            <Marginalia>
+              <Fragment set:html={mdToInline(spreads.roots.marginaliaSecondary)} />
+            </Marginalia>
+          </div>
 
-        <div class="col-span-12 lg:col-span-9 text-body-lg text-ink leading-snug">
-          <div class="rule-double mb-6"></div>
-          <p class="eyebrow mb-3">Funding the Bioregion</p>
-          <h2 class="display-m text-ink leading-[1.0] mb-8 max-w-3xl">
-            Every donation moves toward a more <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">connected</span> Front Range.
-          </h2>
-          <div class="dropcap space-y-5 max-w-3xl">
-            <p>
-              Bioregionalism is a living movement that <em class="text-clay-deep">roots</em> in place. That's what makes it radical, from the Latin <em>radix</em> — "root."
-            </p>
-            <p>
-              Your financial contribution supports programming, community-led allocation rounds, and the shared infrastructure that makes a flourishing bioregion possible. Every donation moves toward a more resilient, more connected Front Range — through Commons Teach-Ins that open understanding, Solidarity Suppers that deepen relationship, Neighborhood Resiliency Programs that build real preparedness, and Allocation Rounds that put resources directly in the hands of the communities doing the most vital work.
-            </p>
+          <div class="col-span-12 lg:col-span-9 text-body-lg text-ink leading-snug">
+            <div class="rule-double mb-6"></div>
+            <p class="eyebrow mb-3">{spreads.roots.eyebrow}</p>
+            <h2 class="display-m text-ink leading-[1.0] mb-8 max-w-3xl">
+              {spreads.roots.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.roots.italicHeading}</span>{spreads.roots.headingTail && (<Fragment> {spreads.roots.headingTail}</Fragment>)}
+            </h2>
+            <div class="dropcap space-y-5 max-w-3xl">
+              <Fragment set:html={mdToHtml(spreads.roots.body)} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </Spread>
+    </Spread>
+  )}
 
   {/* CASCADE */}
-  <Spread folio="08.2" section="The Cascade" bg="ink" class="border-y-2 border-ink">
-    <div class="px-5 lg:px-12 py-section on-dark">
-      <div class="rule-bold mb-6" style="background:#E8B58A; height:3px;"></div>
-      <p class="eyebrow mb-3" style="color:#E8B58A;">★ The Funding Cascade</p>
-      <h2 class="display-l mb-12 max-w-3xl leading-[1.0]" style="color:#F7EFD8;">
-        Every dollar follows a <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">transparent path.</span>
-      </h2>
-
-      <ol class="grid md:grid-cols-3 gap-6">
-        <li class="border-2 p-6" style="border-color: rgba(247,239,216,0.4); background: rgba(247,239,216,0.03);">
-          <div class="flex items-baseline justify-between mb-3">
-            <span class="folio-num text-5xl" style="color:#E8B58A;">01</span>
-            <span class="caption" style="color: rgba(247,239,216,0.7);">Tier I</span>
-          </div>
-          <h3 class="font-display font-bold text-h2 leading-tight mb-3" style="color:#F7EFD8;">Spirit Operations</h3>
-          <p class="text-body leading-relaxed" style="color: rgba(247,239,216,0.85);">
-            Salaries, infrastructure, and legal compliance for the 501(c)(3) backbone — so the work continues.
-          </p>
-        </li>
-
-        <li class="border-2 p-6" style="border-color: rgba(247,239,216,0.4); background: rgba(247,239,216,0.03);">
-          <div class="flex items-baseline justify-between mb-3">
-            <span class="folio-num text-5xl" style="color:#E8B58A;">02</span>
-            <span class="caption" style="color: rgba(247,239,216,0.7);">Tier II</span>
-          </div>
-          <h3 class="font-display font-bold text-h2 leading-tight mb-3" style="color:#F7EFD8;">Commons Steward Stipends</h3>
-          <p class="text-body leading-relaxed" style="color: rgba(247,239,216,0.85);">
-            Compensation for the people running the day-to-day operations of the Front Range Commons.
-          </p>
-        </li>
-
-        <li class="border-2 p-6" style="border-color: rgba(247,239,216,0.4); background: rgba(247,239,216,0.03);">
-          <div class="flex items-baseline justify-between mb-3">
-            <span class="folio-num text-5xl" style="color:#E8B58A;">03</span>
-            <span class="caption" style="color: rgba(247,239,216,0.7);">Tier III</span>
-          </div>
-          <h3 class="font-display font-bold text-h2 leading-tight mb-3" style="color:#F7EFD8;">Commons Grant Pool</h3>
-          <p class="text-body leading-relaxed" style="color: rgba(247,239,216,0.85);">
-            Quadratically-allocated funds for regenerative projects across the Front Range, decided by commoners.
-          </p>
-        </li>
-      </ol>
-    </div>
-  </Spread>
-
-  {/* DONATE CTA */}
-  <Spread folio="08.3" section="Contribute" bg="bone-pale">
-    <div class="px-5 lg:px-12 py-section">
-      <div class="text-center max-w-2xl mx-auto">
-        <span class="folio-num text-6xl text-clay-deep mb-4 block">08.iii</span>
-        <p class="eyebrow mb-3">★ Make a contribution</p>
-        <h2 class="display-l text-ink leading-[0.95] mb-10">
-          Move toward a more <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">connected</span> Front Range.
+  {spreads?.cascade && (
+    <Spread folio="08.2" section={spreads.cascade.sectionLabel} bg="ink" class="border-y-2 border-ink">
+      <div class="px-5 lg:px-12 py-section on-dark">
+        <div class="rule-bold mb-6" style="background:#E8B58A; height:3px;"></div>
+        <p class="eyebrow mb-3" style="color:#E8B58A;">{spreads.cascade.eyebrow}</p>
+        <h2 class="display-l mb-12 max-w-3xl leading-[1.0]" style="color:#F7EFD8;">
+          {spreads.cascade.heading} <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">{spreads.cascade.italicHeading}</span>{spreads.cascade.headingTail && (<Fragment> {spreads.cascade.headingTail}</Fragment>)}
         </h2>
 
-        {everyOrgReady ? (
-          <a href={everyOrgUrl} rel="noopener noreferrer" target="_blank" class="btn-ink !py-5 !px-8 !text-sm">
-            ★ Donate via Every.org →
-          </a>
-        ) : (
-          <div class="paper p-6 lg:p-8 max-w-lg mx-auto">
-            <p class="eyebrow mb-3">★ Coming soon</p>
-            <p class="font-display font-bold text-h2 text-ink leading-tight mb-3">
-              Our Every.org page is being prepared.
-            </p>
-            <p class="text-body text-shadow leading-relaxed mb-5">
-              In the meantime, please reach out to make a direct contribution or arrange a tax-deductible gift.
-            </p>
-            <a href="mailto:hello@spiritofthefrontrange.org?subject=Donation%20inquiry" class="btn-ink">
-              ✉ Email us about giving
-            </a>
-          </div>
-        )}
-
-        <p class="mt-8 caption text-shadow">
-          SPIRIT of the Front Range is a 501(c)(3) non-profit. Contributions are tax-deductible to the extent allowed by law.
-        </p>
+        <ol class="grid md:grid-cols-3 gap-6">
+          {spreads.cascade.tiers.map((t) => (
+            <li class="border-2 p-6" style="border-color: rgba(247,239,216,0.4); background: rgba(247,239,216,0.03);">
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="folio-num text-5xl" style="color:#E8B58A;">{t.number}</span>
+                <span class="caption" style="color: rgba(247,239,216,0.7);">{t.tier}</span>
+              </div>
+              <h3 class="font-display font-bold text-h2 leading-tight mb-3" style="color:#F7EFD8;">{t.title}</h3>
+              <p class="text-body leading-relaxed" style="color: rgba(247,239,216,0.85);">
+                {t.body}
+              </p>
+            </li>
+          ))}
+        </ol>
       </div>
-    </div>
-  </Spread>
+    </Spread>
+  )}
+
+  {/* DONATE CTA */}
+  {spreads?.contribute && (
+    <Spread folio="08.3" section={spreads.contribute.sectionLabel} bg="bone-pale">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="folio-num text-6xl text-clay-deep mb-4 block">08.iii</span>
+          <p class="eyebrow mb-3">{spreads.contribute.eyebrow}</p>
+          <h2 class="display-l text-ink leading-[0.95] mb-10">
+            {spreads.contribute.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.contribute.italicHeading}</span>{spreads.contribute.headingTail && (<Fragment> {spreads.contribute.headingTail}</Fragment>)}
+          </h2>
+
+          {everyOrgReady ? (
+            <a href={everyOrgUrl} rel="noopener noreferrer" target="_blank" class="btn-ink !py-5 !px-8 !text-sm">
+              {spreads.contribute.donateCtaLabel}
+            </a>
+          ) : (
+            <div class="paper p-6 lg:p-8 max-w-lg mx-auto">
+              <p class="eyebrow mb-3">{spreads.contribute.fallbackEyebrow}</p>
+              <p class="font-display font-bold text-h2 text-ink leading-tight mb-3">
+                {spreads.contribute.fallbackHeading}
+              </p>
+              <p class="text-body text-shadow leading-relaxed mb-5">
+                {spreads.contribute.fallbackBody}
+              </p>
+              {(() => {
+                const link = resolveLink(spreads.contribute.fallbackCtaHref);
+                return (
+                  <a href={link.href} rel={link.rel} class="btn-ink">
+                    {spreads.contribute.fallbackCtaLabel}
+                  </a>
+                );
+              })()}
+            </div>
+          )}
+
+          <p class="mt-8 caption text-shadow">
+            {spreads.contribute.taxNote}
+          </p>
+        </div>
+      </div>
+    </Spread>
+  )}
 
   {/* PULL QUOTE */}
-  <div class="bg-bone py-section">
-    <div class="container-narrow">
-      <PullQuote>
-        You cannot fork a watershed. You cannot exit a wildfire. We are in this together, and the only question is whether we build the relationships and tools to coordinate well.
-      </PullQuote>
+  {pullQuote && (
+    <div class="bg-bone py-section">
+      <div class="container-narrow">
+        <PullQuote>
+          {pullQuote.text}
+        </PullQuote>
+      </div>
     </div>
-  </div>
+  )}
 
 </Base>
 
