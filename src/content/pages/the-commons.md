@@ -38,7 +38,7 @@ spreads:
     eyebrow: A working glossary
     heading: Begin with
     italicHeading: the words.
-    caption: ★ language is the first instrument of the Commons
+    caption: ★ shared language is an instrument of the Commons
     terms:
       - number: N° 01
         color: clay
