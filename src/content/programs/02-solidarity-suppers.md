@@ -10,6 +10,6 @@ order: 2
 ---
 *Solidarity Suppers are feeding and listening spaces.*
 
-We share a long table. We listen. We host Listeners' Councils, storytellings, and the kind of slow conversation that weaves deeper sensings of this time we are in — and how we can care for each other through it.
+We share a long, laden table. We listen. We host Listeners' Councils, storytellings, and the kind of slow conversation that weaves deeper sensings of this time we are in — and how we can care for each other through it.
 
 These gatherings center community leaders and elders, particularly our Indigenous relatives — the ones whose knowledge of this place precedes all of this.
