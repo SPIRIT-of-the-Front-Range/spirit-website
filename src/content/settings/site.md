@@ -31,8 +31,6 @@ footer:
     italicHeading: Knowledge.
     body: We would love to hear from you.
   externalLinks:
-    - label: Mystery Works podcast →
-      href: https://www.themysteryworks.com/
     - label: Front Range Commons →
       href: https://www.frontrangecommons.org/
   siteLinks:
