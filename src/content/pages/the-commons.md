@@ -11,7 +11,7 @@ cover:
   imageAlt: water pooled in a red rock crevice, reflecting the sky we share
   plateCaption: water in the rocks · sky shines up
   brightness: 0.65
-  subtitle: A proposal-in-formation for a decentralized, member-governed network
+  subtitle: A forming proposal for a decentralized, member-governed network
     dedicated to cultural and ecological stewardship, and community-led resource
     allocation.
   treatment: duotone-creek
@@ -24,12 +24,12 @@ spreads:
     italicHeading: collective stewardship.
     body: >-
       The FRC intends to be a space where anyone can contribute, propose
-      projects, share resources, and participate in organizational governance.
-      Commoners elect a **Wisdom Council**, which appoints **Common Stewards**
-      who run the day-to-day operations.
+      projects, share resources, and participate in bioregional coordination.
+      Commoners will elect a **Wisdom Council**, which appoints **Common
+      Stewards** who run the day-to-day operations.
 
 
-      SPIRIT is framed as the *lattice* — the minimum institutional infrastructure required to make Commons activity possible. SPIRIT holds the legal vessel and fiduciary obligations, and the Commons holds the actual stewardship of our shared place.
+      SPIRIT is framed as the *lattice* — the minimum institutional infrastructure required to make Commons stewardship and coordination possible. SPIRIT holds the legal vessel and meets fiduciary obligations, while the Commons holds the actual stewardship of our shared place.
 
 
       A funding cascade is proposed: the first funds raised go to SPIRIT operations, the next tranche of funds to Commons Steward stipends, and everything beyond that flows into a Commons grant pool — **at least 50%** of total raise targeted at programmatic disbursement.
