@@ -1,6 +1,8 @@
 ---
 name: "Cameron Ely-Murdock"
 role: "Tech Infrastructure Director"
+website: "https://rivr.social"
+websiteLabel: "rivr.social"
 order: 5
 ---
 

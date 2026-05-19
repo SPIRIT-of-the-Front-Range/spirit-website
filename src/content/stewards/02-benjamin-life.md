@@ -1,7 +1,6 @@
 ---
 name: "Benjamin Life"
 role: "Coordination Director · Legal Representative"
-email: "Benjamin.gleason.ross@gmail.com"
 website: "https://opencivics.co"
 websiteLabel: "opencivics.co"
 order: 2

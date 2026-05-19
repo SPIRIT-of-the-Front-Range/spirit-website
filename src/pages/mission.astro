@@ -5,10 +5,10 @@ import Spread from '../components/editorial/Spread.astro';
 import Plate from '../components/editorial/Plate.astro';
 import PullQuote from '../components/editorial/PullQuote.astro';
 import Marginalia from '../components/editorial/Marginalia.astro';
-import PillarWeave from '../components/interactive/PillarWeave.astro';
 import { getEntry } from 'astro:content';
 import { basePath } from '../lib/paths';
 import { mdToHtml, mdToInline } from '../lib/markdown';
+import { injectTermTooltips } from '../lib/terms';
 
 const entry = await getEntry('pages', 'mission');
 if (!entry) throw new Error('Missing src/content/pages/mission.md');
@@ -41,9 +41,67 @@ const cardClasses = {
     brightness={cover.brightness}
   />
 
+  {/* SPREAD — PHILOSOPHY (Why we exist) */}
+  {spreads?.philosophy && (
+    <Spread folio="02.0" section={spreads.philosophy.sectionLabel} bg="bone" id="philosophy">
+      <div class="grid grid-cols-12 gap-0 min-h-[100svh] relative">
+
+        <div class="hidden lg:flex col-span-1 border-r border-ink flex-col items-center justify-between py-10 px-2 bg-bone">
+          <span class="folio-num text-9xl text-clay-deep leading-[0.8]">02</span>
+          <div class="caption text-shadow [writing-mode:vertical-rl] rotate-180 tracking-[0.3em]">WHY WE EXIST · §</div>
+          <span class="caption text-shadow">↓ continued</span>
+        </div>
+
+        <div class="col-span-12 lg:col-span-6 px-5 lg:px-10 py-12 lg:py-20 relative border-r border-ink bg-bone">
+          <div class="lg:hidden mb-8 flex items-baseline gap-3">
+            <span class="folio-num text-6xl text-clay-deep">02</span>
+            <span class="eyebrow">{spreads.philosophy.eyebrow}</span>
+          </div>
+
+          <div class="rule-double mb-8"></div>
+
+          <h2 class="display-l text-ink break-words mb-10 leading-[0.95]">
+            {spreads.philosophy.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.philosophy.italicHeading}</span>{spreads.philosophy.headingTail && (<Fragment>{spreads.philosophy.headingTail}</Fragment>)}
+          </h2>
+
+          <div class="body-cols-2 text-body text-ink leading-snug philosophy-body">
+            <Fragment set:html={injectTermTooltips(mdToHtml(spreads.philosophy.body), ['bioregion', 'commons'])} />
+            <p class="mt-4 font-serif italic text-clay-deep" style="font-size: 1.18rem; line-height: 1.4;">
+              {spreads.philosophy.italicLine}
+            </p>
+          </div>
+
+          <div class="mt-12 grid grid-cols-12 gap-3 items-baseline pt-5 border-t border-rule">
+            <span class="col-span-2 caption text-clay-deep">{spreads.philosophy.marginaliaNumber}</span>
+            <span class="col-span-10 caption">{spreads.philosophy.marginalia}</span>
+          </div>
+
+        </div>
+
+        <div class="col-span-12 lg:col-span-5 relative bg-ink min-h-[60svh] lg:min-h-0">
+          <div class="absolute inset-0 photo">
+            <img
+              src={basePath('images/community/gathering-01.jpg')}
+              alt="A creek at dusk in a mountain valley with fall-yellow aspen reflected in still water."
+              class="w-full h-full object-cover ken-burns"
+              loading="lazy"
+            />
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6 bg-gradient-to-t from-ink/90 via-ink/60 to-transparent text-bone-pale">
+            <div class="flex items-baseline justify-between gap-3 caption text-bone-pale">
+              <span style="color:#E8B58A;">{spreads.philosophy.imagePlate}</span>
+              <span class="hidden sm:block flex-1 text-center">{spreads.philosophy.imageCaption}</span>
+              <span>↑ p. 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Spread>
+  )}
+
   {/* SPREAD — VISION */}
   {spreads?.vision && (
-    <Spread folio="02.1" section={spreads.vision.sectionLabel} bg="bone">
+    <Spread folio="02.1" section={spreads.vision.sectionLabel} bg="bone-pale" class="border-y border-ink">
       <div class="px-5 lg:px-12 pt-section pb-16">
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
@@ -82,9 +140,9 @@ const cardClasses = {
     </Spread>
   )}
 
-  {/* SPREAD — MISSION (sage tint) */}
+  {/* SPREAD — MISSION */}
   {spreads?.mission && (
-    <Spread folio="02.2" section={spreads.mission.sectionLabel} bg="bone-pale" class="border-y border-ink">
+    <Spread folio="02.2" section={spreads.mission.sectionLabel} bg="bone" class="border-b border-ink">
       <div class="px-5 lg:px-12 pt-section pb-16">
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
@@ -128,7 +186,7 @@ const cardClasses = {
 
   {/* PULL QUOTE */}
   {pullQuote && (
-    <div class="bg-bone py-section">
+    <div class="bg-bone-pale py-section border-y border-ink">
       <div class="container-narrow">
         <PullQuote attribution={pullQuote.attribution}>
           {pullQuote.text}
@@ -137,7 +195,7 @@ const cardClasses = {
     </div>
   )}
 
-  {/* SPREAD — STRATEGY */}
+  {/* SPREAD — STRATEGY (four threads) */}
   {spreads?.strategy && (
     <Spread folio="02.3" section={spreads.strategy.sectionLabel} bg="bone">
       <div class="px-5 lg:px-12 pt-section pb-section">
@@ -158,12 +216,7 @@ const cardClasses = {
               {spreads.strategy.intro}
             </p>
 
-            <div class="my-12 max-w-2xl">
-              <PillarWeave />
-              <p class="caption mt-3">{spreads.strategy.weaveCaption}</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-10 mt-12 pt-8 border-t border-rule">
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-10 mt-4 pt-8 border-t border-rule">
               {spreads.strategy.pillars.map((p) => (
                 <article>
                   <span class={`folio-num text-3xl ${cardClasses[p.color].folio} mb-2 block`}>{p.number}</span>
@@ -180,26 +233,81 @@ const cardClasses = {
     </Spread>
   )}
 
-  {/* THREE COMMITMENTS triptych */}
-  {spreads?.commitments && (
-    <Spread folio="02.4" section={spreads.commitments.sectionLabel} bg="bone-deep" class="border-y border-ink">
+  {/* SPREAD — ETHICS (six promises) */}
+  {spreads?.ethics && (
+    <Spread folio="02.4" section={spreads.ethics.sectionLabel} bg="bone-deep" class="border-y border-ink" id="ethics">
       <div class="px-5 lg:px-12 py-section">
-        <div class="rule-bold mb-6"></div>
-        <p class="eyebrow mb-3">{spreads.commitments.eyebrow}</p>
-        <h2 class="display-l text-ink mb-12 max-w-3xl leading-[1.0]">
-          {spreads.commitments.heading}
-        </h2>
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-12">
+          <div class="col-span-12 lg:col-span-4">
+            <span class="folio-num text-7xl text-clay-deep block leading-none">02.iv</span>
+            <p class="eyebrow text-clay-deep mt-4 mb-3">{spreads.ethics.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
+              {spreads.ethics.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.ethics.italicHeading}</span>{spreads.ethics.headingTail && (<Fragment>{spreads.ethics.headingTail}</Fragment>)}
+            </h2>
+          </div>
+          <div class="col-span-12 lg:col-span-8">
+            <p class="text-body-lg text-ink leading-snug max-w-2xl">
+              {spreads.ethics.intro}
+            </p>
+          </div>
+        </div>
 
-        <div class="grid md:grid-cols-3 gap-x-10 gap-y-12">
-          {spreads.commitments.items.map((item) => (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 pt-8 border-t border-rule">
+          {spreads.ethics.items.map((item) => (
             <article>
-              <span class={`folio-num text-5xl ${cardClasses[item.color].folio} mb-3 block`}>{item.number}</span>
-              <h3 class="font-display font-bold text-h2 text-ink mb-3 leading-tight" set:html={item.title}></h3>
+              <span class={`folio-num text-4xl text-${item.color}-deep block mb-2 leading-none`}>
+                {item.number}
+              </span>
+              <h3 class="font-display font-bold text-h2 text-ink mb-2 leading-tight">
+                {item.title}
+              </h3>
               <p class="text-body text-shadow leading-snug">
                 {item.body}
               </p>
             </article>
           ))}
+        </div>
+
+        {spreads.ethics.closingNote && (
+          <p class="mt-10 pt-5 border-t border-rule font-serif italic text-clay-deep max-w-2xl" style="font-size: 1.1rem; line-height: 1.4;">
+            {spreads.ethics.closingNote}
+          </p>
+        )}
+      </div>
+    </Spread>
+  )}
+
+  {/* SPREAD — GLOSSARY (Words) */}
+  {spreads?.homeGlossary && (
+    <Spread folio="02.5" section={spreads.homeGlossary.sectionLabel} bg="bone-pale" class="border-b border-ink" id="glossary">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div class="col-span-12 lg:col-span-4">
+            <span class="folio-num text-7xl text-creek-deep block leading-none">02.v</span>
+            <p class="eyebrow eyebrow-creek mt-4 mb-3">{spreads.homeGlossary.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
+              {spreads.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.homeGlossary.italicHeading}</span>
+            </h2>
+            <p class="text-body text-shadow leading-snug max-w-md mb-6">
+              {spreads.homeGlossary.intro}
+            </p>
+            {spreads.homeGlossary.ctaLabel && spreads.homeGlossary.ctaHref && (
+              <a href={basePath(spreads.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
+                {spreads.homeGlossary.ctaLabel}
+              </a>
+            )}
+          </div>
+          <div class="col-span-12 lg:col-span-8">
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+              {spreads.homeGlossary.terms.map((t) => (
+                <article class="border-t border-ink pt-4">
+                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
+                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
+                  <p class="text-body text-shadow leading-snug">{t.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </Spread>
@@ -221,4 +329,6 @@ const cardClasses = {
 <style>
   .py-section { padding-block: var(--spacing-section); }
   .pt-section { padding-top: var(--spacing-section); }
+  .philosophy-body :global(p) { margin-top: 1rem; }
+  .philosophy-body :global(p:first-child) { margin-top: 0; }
 </style>

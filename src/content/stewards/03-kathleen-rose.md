@@ -1,6 +1,8 @@
 ---
 name: "Kathleen Marie Rose"
 role: "Creative Director"
+website: "https://truetoessence.com"
+websiteLabel: "truetoessence.com"
 order: 3
 ---
 

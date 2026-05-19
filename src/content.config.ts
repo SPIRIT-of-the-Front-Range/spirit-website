@@ -508,20 +508,33 @@ const pages = defineCollection({
             .object({
               sectionLabel: z.string(),
               eyebrow: z.string(),
-              subEyebrow: z.string(),
+              subEyebrow: z.string().optional(),
               heading: z.string(),
               italicHeading: z.string(),
               headingTail: z.string().default(''),
-              intro: z.string(),
+              intro: z.string().optional(),
               body: z.string(),
-              stickerQuote: z.string(),
+              stickerQuote: z.string().optional(),
               stickerLabel: z.string().default('N° 07.1'),
-              imageCaption: z.string(),
-              imageOverlay: z.string(),
+              imageSrc: z.string().optional(),
+              imageCaption: z.string().optional(),
+              imageOverlay: z.string().optional(),
               primaryCtaLabel: z.string(),
               primaryCtaHref: z.string(),
               secondaryCtaLabel: z.string(),
               secondaryCtaHref: z.string(),
+            })
+            .optional(),
+          ethicsTeaser: z
+            .object({
+              sectionLabel: z.string(),
+              eyebrow: z.string(),
+              heading: z.string(),
+              italicHeading: z.string(),
+              headingTail: z.string().default(''),
+              body: z.string(),
+              ctaLabel: z.string(),
+              ctaHref: z.string(),
             })
             .optional(),
           funding: z

@@ -1,7 +1,8 @@
 ---
 name: "Jordan Siegel"
 role: "Stewarding Director · Legal Representative"
-email: "cojosie@gmail.com"
+website: "https://themysteryworks.com"
+websiteLabel: "themysteryworks.com"
 order: 1
 ---
 

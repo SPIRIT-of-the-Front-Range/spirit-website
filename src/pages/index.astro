@@ -1,9 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Spread from '../components/editorial/Spread.astro';
-import Plate from '../components/editorial/Plate.astro';
-import QuotePhoto from '../components/editorial/QuotePhoto.astro';
-import Annotation from '../components/editorial/Annotation.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { basePath, resolveLink } from '../lib/paths';
 import { mdToHtml, mdToInline } from '../lib/markdown';
@@ -17,19 +14,15 @@ if (!homeCover) throw new Error('home.md missing homeCover');
 const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
 const BASE = import.meta.env.BASE_URL;
 
-// In-page jump nav — anchors map to spread ids on this page.
-// Labels are intentionally un-numbered so they don't conflict with the
-// top-bar page nav numbering or with the per-spread folios.
+// In-page jump nav — labels match the new homepage section order.
 const jumpNav = [
-  { label: 'Philosophy', href: '#philosophy' },
-  { label: 'Glossary', href: '#glossary' },
-  { label: "A Steward's note", href: '#steward-note' },
-  { label: 'The Vessel', href: '#vessel' },
-  { label: 'Our Ethics', href: '#ethics' },
-  { label: 'Four Pillars', href: '#pillars' },
+  { label: 'What SPIRIT is', href: '#vessel' },
   { label: 'Programs', href: '#programs' },
+  { label: 'Four Threads', href: '#pillars' },
+  { label: 'What guides us', href: '#ethics' },
   { label: 'The Commons', href: '#commons' },
-  { label: 'Funding', href: '#funding' },
+  { label: 'Glossary', href: '#glossary' },
+  { label: 'Donate', href: '#funding' },
 ];
 
 // Per-pillar Tailwind class strings (literal so Tailwind discovers them).
@@ -37,7 +30,7 @@ const pillarTone = {
   clay: { text: 'text-clay-deep', photo: 'duotone-clay' },
   creek: { text: 'text-creek-deep', photo: 'duotone-creek' },
   sage: { text: 'text-sage-deep', photo: 'duotone-sage' },
-  grass: { text: 'text-grass-deep', photo: 'duotone-sage' }, // grass uses sage photo treatment in original
+  grass: { text: 'text-grass-deep', photo: 'duotone-sage' },
 } as const;
 
 // Programs teaser tones — first 3 programs use clay/creek/sage on home
@@ -49,6 +42,7 @@ const coverSecondary = resolveLink(homeCover.secondaryCtaHref);
 const vesselPrimary = spreads?.vessel ? resolveLink(spreads.vessel.primaryCtaHref) : null;
 const vesselSecondary = spreads?.vessel ? resolveLink(spreads.vessel.secondaryCtaHref) : null;
 const programsTeaserCta = spreads?.programsTeaser ? resolveLink(spreads.programsTeaser.ctaHref) : null;
+const ethicsTeaserCta = spreads?.ethicsTeaser ? resolveLink(spreads.ethicsTeaser.ctaHref) : null;
 const commonsTeaserPrimary = spreads?.commonsTeaser ? resolveLink(spreads.commonsTeaser.primaryCtaHref) : null;
 const commonsTeaserSecondary = spreads?.commonsTeaser ? resolveLink(spreads.commonsTeaser.secondaryCtaHref) : null;
 const fundingPrimary = spreads?.funding ? resolveLink(spreads.funding.primaryCtaHref) : null;
@@ -58,24 +52,20 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
 <Base title={seo.title} description={seo.description}>
 
   {/* ====================================================== */}
-  {/* SPREAD A — COVER (photo bleeds edge, sized to fit)     */}
+  {/* SPREAD 01 — COVER                                       */}
   {/* ====================================================== */}
   <Spread folio="01" section="Cover" bg="image" minHeight="auto" class="cover-spread overflow-hidden">
 
-    {/* Background photo — full bleed */}
     <div class="absolute inset-0 photo duotone-cover" aria-hidden="true">
       <img src={basePath(homeCover.imageSrc)} alt={homeCover.imageAlt} class="w-full h-full object-cover ken-burns" loading="eager" />
     </div>
 
-    {/* Vignette — darken top + bottom for type legibility */}
     <div class="absolute inset-0 pointer-events-none"
          style="background:
            linear-gradient(180deg, rgba(31,30,27,0.55) 0%, rgba(31,30,27,0.18) 22%, rgba(31,30,27,0.10) 50%, rgba(31,30,27,0.78) 92%, rgba(31,30,27,0.92) 100%);"></div>
 
-    {/* Cover content — title top-left, content bottom-right */}
     <div class="relative px-5 lg:px-12 pt-10 lg:pt-14 pb-8 lg:pb-10 flex flex-col" style="min-height: clamp(620px, 80svh, 1200px);">
 
-      {/* Title — top-left */}
       <div class="anim-fade-up max-w-7xl">
         <p class="eyebrow mb-4" style="color: rgba(242,234,216,0.95); letter-spacing: 0.2em;">{homeCover.eyebrow}</p>
         <h1 class="leading-[0.84]" style="color: #F7EFD8; font-family: var(--font-display); font-weight: 700; font-size: clamp(3rem, 1.6rem + 7vw, 11.5rem); letter-spacing: -0.035em;">
@@ -84,13 +74,10 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
         </h1>
       </div>
 
-      {/* Spacer */}
       <div class="flex-1 min-h-[2rem]"></div>
 
-      {/* Bottom row: tagline + CTAs + TOC */}
       <div class="grid grid-cols-12 gap-6 lg:gap-10 items-end anim-fade-up" style="animation-delay:280ms;">
 
-        {/* Tagline + CTAs (left bottom) */}
         <div class="col-span-12 lg:col-span-7">
           <p class="font-serif italic leading-tight text-bone-pale mb-5 max-w-xl" style="font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.4rem); color: #F7EFD8;">
             {homeCover.tagline}
@@ -101,7 +88,6 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
           </div>
         </div>
 
-        {/* Interactive jump nav (right bottom) — hidden on mobile */}
         <aside class="hidden lg:block lg:col-span-5 lg:pl-6 lg:border-l border-bone-pale/40">
           <p class="block mb-3 font-bold text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#E8B58A;">★ In this issue —</p>
           <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[10px] font-mono uppercase tracking-[0.16em]">
@@ -112,7 +98,6 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
         </aside>
       </div>
 
-      {/* Image caption — final strip */}
       <div class="mt-8 pt-3 border-t border-bone-pale/40 grid grid-cols-12 gap-3 caption" style="color: rgba(247,239,216,0.85);">
         <span class="col-span-4 lg:col-span-3"><span style="color:#E8B58A;">●</span> {homeCover.captionLabel}</span>
         <span class="col-span-4 lg:col-span-6 text-center hidden sm:block">{homeCover.captionLocation}</span>
@@ -126,144 +111,12 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
   </Spread>
 
   {/* ====================================================== */}
-  {/* SPREAD B — PHILOSOPHY (full viewport split)             */}
-  {/* ====================================================== */}
-  {spreads?.philosophy && (
-    <Spread folio="02" section={spreads.philosophy.sectionLabel} bg="bone" minHeight="100svh" class="philosophy-spread" id="philosophy">
-
-      <div class="grid grid-cols-12 gap-0 min-h-[100svh] relative">
-
-        {/* Left margin: section number printed on side */}
-        <div class="hidden lg:flex col-span-1 border-r border-ink flex-col items-center justify-between py-10 px-2 bg-bone">
-          <span class="folio-num text-9xl text-clay-deep leading-[0.8]">02</span>
-          <div class="caption text-shadow [writing-mode:vertical-rl] rotate-180 tracking-[0.3em]">PHILOSOPHY · A CREED OF BELONGING · §</div>
-          <span class="caption text-shadow">↓ continued</span>
-        </div>
-
-        {/* Body text — middle 6 cols */}
-        <div class="col-span-12 lg:col-span-6 px-5 lg:px-10 py-12 lg:py-20 relative border-r border-ink bg-bone">
-          <div class="lg:hidden mb-8 flex items-baseline gap-3">
-            <span class="folio-num text-6xl text-clay-deep">02</span>
-            <span class="eyebrow">{spreads.philosophy.eyebrow}</span>
-          </div>
-
-          <div class="rule-double mb-8"></div>
-
-          <h2 class="display-l text-ink break-words mb-10 leading-[0.95]">
-            {spreads.philosophy.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.philosophy.italicHeading}</span>{spreads.philosophy.headingTail && (<Fragment>{spreads.philosophy.headingTail}</Fragment>)}
-          </h2>
-
-          <div class="body-cols-2 text-body text-ink leading-snug philosophy-body">
-            <Fragment set:html={injectTermTooltips(mdToHtml(spreads.philosophy.body), ['bioregion', 'commons'])} />
-            <p class="mt-4 font-serif italic text-clay-deep" style="font-size: 1.18rem; line-height: 1.4;">
-              {spreads.philosophy.italicLine}
-            </p>
-          </div>
-
-          {/* Marginalia at bottom of column */}
-          <div class="mt-12 grid grid-cols-12 gap-3 items-baseline pt-5 border-t border-rule">
-            <span class="col-span-2 caption text-clay-deep">{spreads.philosophy.marginaliaNumber}</span>
-            <span class="col-span-10 caption">{spreads.philosophy.marginalia}</span>
-          </div>
-
-        </div>
-
-        {/* Photo — right 5 cols, floor to ceiling */}
-        <div class="col-span-12 lg:col-span-5 relative bg-ink min-h-[60svh] lg:min-h-0">
-          <div class="absolute inset-0 photo">
-            <img
-              src={basePath('images/community/gathering-01.jpg')}
-              alt="A creek at dusk in a mountain valley with fall-yellow aspen reflected in still water."
-              class="w-full h-full object-cover ken-burns"
-              loading="lazy"
-            />
-          </div>
-          {/* Caption strip at bottom of image */}
-          <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6 bg-gradient-to-t from-ink/90 via-ink/60 to-transparent text-bone-pale">
-            <div class="flex items-baseline justify-between gap-3 caption text-bone-pale">
-              <span style="color:#E8B58A;">{spreads.philosophy.imagePlate}</span>
-              <span class="hidden sm:block flex-1 text-center">{spreads.philosophy.imageCaption}</span>
-              <span>↑ p. 2</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD B.5 — HOME GLOSSARY (compact vocabulary card)    */}
-  {/* ====================================================== */}
-  {spreads?.homeGlossary && (
-    <Spread folio="02.5" section={spreads.homeGlossary.sectionLabel} bg="bone-pale" class="border-y border-ink" id="glossary">
-      <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
-          <div class="col-span-12 lg:col-span-4">
-            <span class="folio-num text-7xl text-creek-deep block leading-none">02.v</span>
-            <p class="eyebrow eyebrow-creek mt-4 mb-3">{spreads.homeGlossary.eyebrow}</p>
-            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
-              {spreads.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.homeGlossary.italicHeading}</span>
-            </h2>
-            <p class="text-body text-shadow leading-snug max-w-md mb-6">
-              {spreads.homeGlossary.intro}
-            </p>
-            {spreads.homeGlossary.ctaLabel && spreads.homeGlossary.ctaHref && (
-              <a href={basePath(spreads.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
-                {spreads.homeGlossary.ctaLabel}
-              </a>
-            )}
-          </div>
-          <div class="col-span-12 lg:col-span-8">
-            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-              {spreads.homeGlossary.terms.map((t) => (
-                <article class="border-t border-ink pt-4">
-                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
-                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
-                  <p class="text-body text-shadow leading-snug">{t.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD C — STEWARD'S NOTE (pull quote spread)           */}
-  {/* ====================================================== */}
-  {spreads?.stewardsNote && (
-    <section id="steward-note" class="relative" style="scroll-margin-top: 6rem;">
-      <QuotePhoto
-        src={basePath('images/community/gathering-11.jpg')}
-        alt="Sunset over the silhouetted Front Range with sun rays radiating through the mountain ridge."
-        treatment="duotone-clay-deep"
-        attribution={spreads.stewardsNote.attribution}
-        align="left"
-        height="100svh"
-        folio="03"
-      >
-        <Fragment set:html={mdToInline(spreads.stewardsNote.quote)} />
-      </QuotePhoto>
-      {/* Section label printed on top-left */}
-      <div class="absolute top-4 left-4 lg:top-7 lg:left-10 z-10 caption text-bone-pale/80">
-        {spreads.stewardsNote.sectionLabel}
-      </div>
-      <div class="absolute top-12 left-4 lg:top-16 lg:left-10 z-10 caption text-bone-pale/60">
-        {spreads.stewardsNote.subLabel}
-      </div>
-    </section>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD D — THE VESSEL (newspaper-dense spread)          */}
+  {/* SPREAD 02 — THE VESSEL (What SPIRIT is)                 */}
   {/* ====================================================== */}
   {spreads?.vessel && vesselPrimary && vesselSecondary && (
-    <Spread folio="04" section={spreads.vessel.sectionLabel} bg="bone-pale" class="vessel-spread border-y-2 border-ink" id="vessel">
+    <Spread folio="02" section={spreads.vessel.sectionLabel} bg="bone-pale" class="vessel-spread border-y-2 border-ink" id="vessel">
       <div class="px-5 lg:px-10 pt-12 lg:pt-20 pb-16 lg:pb-24">
 
-        {/* Top contact-sheet strip */}
         <div class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-3 mb-10 lg:mb-14">
           {[2, 5, 7, 8, 9, 12].map((n, i) => (
             <div class="contact-thumb relative aspect-[4/3] photo">
@@ -275,11 +128,10 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
 
         <div class="rule-triple mb-8"></div>
 
-        {/* Top header — h1 left, diagram top-right level with title */}
         <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start mb-12">
           <div class="col-span-12 lg:col-span-8">
             <div class="flex items-baseline gap-5 mb-3 flex-wrap">
-              <span class="folio-num text-5xl lg:text-6xl text-clay-deep">04</span>
+              <span class="folio-num text-5xl lg:text-6xl text-clay-deep">02</span>
               <p class="eyebrow">{spreads.vessel.eyebrow}</p>
             </div>
             <h2 class="display-l text-ink break-words leading-[0.95]">
@@ -287,7 +139,6 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
             </h2>
           </div>
 
-          {/* Diagram — Spirit & Commons relationship — top right, level with title */}
           <aside class="col-span-12 lg:col-span-4">
             <div class="diagram-box border-2 border-ink p-4 bg-bone relative">
               <p class="caption text-clay-deep mb-3">{spreads.vessel.diagramCaption}</p>
@@ -299,7 +150,7 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
                 <rect x="10" y="60" width="90" height="74" fill="none" stroke="#1F1E1B" stroke-width="1.6"/>
                 <text x="55" y="86" text-anchor="middle" font-family="Bricolage Grotesque Variable, sans-serif" font-size="13" font-weight="700" fill="#1F1E1B">SPIRIT</text>
                 <text x="55" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#4A4A45">501(c)(3)</text>
-                <text x="55" y="116" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#4A4A45">the lattice</text>
+                <text x="55" y="116" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#4A4A45">the scaffold</text>
 
                 <circle cx="180" cy="97" r="40" fill="none" stroke="#5C7E8A" stroke-width="1.6"/>
                 <text x="180" y="94" text-anchor="middle" font-family="Bricolage Grotesque Variable, sans-serif" font-size="11" font-weight="700" fill="#1F1E1B">COMMONS</text>
@@ -311,13 +162,11 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
           </aside>
         </div>
 
-        {/* Body — 3-col text left, editor's note + language note right */}
         <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start">
 
-          {/* Body text in 3 columns */}
           <div class="col-span-12 lg:col-span-8">
             <div class="body-cols-3 text-body text-ink leading-snug vessel-body">
-              <Fragment set:html={injectTermTooltips(mdToHtml(spreads.vessel.body), ['bioregion', 'institutional self-negation', 'sociocracy'])} />
+              <Fragment set:html={injectTermTooltips(mdToHtml(spreads.vessel.body), ['bioregion', 'commons'])} />
             </div>
 
             <div class="mt-8 flex flex-wrap gap-3">
@@ -326,7 +175,6 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
             </div>
           </div>
 
-          {/* Right side: editor's note + language note */}
           <aside class="col-span-12 lg:col-span-4 space-y-6 lg:border-l border-ink lg:pl-6">
             <div>
               <p class="sticker sticker-clay inline-block mb-3">{spreads.vessel.editorsNoteTitle}</p>
@@ -351,118 +199,10 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD D.5 — ETHICS (six commitments grid)              */}
-  {/* ====================================================== */}
-  {spreads?.ethics && (
-    <Spread folio="04.5" section={spreads.ethics.sectionLabel} bg="bone-deep" class="border-y border-ink" id="ethics">
-      <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-12">
-          <div class="col-span-12 lg:col-span-4">
-            <span class="folio-num text-7xl text-clay-deep block leading-none">04.v</span>
-            <p class="eyebrow text-clay-deep mt-4 mb-3">{spreads.ethics.eyebrow}</p>
-            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
-              {spreads.ethics.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.ethics.italicHeading}</span>{spreads.ethics.headingTail && (<Fragment>{spreads.ethics.headingTail}</Fragment>)}
-            </h2>
-          </div>
-          <div class="col-span-12 lg:col-span-8">
-            <p class="text-body-lg text-ink leading-snug max-w-2xl">
-              {spreads.ethics.intro}
-            </p>
-          </div>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 pt-8 border-t border-rule">
-          {spreads.ethics.items.map((item, i) => (
-            <article>
-              <span class={`folio-num text-4xl text-${item.color}-deep block mb-2 leading-none`}>
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 class={`font-display font-bold text-h2 text-ink mb-2 leading-tight`}>
-                {item.title}
-              </h3>
-              <p class="text-body text-shadow leading-snug">
-                {item.body}
-              </p>
-            </article>
-          ))}
-        </div>
-
-        {spreads.ethics.closingNote && (
-          <p class="mt-10 pt-5 border-t border-rule font-serif italic text-clay-deep max-w-2xl" style="font-size: 1.1rem; line-height: 1.4;">
-            {spreads.ethics.closingNote}
-          </p>
-        )}
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD E — FOUR PILLARS (catalog spread, 2x2 grid)      */}
-  {/* ====================================================== */}
-  {spreads?.pillars && (
-    <Spread folio="05" section={spreads.pillars.sectionLabel} bg="bone" class="pillars-spread" id="pillars">
-      <div class="px-5 lg:px-10 pt-16 lg:pt-24 pb-20 lg:pb-32 relative">
-
-        {/* Header */}
-        <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-10 lg:mb-12 items-end">
-          <div class="col-span-12 lg:col-span-7">
-            <p class="eyebrow mb-3">{spreads.pillars.eyebrow}</p>
-            <h2 class="display-l text-ink break-words leading-[0.92]">
-              {spreads.pillars.heading} <span class="italic font-serif font-light" style="font-weight:300;">{spreads.pillars.italicHeading}</span>
-            </h2>
-          </div>
-          <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
-            <p class="text-body text-shadow leading-snug">
-              <Fragment set:html={mdToInline(spreads.pillars.intro)} />
-            </p>
-            <p class="caption mt-3 text-shadow">{spreads.pillars.caption}</p>
-          </div>
-        </div>
-
-        <div class="rule-double mb-12"></div>
-
-        {/* 2x2 catalog grid */}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-12 lg:gap-y-16 relative">
-          {spreads.pillars.items.map((item, i) => {
-            const photoMap = ['09', '07', '06', '04'];
-            return (
-              <article class="pillar-cat group flex flex-col">
-                <p class={`eyebrow ${pillarTone[item.color].text} mb-2`}>{item.pillar}</p>
-                <div class="flex items-baseline gap-3 mb-5 flex-wrap">
-                  <span class={`folio-num text-3xl lg:text-4xl ${pillarTone[item.color].text} leading-none`}>{item.number}</span>
-                  <h3 class="display-m text-ink leading-[0.92]">{item.title}</h3>
-                </div>
-                <div class={`aspect-[5/3] mb-4 photo ${pillarTone[item.color].photo}`}>
-                  <img src={basePath(`images/community/gathering-${photoMap[i]}.jpg`)} alt={item.title} loading="lazy" />
-                </div>
-                <p class={`caption ${pillarTone[item.color].text} mb-3`}>{item.photoCaption}</p>
-                <p class="text-body text-ink leading-snug mb-4 flex-1 pillar-body">
-                  <Fragment set:html={mdToInline(item.body)} />
-                </p>
-                <div class="flex items-baseline gap-3 caption mt-auto pt-3 border-t border-rule">
-                  <span class={pillarTone[item.color].text}>★ outcome:</span>
-                  <span>{item.outcome}</span>
-                </div>
-              </article>
-            );
-          })}
-
-          {/* Center cross — visible on lg only */}
-          <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-ink/40 pointer-events-none"></div>
-        </div>
-
-        {/* Footer rule + footnote */}
-        <div class="rule-double mt-16"></div>
-        <p class="caption text-shadow mt-3 text-right">{spreads.pillars.footnote}</p>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD F — PROGRAMS (multi-column listing)              */}
+  {/* SPREAD 03 — PROGRAMS (Easy ways to get involved)        */}
   {/* ====================================================== */}
   {spreads?.programsTeaser && programsTeaserCta && (
-    <Spread folio="06" section={spreads.programsTeaser.sectionLabel} bg="bone-deep" class="programs-spread border-y-2 border-ink" id="programs">
+    <Spread folio="03" section={spreads.programsTeaser.sectionLabel} bg="bone-deep" class="programs-spread border-y-2 border-ink" id="programs">
       <div class="px-5 lg:px-10 pt-14 lg:pt-20 pb-16 lg:pb-24">
 
         <div class="grid grid-cols-12 gap-6 mb-10 lg:mb-14 items-baseline">
@@ -516,60 +256,124 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD G — THE COMMONS (left photo, right text spread)  */}
+  {/* SPREAD 04 — FOUR PILLARS                                */}
   {/* ====================================================== */}
-  {spreads?.commonsTeaser && commonsTeaserPrimary && commonsTeaserSecondary && (
-    <Spread folio="07" section={spreads.commonsTeaser.sectionLabel} bg="bone" class="commons-spread" id="commons">
-      <div class="grid grid-cols-12 gap-0 min-h-[100svh]">
+  {spreads?.pillars && (
+    <Spread folio="04" section={spreads.pillars.sectionLabel} bg="bone" class="pillars-spread" id="pillars">
+      <div class="px-5 lg:px-10 pt-16 lg:pt-24 pb-20 lg:pb-32 relative">
 
-        {/* LEFT — full-bleed photo with overlaid map */}
-        <div class="col-span-12 lg:col-span-5 relative bg-creek-deep min-h-[60vh] lg:min-h-0 border-r border-ink">
-          <div class="absolute inset-0 photo duotone-creek">
-            <img src={basePath('images/community/gathering-08.jpg')} alt="Water pooled in a red rock crevice." class="w-full h-full object-cover ken-burns" loading="lazy" />
+        <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-10 lg:mb-12 items-end">
+          <div class="col-span-12 lg:col-span-7">
+            <p class="eyebrow mb-3">{spreads.pillars.eyebrow}</p>
+            <h2 class="display-l text-ink break-words leading-[0.92]">
+              {spreads.pillars.heading} <span class="italic font-serif font-light" style="font-weight:300;">{spreads.pillars.italicHeading}</span>
+            </h2>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-creek-deep/70"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 text-bone-pale">
-            <div class="caption text-bone-pale/80 mb-2">{spreads.commonsTeaser.imageCaption}</div>
-            <p class="font-serif italic text-body-lg text-bone-pale/95 leading-tight">
-              {spreads.commonsTeaser.imageOverlay}
+          <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
+            <p class="text-body text-shadow leading-snug">
+              <Fragment set:html={mdToInline(spreads.pillars.intro)} />
             </p>
+            <p class="caption mt-3 text-shadow">{spreads.pillars.caption}</p>
           </div>
         </div>
 
-        {/* RIGHT — text spread */}
-        <div class="col-span-12 lg:col-span-7 px-5 lg:px-12 py-12 lg:py-20">
+        <div class="rule-double mb-12"></div>
 
-          <div class="flex items-baseline gap-4 mb-8">
-            <span class="folio-num text-7xl text-creek-deep">07</span>
-            <div>
-              <p class="eyebrow eyebrow-creek">{spreads.commonsTeaser.eyebrow}</p>
-              <p class="caption text-shadow mt-1">{spreads.commonsTeaser.subEyebrow}</p>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-12 lg:gap-y-16 relative">
+          {spreads.pillars.items.map((item, i) => {
+            const photoMap = ['09', '07', '06', '04'];
+            return (
+              <article class="pillar-cat group flex flex-col">
+                <p class={`eyebrow ${pillarTone[item.color].text} mb-2`}>{item.pillar}</p>
+                <div class="flex items-baseline gap-3 mb-5 flex-wrap">
+                  <span class={`folio-num text-3xl lg:text-4xl ${pillarTone[item.color].text} leading-none`}>{item.number}</span>
+                  <h3 class="display-m text-ink leading-[0.92]">{item.title}</h3>
+                </div>
+                <div class={`aspect-[5/3] mb-4 photo ${pillarTone[item.color].photo}`}>
+                  <img src={basePath(`images/community/gathering-${photoMap[i]}.jpg`)} alt={item.title} loading="lazy" />
+                </div>
+                <p class={`caption ${pillarTone[item.color].text} mb-3`}>{item.photoCaption}</p>
+                <p class="text-body text-ink leading-snug mb-4 flex-1 pillar-body">
+                  <Fragment set:html={mdToInline(item.body)} />
+                </p>
+                <div class="flex items-baseline gap-3 caption mt-auto pt-3 border-t border-rule">
+                  <span class={pillarTone[item.color].text}>★ outcome:</span>
+                  <span>{item.outcome}</span>
+                </div>
+              </article>
+            );
+          })}
+
+          <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-ink/40 pointer-events-none"></div>
+        </div>
+
+        <div class="rule-double mt-16"></div>
+        <p class="caption text-shadow mt-3 text-right">{spreads.pillars.footnote}</p>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 05 — ETHICS TEASER (short, links to mission)    */}
+  {/* ====================================================== */}
+  {spreads?.ethicsTeaser && ethicsTeaserCta && (
+    <Spread folio="05" section={spreads.ethicsTeaser.sectionLabel} bg="bone-deep" class="border-y border-ink" id="ethics">
+      <div class="px-5 lg:px-12 py-16 lg:py-24">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div class="col-span-12 lg:col-span-5">
+            <span class="folio-num text-7xl text-clay-deep block leading-none">05</span>
+            <p class="eyebrow text-clay-deep mt-4 mb-3">{spreads.ethicsTeaser.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] break-words">
+              {spreads.ethicsTeaser.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.ethicsTeaser.italicHeading}</span>{spreads.ethicsTeaser.headingTail && (<Fragment>{spreads.ethicsTeaser.headingTail}</Fragment>)}
+            </h2>
           </div>
-
-          <h2 class="display-l lg:display-xl text-ink mb-8 leading-[0.92] lg:leading-[0.88] break-words">
-            {spreads.commonsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.commonsTeaser.italicHeading}</span>{spreads.commonsTeaser.headingTail && (<Fragment><br/>{spreads.commonsTeaser.headingTail.trim()}</Fragment>)}
-          </h2>
-
-          <p class="font-serif italic text-lead text-clay-deep leading-tight mb-6 max-w-2xl">
-            <Fragment set:html={mdToInline(spreads.commonsTeaser.intro)} />
-          </p>
-
-          <div class="body-cols-2 text-body text-ink leading-snug mb-8 commons-body">
-            <Fragment set:html={mdToHtml(spreads.commonsTeaser.body)} />
-          </div>
-
-          {/* Sticker quote */}
-          <div class="flex items-start gap-4 mb-8 p-4 border-l-4 border-creek-deep bg-creek/5">
-            <span class="sticker sticker-creek flex-shrink-0">{spreads.commonsTeaser.stickerLabel}</span>
-            <p class="font-serif italic text-body-lg text-ink leading-snug">
-              "{spreads.commonsTeaser.stickerQuote}"
+          <div class="col-span-12 lg:col-span-7 lg:pl-8 lg:border-l border-ink">
+            <p class="text-body-lg text-ink leading-snug max-w-2xl mb-8 ethics-teaser-body">
+              <Fragment set:html={mdToInline(spreads.ethicsTeaser.body)} />
             </p>
+            <a href={ethicsTeaserCta.href} rel={ethicsTeaserCta.rel} class="btn-line">{spreads.ethicsTeaser.ctaLabel}</a>
+          </div>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 06 — THE COMMONS (compact card link-out)        */}
+  {/* ====================================================== */}
+  {spreads?.commonsTeaser && commonsTeaserPrimary && commonsTeaserSecondary && (
+    <Spread folio="06" section={spreads.commonsTeaser.sectionLabel} bg="bone" class="commons-card-spread" id="commons">
+      <div class="px-5 lg:px-12 py-16 lg:py-24">
+        <div class="grid grid-cols-12 gap-6 lg:gap-10 items-stretch">
+
+          {/* LEFT — compact image */}
+          <div class="col-span-12 lg:col-span-5 relative bg-creek-deep min-h-[280px] lg:min-h-[360px] border border-ink">
+            <div class="absolute inset-0 photo duotone-creek">
+              <img src={basePath(spreads.commonsTeaser.imageSrc ?? 'images/community/gathering-08.jpg')} alt="Water pooled in a red rock crevice." class="w-full h-full object-cover ken-burns" loading="lazy" />
+            </div>
+            {spreads.commonsTeaser.imageCaption && (
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-creek-deep/85 to-transparent">
+                <span class="caption text-bone-pale/90">{spreads.commonsTeaser.imageCaption}</span>
+              </div>
+            )}
           </div>
 
-          <div class="flex flex-wrap gap-3">
-            <a href={commonsTeaserPrimary.href} rel={commonsTeaserPrimary.rel} class="btn-ink">{spreads.commonsTeaser.primaryCtaLabel}</a>
-            <a href={commonsTeaserSecondary.href} rel={commonsTeaserSecondary.rel} class="btn-line">{spreads.commonsTeaser.secondaryCtaLabel}</a>
+          {/* RIGHT — heading + ~50 word body + 2 CTAs */}
+          <div class="col-span-12 lg:col-span-7 lg:pl-2 flex flex-col justify-center">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="folio-num text-5xl text-creek-deep">06</span>
+              <p class="eyebrow eyebrow-creek">{spreads.commonsTeaser.eyebrow}</p>
+            </div>
+            <h2 class="display-m text-ink mb-5 leading-[0.95] break-words">
+              {spreads.commonsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.commonsTeaser.italicHeading}</span>{spreads.commonsTeaser.headingTail && (<Fragment>{spreads.commonsTeaser.headingTail}</Fragment>)}
+            </h2>
+            <div class="text-body text-ink leading-snug max-w-2xl mb-6 commons-card-body">
+              <Fragment set:html={injectTermTooltips(mdToInline(spreads.commonsTeaser.body), ['bioregion', 'commons'])} />
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href={commonsTeaserPrimary.href} rel={commonsTeaserPrimary.rel} class="btn-ink">{spreads.commonsTeaser.primaryCtaLabel}</a>
+              <a href={commonsTeaserSecondary.href} rel={commonsTeaserSecondary.rel} class="btn-line">{spreads.commonsTeaser.secondaryCtaLabel}</a>
+            </div>
           </div>
 
         </div>
@@ -578,7 +382,45 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD H — DONATE / BACK COVER                          */}
+  {/* SPREAD 07 — HOME GLOSSARY (Words section)              */}
+  {/* ====================================================== */}
+  {spreads?.homeGlossary && (
+    <Spread folio="07" section={spreads.homeGlossary.sectionLabel} bg="bone-pale" class="border-y border-ink" id="glossary">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div class="col-span-12 lg:col-span-4">
+            <span class="folio-num text-7xl text-creek-deep block leading-none">07</span>
+            <p class="eyebrow eyebrow-creek mt-4 mb-3">{spreads.homeGlossary.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
+              {spreads.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.homeGlossary.italicHeading}</span>
+            </h2>
+            <p class="text-body text-shadow leading-snug max-w-md mb-6">
+              {spreads.homeGlossary.intro}
+            </p>
+            {spreads.homeGlossary.ctaLabel && spreads.homeGlossary.ctaHref && (
+              <a href={basePath(spreads.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
+                {spreads.homeGlossary.ctaLabel}
+              </a>
+            )}
+          </div>
+          <div class="col-span-12 lg:col-span-8">
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+              {spreads.homeGlossary.terms.map((t) => (
+                <article class="border-t border-ink pt-4">
+                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
+                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
+                  <p class="text-body text-shadow leading-snug">{t.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 08 — DONATE / BACK COVER                         */}
   {/* ====================================================== */}
   {spreads?.funding && fundingPrimary && fundingSecondary && (
     <Spread folio="08" section={spreads.funding.sectionLabel} bg="image" minHeight="100svh" class="donate-spread overflow-hidden" id="funding">
@@ -630,7 +472,6 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
           </aside>
         </div>
 
-        {/* Bottom strip — back cover info */}
         <div class="mt-12 pt-6 border-t border-bone-pale/30 grid grid-cols-12 gap-3 caption text-bone-pale/70">
           <span class="col-span-3">{spreads.funding.footerLeft}</span>
           <span class="col-span-6 text-center hidden sm:block">{spreads.funding.footerCenter}</span>
@@ -643,18 +484,13 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
 </Base>
 
 <style>
-  /* Page-level: tighten spacing between spreads to nothing — they butt up */
-  main {
-    display: block;
-  }
-  /* Markdown body spacing — Astro scoped styles don't reach set:html output,
-     but global selectors inside the page-scoped wrapper class do. */
-  .philosophy-body :global(p) { margin-top: 1rem; }
-  .philosophy-body :global(p:first-child) { margin-top: 0; }
+  main { display: block; }
   .vessel-body :global(p) { margin-top: 0.75rem; }
   .vessel-body :global(p:first-child) { margin-top: 0; }
-  .commons-body :global(p) { margin-top: 0.75rem; }
-  .commons-body :global(p:first-child) { margin-top: 0; }
+  .commons-card-body :global(p) { margin-top: 0.6rem; }
+  .commons-card-body :global(p:first-child) { margin-top: 0; }
+  .ethics-teaser-body :global(p) { margin-top: 0.5rem; }
+  .ethics-teaser-body :global(p:first-child) { margin-top: 0; }
   .pillar-body :global(p) { margin: 0; }
   .programs-intro :global(a) { color: var(--color-creek-deep); text-decoration: underline; }
 </style>
