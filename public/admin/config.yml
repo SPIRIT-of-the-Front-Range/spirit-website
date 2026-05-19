@@ -699,6 +699,58 @@ collections:
               - { label: "Quote", name: text, widget: text }
               - { label: "Attribution", name: attribution, widget: string, required: false }
 
+      # --- WORDS page ---------------------------------------------
+      - name: words-page
+        label: "Words (page)"
+        file: "src/content/pages/words.md"
+        fields:
+          - { label: "SEO", name: seo, widget: object, collapsed: true, fields: [
+              { label: "Title", name: title, widget: string },
+              { label: "Description", name: description, widget: text },
+            ] }
+
+          - label: "Cover"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Title (first part)", name: title, widget: string }
+              - { label: "Title (italic accent)", name: italicTitle, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: text }
+              - { label: "Cover image", name: imageSrc, widget: image }
+              - { label: "Image alt text", name: imageAlt, widget: string }
+              - { label: "Plate caption", name: plateCaption, widget: string, required: false }
+              - label: "Photo treatment"
+                name: treatment
+                widget: select
+                options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+                default: 'duotone-ink'
+              - { label: "Brightness (0.4–1.0)", name: brightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, default: 0.6 }
+
+          - label: "Spreads"
+            name: spreads
+            widget: object
+            fields:
+              - label: "Editor's note / In Brief"
+                name: inBrief
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Body (markdown)", name: body, widget: markdown, buttons: ['bold', 'italic', 'link'] }
+
+          - label: "Pull quote"
+            name: pullQuote
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, required: false }
+
       # --- HOME page ----------------------------------------------
       - name: home
         label: "Home"
@@ -810,6 +862,59 @@ collections:
                       - { label: "Outcome", name: outcome, widget: string }
                       - { label: "Photo caption", name: photoCaption, widget: string }
 
+              - label: "Ethics spread (six commitments)"
+                name: ethics
+                widget: object
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Ethics" }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Heading tail", name: headingTail, widget: string, required: false }
+                  - { label: "Intro paragraph", name: intro, widget: text }
+                  - { label: "Closing italic note", name: closingNote, widget: text, required: false }
+                  - label: "Six commitments"
+                    name: items
+                    widget: list
+                    min: 6
+                    max: 6
+                    fields:
+                      - { label: "Number", name: number, widget: string }
+                      - label: "Accent color"
+                        name: color
+                        widget: select
+                        options: ['clay', 'creek', 'sage', 'grass']
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Body", name: body, widget: text }
+
+              - label: "Home glossary spread"
+                name: homeGlossary
+                widget: object
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "Section label", name: sectionLabel, widget: string, default: "Glossary" }
+                  - { label: "Eyebrow", name: eyebrow, widget: string }
+                  - { label: "Heading (first part)", name: heading, widget: string }
+                  - { label: "Heading (italic accent)", name: italicHeading, widget: string }
+                  - { label: "Intro paragraph", name: intro, widget: text }
+                  - { label: "CTA label (link to full glossary)", name: ctaLabel, widget: string, required: false }
+                  - { label: "CTA href", name: ctaHref, widget: string, required: false }
+                  - label: "Terms"
+                    name: terms
+                    widget: list
+                    min: 1
+                    fields:
+                      - { label: "Number", name: number, widget: string, hint: "e.g. 'N° 01'" }
+                      - label: "Accent color"
+                        name: color
+                        widget: select
+                        options: ['clay', 'creek', 'sage', 'grass']
+                      - { label: "Term", name: term, widget: string }
+                      - { label: "Definition", name: body, widget: text }
+
               - label: "Programs teaser spread"
                 name: programsTeaser
                 widget: object
@@ -892,6 +997,8 @@ collections:
       - { label: "Name", name: name, widget: string }
       - { label: "Role / Title", name: role, widget: string, hint: "e.g. 'Stewarding Director · Legal Representative'" }
       - { label: "Email", name: email, widget: string, required: false }
+      - { label: "Personal website / project URL", name: website, widget: string, required: false, hint: "Full URL including https://" }
+      - { label: "Website label (optional)", name: websiteLabel, widget: string, required: false, hint: "Leave blank to auto-display the domain." }
       - { label: "Pronouns", name: pronouns, widget: string, required: false }
       - { label: "Photo", name: photo, widget: image, required: false }
       - { label: "Display order", name: order, widget: number, default: 99, hint: "Lower numbers display first" }
@@ -929,9 +1036,105 @@ collections:
       - { label: "Display order", name: order, widget: number, default: 99 }
       - { label: "Next event date", name: nextEventDate, widget: string, required: false }
       - { label: "Next event URL", name: nextEventUrl, widget: string, required: false }
-      - label: "Description (long)"
+      - label: "Description (long — shown as intro on detail page)"
         name: body
         widget: markdown
+
+      # --- DETAIL PAGE — drives /programs/{slug}/ ---------------
+      - label: "Detail page"
+        name: detail
+        widget: object
+        required: false
+        collapsed: true
+        hint: "Optional. Provides cover image + structured body sections + signup CTA for the program's own /programs/{slug}/ page. Leave blank to use defaults."
+        fields:
+          - { label: "Tagline (italic subtitle on cover)", name: tagline, widget: string, required: false }
+          - { label: "Hero image", name: heroImage, widget: image, required: false }
+          - { label: "Hero image alt text", name: heroAlt, widget: string, required: false }
+          - label: "Hero photo treatment"
+            name: heroTreatment
+            widget: select
+            required: false
+            options: ['natural', 'duotone-sage', 'duotone-clay', 'duotone-creek', 'duotone-clay-deep', 'duotone-ink']
+          - { label: "Hero brightness (0.4–1.0)", name: heroBrightness, widget: number, value_type: float, min: 0.4, max: 1.0, step: 0.05, required: false }
+          - { label: "Hero plate caption", name: heroPlateCaption, widget: string, required: false }
+          - label: "Accent tone"
+            name: tone
+            widget: select
+            required: false
+            options: ['clay', 'creek', 'sage', 'grass']
+
+          - label: "Body sections"
+            name: sections
+            widget: list
+            required: false
+            hint: "Structured longform — each section renders as a numbered article."
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string, required: false }
+              - { label: "Heading (first part)", name: heading, widget: string }
+              - { label: "Heading (italic accent)", name: italicHeading, widget: string, required: false }
+              - { label: "Body (markdown)", name: body, widget: markdown, minimal: true, buttons: ['bold', 'italic', 'link'] }
+
+          - label: "Pull quote"
+            name: pullQuote
+            widget: object
+            required: false
+            fields:
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, required: false }
+
+          - label: "Signup / application CTA"
+            name: signup
+            widget: object
+            required: false
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string }
+              - { label: "Heading (first part)", name: heading, widget: string }
+              - { label: "Heading (italic accent)", name: italicHeading, widget: string, required: false }
+              - { label: "Body", name: body, widget: text }
+              - { label: "CTA label", name: ctaLabel, widget: string }
+              - { label: "CTA link", name: ctaHref, widget: string, hint: "Relative path ('connect/'), mailto:, or full https:// URL" }
+
+  # --- WRITINGS (Words page entries) ----------------------------
+  - name: writings
+    label: "Writings (Words page)"
+    label_singular: "Writing"
+    folder: "src/content/writings"
+    create: true
+    delete: true
+    slug: "{{order}}-{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{author}}"
+    sortable_fields: ['order', 'date', 'title', 'kind']
+    fields:
+      - { label: "Title", name: title, widget: string }
+      - { label: "Author", name: author, widget: string }
+      - { label: "Publication date (YYYY-MM-DD)", name: date, widget: string, hint: "ISO format, e.g. 2026-04-08" }
+      - label: "Kind"
+        name: kind
+        widget: select
+        options: ['essay', 'talk', 'article', 'paper', 'interview']
+        default: 'essay'
+      - { label: "External URL", name: url, widget: string, required: false, hint: "If set, the entry links out (Substack, OpenCivics, etc.). Leave blank to publish the body on this site." }
+      - { label: "Publication name", name: publication, widget: string, required: false, hint: "e.g. 'omniharmonic', 'OpenCivics Labs'" }
+      - label: "Accent tone"
+        name: tone
+        widget: select
+        options: ['clay', 'creek', 'sage', 'grass']
+        default: 'clay'
+      - { label: "Featured?", name: featured, widget: boolean, default: false, hint: "Featured entries appear at the top of the page in large cards." }
+      - { label: "Display order", name: order, widget: number, default: 99, hint: "Lower numbers display first within their group." }
+      - label: "Tags"
+        name: tags
+        widget: list
+        required: false
+        field: { label: "Tag", name: tag, widget: string }
+      - { label: "Excerpt (1-3 sentences)", name: excerpt, widget: text, hint: "Shown on the index page card and as the detail page subtitle." }
+      - label: "Body (if publishing on-site)"
+        name: body
+        widget: markdown
+        required: false
+        hint: "Full essay text. Only used if External URL is blank."
 
   # --- CATALOG (the WEC-style index) -----------------------------
   - name: catalog

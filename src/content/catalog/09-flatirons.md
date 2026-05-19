@@ -5,7 +5,7 @@ source: "Boulder Open Space & Mountain Parks"
 url: "https://bouldercolorado.gov/services/open-space-and-mountain-parks"
 price: "Free"
 pillars: ["belonging"]
-curator: "Spirit"
+curator: "SPIRIT"
 tone: "clay"
 order: 9
 ---

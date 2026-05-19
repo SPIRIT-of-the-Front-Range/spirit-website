@@ -1,0 +1,184 @@
+---
+// <Term> — inline hover/tap definition for a glossary term.
+//
+// Usage:
+//   <Term name="bioregion">bioregion</Term>
+//   <Term name="commons" />               // renders the canonical term itself
+//   <Term name="bioregion" definition="custom override text">our home</Term>
+//
+// Renders as a <button> with a dotted underline. Hover or tap shows the
+// definition in a tooltip. Mobile: tap toggles; outside tap closes (handled
+// by the inline script at the bottom of this file — registered once globally).
+import { lookupTerm, type TermDef } from '../../lib/terms';
+
+interface Props {
+  /** Term key — matched case-insensitively against src/lib/terms.ts. */
+  name: string;
+  /** Override the definition text from the dictionary. */
+  definition?: string;
+  /** Override the visible label (defaults to slot, then to the canonical term). */
+  class?: string;
+}
+
+const { name, definition, class: className = '' } = Astro.props;
+const entry: TermDef | undefined = lookupTerm(name);
+const def = definition ?? entry?.short ?? '';
+const tone = entry?.tone ?? 'clay';
+const href = entry?.href;
+
+const toneClass = {
+  clay: 'term-clay',
+  creek: 'term-creek',
+  sage: 'term-sage',
+  grass: 'term-grass',
+}[tone];
+---
+
+<span class={`term-wrap ${toneClass} ${className}`} data-term={name}>
+  <button
+    type="button"
+    class="term-trigger"
+    aria-describedby={`term-pop-${name.replace(/\s+/g, '-')}`}
+    aria-expanded="false"
+  >
+    <slot>{entry?.term ?? name}</slot>
+  </button>
+  <span
+    id={`term-pop-${name.replace(/\s+/g, '-')}`}
+    role="tooltip"
+    class="term-pop"
+  >
+    <span class="term-pop-label">{entry?.term ?? name}</span>
+    <span class="term-pop-def">{def}</span>
+    {href && (
+      <a href={href} class="term-pop-more">Full glossary →</a>
+    )}
+  </span>
+</span>
+
+<style is:global>
+  .term-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .term-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: help;
+    text-decoration: underline dotted;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
+  }
+  .term-clay .term-trigger { text-decoration-color: var(--color-clay-deep); }
+  .term-creek .term-trigger { text-decoration-color: var(--color-creek-deep); }
+  .term-sage .term-trigger { text-decoration-color: var(--color-sage-deep); }
+  .term-grass .term-trigger { text-decoration-color: var(--color-grass-deep); }
+  .term-clay .term-trigger:hover, .term-clay .term-trigger[aria-expanded="true"] { color: var(--color-clay-deep); }
+  .term-creek .term-trigger:hover, .term-creek .term-trigger[aria-expanded="true"] { color: var(--color-creek-deep); }
+  .term-sage .term-trigger:hover, .term-sage .term-trigger[aria-expanded="true"] { color: var(--color-sage-deep); }
+  .term-grass .term-trigger:hover, .term-grass .term-trigger[aria-expanded="true"] { color: var(--color-grass-deep); }
+
+  .term-pop {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+    z-index: 50;
+    width: max-content;
+    max-width: min(360px, 80vw);
+    background: var(--color-ink, #1F1E1B);
+    color: var(--color-bone-pale, #F7EFD8);
+    padding: 0.85rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(31,30,27,0.25), 0 2px 6px rgba(31,30,27,0.18);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    text-align: left;
+    text-decoration: none;
+    cursor: default;
+  }
+  .term-pop::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--color-ink, #1F1E1B);
+  }
+  .term-wrap:hover .term-pop,
+  .term-wrap:focus-within .term-pop,
+  .term-trigger[aria-expanded="true"] + .term-pop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.15s ease;
+  }
+  .term-pop-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #E8B58A;
+    margin-bottom: 0.35rem;
+  }
+  .term-pop-def {
+    display: block;
+  }
+  .term-pop-more {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #E8B58A;
+    text-decoration: none;
+  }
+  .term-pop-more:hover { text-decoration: underline; }
+</style>
+
+{/* Touch / mobile toggle script — registered once globally via id check. */}
+<script is:inline>
+  (function () {
+    if (window.__termInit) return;
+    window.__termInit = true;
+    document.addEventListener('click', function (e) {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const trigger = target.closest('.term-trigger');
+      // Close all open popovers on any outside click
+      if (!trigger) {
+        document.querySelectorAll('.term-trigger[aria-expanded="true"]').forEach((t) => {
+          t.setAttribute('aria-expanded', 'false');
+        });
+        return;
+      }
+      e.preventDefault();
+      // Toggle this trigger; close others
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.term-trigger[aria-expanded="true"]').forEach((t) => {
+        if (t !== trigger) t.setAttribute('aria-expanded', 'false');
+      });
+      trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.term-trigger[aria-expanded="true"]').forEach((t) => {
+          t.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+  })();
+</script>

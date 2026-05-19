@@ -7,6 +7,7 @@ import Annotation from '../components/editorial/Annotation.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { basePath, resolveLink } from '../lib/paths';
 import { mdToHtml, mdToInline } from '../lib/markdown';
+import { injectTermTooltips } from '../lib/terms';
 
 const entry = await getEntry('pages', 'home');
 if (!entry) throw new Error('Missing src/content/pages/home.md');
@@ -16,15 +17,19 @@ if (!homeCover) throw new Error('home.md missing homeCover');
 const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
 const BASE = import.meta.env.BASE_URL;
 
-// Jump-nav lives in code — it's structural (anchors map to spread ids).
+// In-page jump nav — anchors map to spread ids on this page.
+// Labels are intentionally un-numbered so they don't conflict with the
+// top-bar page nav numbering or with the per-spread folios.
 const jumpNav = [
-  { number: '02', label: 'Philosophy', href: '#philosophy' },
-  { number: '06', label: 'Programs', href: '#programs' },
-  { number: '03', label: "A Steward's note", href: '#steward-note' },
-  { number: '07', label: 'The Commons', href: '#commons' },
-  { number: '04', label: 'The Vessel', href: '#vessel' },
-  { number: '08', label: 'Funding', href: '#funding' },
-  { number: '05', label: 'Four Pillars', href: '#pillars' },
+  { label: 'Philosophy', href: '#philosophy' },
+  { label: 'Glossary', href: '#glossary' },
+  { label: "A Steward's note", href: '#steward-note' },
+  { label: 'The Vessel', href: '#vessel' },
+  { label: 'Our Ethics', href: '#ethics' },
+  { label: 'Four Pillars', href: '#pillars' },
+  { label: 'Programs', href: '#programs' },
+  { label: 'The Commons', href: '#commons' },
+  { label: 'Funding', href: '#funding' },
 ];
 
 // Per-pillar Tailwind class strings (literal so Tailwind discovers them).
@@ -98,10 +103,10 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
 
         {/* Interactive jump nav (right bottom) — hidden on mobile */}
         <aside class="hidden lg:block lg:col-span-5 lg:pl-6 lg:border-l border-bone-pale/40">
-          <p class="block mb-3 font-bold text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#E8B58A;">★ Jump to —</p>
+          <p class="block mb-3 font-bold text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#E8B58A;">★ In this issue —</p>
           <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[10px] font-mono uppercase tracking-[0.16em]">
             {jumpNav.map((j) => (
-              <li><a href={j.href} class="no-underline hover:text-clay group inline-flex items-center gap-1.5 transition-colors" style="color: rgba(247,239,216,0.95); text-decoration-color: rgba(232,181,138,0.6);"><span style="color:#E8B58A;">{j.number} ·</span> <span class="group-hover:translate-x-0.5 transition-transform">{j.label}</span></a></li>
+              <li><a href={j.href} class="no-underline hover:text-clay group inline-flex items-center gap-1.5 transition-colors" style="color: rgba(247,239,216,0.95); text-decoration-color: rgba(232,181,138,0.6);"><span style="color:#E8B58A;">·</span> <span class="group-hover:translate-x-0.5 transition-transform">{j.label}</span></a></li>
             ))}
           </ul>
         </aside>
@@ -149,7 +154,7 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
           </h2>
 
           <div class="body-cols-2 text-body text-ink leading-snug philosophy-body">
-            <Fragment set:html={mdToHtml(spreads.philosophy.body)} />
+            <Fragment set:html={injectTermTooltips(mdToHtml(spreads.philosophy.body), ['bioregion', 'commons'])} />
             <p class="mt-4 font-serif italic text-clay-deep" style="font-size: 1.18rem; line-height: 1.4;">
               {spreads.philosophy.italicLine}
             </p>
@@ -182,6 +187,44 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
             </div>
           </div>
 
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD B.5 — HOME GLOSSARY (compact vocabulary card)    */}
+  {/* ====================================================== */}
+  {spreads?.homeGlossary && (
+    <Spread folio="02.5" section={spreads.homeGlossary.sectionLabel} bg="bone-pale" class="border-y border-ink" id="glossary">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div class="col-span-12 lg:col-span-4">
+            <span class="folio-num text-7xl text-creek-deep block leading-none">02.v</span>
+            <p class="eyebrow eyebrow-creek mt-4 mb-3">{spreads.homeGlossary.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
+              {spreads.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.homeGlossary.italicHeading}</span>
+            </h2>
+            <p class="text-body text-shadow leading-snug max-w-md mb-6">
+              {spreads.homeGlossary.intro}
+            </p>
+            {spreads.homeGlossary.ctaLabel && spreads.homeGlossary.ctaHref && (
+              <a href={basePath(spreads.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
+                {spreads.homeGlossary.ctaLabel}
+              </a>
+            )}
+          </div>
+          <div class="col-span-12 lg:col-span-8">
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+              {spreads.homeGlossary.terms.map((t) => (
+                <article class="border-t border-ink pt-4">
+                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
+                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
+                  <p class="text-body text-shadow leading-snug">{t.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </Spread>
@@ -274,7 +317,7 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
           {/* Body text in 3 columns */}
           <div class="col-span-12 lg:col-span-8">
             <div class="body-cols-3 text-body text-ink leading-snug vessel-body">
-              <Fragment set:html={mdToHtml(spreads.vessel.body)} />
+              <Fragment set:html={injectTermTooltips(mdToHtml(spreads.vessel.body), ['bioregion', 'institutional self-negation', 'sociocracy'])} />
             </div>
 
             <div class="mt-8 flex flex-wrap gap-3">
@@ -303,6 +346,52 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
             </div>
           </aside>
         </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD D.5 — ETHICS (six commitments grid)              */}
+  {/* ====================================================== */}
+  {spreads?.ethics && (
+    <Spread folio="04.5" section={spreads.ethics.sectionLabel} bg="bone-deep" class="border-y border-ink" id="ethics">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-12">
+          <div class="col-span-12 lg:col-span-4">
+            <span class="folio-num text-7xl text-clay-deep block leading-none">04.v</span>
+            <p class="eyebrow text-clay-deep mt-4 mb-3">{spreads.ethics.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
+              {spreads.ethics.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.ethics.italicHeading}</span>{spreads.ethics.headingTail && (<Fragment>{spreads.ethics.headingTail}</Fragment>)}
+            </h2>
+          </div>
+          <div class="col-span-12 lg:col-span-8">
+            <p class="text-body-lg text-ink leading-snug max-w-2xl">
+              {spreads.ethics.intro}
+            </p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 pt-8 border-t border-rule">
+          {spreads.ethics.items.map((item, i) => (
+            <article>
+              <span class={`folio-num text-4xl text-${item.color}-deep block mb-2 leading-none`}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class={`font-display font-bold text-h2 text-ink mb-2 leading-tight`}>
+                {item.title}
+              </h3>
+              <p class="text-body text-shadow leading-snug">
+                {item.body}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        {spreads.ethics.closingNote && (
+          <p class="mt-10 pt-5 border-t border-rule font-serif italic text-clay-deep max-w-2xl" style="font-size: 1.1rem; line-height: 1.4;">
+            {spreads.ethics.closingNote}
+          </p>
+        )}
       </div>
     </Spread>
   )}

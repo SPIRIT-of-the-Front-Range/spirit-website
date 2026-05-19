@@ -1,0 +1,219 @@
+---
+// /words/ — index of essays, talks, and writings. Lives parallel to
+// /catalog/ but for long-form text rather than catalog entries.
+//
+// Entries come from the `writings` content collection. Each entry can:
+//   - link out to an external publication (Substack, OpenCivics, etc.) via `url`
+//   - render on-site if it has body content and no `url`
+import Base from '../layouts/Base.astro';
+import PageCover from '../components/editorial/PageCover.astro';
+import Spread from '../components/editorial/Spread.astro';
+import PullQuote from '../components/editorial/PullQuote.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { basePath, resolveLink } from '../lib/paths';
+
+const entry = await getEntry('pages', 'words');
+if (!entry) throw new Error('Missing src/content/pages/words.md');
+const { seo, cover, spreads, pullQuote } = entry.data;
+
+const all = (await getCollection('writings')).sort((a, b) => {
+  // Featured first, then by `order` ascending, then by date desc as tiebreaker.
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  if (a.data.order !== b.data.order) return a.data.order - b.data.order;
+  return (b.data.date || '').localeCompare(a.data.date || '');
+});
+
+const featured = all.filter((w) => w.data.featured);
+const more = all.filter((w) => !w.data.featured);
+
+const toneClasses: Record<string, { folio: string; eyebrow: string }> = {
+  clay:  { folio: 'text-clay-deep',  eyebrow: 'eyebrow text-clay-deep' },
+  creek: { folio: 'text-creek-deep', eyebrow: 'eyebrow eyebrow-creek' },
+  sage:  { folio: 'text-sage-deep',  eyebrow: 'eyebrow eyebrow-sage' },
+  grass: { folio: 'text-grass-deep', eyebrow: 'eyebrow text-grass-deep' },
+};
+
+const BASE = import.meta.env.BASE_URL;
+
+// Build the link target for a writing entry: external URL if present,
+// otherwise our local detail page.
+function writingHref(w: typeof all[number]): { href: string; external: boolean } {
+  if (w.data.url) return { href: w.data.url, external: true };
+  const slug = w.id.replace(/^\d+-/, '').replace(/\.md$/, '');
+  return { href: `${BASE}words/${slug}/`, external: false };
+}
+
+function formatDate(iso: string): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+}
+---
+
+<Base title={seo.title} description={seo.description}>
+
+  <PageCover
+    folio="04"
+    sectionLabel="Words"
+    eyebrow={cover.eyebrow}
+    title={cover.title}
+    italicTitle={cover.italicTitle}
+    subtitle={cover.subtitle}
+    imageSrc={basePath(cover.imageSrc)}
+    imageAlt={cover.imageAlt}
+    plate=""
+    plateCaption={cover.plateCaption}
+    treatment={cover.treatment}
+    brightness={cover.brightness}
+  />
+
+  {/* IN BRIEF / EDITOR'S NOTE */}
+  {spreads?.inBrief && (
+    <Spread folio="04.1" section={spreads.inBrief.sectionLabel} bg="bone">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start">
+            <span class="folio-num text-7xl text-creek-deep">04.i</span>
+          </div>
+          <div class="col-span-12 lg:col-span-9">
+            <div class="rule-double mb-6"></div>
+            <p class="eyebrow eyebrow-creek mb-3">{spreads.inBrief.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] lg:leading-[0.92] mb-8 max-w-4xl">
+              {spreads.inBrief.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.inBrief.italicHeading}</span>
+            </h2>
+            <div class="text-body-lg text-ink leading-snug max-w-3xl prose-words">
+              {spreads.inBrief.body.split('\n\n').map((p) => (
+                <p set:html={p}></p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* FEATURED WRITINGS — large editorial cards */}
+  {featured.length > 0 && (
+    <Spread folio="04.2" section="Featured" bg="bone-pale" class="border-y border-ink">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="rule-bold mb-6"></div>
+        <p class="eyebrow mb-3">★ Featured</p>
+        <h2 class="display-l text-ink mb-12 max-w-3xl leading-[1.0]">
+          Worth your <span class="italic font-serif font-light">long attention.</span>
+        </h2>
+
+        <div class="grid lg:grid-cols-2 gap-x-12 gap-y-14">
+          {featured.map((w, i) => {
+            const tc = toneClasses[w.data.tone] || toneClasses.clay;
+            const link = writingHref(w);
+            const linkProps = link.external ? { target: '_blank', rel: 'noopener' } : {};
+            return (
+              <article class="border-t border-ink pt-6">
+                <div class="flex items-baseline justify-between gap-3 mb-3">
+                  <span class={`folio-num text-3xl ${tc.folio}`}>{String(i + 1).padStart(2, '0')}</span>
+                  <span class="caption opacity-70 uppercase">{w.data.kind} · {formatDate(w.data.date)}</span>
+                </div>
+                <p class={`${tc.eyebrow} mb-2`}>{w.data.publication ?? w.data.author}</p>
+                <h3 class="font-display font-bold text-h1 text-ink leading-tight mb-4">
+                  <a href={link.href} {...linkProps} class="no-underline hover:text-clay-deep transition-colors">
+                    {w.data.title}
+                  </a>
+                </h3>
+                <p class="text-body-lg text-shadow leading-snug mb-5 max-w-xl">
+                  {w.data.excerpt}
+                </p>
+                <div class="flex items-baseline justify-between gap-3 pt-3 border-t border-rule">
+                  <span class="caption opacity-70">— {w.data.author}</span>
+                  <a
+                    href={link.href}
+                    {...linkProps}
+                    class={`no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold ${tc.folio} hover:text-clay-deep`}
+                  >
+                    {link.external ? '↗ Read on ' + (w.data.publication ?? 'site') : '★ Read →'}
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* PULL QUOTE */}
+  {pullQuote && (
+    <div class="bg-bone py-section">
+      <div class="container-narrow">
+        <PullQuote attribution={pullQuote.attribution}>
+          {pullQuote.text}
+        </PullQuote>
+      </div>
+    </div>
+  )}
+
+  {/* ALL WRITINGS / MORE — denser list */}
+  {more.length > 0 && (
+    <Spread folio="04.3" section="More" bg="bone-deep" class="border-t border-ink">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="rule-bold mb-6"></div>
+        <p class="eyebrow mb-3">★ Also in the library</p>
+        <h2 class="display-l text-ink mb-12 max-w-3xl leading-[1.0]">
+          Further <span class="italic font-serif font-light">reading.</span>
+        </h2>
+
+        <ul class="divide-y divide-rule">
+          {more.map((w) => {
+            const tc = toneClasses[w.data.tone] || toneClasses.clay;
+            const link = writingHref(w);
+            const linkProps = link.external ? { target: '_blank', rel: 'noopener' } : {};
+            return (
+              <li class="py-6 grid grid-cols-12 gap-3 items-baseline">
+                <span class="col-span-12 sm:col-span-2 caption opacity-70 uppercase">{w.data.kind} · {formatDate(w.data.date)}</span>
+                <div class="col-span-12 sm:col-span-7">
+                  <p class={`${tc.eyebrow} mb-1`}>{w.data.publication ?? w.data.author}</p>
+                  <h4 class="font-display font-bold text-h2 text-ink leading-tight mb-1">
+                    <a href={link.href} {...linkProps} class="no-underline hover:text-clay-deep transition-colors">
+                      {w.data.title}
+                    </a>
+                  </h4>
+                  <p class="text-body text-shadow leading-snug max-w-2xl">{w.data.excerpt}</p>
+                </div>
+                <div class="col-span-12 sm:col-span-3 text-right">
+                  <a
+                    href={link.href}
+                    {...linkProps}
+                    class={`no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold ${tc.folio} hover:text-clay-deep`}
+                  >
+                    {link.external ? '↗ Read external' : '★ Read →'}
+                  </a>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </Spread>
+  )}
+
+  {/* CTA — submit or get involved */}
+  <Spread folio="04.x" section="Submit" bg="ink">
+    <div class="px-5 lg:px-12 py-section on-dark text-center">
+      <p class="eyebrow mb-4" style="color:#E8B58A;">★ Are you a writer in this space?</p>
+      <h2 class="display-l max-w-3xl mx-auto leading-[1.0] mb-6" style="color:#F7EFD8;">
+        We're always reading. <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">Send us your work.</span>
+      </h2>
+      <p class="text-body-lg max-w-2xl mx-auto leading-snug mb-8" style="color: rgba(247,239,216,0.85);">
+        If you're working in bioregionalism, commons coordination, civic design, or any of the adjacent terrain — and you've written something we should be reading — we'd be honored to consider it for this collection.
+      </p>
+      <a href={`${BASE}connect/`} class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">✉ Send us a piece</a>
+    </div>
+  </Spread>
+
+</Base>
+
+<style>
+  .prose-words p { margin-block: 0.85rem; line-height: 1.55; }
+  .prose-words p:first-child { margin-top: 0; }
+  .py-section { padding-block: var(--spacing-section); }
+</style>

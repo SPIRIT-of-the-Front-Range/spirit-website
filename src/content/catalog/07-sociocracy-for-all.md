@@ -10,4 +10,4 @@ tone: "sage"
 order: 7
 ---
 
-The cleanest current resource for sociocratic decision-making. Spirit operates by *consent* (not majority vote) inside the Stewardship Council, with circle-level autonomy — patterns SfA documents and trains. If you want to bring sociocracy into your own organization, start here.
+The cleanest current resource for sociocratic decision-making. SPIRIT operates by *consent* (not majority vote) inside the Stewardship Council, with circle-level autonomy — patterns SfA documents and trains. If you want to bring sociocracy into your own organization, start here.

@@ -7,7 +7,7 @@ cover:
   eyebrow: "A 501(c)(3) tax-deductible contribution"
   title: "Donate to"
   italicTitle: "SPIRIT."
-  subtitle: "Support our programming, operations, and capacity to backbone the regenerative network of the Front Range."
+  subtitle: "Your gift funds the programming, the community-led allocation rounds, and the shared infrastructure that lets the Front Range learn to care for itself."
   imageSrc: "/images/community/gathering-09.jpg"
   imageAlt: "Hands washing freshly-pulled carrots under a stream of water in a garden."
   plateCaption: "harvest · garden plot · summer"
@@ -25,9 +25,11 @@ spreads:
     italicHeading: "connected"
     headingTail: "Front Range."
     body: |
-      Bioregionalism is a living movement that *roots* in place. That's what makes it radical, from the Latin *radix* — "root."
+      Bioregionalism is a living movement that *roots* in place. That's what makes it radical — from the Latin *radix*, "root."
 
-      Your financial contribution supports programming, community-led allocation rounds, and the shared infrastructure that makes a flourishing bioregion possible. Every donation moves toward a more resilient, more connected Front Range — through Commons Teach-Ins that open understanding, Solidarity Suppers that deepen relationship, Neighborhood Resiliency Programs that build real preparedness, and Allocation Rounds that put resources directly in the hands of the communities doing the most vital work.
+      Your contribution funds the programming, the community-led allocation rounds, and the shared infrastructure that make a flourishing bioregion possible. Every dollar moves toward a more resilient, more connected Front Range — through **Commons Teach-Ins** that open understanding, **Solidarity Suppers** that deepen relationship, **Neighborhood Resiliency Programs** that build real preparedness, and **Allocation Rounds** that put resources directly into the hands of the people doing the most vital work.
+
+      We are a 501(c)(3). Your gift is tax-deductible. **And more importantly, it goes to a bioregion learning to take care of itself.**
 
   cascade:
     sectionLabel: "The Cascade"
@@ -38,16 +40,16 @@ spreads:
     tiers:
       - number: "01"
         tier: "Tier I"
-        title: "Spirit Operations"
-        body: "Salaries, infrastructure, and legal compliance for the 501(c)(3) backbone — so the work continues."
+        title: "SPIRIT Operations"
+        body: "Salaries, infrastructure, and legal compliance for the 501(c)(3) — so the work continues."
       - number: "02"
         tier: "Tier II"
         title: "Commons Steward Stipends"
-        body: "Compensation for the people running the day-to-day operations of the Front Range Commons."
+        body: "Compensation for the people running the day-to-day work of the Front Range Commons."
       - number: "03"
         tier: "Tier III"
         title: "Commons Grant Pool"
-        body: "Quadratically-allocated funds for regenerative projects across the Front Range, decided by commoners."
+        body: "Funds allocated to regenerative projects across the Front Range — decided by the people who live here."
 
   contribute:
     sectionLabel: "Contribute"

@@ -1,0 +1,103 @@
+---
+// Detail page for on-site writings — only generated for entries WITHOUT
+// an external `url`. Entries with a `url` link out and don't get a local route.
+import Base from '../../layouts/Base.astro';
+import PageCover from '../../components/editorial/PageCover.astro';
+import Spread from '../../components/editorial/Spread.astro';
+import { getCollection, render } from 'astro:content';
+import { basePath } from '../../lib/paths';
+
+export async function getStaticPaths() {
+  const all = await getCollection('writings');
+  return all
+    .filter((w) => !w.data.url) // only on-site entries get a detail route
+    .map((w) => {
+      const slug = w.id.replace(/^\d+-/, '').replace(/\.md$/, '');
+      return { params: { slug }, props: { writing: w } };
+    });
+}
+
+const { writing } = Astro.props;
+const { Content } = await render(writing);
+const data = writing.data;
+
+const tone = data.tone ?? 'clay';
+const toneClasses = {
+  clay:  { folio: 'text-clay-deep',  eyebrow: 'eyebrow text-clay-deep' },
+  creek: { folio: 'text-creek-deep', eyebrow: 'eyebrow eyebrow-creek' },
+  sage:  { folio: 'text-sage-deep',  eyebrow: 'eyebrow eyebrow-sage' },
+  grass: { folio: 'text-grass-deep', eyebrow: 'eyebrow text-grass-deep' },
+}[tone];
+
+const BASE = import.meta.env.BASE_URL;
+
+function formatDate(iso: string): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+---
+
+<Base title={data.title} description={data.excerpt}>
+
+  <PageCover
+    folio="04"
+    sectionLabel={`Words · ${data.kind}`}
+    eyebrow={data.publication ?? data.author}
+    title={data.title}
+    subtitle={data.excerpt}
+    imageSrc={basePath('/images/community/gathering-06.jpg')}
+    imageAlt={data.title}
+    plate=""
+    plateCaption={formatDate(data.date)}
+    treatment="duotone-ink"
+    brightness={0.6}
+  />
+
+  <Spread folio="04.i" section={data.title} bg="bone">
+    <div class="px-5 lg:px-12 py-section">
+      <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+        <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start">
+          <span class={`folio-num text-7xl ${toneClasses.folio}`}>04.i</span>
+          <p class="caption mt-4 opacity-70">{data.kind} · {formatDate(data.date)}</p>
+          <p class="caption mt-1 opacity-70">— {data.author}</p>
+          {data.tags && data.tags.length > 0 && (
+            <ul class="mt-4 flex flex-wrap gap-1 caption opacity-70">
+              {data.tags.map((t) => <li>· {t}</li>)}
+            </ul>
+          )}
+        </div>
+        <div class="col-span-12 lg:col-span-9">
+          <div class="rule-double mb-6"></div>
+          <div class="prose-words text-body-lg text-ink leading-snug max-w-3xl">
+            <Content />
+          </div>
+          <div class="mt-12 pt-4 border-t border-rule flex items-baseline justify-between">
+            <a href={`${BASE}words/`} class="font-mono text-xs uppercase tracking-[0.18em] font-bold text-ink no-underline hover:text-clay-deep">
+              ← All Words
+            </a>
+            <a href={`${BASE}connect/`} class="font-mono text-xs uppercase tracking-[0.18em] font-bold text-ink no-underline hover:text-clay-deep">
+              ✉ Respond →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Spread>
+
+</Base>
+
+<style>
+  .prose-words :global(p) { margin-block: 0.85rem; line-height: 1.55; }
+  .prose-words :global(p:first-child) { margin-top: 0; }
+  .prose-words :global(h2) { font-family: var(--font-display); font-weight: 700; font-size: 2rem; margin-top: 2rem; margin-bottom: 0.75rem; line-height: 1.1; }
+  .prose-words :global(h3) { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.5rem; line-height: 1.15; }
+  .prose-words :global(em) { font-style: italic; color: var(--color-clay-deep); }
+  .prose-words :global(strong) { font-weight: 700; color: var(--color-ink); }
+  .prose-words :global(blockquote) { border-left: 3px solid var(--color-clay-deep); padding-left: 1rem; margin: 1.5rem 0; font-style: italic; }
+  .prose-words :global(ol), .prose-words :global(ul) { padding-left: 1.5rem; margin-block: 0.85rem; }
+  .prose-words :global(ol) { list-style: decimal; }
+  .prose-words :global(ul) { list-style: disc; }
+  .py-section { padding-block: var(--spacing-section); }
+</style>

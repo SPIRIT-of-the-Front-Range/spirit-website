@@ -12,4 +12,4 @@ tone: "clay"
 order: 1
 ---
 
-The book that won Ostrom the Nobel and dismantled Hardin's "Tragedy of the Commons." Eight design principles for how communities actually steward shared resources without private enclosure or state takeover. Foundational reading for anyone serious about commoning at any scale.
+The book that won Ostrom the Nobel and dismantled Hardin's "Tragedy of the Commons." Eight design principles for how communities actually steward shared resources together — without private enclosure or state takeover. Foundational reading for anyone serious about commoning at any scale.

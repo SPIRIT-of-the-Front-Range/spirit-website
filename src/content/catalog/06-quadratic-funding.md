@@ -12,4 +12,4 @@ tone: "creek"
 order: 6
 ---
 
-The mathematical mechanism behind Spirit's planned grant rounds: the matching pool amplifies the *number* of contributors, not the size of contributions. A wealthy donor's $10,000 funds less than 100 neighbors giving $5 each. Designed for genuine pluralism in resource allocation.
+The mathematical mechanism behind the Front Range Commons' planned grant rounds: the matching pool amplifies the *number* of contributors, not the size of contributions. A wealthy donor's $10,000 funds less than 100 neighbors each giving $5. Designed for genuine pluralism in resource allocation.

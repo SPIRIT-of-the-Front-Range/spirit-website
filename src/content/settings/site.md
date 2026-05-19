@@ -12,6 +12,7 @@ header:
     - { label: "Programs", href: "programs/" }
     - { label: "The Commons", href: "the-commons/" }
     - { label: "Stewards", href: "stewards/" }
+    - { label: "Words", href: "words/" }
     - { label: "Catalog", href: "catalog/" }
     - { label: "Connect", href: "connect/" }
 
@@ -31,15 +32,15 @@ footer:
     - { label: "Programs", href: "programs/" }
     - { label: "The Commons", href: "the-commons/" }
     - { label: "Stewards", href: "stewards/" }
+    - { label: "Words", href: "words/" }
     - { label: "Catalog", href: "catalog/" }
   reachUsTitle: "Reach us"
   email: "hello@spiritofthefrontrange.org"
   externalLinks:
-    - { label: "Mystery Works podcast →", href: "https://www.themysteryworks.com/" }
     - { label: "Front Range Commons →", href: "https://www.frontrangecommons.org/" }
   editorSignInLabel: "Editor sign-in"
-  colophon: "A 501(c)(3) bioregional backbone non-profit"
-  copyrightSuffix: "Rooted in the ethics of institutional self-negation"
+  colophon: "A 501(c)(3) non-profit for the Front Range bioregion"
+  copyrightSuffix: "Rooted in the ethics of institutional self-negation, non-enclosure, and care for what we share"
 
 donation:
   url: "https://www.every.org/spiritofthefrontrange?suggestedAmounts=40%2C100%2C200%2C500%2C1000&theme_color=163857&designation=EVERY.ORG+GENERAL+FUNDING&utm_campaign=donate-link#/donate"

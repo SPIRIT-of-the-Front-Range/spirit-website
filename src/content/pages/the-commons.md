@@ -1,13 +1,13 @@
 ---
 seo:
   title: "The Commons"
-  description: "The Front Range Commons — a proposal-in-formation for a decentralized, member-governed network for cultural and ecological stewardship."
+  description: "The Front Range Commons — a member-led civic body forming now for the cultural and ecological stewardship of the Front Range bioregion."
 
 cover:
-  eyebrow: "A parallel entity · Spirit feeds, does not control"
+  eyebrow: "A parallel civic body · SPIRIT feeds, does not control"
   title: "The Front Range"
   italicTitle: "Commons."
-  subtitle: "A proposal-in-formation for a decentralized, member-governed network dedicated to cultural and ecological stewardship, and community-led resource allocation."
+  subtitle: "A member-led civic body — forming now — for the cultural and ecological stewardship of the Front Range, and for the community allocation of resources to the work that matters most."
   imageSrc: "/images/community/gathering-08.jpg"
   imageAlt: "Water pooled in a red rock crevice, reflecting sky."
   plateCaption: "water in red rock · fountain formation"
@@ -21,18 +21,18 @@ spreads:
     heading: "A lattice for"
     italicHeading: "collective stewardship."
     body: |
-      The FRC intends to be a space where anyone can contribute, propose projects, share resources, and participate in organizational governance. Commoners elect a **Wisdom Council**, which appoints **Common Stewards** who run the day-to-day operations.
+      The Front Range Commons is a space where anyone who lives here can contribute, propose projects, share resources, and participate in collective decisions. Commoners elect a **Wisdom Council** — particularly elders and Indigenous relatives — which in turn appoints **Common Stewards** to run the day-to-day work.
 
-      SPIRIT is reframed as the *lattice* — the minimum institutional infrastructure required to make Commons activity possible. Spirit holds the legal vessel and fiduciary obligations. The Commons holds the actual stewardship of the place.
+      SPIRIT is the *lattice*: the minimum institutional infrastructure required to make Commons activity possible. SPIRIT holds the legal vessel and the fiduciary obligations. **The Commons holds the actual stewardship of the place.**
 
-      A funding cascade was agreed: the first funds raised go to Spirit's ops, the next tranche funds Common Steward stipends, and everything beyond that flows into a Commons grant pool — **at least 50%** of total raise targeted at programmatic disbursement.
+      A funding cascade was agreed: the first funds raised go to SPIRIT's operations, the next tranche funds Common Steward stipends, and everything beyond that flows into a Commons grant pool — **at least 50%** of every dollar raised, targeted at programmatic disbursement decided by the community itself.
 
   glossary:
     sectionLabel: "Glossary"
     eyebrow: "A working glossary"
     heading: "Begin with"
     italicHeading: "the words."
-    caption: "★ language is the first instrument of the Commons"
+    caption: "★ language is the first instrument of the civic commons"
     terms:
       - number: "N° 01"
         color: "clay"
@@ -53,13 +53,13 @@ spreads:
         color: "grass"
         term: "Why Bioregional?"
         pronunciation: "a question worth answering"
-        body: "Commoning on a bioregional level directs our attentions and energies to where we can directly relate to the consequences of our stewardship. *You cannot fork a watershed. You cannot exit a wildfire.*"
+        body: "Commoning at the scale of a bioregion directs our attention and energy to where we can directly feel the consequences of our care — and where ecological reality forces us to coordinate across difference. *You cannot fork a watershed. You cannot exit a wildfire.*"
 
   relationship:
     sectionLabel: "Relationship"
-    marginalia: "A **two-bodied** design: Spirit holds the institutional vessel; the Commons holds the practice. Each protects the other from collapse into the other's logic."
+    marginalia: "A **two-bodied** design: SPIRIT holds the institutional vessel; the Commons holds the practice. Each protects the other from collapsing into the other's logic."
     eyebrow: "The relationship"
-    heading: "Spirit feeds and protects the Commons but"
+    heading: "SPIRIT feeds and protects the Commons but"
     italicHeading: "does not control it."
     spiritCard:
       eyebrow: "SPIRIT"
@@ -75,15 +75,15 @@ spreads:
       eyebrow: "THE COMMONS"
       title: "The Body"
       items:
-        - "Member-governed"
+        - "Member-led"
         - "Wisdom Council (elected)"
         - "Common Stewards (appointed)"
-        - "Quadratic voting on grants"
+        - "Community-weighted grant allocation"
         - "Bioregional decision-making"
-        - "Open to all denizens"
+        - "Open to all who live here"
     ctaLabel: "◇ Visit the Commons site →"
     ctaHref: "https://www.frontrangecommons.org/"
 
 pullQuote:
-  text: "The next generation of civic infrastructure will not come from legislatures or Silicon Valley. It will come from communities that learn to govern their shared resources with care, creativity, and mutual accountability."
+  text: "The next generation of civic infrastructure will not come from legislatures or Silicon Valley. It will come from communities that learn to care for what they share, where they live."
 ---

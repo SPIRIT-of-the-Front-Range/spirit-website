@@ -5,7 +5,7 @@ source: "Northern Front Range watershed"
 url: "https://www.fs.usda.gov/recarea/arp/recarea/?recid=36504"
 price: "Free"
 pillars: ["belonging", "coordination"]
-curator: "Spirit"
+curator: "SPIRIT"
 tone: "creek"
 order: 10
 ---

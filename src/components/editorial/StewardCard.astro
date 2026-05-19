@@ -3,9 +3,17 @@ interface Props {
   name: string;
   role: string;
   email?: string;
+  website?: string;
+  websiteLabel?: string;
   number?: number | string;
 }
-const { name, role, email, number } = Astro.props;
+const { name, role, email, website, websiteLabel, number } = Astro.props;
+
+// Derive a clean display label for a website URL (strip protocol + trailing slash)
+function displayHost(url?: string): string {
+  if (!url) return '';
+  return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+}
 ---
 
 <article class="steward-card paper p-6 lg:p-7 relative">
@@ -22,11 +30,18 @@ const { name, role, email, number } = Astro.props;
     <slot />
   </div>
 
-  {email && (
-    <footer class="mt-4 pt-4 border-t border-rule">
-      <a href={`mailto:${email}`} class="no-underline font-mono text-caption text-creek-deep hover:text-clay-deep break-all">
-        {email}
-      </a>
+  {(email || website) && (
+    <footer class="mt-4 pt-4 border-t border-rule flex flex-col gap-1">
+      {website && (
+        <a href={website} target="_blank" rel="noopener" class="no-underline font-mono text-caption text-creek-deep hover:text-clay-deep break-all">
+          ↗ {websiteLabel || displayHost(website)}
+        </a>
+      )}
+      {email && (
+        <a href={`mailto:${email}`} class="no-underline font-mono text-caption text-creek-deep hover:text-clay-deep break-all">
+          ✉ {email}
+        </a>
+      )}
     </footer>
   )}
 </article>

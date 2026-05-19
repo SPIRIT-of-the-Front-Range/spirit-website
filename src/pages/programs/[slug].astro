@@ -1,0 +1,210 @@
+---
+// Per-program detail page — newspaper-style spread layout that mirrors
+// the design language of the main page covers. Lives at /programs/{slug}/.
+//
+// Pulls all content from src/content/programs/{N}-{slug}.md. The `detail`
+// frontmatter field (optional) drives the hero, structured body sections,
+// pull quote, and signup CTA. The MD body is rendered as a long intro.
+import Base from '../../layouts/Base.astro';
+import PageCover from '../../components/editorial/PageCover.astro';
+import Spread from '../../components/editorial/Spread.astro';
+import PullQuote from '../../components/editorial/PullQuote.astro';
+import { getCollection, render } from 'astro:content';
+import { basePath, resolveLink } from '../../lib/paths';
+import { mdToInline } from '../../lib/markdown';
+
+export async function getStaticPaths() {
+  const programs = await getCollection('programs');
+  return programs.map((p) => {
+    // id format: "01-commons-teach-ins.md" → slug "commons-teach-ins"
+    const slug = p.id.replace(/^\d+-/, '').replace(/\.md$/, '');
+    return { params: { slug }, props: { program: p } };
+  });
+}
+
+const { program } = Astro.props;
+const { Content } = await render(program);
+const data = program.data;
+const detail = data.detail ?? {};
+
+// Sensible defaults so a program without `detail:` still renders.
+const tone = detail.tone ?? 'sage';
+const heroImage = detail.heroImage ?? '/images/community/gathering-04.jpg';
+const heroAlt = detail.heroAlt ?? data.title;
+const heroTreatment = detail.heroTreatment ?? 'duotone-sage';
+const heroBrightness = detail.heroBrightness ?? 0.65;
+const heroPlateCaption = detail.heroPlateCaption ?? '';
+
+const toneClasses = {
+  clay: { folio: 'text-clay-deep', eyebrow: 'eyebrow text-clay-deep' },
+  creek: { folio: 'text-creek-deep', eyebrow: 'eyebrow eyebrow-creek' },
+  sage: { folio: 'text-sage-deep', eyebrow: 'eyebrow eyebrow-sage' },
+  grass: { folio: 'text-grass-deep', eyebrow: 'eyebrow text-grass-deep' },
+}[tone];
+
+const slug = program.id.replace(/^\d+-/, '').replace(/\.md$/, '');
+
+// Related programs — every other program, for the "all paths interconnect" strip.
+const allPrograms = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
+const related = allPrograms.filter((p) => p.id !== program.id);
+
+const BASE = import.meta.env.BASE_URL;
+const signupLink = detail.signup ? resolveLink(detail.signup.ctaHref) : null;
+---
+
+<Base
+  title={data.title}
+  description={data.shortDescription}
+>
+
+  <PageCover
+    folio="06"
+    sectionLabel={`Programs · ${data.pillarLabel ?? ''}`.trim().replace(/·\s*$/, '')}
+    eyebrow={data.status === 'upcoming' ? 'upcoming · enrollment opening' : 'live · open enrollment'}
+    title={data.title}
+    italicTitle={detail.tagline ?? ''}
+    subtitle={data.shortDescription}
+    imageSrc={basePath(heroImage)}
+    imageAlt={heroAlt}
+    plate=""
+    plateCaption={heroPlateCaption}
+    treatment={heroTreatment}
+    brightness={heroBrightness}
+  />
+
+  {/* INTRO — markdown body of the program MD file, full-width single column */}
+  <Spread folio="06.1" section={data.title} bg="bone">
+    <div class="px-5 lg:px-12 py-section">
+      <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+        <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start">
+          <span class={`folio-num text-7xl ${toneClasses.folio}`}>06.i</span>
+          {data.abbrev && (
+            <p class="mt-4 sticker sticker-bone">{data.abbrev}</p>
+          )}
+          <p class="caption mt-4 opacity-70">Pillar · {data.pillarLabel ?? '—'}</p>
+        </div>
+        <div class="col-span-12 lg:col-span-9">
+          <div class="rule-double mb-6"></div>
+          <div class="prose-program text-body-lg text-ink leading-snug max-w-3xl">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Spread>
+
+  {/* BODY SECTIONS — structured longform from detail.sections[] */}
+  {detail.sections && detail.sections.length > 0 && (
+    <Spread folio="06.2" section="The Arc" bg="bone-pale" class="border-y border-ink">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12">
+          <div class="col-span-12">
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+              {detail.sections.map((sec, i) => (
+                <article class="border-t border-rule pt-6">
+                  <span class={`folio-num text-3xl ${toneClasses.folio} mb-2 block`}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {sec.eyebrow && (
+                    <p class={`${toneClasses.eyebrow} mb-2`}>{sec.eyebrow}</p>
+                  )}
+                  <h3 class="font-display font-bold text-h2 text-ink mb-3 leading-tight">
+                    {sec.heading}
+                    {sec.italicHeading && (
+                      <span class="italic font-serif font-light"> {sec.italicHeading}</span>
+                    )}
+                  </h3>
+                  <div class="text-body text-shadow leading-snug prose-program">
+                    <Fragment set:html={mdToInline(sec.body)} />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* PULL QUOTE */}
+  {detail.pullQuote && (
+    <div class="bg-bone py-section">
+      <div class="container-narrow">
+        <PullQuote attribution={detail.pullQuote.attribution}>
+          {detail.pullQuote.text}
+        </PullQuote>
+      </div>
+    </div>
+  )}
+
+  {/* SIGNUP / APPLICATION CTA */}
+  {detail.signup && signupLink && (
+    <Spread folio="06.3" section="Get on the list" bg="ink">
+      <div class="px-5 lg:px-12 py-section on-dark text-center">
+        <p class="eyebrow mb-4" style="color:#E8B58A;">{detail.signup.eyebrow}</p>
+        <h2 class="display-l max-w-3xl mx-auto leading-[1.0] mb-6" style="color:#F7EFD8;">
+          {detail.signup.heading}
+          {detail.signup.italicHeading && (
+            <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;"> {detail.signup.italicHeading}</span>
+          )}
+        </h2>
+        <p class="text-body-lg max-w-2xl mx-auto leading-snug mb-8" style="color: rgba(247,239,216,0.85);">
+          {detail.signup.body}
+        </p>
+        <a href={signupLink.href} rel={signupLink.rel} class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">{detail.signup.ctaLabel}</a>
+      </div>
+    </Spread>
+  )}
+
+  {/* RELATED — "all SPIRIT paths interconnect" strip */}
+  {related.length > 0 && (
+    <Spread folio="06.4" section="All paths interconnect" bg="bone-deep" class="border-t border-ink">
+      <div class="px-5 lg:px-12 py-section">
+        <p class="eyebrow mb-3">★ The SPIRIT paths all interconnect</p>
+        <h2 class="display-m text-ink mb-8 max-w-3xl leading-[1.0]">
+          Each program weaves with <span class="italic font-serif font-light">the others.</span>
+        </h2>
+        <p class="text-body-lg text-shadow leading-snug max-w-2xl mb-10">
+          Solidarity Suppers build relationships. Commons Teach-Ins build understanding. The Neighborhood Resiliency Program builds capacity. Allocation Rounds put resources in motion. You can enter anywhere.
+        </p>
+        <div class="grid sm:grid-cols-3 gap-6">
+          {related.slice(0, 3).map((p) => {
+            const rslug = p.id.replace(/^\d+-/, '').replace(/\.md$/, '');
+            return (
+              <a href={`${BASE}programs/${rslug}/`} class="block group border-t border-rule pt-4 no-underline">
+                <p class="caption mb-1 opacity-70">→ {p.data.pillarLabel ?? 'Program'}</p>
+                <p class="font-display font-bold text-h3 text-ink group-hover:text-clay-deep transition-colors">
+                  {p.data.title}
+                </p>
+                <p class="text-body text-shadow leading-snug mt-2">
+                  {p.data.shortDescription}
+                </p>
+              </a>
+            );
+          })}
+        </div>
+        <div class="mt-10 pt-4 border-t border-rule flex items-baseline justify-between">
+          <a href={`${BASE}programs/`} class="font-mono text-xs uppercase tracking-[0.18em] font-bold text-ink no-underline hover:text-clay-deep">
+            ← All Programs
+          </a>
+          <a href={`${BASE}connect/`} class="font-mono text-xs uppercase tracking-[0.18em] font-bold text-ink no-underline hover:text-clay-deep">
+            ✉ Get in touch →
+          </a>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+</Base>
+
+<style>
+  .prose-program :global(p) { margin-block: 0.85rem; line-height: 1.55; }
+  .prose-program :global(p:first-child) { margin-top: 0; }
+  .prose-program :global(em) { font-style: italic; color: var(--color-clay-deep); }
+  .prose-program :global(strong) { font-weight: 700; color: var(--color-ink); }
+  .prose-program :global(ol), .prose-program :global(ul) { padding-left: 1.5rem; margin-block: 0.85rem; }
+  .prose-program :global(ol) { list-style: decimal; }
+  .prose-program :global(ul) { list-style: disc; }
+  .prose-program :global(li) { margin-block: 0.3rem; }
+  .py-section { padding-block: var(--spacing-section); }
+</style>

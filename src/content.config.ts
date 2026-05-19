@@ -1,6 +1,17 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+// Shared visual enums used by multiple collections
+const pillarColor = z.enum(['clay', 'creek', 'sage', 'grass']);
+const treatment = z.enum([
+  'natural',
+  'duotone-sage',
+  'duotone-clay',
+  'duotone-creek',
+  'duotone-clay-deep',
+  'duotone-ink',
+]);
+
 const stewards = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/stewards' }),
   schema: z.object({
@@ -10,6 +21,8 @@ const stewards = defineCollection({
     pronouns: z.string().optional(),
     photo: z.string().optional(),
     bioShort: z.string().optional(),
+    website: z.string().optional(),       // personal site or org link
+    websiteLabel: z.string().optional(),  // optional display label (default: domain)
     order: z.number().default(0),
     links: z.array(z.object({ label: z.string(), url: z.string() })).optional(),
   }),
@@ -27,6 +40,51 @@ const programs = defineCollection({
     order: z.number().default(0),
     nextEventDate: z.string().optional(),
     nextEventUrl: z.string().optional(),
+    // Detail-page extras (all optional so listing remains valid)
+    detail: z.object({
+      tagline: z.string().optional(),
+      heroImage: z.string().optional(),
+      heroAlt: z.string().optional(),
+      heroTreatment: treatment.optional(),
+      heroBrightness: z.number().optional(),
+      heroPlateCaption: z.string().optional(),
+      tone: z.enum(['clay', 'creek', 'sage', 'grass']).optional(),
+      sections: z.array(z.object({
+        eyebrow: z.string().optional(),
+        heading: z.string(),
+        italicHeading: z.string().optional(),
+        body: z.string(),
+      })).optional(),
+      pullQuote: z.object({
+        text: z.string(),
+        attribution: z.string().optional(),
+      }).optional(),
+      signup: z.object({
+        eyebrow: z.string(),
+        heading: z.string(),
+        italicHeading: z.string().optional(),
+        body: z.string(),
+        ctaLabel: z.string(),
+        ctaHref: z.string(),
+      }).optional(),
+    }).optional(),
+  }),
+});
+
+const writings = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/writings' }),
+  schema: z.object({
+    title: z.string(),
+    author: z.string(),
+    date: z.string(),                // ISO yyyy-mm-dd
+    excerpt: z.string(),
+    kind: z.enum(['essay', 'talk', 'article', 'paper', 'interview']).default('essay'),
+    url: z.string().optional(),      // external link (Substack etc.)
+    publication: z.string().optional(), // e.g., "omniharmonic"
+    tone: z.enum(['clay', 'creek', 'sage', 'grass']).default('clay'),
+    featured: z.boolean().default(false),
+    order: z.number().default(0),
+    tags: z.array(z.string()).optional(),
   }),
 });
 
@@ -50,17 +108,6 @@ const catalog = defineCollection({
 // Singleton page content — one markdown file per page. Schema below covers
 // the mission page's shape; other pages will add their own optional fields
 // via passthrough as we extend this in Phase 1.
-const pillarColor = z.enum(['clay', 'creek', 'sage', 'grass']);
-// Cover image treatment options. Mirrors PageCover.astro's accepted union.
-const treatment = z.enum([
-  'natural',
-  'duotone-sage',
-  'duotone-clay',
-  'duotone-creek',
-  'duotone-clay-deep',
-  'duotone-ink',
-]);
-
 const cardSchema = z.object({
   number: z.string(),
   color: pillarColor,
@@ -406,6 +453,44 @@ const pages = defineCollection({
               ),
             })
             .optional(),
+          ethics: z
+            .object({
+              sectionLabel: z.string(),
+              eyebrow: z.string(),
+              heading: z.string(),
+              italicHeading: z.string(),
+              headingTail: z.string().default(''),
+              intro: z.string(),
+              items: z.array(
+                z.object({
+                  number: z.string(),
+                  color: pillarColor,
+                  title: z.string(),
+                  body: z.string(),
+                }),
+              ),
+              closingNote: z.string().optional(),
+            })
+            .optional(),
+          homeGlossary: z
+            .object({
+              sectionLabel: z.string(),
+              eyebrow: z.string(),
+              heading: z.string(),
+              italicHeading: z.string(),
+              intro: z.string(),
+              terms: z.array(
+                z.object({
+                  number: z.string(),
+                  color: pillarColor,
+                  term: z.string(),
+                  body: z.string(),
+                }),
+              ),
+              ctaLabel: z.string().optional(),
+              ctaHref: z.string().optional(),
+            })
+            .optional(),
           programsTeaser: z
             .object({
               sectionLabel: z.string(),
@@ -525,4 +610,4 @@ const settings = defineCollection({
   }),
 });
 
-export const collections = { stewards, programs, catalog, pages, settings };
+export const collections = { stewards, programs, catalog, writings, pages, settings };
