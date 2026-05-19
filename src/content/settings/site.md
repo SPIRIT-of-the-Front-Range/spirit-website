@@ -5,8 +5,8 @@ establishedYear: "est. 2026"
 wordmarkSrc: "/images/logos/wordmark-sm.png"
 
 header:
-  donateLabel: "✦ Fund"
-  mobileDonateLabel: "✦ Fund the Bioregion"
+  donateLabel: "✦ Donate"
+  mobileDonateLabel: "✦ Donate"
   nav:
     - { label: "Mission", href: "mission/" }
     - { label: "Programs", href: "programs/" }
@@ -18,13 +18,13 @@ header:
 
 footer:
   tagline:
-    eyebrow: "Feeling inspired? Let's weave."
-    heading: "Inquiries. Projects. Partnerships."
-    italicHeading: "Knowledge."
+    eyebrow: "Feeling inspired? Say hello."
+    heading: "Questions. Projects. Partnerships."
+    italicHeading: "Stories."
     body: "We would love to hear from you."
   primaryCtaLabel: "✦ Get involved"
   primaryCtaHref: "connect/"
-  secondaryCtaLabel: "◇ Fund the Bioregion"
+  secondaryCtaLabel: "◇ Donate"
   secondaryCtaHref: "donate/"
   siteColumnTitle: "Site"
   siteLinks:
@@ -39,8 +39,8 @@ footer:
   externalLinks:
     - { label: "Front Range Commons →", href: "https://www.frontrangecommons.org/" }
   editorSignInLabel: "Editor sign-in"
-  colophon: "A 501(c)(3) non-profit for the Front Range bioregion"
-  copyrightSuffix: "Rooted in the ethics of institutional self-negation, non-enclosure, and care for what we share"
+  colophon: "A 501(c)(3) nonprofit for the Front Range"
+  copyrightSuffix: "Built to be replaced. Rooted in shared care."
 
 donation:
   url: "https://www.every.org/spiritofthefrontrange?suggestedAmounts=40%2C100%2C200%2C500%2C1000&theme_color=163857&designation=EVERY.ORG+GENERAL+FUNDING&utm_campaign=donate-link#/donate"

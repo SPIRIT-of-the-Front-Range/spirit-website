@@ -3,7 +3,7 @@ title: "Solidarity Suppers"
 abbrev: "SS"
 pillar: "belonging"
 pillarLabel: "Belonging"
-shortDescription: "Long-table dinners that nourish community leaders, elders, and Indigenous relatives — with Listeners' Councils, storytelling, and the slow weaving of relationship."
+shortDescription: "Long-table dinners that bring together community leaders, elders, and Indigenous neighbors — with listening circles, storytelling, and the slow building of relationships."
 status: "active"
 order: 2
 detail:
@@ -19,41 +19,41 @@ detail:
       heading: "Long-table dinners,"
       italicHeading: "and what happens around them."
       body: |
-        Solidarity Suppers are seasonal long-table dinners. We share a slow meal. We listen carefully. We host *Listeners' Councils* and storytellings — the kind of conversation that rarely happens in the rooms most of us spend our days in.
+        Solidarity Suppers are seasonal long-table dinners. We share a slow meal. We listen carefully. We host *listening circles* and storytellings — the kind of conversation that rarely happens in the rooms most of us spend our days in.
 
-        We center community leaders and elders — particularly our Indigenous relatives, whose knowledge of this place precedes any of our institutions. We take the pulse of the bioregion together: what people are working on, what they need, where the threads of connection want to be woven.
+        We center community leaders and elders — especially our Indigenous neighbors, whose knowledge of this place goes back generations. We take the pulse of the region together: what people are working on, what they need, where the connections want to be made.
     - eyebrow: "What they aren't"
       heading: "Not a networking event."
       italicHeading: "Not a fundraiser. Not a panel."
       body: |
-        These are invitational spaces. People come on behalf of the neighborhoods, organizations, and ecologies they hold relationship with. There are no name tags. There are no pitches. **The shared meal opens the door to honest conversation, and the conversation does the rest.**
+        These are invitation-based. People come on behalf of the neighborhoods, organizations, and places they care about. No name tags. No pitches. **The shared meal opens the door to honest conversation, and the conversation does the rest.**
 
-        We are practicing the Commons before we formalize it. The Suppers are how the relationships get real.
-    - eyebrow: "The form: the Listeners' Council"
+        We are practicing what it means to take care of a place together, before we make it formal. The Suppers are how the relationships get real.
+    - eyebrow: "The listening circle"
       heading: "One person speaks."
-      italicHeading: "Everyone else listens."
+      italicHeading: "Everyone else actually listens."
       body: |
-        At the heart of each Supper is a Listeners' Council — a specific form drawn from many lineages (Indigenous councils, Quaker meetings, the Way of Council). One person speaks at a time, holding a token. Others listen without preparing a response. No cross-talk. No debate.
+        At the heart of each Supper is a *listening circle* — a simple form drawn from many traditions (Indigenous councils, Quaker meetings, the Way of Council). One person speaks at a time, holding a token. Others listen without preparing a response. No cross-talk. No debate.
 
         It sounds simple. It changes everything. In a culture that has nearly forgotten how to listen, this practice is itself an act of repair.
     - eyebrow: "How to come"
       heading: "By invitation —"
       italicHeading: "but the invitation is open."
       body: |
-        Suppers are kept small enough that the table holds the conversation, which means we cannot host everyone every time. We rotate. We invite based on who is doing the work and who is ready to be in the room. **If that sounds like you, apply — we want to know you.**
+        Suppers are kept small enough that the table can hold the conversation, which means we cannot host everyone every time. We rotate. We invite based on who is doing meaningful work and who is ready to be in the room. **If that sounds like you, apply — we want to know you.**
   pullQuote:
-    text: "Place creates relationships that ideology cannot sever. The conservative rancher and the progressive permaculturist share an aquifer. We learn how to share the table before we can share the watershed."
+    text: "A place creates relationships that politics can't sever. The conservative rancher and the progressive farmer share an aquifer. We learn how to share the table before we can share the watershed."
   signup:
-    eyebrow: "★ Solidarity Supper guest application"
+    eyebrow: "★ Ask for an invitation"
     heading: "Ask to come"
     italicHeading: "to the next Supper."
-    body: "Tell us a little about you, the community or work you would be representing at the table, and what you are paying attention to right now. We respond personally to every application."
+    body: "Tell us a little about you, the community or work you'd be representing at the table, and what you're paying attention to right now. We answer every message personally."
     ctaLabel: "✉ Apply via Connect"
     ctaHref: "connect/"
 ---
 
-*Solidarity Suppers are how we practice the Commons before we formalize it.*
+*Solidarity Suppers are how we practice taking care of a place together — before we make it formal.*
 
-These are not networking events. They are invitational long-table dinners where people show up on behalf of their neighborhoods, organizations, and ecologies. The shared meal opens the door to honest conversation. We host *Listeners' Councils* and storytellings — the kind of slow conversation that lets people speak honestly about what they're working on, what they need, and where the threads of connection want to be woven.
+These are not networking events. They are invitation-based long-table dinners where people come on behalf of their neighborhoods, organizations, and places. The shared meal opens the door to honest conversation. We host *listening circles* and storytellings — the kind of slow conversation that lets people say what they're actually working on, what they need, and where the connections want to be made.
 
-We center community leaders and elders — particularly our Indigenous relatives, whose knowledge of this place precedes any of our institutions. **The shared meal opens the door to everything that comes after.**
+We center community leaders and elders — especially our Indigenous neighbors, whose knowledge of this place goes back generations. **The shared meal opens the door to everything that comes after.**

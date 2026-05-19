@@ -3,11 +3,11 @@ title: "Commons Teach-Ins"
 abbrev: "CTI"
 pillar: "culturing"
 pillarLabel: "Culturing"
-shortDescription: "Open monthly sessions on the history, ecology, and practice of the Commons — for anyone who wants to understand what we mean by it."
+shortDescription: "Free monthly sessions on how communities have actually taken care of land together — past and present. Open to everyone. No prerequisites."
 status: "active"
 order: 1
 detail:
-  tagline: "open sessions, open discussions."
+  tagline: "free, open to all, every month."
   heroImage: "/images/community/gathering-02.jpg"
   heroAlt: "Driftwood resting in shallow water at the edge of a creek — quiet, attentive light."
   heroTreatment: "duotone-sage"
@@ -15,46 +15,46 @@ detail:
   heroPlateCaption: "creek edge · evening"
   tone: "sage"
   sections:
-    - eyebrow: "Why this exists"
-      heading: "Before we can build a commons,"
-      italicHeading: "we have to understand what one is."
+    - eyebrow: "Why this matters"
+      heading: "Before we can build something together,"
+      italicHeading: "we have to share a language for it."
       body: |
-        Most people have heard of "the tragedy of the commons" — Garrett Hardin's argument that shared resources inevitably get destroyed. Far fewer people know that Hardin was describing *open access*, not actual commons. And far fewer still know that Elinor Ostrom won the Nobel Prize for documenting hundreds of real commons that have thrived for centuries — Japanese forests, Spanish irrigation systems, Maine fisheries, and on and on.
+        Most people have heard the phrase "tragedy of the commons" — the idea that when something is shared, it inevitably gets used up. What fewer people know is that this was an argument made about *unmanaged open access*, not about actual community-managed commons. And fewer still know that **real commons have thrived for centuries** — Japanese forests, Spanish irrigation systems, Maine fisheries, watershed councils, neighborhood groups — once communities agree on how to take care of the thing.
 
-        The Commons Teach-Ins exist because **commoning is one of the oldest, most successful coordination technologies humans have ever practiced** — and most of us have forgotten how it works. Recovering that knowledge is preparation for the work ahead.
-    - eyebrow: "The arc we trace"
-      heading: "From indigenous belonging"
-      italicHeading: "to re-commoning."
+        Elinor Ostrom won the Nobel Prize in economics for documenting this. The Commons Teach-Ins exist because **taking care of shared things together is one of the oldest, most successful human practices** — and most of us have forgotten how to do it. Recovering that knowledge is preparation for the work ahead.
+    - eyebrow: "What we cover"
+      heading: "From a time when all peoples"
+      italicHeading: "were native to a place — to now."
       body: |
-        Each session sits inside a longer arc. We move from when all peoples were indigenous to a place, through the enclosures that turned shared land into private property and severed labor from ecology, through the cooperatives and resistance movements that kept commons consciousness alive, to the emerging civic experiments — bioregional commons, digital commons, regenerative finance — of today.
+        Each session sits inside a longer story. We move from a time when all peoples were *indigenous* to a place, through the centuries of fencing-off shared land into private property, through the cooperatives and movements that kept community-care alive, to the new local experiments emerging today.
 
-        We draw on Elinor Ostrom's Nobel-winning research, Indigenous stewardship traditions, the European commons literature, and the practical wisdom of communities that never stopped commoning.
+        We draw on Ostrom's research, Indigenous traditions of stewardship, the long European history of shared land, and the practical wisdom of the communities that never stopped doing this work.
     - eyebrow: "How it runs"
-      heading: "Monthly. Free. No prerequisites,"
-      italicHeading: "no jargon gatekeeping."
+      heading: "Once a month. Free."
+      italicHeading: "Anyone can come."
       body: |
-        Sessions run once per month and are open to all — neighbors, students, organizers, the curious. There are no prerequisites. We bring strong coffee, good chairs, and a willingness to think out loud together.
+        Sessions run once a month and are open to everyone — neighbors, students, organizers, curious passersby. There are no prerequisites. We bring strong coffee, good chairs, and a willingness to think out loud together.
 
-        Each session produces shared artifacts: reading lists, frameworks, recordings, transcripts. Over time these accumulate into a freely available curriculum and a published book on the Commons — built collaboratively, in public, by the people who showed up.
-    - eyebrow: "What we hope happens"
+        Each session leaves something behind: a reading list, a recording, notes you can take with you. Over time these add up to a free, public curriculum and an eventual book — built openly, by the people who actually showed up.
+    - eyebrow: "What you leave with"
       heading: "You leave with a different"
-      italicHeading: "set of tools."
+      italicHeading: "way of seeing."
       body: |
-        Not certainty. Not a doctrine. **A vocabulary, a history, and a sense of what's possible.** The Commons is a practice you'll recognize once you can name it — in your neighborhood, in your watershed, in your work. We're trying to make naming it easier.
+        Not certainty. Not a doctrine. **A vocabulary, a bit of history, and a sense of what's possible.** The Commons is a practice you'll start to recognize once you have a name for it — in your neighborhood, in your watershed, in your workplace. We're trying to make that recognition easier.
   pullQuote:
-    text: "Real commons are shared resources with clear boundaries, community agreements, and accountability. The garden doesn't maintain itself. It requires ongoing attention, seasonal adjustments, collective work, and shared learning."
+    text: "A garden doesn't maintain itself. It needs ongoing attention, seasonal work, shared decisions, and a community that keeps showing up. Caring for what we share is the same."
     attribution: "from a recent Teach-In"
   signup:
-    eyebrow: "★ Get on the Teach-In list"
+    eyebrow: "★ Get on the list"
     heading: "Be invited to the next"
     italicHeading: "monthly session."
-    body: "Sessions are free and open to everyone. Subscribe and we'll send you the date, time, and place of the next gathering — along with the reading we'll be sitting with."
-    ctaLabel: "✉ Subscribe via Connect"
+    body: "Sessions are free and open to everyone. Sign up and we'll send you the date, time, place, and the reading we'll be sitting with."
+    ctaLabel: "✉ Sign up via Connect"
     ctaHref: "connect/"
 ---
 
-*"What does it actually mean to live in common?"*
+*"What does it actually mean to take care of something together?"*
 
-Commons Teach-Ins are monthly open sessions on the long history, the practical ecology, and the everyday practice of the Commons. **No prerequisites. No jargon gatekeeping.** Bring your questions. Stay for the conversation.
+Commons Teach-Ins are free monthly sessions on the long history, the practical ecology, and the everyday practice of caring for shared things. **No prerequisites. No specialized vocabulary required.** Bring your questions. Stay for the conversation.
 
-We trace the arc from when all peoples were indigenous to a place, through the enclosures that turned shared land into private property, to the cooperative and Indigenous traditions that kept commons consciousness alive, to today's emerging civic experiments. Each session produces shared artifacts — reading lists, frameworks, recordings — that build toward a freely available curriculum and book on the Commons.
+We cover the long story — from a time when all peoples were native to a place, through the centuries of fencing-off shared land, to the communities that kept this work alive, to the new local experiments emerging today. Each session leaves something behind — a reading list, a recording, notes — building toward a free curriculum and book on this work.

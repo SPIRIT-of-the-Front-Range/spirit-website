@@ -9,11 +9,11 @@ homeCover:
   titleLine2: Front Range.
   secondaryCtaHref: donate/
   imageSrc: /images/community/gathering-04.jpg
-  eyebrow: ★ We care for what we share
+  eyebrow: ★ We care for the place we share
   captionLabel: Cover
   imageAlt: ""
-  tagline: A non-profit weaving the neighborhoods, watersheds, and communities
-    of Colorado's Front Range into a flourishing, self-stewarding bioregion.
+  tagline: A Colorado nonprofit helping neighbors, organizations, and communities
+    along the Front Range take care of the land, water, and life we all share.
   titleSmall: of the
   secondaryCtaLabel: ◇ Fund
   primaryCtaHref: the-commons/
@@ -22,273 +22,277 @@ homeCover:
 spreads:
   philosophy:
     body: >-
-      Here on the Front Range of the Rocky Mountains, we live in neighborhoods.
-      We also live in an ecology — a watershed — a bioregion. We drink from an
-      aquifer shared by every being around us. The mountain air we breathe knows
+      Here on the Front Range, we live in neighborhoods. We also live in a
+      watershed, an ecosystem, a stretch of mountains-meeting-plains that has
+      its own weather and its own particular life. We drink from an aquifer
+      shared with every other being around us. The mountain air we breathe knows
       nothing of county lines.
 
 
-      *You cannot fork a watershed. You cannot exit a wildfire.* The lines on the political map cannot sever us from each other, or from the land that holds us.
+      *A watershed isn't something you can leave. A wildfire isn't something you can opt out of.* The lines on the political map can't actually separate us from each other, or from the land that holds us.
 
 
-      The most meaningful unit of collective life is not the county or the state. It is the **bioregion** — the living landscape we share, defined by watershed, ecology, and the human and other-than-human communities nested within it. **Remembering this is where the work begins.**
+      We use the word **bioregion** to name this — *the larger living place* we share, defined by water, weather, ecology, and the human and other-than-human communities that call it home. The Front Range is one. **Taking care of it together is where the work begins.**
     heading: We belong to
-    italicLine: Nature is what we are, just like a forest, a high-mountain desert,
-      or a wetland.
-    eyebrow: Philosophy
+    italicLine: We are *of* this place, in the same way a forest, a desert, or
+      a wetland is *of* its place.
+    eyebrow: Why we exist
     imageCaption: creek above Nederland · early autumn
-    sectionLabel: Philosophy
-    marginalia: If you live on the Earth, you are sharing a home.
+    sectionLabel: Why we exist
+    marginalia: If you live somewhere, you are sharing it with others.
     headingTail: " than we have names for."
     italicHeading: more places
-    marginaliaNumber: N° 02.1
-    imagePlate: Plate II
+    marginaliaNumber: "01"
+    imagePlate: ""
   stewardsNote:
-    sectionLabel: A Steward's note
-    subLabel: ↳ on the impossibility of enclosure
-    quote: Our mutual relationship to where we live *implies* our mutual
-      responsibility for that place. This relationship cannot be enclosed
-      because it is, by definition, *a commons*.
+    sectionLabel: A note from a steward
+    subLabel: ↳ on what we owe the places we live
+    quote: Our relationship to where we live carries with it a responsibility
+      for that place. That responsibility belongs to all of us — it isn't
+      something anyone can own or fence off. *It is, by its nature, a commons.*
     attribution: Benjamin Life · Steward
   vessel:
-    editorsNoteTitle: Editor's note
+    editorsNoteTitle: A short note
     body: >
-      **SPIRIT is a 501(c)(3) non-profit acting as the connective tissue for
-      bioregional regeneration along the Front Range.** We do the institutional
-      work — programming, fundraising, fiscal sponsorship, legal operations — so
-      that the practical, place-based work of caring for this bioregion can
-      flourish.
+      **SPIRIT is a 501(c)(3) nonprofit. We are the connective tissue for the
+      people, neighborhoods, and organizations already caring for the Front
+      Range.** We handle the institutional work — programming, fundraising, the
+      legal pieces, the paperwork — so the practical, on-the-ground work of
+      tending this place can flourish.
 
 
-      SPIRIT is the *vessel*; it is not the Commons. We are a **transitional stewardship team** preparing the ground for the Front Range Commons — the member-led civic body that will hold the lasting stewardship of this place. SPIRIT exists to serve that Commons, not to perpetuate itself.
+      SPIRIT is not *the Commons* — the larger civic body the people of the Front Range will build together. SPIRIT is the **scaffolding** that makes the Commons possible. We are a small starting team. **Our job is to make ourselves obsolete** — to build something the community itself can carry, and then step aside.
 
 
-      Our team operates by consent inside a *Stewardship Council*. Five circles — Stewarding, Coordination, Creative, Community, and Technology — hold the weekly work. The Board's role is reduced to legal oversight only; the operational center lives at the Council.
+      We make decisions by *consent* rather than majority vote, which means we move forward together or not at all. Five small teams — Stewarding, Coordination, Creative, Community, and Technology — hold the weekly work. The Board's role is limited to legal oversight; the real work lives in the teams.
 
 
-      **The team is transitional by design.** In time, we pray, the Board will be comprised of Indigenous leaders, elders, and devoted civic stewards who represent the demography of this bioregion. **The aim is to be replaced.**
-    heading: A 501(c)(3) building
-    primaryCtaLabel: ◇ Meet the Stewards
+      **In time, we hope the Board itself will be Indigenous leaders, elders, and longtime community stewards of this bioregion — people who actually represent who lives here.** That's the goal. We're building toward being replaced.
+    heading: A nonprofit acting as
+    primaryCtaLabel: ◇ Meet our team
     secondaryCtaHref: mission/
-    eyebrow: The Vessel
+    eyebrow: What SPIRIT is
     languageNoteTitle: A note on language
-    sectionLabel: The Vessel
-    languageNoteQuote: There's a difference between the act of stewardship, the
-      responsibility of stewardship, and the role of *steward*.
-    headingTail: " for bioregional coordination."
+    sectionLabel: What SPIRIT is
+    languageNoteQuote: Taking care of a place, being responsible for a place,
+      and being given the *role* of taking care of it on behalf of others — these
+      are three different things. We try to keep them clear.
+    headingTail: " for the work of caring for the Front Range."
     italicHeading: connective tissue
-    diagramCaption: Fig. 04 · the lattice
+    diagramCaption: How SPIRIT relates to the Commons
     languageNoteAttribution: — Benjamin Life · April 2026
-    secondaryCtaLabel: ◇ Strategy & Theory
+    secondaryCtaLabel: ◇ Our mission & approach
     primaryCtaHref: stewards/
-    editorsNoteBody: "We are neither the Commons nor a substitute for it. SPIRIT
-      is the institutional *vessel*: it holds the legal weight so that the
-      Commons can hold the practice."
+    editorsNoteBody: "SPIRIT is not the Commons, and is not a substitute for one.
+      SPIRIT carries the legal weight so the Commons can focus on the actual
+      work of caring for this place."
   pillars:
-    sectionLabel: Four Pillars
-    eyebrow: Section V · A Catalog of Pillars
+    sectionLabel: Four kinds of work
+    eyebrow: ★ The work, in four parts
     heading: Four threads,
-    italicHeading: braided into one weave.
-    intro: Each pillar is a thread organizing SPIRIT's work. They are not
-      separable — every program touches all four — but naming them makes the
-      work *legible*.
-    caption: ↓ see also p. 06 (programs) for active expressions of each pillar
-    footnote: ★ pillars are non-exclusive · every program touches all four · → see
-      fig. 04 (lattice)
+    italicHeading: woven together.
+    intro: SPIRIT's work is organized into four threads. They are not separate —
+      every program touches all four — but naming them makes what we do easier
+      to follow.
+    caption: ↓ see Programs below for what these look like in practice
+    footnote: ★ all four are active in every program we run
     items:
       - number: "01"
         color: clay
         pillar: Pillar · Allocation
         title: Allocation.
-        body: Flowing resources directly to the projects that **regenerate our
-          bioregion** — through community-decided funding rounds and mutual aid.
-          The first round is being designed now — transparent, community-led,
-          with at least **50% of every dollar raised** going to programmatic
-          disbursement.
+        body: Putting funds **directly into the hands of the people** doing the
+          actual work of caring for this place — through community-decided grant
+          rounds and mutual aid. Our first round is being designed now,
+          transparent and community-led, with at least **50% of every dollar
+          raised** going straight to the work.
         outcome: fairly-distributed care
         photoCaption: — harvest, summer
       - number: "02"
         color: creek
         pillar: Pillar · Coordination
         title: Coordination.
-        body: Building the tools, agreements, and shared treasuries that let
-          neighbors and organizations **make decisions together**. SPIRIT
-          operates by sociocratic consent inside its Stewardship Council; the
-          Commons will weight every voice. *How we decide is itself a
-          regenerative practice.*
+        body: Building the tools, agreements, and shared funds that let
+          neighbors and organizations **make decisions together**. We make
+          decisions by *consent* (no one overruled) rather than majority vote.
+          *The way we decide is part of the work.*
         outcome: coherent collective will
         photoCaption: — pond · Boulder Creek watershed
       - number: "03"
         color: sage
         pillar: Pillar · Belonging
         title: Belonging.
-        body: Cultivating a **shared sense of bioregional home** through Solidarity
-          Suppers, long walks, and Listeners' Councils — centering community
-          leaders and elders, particularly our Indigenous relatives, whose
-          knowledge of this place precedes any of our institutions.
+        body: Building a **shared sense of home** through long-table dinners,
+          walks, and listening circles — centering community leaders and elders,
+          especially our Indigenous neighbors, whose knowledge of this place
+          goes back generations.
         outcome: real, embodied solidarity
         photoCaption: — Listeners' Council · blessing
       - number: "04"
         color: grass
         pillar: Pillar · Culturing
         title: Culturing.
-        body: Fueling **the culture and ethics** of the work through gatherings,
-          skill-shares, and Teach-Ins. We trace the long arc of the Commons —
-          from when all peoples were indigenous to a place, through the
-          enclosures, to the present movement of *re-commoning*.
+        body: Building **the culture, skills, and shared understanding** the
+          work needs — through gatherings, skill-shares, and public teach-ins
+          that trace the long history of how communities have cared for
+          shared land together.
         outcome: a living, transmissible practice
         photoCaption: — offerings · Solidarity Supper
   ethics:
-    sectionLabel: Ethics
-    eyebrow: ★ Six commitments
+    sectionLabel: How we work
+    eyebrow: ★ Six promises
     heading: What
     italicHeading: guides us.
     headingTail: ""
-    intro: SPIRIT is held to a small set of ethics that pre-date the institution
-      and will outlast our roles in it. They are not aspirations — they are the
-      conditions under which we have agreed to do the work.
+    intro: SPIRIT is held to a small set of promises that came before us and
+      will outlast our roles in this work. These are not aspirations. They are
+      the conditions under which we have agreed to do this.
     closingNote: We hold each other to these. Members of the Front Range Commons
       will hold us to them too.
     items:
       - number: "01"
         color: clay
-        title: Institutional self-negation
-        body: SPIRIT explicitly limits its own authority and refuses to claim
-          ownership of the bioregion. The aim is to be replaced by the community
-          we serve.
+        title: Build to be replaced
+        body: SPIRIT is meant to be a starting scaffold, not a permanent
+          institution. The aim is to put the work in the hands of the community
+          itself and step aside.
       - number: "02"
         color: creek
-        title: Non-enclosure of the Commons
-        body: Knowledge, tools, agreements, and stewardship practices belong to
-          the communities that create and use them. We share what works.
+        title: No one owns what we share
+        body: The knowledge, tools, agreements, and ways of caring for this
+          place that we develop belong to the communities that use them. We
+          share what works — freely.
       - number: "03"
         color: sage
-        title: Cultural & ecological stewardship
+        title: Care for land and culture together
         body: We work in service of the living systems and the cultural lineages
-          of this place — particularly the Indigenous traditions whose knowledge
-          precedes our institutions.
+          of this place — especially the Indigenous traditions whose knowledge
+          of how to live here goes back generations.
       - number: "04"
         color: grass
-        title: Regeneration
-        body: We measure our work by whether it leaves the bioregion — ecological,
-          relational, and cultural — more alive than we found it.
+        title: Leave it more alive
+        body: We measure our work by one question — did we leave the bioregion,
+          the relationships, and the culture more alive than we found them?
       - number: "01"
         color: creek
-        title: Commons consciousness
-        body: We practice seeing what we share before what we own. The aquifer,
-          the air, the forest, the relationships — these come first.
+        title: See what we share first
+        body: Before what we own. The aquifer, the air, the forest, the
+          neighbors, the friendships — these come first.
       - number: "02"
         color: sage
-        title: Cooperation over competition
-        body: Where we could compete with peers doing this work, we choose to
-          coordinate. The bioregion needs more weaving and less rivalry.
+        title: Cooperate, don't compete
+        body: There are other people doing this work. We choose to weave with
+          them, not against them. The bioregion needs more collaboration and
+          less rivalry.
   homeGlossary:
-    sectionLabel: Glossary
-    eyebrow: ★ A working vocabulary
+    sectionLabel: The words we use
+    eyebrow: ★ A few terms, plainly
     heading: Begin with
     italicHeading: the words.
-    intro: A few terms come up often in this work. Here is the short version of
-      each — so the rest reads cleanly. Hover any *underlined* word elsewhere on
-      this site for an inline definition.
-    ctaLabel: → Full glossary on The Commons
+    intro: A few words come up often on this site. Here's the short version of
+      each. Hover any *underlined* word elsewhere on the site for an inline
+      definition.
+    ctaLabel: → More definitions on The Commons page
     ctaHref: the-commons/#glossary
     terms:
-      - number: "N° 01"
+      - number: "01"
         color: clay
         term: Bioregion
-        body: A geographically and hydrologically defined area characterized by
-          distinct ecological features that together form a coherent biocultural
-          home. The Front Range is one.
-      - number: "N° 02"
+        body: A region defined by its land, water, and life rather than by
+          political lines — a watershed, an ecosystem, the human and natural
+          communities that depend on each other. The Front Range is one.
+      - number: "02"
         color: creek
         term: The Commons
-        body: The living realities of shared place — the ecologies and resources
-          for which all residents share responsibility, and on which all depend.
-          The water you drink. The soil that grows your food.
-      - number: "N° 03"
+        body: What we share and are responsible for together — the air we
+          breathe, the water we drink, the soil under our feet, the
+          relationships that hold the community.
+      - number: "03"
         color: sage
-        term: Commoning (verb)
-        body: The ongoing practice of caring for a commons together. A commons is
-          the garden. Commoning is the gardening.
-      - number: "N° 04"
+        term: Commoning
+        body: A verb. The everyday practice of caring for what we share. A
+          *commons* is the garden. *Commoning* is the gardening.
+      - number: "04"
         color: grass
-        term: Institutional self-negation
-        body: The practice of an institution limiting its own authority and
-          refusing to claim ownership of what it serves. SPIRIT's foundational
-          ethic.
+        term: Built to be replaced
+        body: Our promise that SPIRIT is a starting scaffold for community work
+          — not a permanent institution. Our success looks like handing the
+          work off and stepping aside.
   programsTeaser:
-    footnote: "↳ also forthcoming: Regenerative Project Allocation Rounds (Pillar 01)"
-    heading: Living pathways into
-    ctaLabel: → All Programs
-    caption: ★ all programs are free or pay-what-you-can
-    eyebrow: Section VI · Live Programs
-    intro: Free or pay-what-you-can. Open enrollment. No prerequisites. Subscribe
-      at [Connect](connect/) to hear when programs open in your area.
+    footnote: "↳ also coming: community-decided grant rounds for local projects"
+    heading: Easy ways to
+    ctaLabel: → See all programs
+    caption: ★ everything we run is free or pay-what-you-can
+    eyebrow: ★ Live programs
+    intro: Free or pay-what-you-can. Open enrollment. No prerequisites. Sign up
+      at [Connect](connect/) to hear when something opens near you.
     sectionLabel: Programs
-    italicHeading: bioregional participation.
+    italicHeading: get involved.
     ctaHref: programs/
   commonsTeaser:
     body: >
-      The Front Range Commons (forming now) is a **member-led civic body** for
-      the cultural and ecological stewardship of this bioregion, and for the
-      community allocation of resources to the work that matters most.
+      The Front Range Commons (forming now) is **a way for the people who live
+      here to make collective decisions about how to take care of where we
+      live.** It's a membership network for the cultural and ecological care of
+      this bioregion — and for deciding together how to direct resources to the
+      work that matters most.
 
 
-      Anyone who lives here can become a member. Commoners elect a *Wisdom Council* — particularly elders and Indigenous relatives — which appoints Common Stewards to run the day-to-day. SPIRIT is the lattice: the minimum institutional infrastructure required to make Commons activity possible.
+      Anyone who lives here can join. Members elect a *Wisdom Council* — especially elders and Indigenous neighbors — who in turn appoint *Common Stewards* to handle the day-to-day. SPIRIT provides the legal and operational scaffolding so the Commons can focus on the actual work.
 
 
-      What makes this Commons distinctive is its grounding in **a specific place, with specific relationships**, and its partnership with SPIRIT — which allows it to interface with the world of foundations and institutions without being captured by them.
+      What makes this Commons distinctive is that it is **rooted in a specific place, with specific relationships.** And SPIRIT's partnership with it means the Commons can work alongside foundations and government without being controlled by them.
 
 
-      Communities are building similar civic bodies around the world — from Cascadia to Catalonia to the Great Lakes. *The next generation of civic infrastructure will not come from legislatures or Silicon Valley. It will come from people who learn to care for what they share, where they live.*
+      Communities are building similar bodies all over the world — from Cascadia to Catalonia to the Great Lakes. *The next generation of civic life won't come from legislatures or Silicon Valley. It will come from people learning to take care of what they share, where they live.*
     heading: The
-    primaryCtaLabel: ★ Read the Commons
+    primaryCtaLabel: ★ Learn about the Commons
     secondaryCtaHref: https://www.frontrangecommons.org/
-    subEyebrow: SPIRIT feeds it · SPIRIT does not control it
-    eyebrow: A Parallel Body
+    subEyebrow: SPIRIT supports it · SPIRIT does not control it
+    eyebrow: What we're building toward
     imageCaption: ★ water in red rock
-    intro: Bioregional Commoning is a living movement that *roots* in place. That's
-      what makes it radical — from the Latin *radix*, "root."
-    sectionLabel: The Commons
+    intro: Caring for a place is a living movement. The deeper you root in,
+      the more it grows.
+    sectionLabel: What we're building toward
     headingTail: " Commons."
     italicHeading: Front Range
-    imageOverlay: You cannot fork a watershed. You cannot exit a wildfire.
-    stickerLabel: N° 07.1
-    secondaryCtaLabel: → Visit FRC site
+    imageOverlay: A watershed isn't something you can leave. A wildfire isn't
+      something you can opt out of.
+    stickerLabel: "07"
+    secondaryCtaLabel: → Visit the Commons site
     primaryCtaHref: the-commons/
-    stickerQuote: Commoning on a bioregional level directs our attentions and
-      energies to where we can directly relate to the consequences of our
-      stewardship.
+    stickerQuote: Taking care of a place at this scale means we can actually
+      see the results of our work, and feel the consequences of our care.
   funding:
-    footerRight: "→ next issue: Spring"
-    footerLeft: ★ end of Issue 01
+    footerRight: "→ next update coming Spring"
+    footerLeft: ★ thanks for reading
     body: >
-      Your contribution funds **Commons Teach-Ins** that build understanding,
-      **Solidarity Suppers** that deepen relationship, **Neighborhood Resiliency
-      Programs** that build real preparedness, and **Allocation Rounds** that
-      put resources directly into the hands of communities already doing the
-      most vital work. *This is how a bioregion remembers how to take care of
-      itself.*
-    heading: Every donation moves toward a more
-    cascadeTitle: ★ The Funding Cascade
-    primaryCtaLabel: ★ Fund the Bioregion
+      Your gift funds **public teach-ins** that build shared understanding,
+      **Solidarity Suppers** that deepen relationships, **neighborhood
+      preparedness programs** that give people the skills and the plan to weather
+      an emergency together, and **grant rounds** that put resources directly
+      into the hands of the people already doing the most vital work.
+      *This is how a place learns to take care of itself.*
+    heading: Every gift moves us toward a more
+    cascadeTitle: ★ How your dollar flows
+    primaryCtaLabel: ★ Donate
     secondaryCtaHref: the-commons/
-    eyebrow: ★ Funding the Bioregion
-    sectionLabel: Funding
+    eyebrow: ★ Support the work
+    sectionLabel: Support the work
     footerCenter: SPIRIT of the Front Range · 501(c)(3) · est. 2026
     cascadeCaption: driftwood · creek edge · 2024
     headingTail: " Front Range."
     italicHeading: connected
-    secondaryCtaLabel: ◇ Learn the cascade
+    secondaryCtaLabel: ◇ See where it goes
     primaryCtaHref: donate/
     cascadeTiers:
       - number: "01"
-        title: SPIRIT Operations
-        caption: salaries · infrastructure · compliance
+        title: Running SPIRIT
+        caption: salaries · operations · legal compliance
       - number: "02"
-        title: Commons Steward Stipends
-        caption: compensating day-to-day Commons work
+        title: Paying Common Stewards
+        caption: the people doing the day-to-day Commons work
       - number: "03"
-        title: Commons Grant Pool
-        caption: quadratically allocated to regenerative projects
+        title: The Commons grant pool
+        caption: community-decided grants to local projects
 ---

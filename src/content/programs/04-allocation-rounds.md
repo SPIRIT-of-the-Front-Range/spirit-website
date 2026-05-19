@@ -1,17 +1,17 @@
 ---
-title: "Regenerative Project Allocation Rounds"
-abbrev: "RPAR"
+title: "Community Grant Rounds"
+abbrev: "CGR"
 pillar: "allocation"
-pillarLabel: "Allocation"
-shortDescription: "Community-led grant rounds that put resources directly into the hands of the people regenerating this bioregion — decided by the people who live here."
+pillarLabel: "Flowing money to the work"
+shortDescription: "Community-decided grant rounds that put funds directly into the hands of the people doing the work of caring for the Front Range."
 status: "upcoming"
 order: 4
 ---
 
-SPIRIT fundraises so that resources can flow directly to the regenerative ecological and cultural projects of this bioregion — according to the priorities of the people who live here.
+SPIRIT raises money so it can flow directly to the local projects this place most needs — with the priorities set by the people who actually live here, not by a distant board.
 
-Anyone can propose a project: a community garden, a watershed restoration, a mutual aid fund, a cultural preservation initiative. Allocation Rounds use community-weighted funding mechanisms designed to amplify the voice of many small contributors rather than concentrating power with a few large ones.
+Anyone can propose a project: a community garden, a watershed restoration, a mutual aid fund, a cultural preservation effort. Our grant rounds use a community-weighted system designed to amplify the voices of many small contributors rather than concentrating power with a few large ones.
 
-**This is not a boardroom deciding what's good for you. It is the bioregion deciding for itself.**
+**This is not a boardroom deciding what's good for you. It is the people of this place deciding for themselves.**
 
-The first round is being designed now. Subscribe at *Connect* to hear when applications open.
+The first round is being designed now. Sign up at *Connect* to hear when applications open.

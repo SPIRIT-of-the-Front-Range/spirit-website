@@ -7,4 +7,4 @@ websiteLabel: "opencivics.co"
 order: 2
 ---
 
-Benjamin holds SPIRIT's coordination design and the philosophical articulation of the Bioregional Commons — translating between sociocratic operating principles, 501(c)(3) compliance, and the long horizon of institutional self-negation. As co-founder of OpenCivics, he connects the Front Range to a wider ecosystem of civic innovation, and leads SPIRIT's Knowledge Commons work.
+Benjamin holds SPIRIT's structural design and the underlying ideas about how a place can take care of itself. He translates between practical decision-making, the legal requirements of a nonprofit, and the long arc of building something that can eventually be handed off to the community. As co-founder of OpenCivics, he connects the Front Range to a wider network of people doing similar work, and leads our Knowledge Commons.

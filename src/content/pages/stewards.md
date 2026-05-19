@@ -4,49 +4,51 @@ seo:
   description: "The Transitional Stewards Team — the activating team for Spirit of the Front Range."
 
 cover:
-  eyebrow: "On who is doing the work, and why"
-  title: "The Transitional"
-  italicTitle: "Stewards Team."
-  subtitle: "An activating team scaffolding the bones of SPIRIT — with the explicit aim of cultivating a Commons that eventually carries this work itself. We are designed to be replaced."
+  eyebrow: "Who is doing the work, and why"
+  title: "The starting"
+  italicTitle: "team."
+  subtitle: "We are a small starting team building the scaffolding for SPIRIT — so the Front Range Commons, made of the people who live here, can carry the work going forward. Our job is to make ourselves obsolete."
   imageSrc: "/images/community/gathering-06.jpg"
-  imageAlt: "Hands holding and blessing a person during a Listeners' Council — black and white intimate portrait."
-  plateCaption: "Listeners' Council · blessing"
+  imageAlt: "Hands holding and blessing a person during a listening circle — black and white intimate portrait."
+  plateCaption: "a listening circle · blessing"
   treatment: "duotone-ink"
   brightness: 0.62
 
 spreads:
   manifesto:
-    sectionLabel: "Manifesto"
-    marginaliaPrimary: "**Transitional** is not a hedge. It is a commitment: SPIRIT's leadership is designed to be replaced by the community it serves."
-    marginaliaSecondary: "The team distinguishes the *act* of stewardship, the *responsibility* of stewardship, and the *role* of *Steward*. These are not the same thing."
-    eyebrow: "An activating team"
+    sectionLabel: "Who we are"
+    marginaliaPrimary: "**A starting team, not a permanent one.** SPIRIT's leadership is designed to be handed off to the community itself."
+    marginaliaSecondary: "Taking care of a place, being responsible for a place, and being given the *role* of taking care of it on behalf of others — these are three different things."
+    eyebrow: "A starting team"
     heading: "We are a small team at the"
     italicHeading: "beginning of something"
-    headingTail: ", and we do not have all the answers."
+    headingTail: ", and we don't have all the answers."
     body: |
-      SPIRIT operates through Transitional Stewards — an activating and scaffolding team whose aim is to cultivate a Commons that eventually carries this work itself. The organization's explicit goal is to build something that **no longer needs us in our current roles.**
+      The current SPIRIT team is small — five people — building the scaffolding so the Front Range Commons (the larger community body we are working toward) can eventually carry this work itself. **Our explicit goal is to build something that no longer needs us in our current roles.**
 
-      The current team holds five organizing functions: **Stewarding**, **Coordination**, **Creative**, **Community Networking**, and **Tech Infrastructure**. Each is a circle in the larger Stewardship Council, with the authority to make decisions in its domain by consent rather than majority vote.
+      The team holds five areas of work: **Stewarding** (the operational center), **Coordination** (decision-making and structure), **Creative** (storytelling and design), **Community** (relationships and outreach), and **Technology** (the practical tools).
+
+      Each of us has decision-making authority in our area, and we make bigger decisions together by *consent* — meaning we move forward together or not at all, instead of voting some of us down.
 
       What we have is our commitment to this place and to each other, and the willingness to learn in public.
 
   team:
-    sectionLabel: "The Team"
-    eyebrow: "★ The team"
-    heading: "Five circles, five stewards."
-    countLabel: "N = 5"
+    sectionLabel: "Meet the team"
+    eyebrow: "★ Meet the team"
+    heading: "Five people. Five areas of work."
+    countLabel: "5 people"
 
   futureBoard:
-    sectionLabel: "A Future Board"
-    eyebrow: "A future board"
-    heading: "Eventually, the board"
+    sectionLabel: "Where the team is headed"
+    eyebrow: "Where this is going"
+    heading: "Eventually, the team"
     italicHeading: "will not look like us."
     body: |
-      Eventually, the Board of SPIRIT — we pray — will be comprised of **Indigenous leaders, elders, and devoted civic stewards** who represent the demography of this bioregion.
+      In time, we hope SPIRIT's Board will be made up of **Indigenous leaders, elders, and longtime community stewards** — people who actually represent who lives on the Front Range.
 
-      For now, the activating team is made up of Transitional Stewards whose explicit aim is to become regular commoners in the Commons, with no more authority than anyone else. **The institution exists to serve the Commons, not to perpetuate itself.**
+      For now, the five of us are the starting team. Our goal is to become regular members of the Front Range Commons, with no more authority than anyone else. **SPIRIT exists to serve the Commons, not to keep itself going.**
 
 pullQuote:
-  text: "The board appoints the stewards. The stewards appoint the circle leads. The circle leads appoint the project leads. Appointments, not elections — for SPIRIT. The Commons, by contrast, will elect its own."
-  attribution: "From the SPIRIT design synthesis · April 2026"
+  text: "Inside SPIRIT, we use appointments — the board names the team, the team names the area leads, the area leads name project leads. The Commons works differently: members elect their own leaders. Two bodies, two ways of choosing."
+  attribution: "Notes on how SPIRIT works · April 2026"
 ---

@@ -9,9 +9,9 @@ tone: "sage"
 featured: true
 order: 2
 tags: ["networks", "ecology", "coordination", "self-organization"]
-excerpt: "Networks formalize the relationships that already bind us, making explicit what has been implicit. An essay on ecological differentiation, the practice of finding our role in the whole, and learning to sense the mycelium of human organization."
+excerpt: "On networks — the kind that already exist in any community of people doing related work — and what it would mean to make them visible and tend them well, so different groups can recognize how their work fits together instead of accidentally competing."
 ---
 
-We exist, each of us, as nodes within vast constellations of relationship. This isn't a metaphor but a practical reality. The natural world demonstrates the architecture with elegant clarity — ecosystems function as living wholes, with information, resources, and energy flowing through networks that sustain the macroorganism of the ecology itself.
+We exist, each of us, inside a web of relationships — with people, with organizations, with the places we live. The natural world shows this with elegant clarity: ecosystems function as living wholes, with information, resources, and energy moving through networks that sustain the larger whole.
 
-What might it mean to learn to sense the mycelium of human organization — to recognize complementarity rather than competition, to discover how our particular gifts relate to the larger whole?
+What would it mean to learn to see and tend the same kind of network among the people and organizations doing place-based work — to recognize how our different gifts fit together, instead of unintentionally working at cross-purposes?

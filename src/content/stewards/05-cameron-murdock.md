@@ -4,4 +4,4 @@ role: "Tech Infrastructure Director"
 order: 5
 ---
 
-Cameron is a pragmatic infrastructure builder who makes sure things actually work. He designs and tends the technical foundation that makes bioregional coordination possible — from the operational tools that SPIRIT runs on, to the decision-making and shared-treasury systems the Commons will depend on. Technical precision in service of real people.
+Cameron is the practical builder who makes sure things actually work. He designs and tends the technology that holds SPIRIT together — the day-to-day tools we run on, and the decision-making and shared-money systems the Commons will use. Technical precision in service of real people.

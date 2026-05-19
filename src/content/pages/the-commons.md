@@ -4,86 +4,88 @@ seo:
   description: "The Front Range Commons — a member-led civic body forming now for the cultural and ecological stewardship of the Front Range bioregion."
 
 cover:
-  eyebrow: "A parallel civic body · SPIRIT feeds, does not control"
+  eyebrow: "What we're building toward · SPIRIT supports it, does not control it"
   title: "The Front Range"
   italicTitle: "Commons."
-  subtitle: "A member-led civic body — forming now — for the cultural and ecological stewardship of the Front Range, and for the community allocation of resources to the work that matters most."
+  subtitle: "A community body — forming now — where the people who live on the Front Range can make collective decisions about how to take care of where they live. Anyone who lives here can join."
   imageSrc: "/images/community/gathering-08.jpg"
   imageAlt: "Water pooled in a red rock crevice, reflecting sky."
-  plateCaption: "water in red rock · fountain formation"
+  plateCaption: "water in red rock · Fountain Formation"
   treatment: "duotone-creek"
   brightness: 0.65
 
 spreads:
   inBrief:
-    sectionLabel: "In Brief"
-    eyebrow: "In brief"
-    heading: "A lattice for"
-    italicHeading: "collective stewardship."
+    sectionLabel: "The short version"
+    eyebrow: "The short version"
+    heading: "A way for us to"
+    italicHeading: "take care of this place together."
     body: |
-      The Front Range Commons is a space where anyone who lives here can contribute, propose projects, share resources, and participate in collective decisions. Commoners elect a **Wisdom Council** — particularly elders and Indigenous relatives — which in turn appoints **Common Stewards** to run the day-to-day work.
+      The Front Range Commons is **a way for the people who live on the Front Range to make collective decisions about how to care for where we live.** Anyone who lives here can join. Members can propose projects, share resources, and vote on how community-raised money gets used.
 
-      SPIRIT is the *lattice*: the minimum institutional infrastructure required to make Commons activity possible. SPIRIT holds the legal vessel and the fiduciary obligations. **The Commons holds the actual stewardship of the place.**
+      Members elect a **Wisdom Council** — especially elders and Indigenous neighbors — who in turn pick **Common Stewards** to handle the day-to-day work.
 
-      A funding cascade was agreed: the first funds raised go to SPIRIT's operations, the next tranche funds Common Steward stipends, and everything beyond that flows into a Commons grant pool — **at least 50%** of every dollar raised, targeted at programmatic disbursement decided by the community itself.
+      SPIRIT is the **scaffolding** that makes this possible. SPIRIT handles the legal pieces and the paperwork — what a nonprofit can do that a community body cannot. **The Commons does the actual work of caring for this place.**
+
+      Money flows in three steps. The first funds raised cover SPIRIT's basic operations. The next pay the Common Stewards. **Everything beyond that — at least 50% of every dollar — goes into a community grant pool, where members decide together which local projects get funded.**
 
   glossary:
-    sectionLabel: "Glossary"
-    eyebrow: "A working glossary"
+    sectionLabel: "The words we use"
+    eyebrow: "The words we use"
     heading: "Begin with"
     italicHeading: "the words."
-    caption: "★ language is the first instrument of the civic commons"
+    caption: "★ language is the first thing we share"
     terms:
-      - number: "N° 01"
+      - number: "01"
         color: "clay"
         term: "Bioregion"
-        pronunciation: "noun · /ˈbaɪoʊˌridʒən/"
-        body: "A geographically and hydrologically defined area characterized by distinct ecological features that together form a coherent biocultural home. The Front Range is one: a long, narrow corridor where the Rocky Mountains meet the Great Plains, defined by its watersheds, its transitional ecologies, and the communities that call it home."
-      - number: "N° 02"
+        pronunciation: "noun"
+        body: "A region defined by its land, water, and life rather than by political lines — a watershed, an ecosystem, the human and natural communities that depend on each other. **The Front Range is one:** a long, narrow corridor where the Rocky Mountains meet the Great Plains, defined by its rivers, its in-between ecology, and the communities that call it home."
+      - number: "02"
         color: "creek"
         term: "The Commons"
-        pronunciation: "noun · /ðə ˈkɒmənz/"
-        body: "The living realities of shared place — the commonality of the ecologies and resources for which all residents of a place share responsibility, and on which all residents depend. It is not an abstraction. It is the water you drink, the air you breathe, the soil that grows your food."
-      - number: "N° 03"
+        pronunciation: "noun"
+        body: "What we share and are responsible for together. Not an abstraction — the water you drink, the air you breathe, the soil that grows your food, and the relationships that hold the community."
+      - number: "03"
         color: "sage"
-        term: "Bioregional Commons"
-        pronunciation: "noun phrase"
-        body: "A Bioregional Commons recognizes the wellbeing of human and natural systems — neighborhoods, watersheds, ecosystems, soil — as shared resources that the people who live in and depend on that land collectively steward."
-      - number: "N° 04"
+        term: "Commoning"
+        pronunciation: "verb"
+        body: "The everyday practice of caring for what we share. A *commons* is the garden. *Commoning* is the gardening — the regular work of tending and looking after a shared thing together."
+      - number: "04"
         color: "grass"
         term: "Why Bioregional?"
-        pronunciation: "a question worth answering"
-        body: "Commoning at the scale of a bioregion directs our attention and energy to where we can directly feel the consequences of our care — and where ecological reality forces us to coordinate across difference. *You cannot fork a watershed. You cannot exit a wildfire.*"
+        pronunciation: "a fair question"
+        body: "Because at this scale, we can actually see the results of our care — and ecological reality forces us to work together across our differences. *A watershed isn't something you can leave. A wildfire isn't something you can opt out of.*"
 
   relationship:
-    sectionLabel: "Relationship"
-    marginalia: "A **two-bodied** design: SPIRIT holds the institutional vessel; the Commons holds the practice. Each protects the other from collapsing into the other's logic."
-    eyebrow: "The relationship"
-    heading: "SPIRIT feeds and protects the Commons but"
-    italicHeading: "does not control it."
+    sectionLabel: "Two bodies, one project"
+    marginalia: "**Two bodies, one project.** SPIRIT holds the legal scaffolding; the Commons does the actual work. Each protects the other from collapsing into the other's logic."
+    eyebrow: "How they work together"
+    heading: "SPIRIT supports and protects the Commons,"
+    italicHeading: "but does not control it."
     spiritCard:
       eyebrow: "SPIRIT"
-      title: "The Lattice"
+      title: "The Scaffolding"
       items:
-        - "501(c)(3) legal vessel"
-        - "Stewardship Council (sociocratic)"
-        - "Five operating circles"
-        - "Appointments, not elections"
-        - "Fiduciary & legal compliance"
-        - "Transitional Stewards"
+        - "Nonprofit (501(c)(3))"
+        - "5-person starting team"
+        - "Decisions by consent"
+        - "Leadership by appointment"
+        - "Handles legal & financial work"
+        - "Designed to be replaced"
     commonsCard:
       eyebrow: "THE COMMONS"
-      title: "The Body"
+      title: "The Community"
       items:
-        - "Member-led"
-        - "Wisdom Council (elected)"
-        - "Common Stewards (appointed)"
-        - "Community-weighted grant allocation"
-        - "Bioregional decision-making"
-        - "Open to all who live here"
+        - "Open to everyone who lives here"
+        - "Members elect a Wisdom Council"
+        - "Common Stewards do the day-to-day"
+        - "Community-decided grant rounds"
+        - "Makes decisions for the bioregion"
+        - "Holds the actual stewardship"
     ctaLabel: "◇ Visit the Commons site →"
     ctaHref: "https://www.frontrangecommons.org/"
 
 pullQuote:
-  text: "The next generation of civic infrastructure will not come from legislatures or Silicon Valley. It will come from communities that learn to care for what they share, where they live."
+  text: "The next generation of civic life won't come from legislatures or Silicon Valley. It will come from communities that learn to take care of what they share, where they live."
 ---

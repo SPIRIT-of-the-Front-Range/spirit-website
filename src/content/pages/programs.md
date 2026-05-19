@@ -4,10 +4,10 @@ seo:
   description: "Living pathways into bioregional participation — Commons Teach-Ins, Solidarity Suppers, Neighborhood Resiliency, Allocation Rounds."
 
 cover:
-  eyebrow: "Live & upcoming · open enrollment"
-  title: "Living pathways"
-  italicTitle: "into bioregional participation."
-  subtitle: "SPIRIT's programs are how the Commons becomes practice — how strangers become neighbors, and how neighborhoods become resilient. There are no prerequisites. Only the willingness to show up."
+  eyebrow: "Live & upcoming · open to everyone · free or pay-what-you-can"
+  title: "Easy ways"
+  italicTitle: "to get involved."
+  subtitle: "Our programs are how strangers become neighbors, how neighborhoods become resilient, and how we learn what it actually means to take care of this place together. There are no prerequisites. Just the willingness to show up."
   imageSrc: "/images/community/gathering-04.jpg"
   imageAlt: "Overhead view of ceremony offerings on grass during a Solidarity Supper."
   plateCaption: "Solidarity Supper · August"
@@ -16,11 +16,11 @@ cover:
 
 spreads:
   getInvolved:
-    sectionLabel: "Get involved"
-    eyebrow: "★ Other ways to get involved"
+    sectionLabel: "Other ways in"
+    eyebrow: "★ Other ways to take part"
     heading: "Become a founding member of the"
     italicHeading: "Front Range Commons."
-    body: "Help shape what bioregional civic life looks like in practice — join working circles, propose projects, vote in allocation rounds, and share what you know with the people who live where you live."
+    body: "Help shape how this works in practice — join working groups, propose projects, vote on community grants, and share what you know with the people who live where you live."
     primaryCtaLabel: "★ Read about the Commons"
     primaryCtaHref: "the-commons/"
     secondaryCtaLabel: "✉ Reach out"

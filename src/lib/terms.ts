@@ -23,66 +23,60 @@ export const TERMS: Record<string, TermDef> = {
   bioregion: {
     term: 'bioregion',
     short:
-      'A geographically and hydrologically defined area characterized by distinct ecological features that together form a coherent biocultural home.',
+      'A region defined by its land, water, and life — not by political lines. A watershed, an ecosystem, the human and natural communities that depend on each other. The Front Range is one.',
     tone: 'clay',
     href: '/the-commons/#glossary',
   },
   commons: {
     term: 'commons',
     short:
-      'The living realities of shared place — the ecologies and resources for which all residents share responsibility, and on which all depend.',
+      'What we share and are responsible for together — the air, the water, the soil, the relationships that hold the community. Not an abstraction.',
     tone: 'creek',
     href: '/the-commons/#glossary',
   },
   commoning: {
     term: 'commoning',
     short:
-      'The practice — the *verb* — of caring for a commons together. The garden is the noun; gardening is the commoning.',
+      'A verb. The everyday work of taking care of what we share together. A commons is the garden; commoning is the gardening.',
     tone: 'sage',
     href: '/the-commons/#glossary',
   },
   'bioregional commons': {
     term: 'bioregional commons',
     short:
-      'A commons organized at the scale of a bioregion: the people who live in a place collectively stewarding its shared ecological and cultural systems.',
+      'The people who live in a region taking care of its shared land, water, and culture together.',
     tone: 'grass',
     href: '/the-commons/#glossary',
   },
   'institutional self-negation': {
     term: 'institutional self-negation',
     short:
-      'The practice of an institution explicitly limiting its own authority and refusing to claim ownership over what it serves. The aim is to be replaced by the community.',
+      'Our promise that SPIRIT is a starting scaffold — not a permanent institution. Success means handing the work to the community and stepping aside.',
     tone: 'clay',
   },
   enclosure: {
     term: 'enclosure',
     short:
-      'The historical and ongoing process of turning shared land, knowledge, or relationships into private property — severing labor from ecology and community from place.',
+      'The long history of turning shared land, knowledge, or relationships into private property — and the harm that has caused.',
     tone: 'creek',
   },
-  'listeners’ council': {
-    term: 'listeners’ council',
+  'listening circle': {
+    term: 'listening circle',
     short:
-      'A gathering form: one person speaks at a time, holding a token; others listen without preparing a response. Drawn from many lineages.',
+      'A simple gathering form: one person speaks at a time, holding a token; others listen without preparing a response. Drawn from many traditions.',
     tone: 'sage',
   },
   sociocracy: {
     term: 'sociocracy',
     short:
-      'A consent-based decision-making practice: proposals move forward unless someone raises a meaningful objection. SPIRIT runs by sociocratic consent inside its Stewardship Council.',
+      'A way of making decisions by consent rather than majority vote. A proposal moves forward unless someone has a serious objection that the group needs to address.',
     tone: 'grass',
   },
-  'quadratic funding': {
-    term: 'quadratic funding',
+  'community-decided': {
+    term: 'community-decided',
     short:
-      'A community-weighted funding mechanism that amplifies the number of contributors rather than the size of contributions. A wealthy donor’s $10K funds less than 100 neighbors each giving $5.',
+      'Funding that goes where the community itself directs it — through a system designed to amplify many small contributors rather than a few large donors.',
     tone: 'creek',
-  },
-  extitution: {
-    term: 'extitution',
-    short:
-      'A coordination form that operates alongside and through institutions without being captured by them — facilitating connection rather than claiming ownership.',
-    tone: 'grass',
   },
 };
 

@@ -1,13 +1,13 @@
 ---
 seo:
-  title: "Fund the Bioregion"
-  description: "Support Spirit of the Front Range — a 501(c)(3) bioregional backbone non-profit."
+  title: "Donate"
+  description: "Support SPIRIT of the Front Range — a 501(c)(3) nonprofit helping the people of the Front Range take care of where they live."
 
 cover:
-  eyebrow: "A 501(c)(3) tax-deductible contribution"
+  eyebrow: "Tax-deductible gift to a 501(c)(3) nonprofit"
   title: "Donate to"
   italicTitle: "SPIRIT."
-  subtitle: "Your gift funds the programming, the community-led allocation rounds, and the shared infrastructure that lets the Front Range learn to care for itself."
+  subtitle: "Your gift funds the programs, the community-decided grant rounds, and the shared work that let the Front Range learn to take care of itself."
   imageSrc: "/images/community/gathering-09.jpg"
   imageAlt: "Hands washing freshly-pulled carrots under a stream of water in a garden."
   plateCaption: "harvest · garden plot · summer"
@@ -17,54 +17,54 @@ cover:
 
 spreads:
   roots:
-    sectionLabel: "Roots"
-    marginaliaPrimary: "**Where the money goes.** Less than 35% on administrative costs — well below charity watchdog thresholds. At least 50% to programmatic disbursement."
-    marginaliaSecondary: "Donations will be processed through **Every.org** — a non-profit platform that takes 0% if you cover transaction fees."
-    eyebrow: "Funding the Bioregion"
-    heading: "Every donation moves toward a more"
+    sectionLabel: "Where it goes"
+    marginaliaPrimary: "**Where your money goes.** Less than 35% on overhead — well below the standard watchdog limits. At least 50% goes straight to programming and community grants."
+    marginaliaSecondary: "Donations are processed through **Every.org** — a nonprofit platform that takes 0% if you cover the transaction fee."
+    eyebrow: "Why your gift matters"
+    heading: "Every gift moves us toward a more"
     italicHeading: "connected"
     headingTail: "Front Range."
     body: |
-      Bioregionalism is a living movement that *roots* in place. That's what makes it radical — from the Latin *radix*, "root."
+      This work is a living thing. It puts down roots in a specific place, and it grows from there.
 
-      Your contribution funds the programming, the community-led allocation rounds, and the shared infrastructure that make a flourishing bioregion possible. Every dollar moves toward a more resilient, more connected Front Range — through **Commons Teach-Ins** that open understanding, **Solidarity Suppers** that deepen relationship, **Neighborhood Resiliency Programs** that build real preparedness, and **Allocation Rounds** that put resources directly into the hands of the people doing the most vital work.
+      Your gift funds the programs, the community-decided grant rounds, and the shared work that make a healthy Front Range possible. Every dollar moves us toward a more resilient, more connected region — through **public teach-ins** that build shared understanding, **Solidarity Suppers** that deepen relationships, **neighborhood preparedness programs** that build real readiness, and **community grant rounds** that put resources directly into the hands of the people already doing the most vital work.
 
-      We are a 501(c)(3). Your gift is tax-deductible. **And more importantly, it goes to a bioregion learning to take care of itself.**
+      We are a 501(c)(3) nonprofit. Your gift is tax-deductible. **And more importantly, it goes to a place learning, again, how to take care of itself.**
 
   cascade:
-    sectionLabel: "The Cascade"
-    eyebrow: "★ The Funding Cascade"
+    sectionLabel: "How your dollar flows"
+    eyebrow: "★ How your dollar flows"
     heading: "Every dollar follows a"
-    italicHeading: "transparent path."
+    italicHeading: "clear path."
     headingTail: ""
     tiers:
       - number: "01"
-        tier: "Tier I"
-        title: "SPIRIT Operations"
-        body: "Salaries, infrastructure, and legal compliance for the 501(c)(3) — so the work continues."
+        tier: "First"
+        title: "Running SPIRIT"
+        body: "Salaries, operations, and legal compliance — what it takes to keep the nonprofit running so the rest of this work can happen."
       - number: "02"
-        tier: "Tier II"
-        title: "Commons Steward Stipends"
-        body: "Compensation for the people running the day-to-day work of the Front Range Commons."
+        tier: "Then"
+        title: "Paying Common Stewards"
+        body: "Fair pay for the people doing the day-to-day work of the Front Range Commons."
       - number: "03"
-        tier: "Tier III"
-        title: "Commons Grant Pool"
-        body: "Funds allocated to regenerative projects across the Front Range — decided by the people who live here."
+        tier: "Then"
+        title: "The community grant pool"
+        body: "Funds going directly to local projects across the Front Range — with the projects chosen by the people who live here."
 
   contribute:
-    sectionLabel: "Contribute"
-    eyebrow: "★ Make a contribution"
+    sectionLabel: "Make a gift"
+    eyebrow: "★ Make a gift"
     heading: "Move toward a more"
     italicHeading: "connected"
     headingTail: "Front Range."
     fallbackEyebrow: "★ Coming soon"
-    fallbackHeading: "Our Every.org page is being prepared."
-    fallbackBody: "In the meantime, please reach out to make a direct contribution or arrange a tax-deductible gift."
+    fallbackHeading: "Our Every.org page is being set up."
+    fallbackBody: "In the meantime, please reach out and we'll arrange a direct, tax-deductible gift."
     fallbackCtaLabel: "✉ Email us about giving"
     fallbackCtaHref: "mailto:hello@spiritofthefrontrange.org?subject=Donation%20inquiry"
     donateCtaLabel: "★ Donate via Every.org →"
-    taxNote: "SPIRIT of the Front Range is a 501(c)(3) non-profit. Contributions are tax-deductible to the extent allowed by law."
+    taxNote: "SPIRIT of the Front Range is a 501(c)(3) nonprofit. Gifts are tax-deductible to the extent allowed by law."
 
 pullQuote:
-  text: "You cannot fork a watershed. You cannot exit a wildfire. We are in this together, and the only question is whether we build the relationships and tools to coordinate well."
+  text: "A watershed isn't something you can leave. A wildfire isn't something you can opt out of. We are in this together — the only question is whether we build the relationships and the tools to do it well."
 ---

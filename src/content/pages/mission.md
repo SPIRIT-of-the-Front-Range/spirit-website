@@ -6,124 +6,130 @@ seo:
 cover:
   italicTitle: Front Range.
   imageSrc: /images/community/gathering-05.jpg
-  eyebrow: On vision, mission, & strategy
+  eyebrow: What we're doing and why
   imageAlt: Wildflowers and pine boughs on the Front Range with mountains beyond.
   plateCaption: Wildflowers · early summer · Boulder foothills
   brightness: 0.75
-  subtitle: A regenerating, flourishing bioregion — now and for future generations
-    — cultured by living relational networks and held in common by the people
-    who live here.
+  subtitle: A Front Range where neighbors know each other, the land is
+    well-tended, and the people who live here have a real say in how it's
+    cared for — now and for the generations that come after us.
   treatment: duotone-sage
   title: A more beautiful
 spreads:
   vision:
     body: >
-      Remembering our **embedded belonging** to the living world invites us to
-      reimagine our social, cultural, and economic lives in accordance with
-      ecological webs of relationship.
+      We are not separate from the living world — we are part of it. The land,
+      the water, and the communities of plants, animals, and people that make
+      up the Front Range are something we all belong to. **Once you really feel
+      that, it changes how you organize your life.**
 
 
-      We envision a Front Range where neighbors know each other, where the land is well-tended, where the people who live here have a real say in the decisions that shape their bioregion, and where the wisdom of those who came before — particularly the Indigenous communities of this place — is honored and built upon. **A bioregion where collective life flourishes because the people of it have remembered how to care for what they share.**
+      Our vision is a Front Range where neighbors know each other. Where the land is well-tended. Where the people who live here have a real say in the decisions that shape their home. Where the wisdom of those who came before us — especially the Indigenous communities of this place — is honored and built upon. **A region that flourishes because the people of it have learned, again, how to take care of what they share.**
     heading: Our vision is a
-    eyebrow: Our Vision
+    eyebrow: Our vision
     imageCaption: creek above Nederland
     imageAlt: A creek at dusk in a mountain valley, fall-yellow aspen reflected in
       still water.
-    sectionLabel: Vision
-    marginalia: "**Vision.** A picture of what is possible. Not a destination — a
-      horizon to walk toward."
+    sectionLabel: Our vision
+    marginalia: "**Vision.** A picture of what's possible — a horizon to walk
+      toward."
     italicHeading: remembering.
     image: /images/community/gathering-01.jpg
   mission:
     body: >
-      SPIRIT exists to **empower, weave, and coordinate** the people already
-      doing the work — local leaders engaged in neighborhood resilience,
-      ecological care, Indigenous revitalization, and the relocalization of our
-      economies. We are *connective tissue*: we lift up and link existing
-      regenerative initiatives so they find each other, share resources, and
-      become more capable together.
+      SPIRIT exists to **support and connect the people already doing the
+      work** — neighborhood organizers, ecological farmers, watershed
+      stewards, Indigenous land-keepers, the artists and storytellers, the
+      people building local economies. We are the *connective tissue.* We help
+      these people find each other, share what works, and become more capable
+      together.
 
 
-      Concretely, we do four things. We **build the shared infrastructure** — the agreements, tools, and convenings — that lets distributed work cohere. We **fundraise** so that resources can flow directly to the projects this bioregion most needs. We **run community-led allocation rounds** that put those resources in the hands of the people closest to the work. And we **hold regular rhythms of gathering** to nourish and connect the tenders of this place.
+      Concretely, we do four things:
+      we **build the shared infrastructure** — the agreements, the gatherings, the simple tools — that lets dispersed work add up to something;
+      we **raise money** so resources can flow to the projects the Front Range most needs;
+      we **run community-decided grant rounds** that put those resources in the hands of the people closest to the work;
+      and we **gather people regularly** — for meals, walks, councils — so the relationships that make all of this possible can keep deepening.
     heading: We know the way is
-    italicNote: Eventually, the Board of SPIRIT — we pray — will be comprised of
-      Indigenous leaders, elders, and devoted civic stewards who represent the
-      demography of this bioregion.
-    eyebrow: Our Mission
+    italicNote: In time, we hope SPIRIT's Board will be made up of Indigenous
+      leaders, elders, and longtime community stewards who actually represent
+      who lives here.
+    eyebrow: Our mission
     imageCaption: offerings · Solidarity Supper
     imageAlt: Overhead view of Solidarity Supper offerings — pink dahlia, gourds,
       prayer ties laid on grass with feet in moccasins.
-    sectionLabel: Mission
-    marginalia: "**Mission.** The work itself — what we do, every week, to walk
+    sectionLabel: Our mission
+    marginalia: "**Mission.** The actual work — what we do, every week, to walk
       toward the vision."
     italicHeading: together.
     image: /images/community/gathering-04.jpg
   strategy:
-    sectionLabel: Strategy
-    eyebrow: Our Strategy
+    sectionLabel: How we work
+    eyebrow: How we work
     heading: Real connections, in their
-    italicHeading: organic form.
-    marginalia: "**Strategy.** How we work — the four pillars that organize all our
-      activity."
-    intro: Four threads, one weave. Each pillar names a thing we do — and a thing
-      the bioregion needs more of. Together they form the work of building a
-      Front Range that can take care of itself.
-    weaveCaption: fig. 5 · the four pillars braid into the Commons
+    italicHeading: natural form.
+    marginalia: "**Approach.** How we do the work — the four threads that
+      organize everything."
+    intro: Four threads, woven together. Each one names a thing we do — and a
+      thing this place needs more of. Together they add up to the work of
+      building a Front Range that can take care of itself.
+    weaveCaption: the four threads braid into the Commons
     pillars:
       - number: "01"
         color: clay
-        title: Allocation
-        body: Flowing resources directly to the projects that regenerate our
-          bioregion — through community-decided funding rounds and mutual aid.
+        title: Flowing money to the work
+        body: Putting funds directly into the hands of the people doing the
+          actual work — through community-decided grant rounds and mutual aid.
       - number: "02"
         color: creek
-        title: Coordination
-        body: Building the tools, shared treasuries, and agreements that let
+        title: Helping people decide together
+        body: Building the tools, shared funds, and agreements that let
           neighbors and organizations make decisions and act together.
       - number: "03"
         color: sage
-        title: Belonging
-        body: Cultivating a shared sense of bioregional home — and facilitating
-          exchange with other bioregions practicing the same work.
+        title: Building a sense of home
+        body: Long-table dinners, walks, listening circles — so the people of
+          this place know each other, and so we can learn from peers in other
+          regions doing similar work.
       - number: "04"
         color: grass
-        title: Culturing
-        body: Fueling the culture and ethics of the work through gatherings,
-          skill-shares, and Teach-Ins on the long history of the Commons.
+        title: Sharing skills and stories
+        body: Public teach-ins, skill-shares, and gatherings that build the
+          shared knowledge this work needs — including the long history of how
+          communities have cared for shared land together.
   commitments:
-    sectionLabel: Commitments
-    eyebrow: Backbone the regeneration of the Front Range
-    heading: Three commitments that organize our work.
+    sectionLabel: Our commitments
+    eyebrow: ★ How we show up
+    heading: Three commitments at the heart of the work.
     items:
       - number: "01"
         color: clay
-        title: Story & Resource Coordination
-        body: Helping neighborhoods and organizations doing cultural and ecological
-          regeneration find each other, share what they're learning, and develop
-          complexity together — instead of working in isolation.
+        title: Connecting people already doing the work
+        body: Helping neighborhoods and organizations find each other, share
+          what they're learning, and build on each other's work — instead of
+          working alone.
       - number: "02"
         color: creek
-        title: Bioregional Self-Determination
-        body: The Front Range is our particular home — endless plains to the East,
-          red deserts to the South, towering mountains to the West, high plains
-          and river basins to the North. The people who live here are best
-          positioned to care for it. Our work supports that capacity.
+        title: Trusting the people who live here
+        body: The Front Range is a particular home — endless plains to the
+          east, red deserts to the south, towering mountains to the west, high
+          plains and rivers to the north. The people who live here are best
+          positioned to take care of it. Our work supports that.
       - number: "03"
         color: sage
-        title: Complex Harmonies & Ecotones
-        body: An ecotone is the meeting place between ecosystems — where two
-          different worlds touch and a richer one emerges. The Front Range is
-          itself an ecotone. Our work weaves the human ecotones, too — the
-          places where different communities, traditions, and ways of knowing
-          meet.
+        title: Weaving across differences
+        body: The Front Range is a meeting place — between mountains and
+          plains, between many cultures, between many ways of knowing. Our
+          work braids together the people, traditions, and communities that
+          this place holds.
 pullQuote:
-  text: Our mutual relationship to where we live implies our mutual responsibility
-    for that place. This relationship cannot be enclosed because it is, by
-    definition, a commons.
+  text: Our relationship to where we live carries with it a responsibility for
+    that place. That responsibility belongs to all of us — it isn't something
+    anyone can own or fence off. It is, by its nature, a commons.
   attribution: Benjamin Life
 closing:
   eyebrow: All for the Commons
   text: We come together for something beautiful.
-  ctaLabel: ★ Read about the Commons →
+  ctaLabel: ★ Learn about the Commons →
   ctaHref: the-commons/
 ---

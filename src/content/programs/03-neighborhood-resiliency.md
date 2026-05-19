@@ -3,7 +3,7 @@ title: "Neighborhood Resiliency Programs"
 abbrev: "NRP"
 pillar: "coordination"
 pillarLabel: "Coordination"
-shortDescription: "Free 12-session training that gives neighbors the relationships, skills, and plan to weather an emergency together — instead of alone."
+shortDescription: "Free 12-session training that gives a small group of neighbors the relationships, skills, and plan to weather an emergency together — instead of alone."
 status: "active"
 order: 3
 detail:
@@ -15,47 +15,49 @@ detail:
   heroPlateCaption: "harvest · neighborhood garden · summer"
   tone: "creek"
   sections:
-    - eyebrow: "01 · Building the foundation"
-      heading: "Why before how."
+    - eyebrow: "01 · Why before how"
+      heading: "Start with"
+      italicHeading: "what matters."
       body: |
-        We begin with the values and the energetics of confidence, preparedness, competence, and care. Participants form accountability groups of three and receive a risk assessment template to begin evaluating their own neighborhoods. This is where the relationships start.
-    - eyebrow: "02 · Getting to know your neighbors"
+        We begin with the values that hold this up: confidence, preparation, competence, and care for each other. Participants form small accountability groups of three and get a simple worksheet to start sizing up their own neighborhood. This is where the relationships start.
+    - eyebrow: "02 · Knowing your neighbors"
       heading: "The art of the"
       italicHeading: "knock on the door."
       body: |
-        Sheltering in place. Communication pathways. The conversation you've been meaning to have. Who in your neighborhood needs checking on in a crisis? Who has durable medical equipment, large animals, particular vulnerabilities? Who has skills, tools, or generators to share? We learn from the Neighborhood Villaging Project and community partners about what it actually takes to know the people on your block.
-    - eyebrow: "03 · Risk assessment & site visits"
-      heading: "Walk the actual neighborhood."
+        Who on your block needs checking on in a crisis? Who has medical equipment, large animals, or particular vulnerabilities? Who has skills, tools, or a generator to share? We learn from the Neighborhood Villaging Project about what it actually takes to *know* the people who live near you — including the conversation you've been meaning to have.
+    - eyebrow: "03 · Walking the neighborhood"
+      heading: "Map the place"
+      italicHeading: "you actually live."
       body: |
-        Participants bring their risk assessments to the group. We plan and conduct site visits — walking the streets together to identify industrial risks, evacuation routes, water sources, gathering points, and resources. Every neighborhood is its own ecology. The map is not the territory.
-    - eyebrow: "04 · Essential skills"
+        Participants bring their assessments to the group. We plan and walk site visits together — walking the streets to find risks, evacuation routes, water sources, gathering points, and resources. Every neighborhood is different. You learn it with your feet.
+    - eyebrow: "04 · The basics"
       heading: "Water. Power."
       italicHeading: "First aid. Wellbeing."
       body: |
-        Dedicated sessions on water systems, power and electricity resilience, and building practical first aid kits — beyond the standard contents. We cover psychological first aid, hygiene, and the often-overlooked realities of maintaining wellbeing during sustained disruption. Not for one bad day. For two weeks of one.
-    - eyebrow: "05 · Disaster recovery & scenario drill"
-      heading: "What does"
-      italicHeading: "recovery actually look like?"
+        Dedicated sessions on water, power, and building practical first aid kits that go beyond the standard checklist. We cover psychological first aid, hygiene, and the often-overlooked realities of staying well during sustained disruption. Not just for one bad day — for two weeks of bad days.
+    - eyebrow: "05 · The drill"
+      heading: "What does recovery"
+      italicHeading: "actually look like?"
       body: |
-        How do you work with government agencies, NGOs, and the Commons to get back on your feet? We run a full scenario drill — fire, flood, prolonged power outage, civic disruption — then harvest the insights, learnings, and gaps. The drill is where the plan meets reality, and where the plan gets better.
-    - eyebrow: "06 · Capstone"
+        How do you work with government agencies, nonprofits, and each other to get back on your feet? We run a full practice scenario — fire, flood, prolonged outage, civic disruption — then we sit down and pull out what worked, what didn't, and where the plan needs to get better. The drill is where the plan meets reality.
+    - eyebrow: "06 · The capstone"
       heading: "Present your"
-      italicHeading: "Community Resiliency Plan."
+      italicHeading: "neighborhood's plan."
       body: |
-        Each participant presents their completed Community Resiliency Plan, ideally alongside a neighbor they walked the program with. We close with a *Resiliency Dinner* — because **the relationships built in this program are the resilience.** Everything else is scaffolding.
+        Each participant presents their finished Community Resiliency Plan — ideally alongside a neighbor they walked the program with. We close with a Resiliency Dinner — because **the relationships you built in this program are the resilience.** Everything else is scaffolding.
   pullQuote:
-    text: "You cannot fork a watershed. You cannot exit a wildfire. The only question is whether we build the relationships and the plan to coordinate well — before we need to."
+    text: "A watershed isn't something you can leave. A wildfire isn't something you can opt out of. The only question is whether we build the relationships and the plan to handle it well — before we need to."
   signup:
-    eyebrow: "★ Enroll in the next cohort"
+    eyebrow: "★ Sign up for the next group"
     heading: "Twelve sessions."
     italicHeading: "One neighborhood at a time."
-    body: "The program is free, runs in cohorts of about 12 participants, and is delivered in partnership with the Neighborhood Villaging Project. Tell us where you live, who you'd bring, and we'll put you on the list for the next opening in your area."
+    body: "The program is free, runs in groups of about 12 people, and is delivered with the Neighborhood Villaging Project. Tell us where you live and who you'd bring along, and we'll put you on the list for the next opening in your area."
     ctaLabel: "✉ Get on the list via Connect"
     ctaHref: "connect/"
 ---
 
-*Because there is no going it alone.*
+*Because there's no going it alone.*
 
-A free 12-session program, in partnership with the Neighborhood Villaging Project, that gives a small group of neighbors the relationships, the skills, and the plan to weather an emergency together. You leave with a finished Community Resiliency Plan for your block — and the people you wrote it with.
+A free 12-session program, run with the Neighborhood Villaging Project, that gives a small group of neighbors the relationships, the skills, and the plan to weather an emergency together. You leave with a finished Community Resiliency Plan for your block — and the people you wrote it with.
 
-The arc moves from why (values and accountability), through who (your actual neighbors), through where (the risks and resources on your block), through how (water, power, first aid, psychological first aid), through what-if (a full scenario drill), and finally to the Capstone Resiliency Dinner. **Solidarity is the foundation. Preparedness is the consequence.**
+The program moves from *why* (values and accountability), through *who* (your actual neighbors), through *where* (the risks and resources on your block), through *how* (water, power, first aid, taking care of each other), through *what if* (a full practice scenario), and finally to the capstone Resiliency Dinner. **Relationships are the foundation. Readiness is what they make possible.**
