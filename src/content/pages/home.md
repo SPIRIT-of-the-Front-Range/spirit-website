@@ -58,8 +58,9 @@ spreads:
     eyebrow: ★ Live programs
     heading: Easy ways to
     italicHeading: get involved.
-    intro: Free or pay-what-you-can. Open enrollment. No prerequisites. Sign up
-      at [Connect](connect/) to hear when something opens near you.
+    intro: Free or pay-what-you-can. Open enrollment. No prerequisites.
+      [Sign up](https://dashboard.spiritofthefrontrange.org/subscribe) to hear
+      when something opens near you.
     caption: ★ everything we run is free or pay-what-you-can
     footnote: "↳ also coming: community-decided grant rounds for local projects"
     ctaLabel: → See all programs

@@ -13,7 +13,7 @@ header:
     - { label: "The Commons", href: "the-commons/" }
     - { label: "Stewards", href: "stewards/" }
     - { label: "Words", href: "words/" }
-    - { label: "Catalog", href: "catalog/" }
+    - { label: "Dashboard", href: "https://dashboard.spiritofthefrontrange.org" }
     - { label: "Connect", href: "connect/" }
 
 footer:
@@ -33,7 +33,7 @@ footer:
     - { label: "The Commons", href: "the-commons/" }
     - { label: "Stewards", href: "stewards/" }
     - { label: "Words", href: "words/" }
-    - { label: "Catalog", href: "catalog/" }
+    - { label: "Dashboard", href: "https://dashboard.spiritofthefrontrange.org" }
   reachUsTitle: "Reach us"
   email: "hello@spiritofthefrontrange.org"
   externalLinks:

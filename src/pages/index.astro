@@ -12,7 +12,6 @@ const { seo, homeCover, spreads } = entry.data;
 if (!homeCover) throw new Error('home.md missing homeCover');
 
 const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
-const BASE = import.meta.env.BASE_URL;
 
 // In-page jump nav — labels match the new homepage section order.
 const jumpNav = [
@@ -240,7 +239,7 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
                 <p class="text-body text-shadow leading-snug self-start mt-3 pb-6 lg:pb-8">{p.data.shortDescription}</p>
                 <div class="flex items-baseline justify-between gap-2 caption pt-3 border-t border-rule self-end w-full">
                   <span class={pillarTone[tone].text}>● {p.data.status}</span>
-                  <a href={`${BASE}programs/`} class={`${pillarTone[tone].text} no-underline hover:underline`}>get on list →</a>
+                  <a href="https://dashboard.spiritofthefrontrange.org/subscribe" rel="noopener" target="_blank" class={`${pillarTone[tone].text} no-underline hover:underline`}>get on list →</a>
                 </div>
               </article>
             );

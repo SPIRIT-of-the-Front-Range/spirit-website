@@ -14,4 +14,4 @@ Anyone can propose a project: a community garden, a watershed restoration, a mut
 
 **This is not a boardroom deciding what's good for you. It is the people of this place deciding for themselves.**
 
-The first round is being designed now. Sign up at *Connect* to hear when applications open.
+The first round is being designed now. [Sign up](https://dashboard.spiritofthefrontrange.org/subscribe) to hear when applications open.

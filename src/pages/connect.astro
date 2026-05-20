@@ -19,6 +19,8 @@ const cardClasses = {
   sage: { folio: 'text-sage-deep', eyebrow: 'eyebrow eyebrow-sage', link: 'text-sage-deep' },
   grass: { folio: 'text-grass-deep', eyebrow: 'eyebrow text-grass-deep', link: 'text-grass-deep' },
 } as const;
+
+const newsletterCta = spreads?.newsletter ? resolveLink(spreads.newsletter.ctaHref) : null;
 ---
 
 <Base title={seo.title} description={seo.description}>
@@ -96,8 +98,8 @@ const cardClasses = {
     </Spread>
   )}
 
-  {/* NEWSLETTER FORM */}
-  {spreads?.newsletter && (
+  {/* NEWSLETTER — link out to dashboard subscribe */}
+  {spreads?.newsletter && newsletterCta && (
     <Spread folio="07.2" section={spreads.newsletter.sectionLabel} bg="bone-pale" class="border-y border-ink">
       <div class="px-5 lg:px-12 py-section">
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-center">
@@ -114,40 +116,24 @@ const cardClasses = {
           </div>
 
           <div class="col-span-12 lg:col-span-6">
-            <form
-              class="paper p-6 lg:p-8 space-y-4"
-              action={spreads.newsletter.formAction}
-              method="POST"
-            >
-              <p class="eyebrow eyebrow-clay">{spreads.newsletter.formEyebrow}</p>
-              <label class="block">
-                <span class="block caption mb-2">Name</span>
-                <input
-                  type="text" name="name" required
-                  class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none"
-                />
-              </label>
-              <label class="block">
-                <span class="block caption mb-2">Email</span>
-                <input
-                  type="email" name="email" required
-                  class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none"
-                />
-              </label>
-              <label class="block">
-                <span class="block caption mb-2">What brings you here? <span class="opacity-60">(optional)</span></span>
-                <textarea
-                  name="message" rows="3"
-                  class="w-full bg-bone border border-ink px-3 py-2.5 font-body text-ink focus:border-clay-deep focus:outline-none resize-y"
-                ></textarea>
-              </label>
-              <button type="submit" class="btn-ink w-full justify-center !py-3 cursor-pointer">
-                {spreads.newsletter.submitLabel}
-              </button>
-              <p class="caption text-shadow text-center">
+            <div class="paper p-8 lg:p-10 flex flex-col items-start gap-5">
+              <p class="eyebrow eyebrow-clay">{spreads.newsletter.eyebrow}</p>
+              <p class="text-body text-shadow leading-snug">
+                Subscriptions are handled on our community dashboard — events,
+                program openings, and the slow newsletter, all in one place.
+              </p>
+              <a
+                href={newsletterCta.href}
+                rel={newsletterCta.rel}
+                target="_blank"
+                class="btn-ink w-full justify-center !py-3"
+              >
+                {spreads.newsletter.ctaLabel}
+              </a>
+              <p class="caption text-shadow">
                 {spreads.newsletter.footnote}
               </p>
-            </form>
+            </div>
           </div>
         </div>
       </div>

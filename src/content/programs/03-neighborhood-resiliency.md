@@ -52,8 +52,8 @@ detail:
     heading: "Twelve sessions."
     italicHeading: "One neighborhood at a time."
     body: "The program is free, runs in groups of about 12 people, and is delivered with the Neighborhood Villaging Project. Tell us where you live and who you'd bring along, and we'll put you on the list for the next opening in your area."
-    ctaLabel: "✉ Get on the list via Connect"
-    ctaHref: "connect/"
+    ctaLabel: "✉ Get on the list →"
+    ctaHref: "https://dashboard.spiritofthefrontrange.org/subscribe"
 ---
 
 *Because there's no going it alone.*

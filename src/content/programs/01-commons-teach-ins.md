@@ -49,8 +49,8 @@ detail:
     heading: "Be invited to the next"
     italicHeading: "monthly session."
     body: "Sessions are free and open to everyone. Sign up and we'll send you the date, time, place, and the reading we'll be sitting with."
-    ctaLabel: "✉ Sign up via Connect"
-    ctaHref: "connect/"
+    ctaLabel: "✉ Sign up →"
+    ctaHref: "https://dashboard.spiritofthefrontrange.org/subscribe"
 ---
 
 *"What does it actually mean to take care of something together?"*

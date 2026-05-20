@@ -48,8 +48,8 @@ detail:
     heading: "Ask to come"
     italicHeading: "to the next Supper."
     body: "Tell us a little about you, the community or work you'd be representing at the table, and what you're paying attention to right now. We answer every message personally."
-    ctaLabel: "✉ Apply via Connect"
-    ctaHref: "connect/"
+    ctaLabel: "✉ Apply →"
+    ctaHref: "https://dashboard.spiritofthefrontrange.org/subscribe"
 ---
 
 *Solidarity Suppers are how we practice taking care of a place together — before we make it formal.*

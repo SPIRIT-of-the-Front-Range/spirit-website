@@ -233,9 +233,8 @@ const pages = defineCollection({
               heading: z.string(),
               italicHeading: z.string(),
               body: z.string(),
-              formAction: z.string(),
-              formEyebrow: z.string().default('★ Subscribe'),
-              submitLabel: z.string().default('★ Subscribe'),
+              ctaLabel: z.string(),
+              ctaHref: z.string(),
               footnote: z.string(),
             })
             .optional(),
