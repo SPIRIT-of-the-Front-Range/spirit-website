@@ -1,9 +1,11 @@
 ---
-title: Commons Cook-Ins
-abbrev: CTI
+title: Commons Sense Course
+abbrev: CSC
 pillar: culturing
 pillarLabel: Culturing
-shortDescription: "Experiments in the first commons -- the kitchen. "
+shortDescription: |-
+  
+  Experiments in the first commons -- the kitchen. 
 status: active
 order: 1
 detail:
