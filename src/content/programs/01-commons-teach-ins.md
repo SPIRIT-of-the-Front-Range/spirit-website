@@ -58,7 +58,7 @@ detail:
         recognize once you have a name for it — in your neighborhood, in your
         watershed, in your workplace. We're trying to make that recognition
         easier.
-  tagline: free, open to all, every month.
+  tagline: commons sense for all
   heroAlt: Driftwood resting in shallow water at the edge of a creek — quiet,
     attentive light.
   tone: sage
