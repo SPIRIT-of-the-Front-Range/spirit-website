@@ -1,11 +1,9 @@
 ---
-title: Commons Sense Course
+title: Commons Sense Course + Cook-Ins
 abbrev: CSC
 pillar: culturing
 pillarLabel: Culturing
-shortDescription: |-
-  
-  Experiments in the first commons -- the kitchen. 
+shortDescription: What does it mean to be in and of the Commons?"
 status: active
 order: 1
 detail:
@@ -79,9 +77,4 @@ detail:
     ctaHref: connect/
   heroTreatment: duotone-sage
 ---
-
-*"What does it actually mean to take care of something together?"*
-
-Commons Teach-Ins are free monthly sessions on the long history, the practical ecology, and the everyday practice of caring for shared things. **No prerequisites. No specialized vocabulary required.** Bring your questions. Stay for the conversation.
-
-We cover the long story — from a time when all peoples were native to a place, through the centuries of fencing-off shared land, to the communities that kept this work alive, to the new local experiments emerging today. Each session leaves something behind — a reading list, a recording, notes — building toward a free curriculum and book on this work.
+Cultural experiments and educational sessions exploring the historical, social, ecological, and cultural roots of the Commons. In different community homes, we cook together communally and practice sharing what we care for, and caring for what we share together.
