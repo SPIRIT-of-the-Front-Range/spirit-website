@@ -84,9 +84,4 @@ detail:
     ctaHref: https://dashboard.spiritofthefrontrange.org/subscribe
   heroTreatment: duotone-creek
 ---
-
-*Because there's no going it alone.*
-
-A free 12-session program, run with the Neighborhood Villaging Project, that gives a small group of neighbors the relationships, the skills, and the plan to weather an emergency together. You leave with a finished Community Resiliency Plan for your block — and the people you wrote it with.
-
-The program moves from *why* (values and accountability), through *who* (your actual neighbors), through *where* (the risks and resources on your block), through *how* (water, power, first aid, taking care of each other), through *what if* (a full practice scenario), and finally to the capstone Resiliency Dinner. **Relationships are the foundation. Readiness is what they make possible.**
+**We coordinate trainings for resiliency from extant and new community teachings on ecologically regenerative practices, growing and foraging food + medicine, mutual aid networking, community risk assessment and emergency preparedness.**
