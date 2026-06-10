@@ -97,9 +97,9 @@
     color: var(--color-ink);
     font-feature-settings: "ss01", "ss02";
     text-wrap: balance;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
+    hyphens: manual;
+    -webkit-hyphens: manual;
+    -ms-hyphens: manual;
     overflow-wrap: break-word;
   }
 

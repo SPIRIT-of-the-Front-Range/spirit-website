@@ -93,7 +93,7 @@ function formatDate(iso: string): string {
             </h2>
             <div class="text-body-lg text-ink leading-snug max-w-3xl prose-words">
               {spreads.inBrief.body.split('\n\n').map((p) => (
-                <p set:html={p}></p>
+                <p set:html={mdToInline(p)}></p>
               ))}
             </div>
           </div>
