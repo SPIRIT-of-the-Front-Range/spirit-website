@@ -156,23 +156,36 @@ const signupLink = detail.signup ? resolveLink(detail.signup.ctaHref) : null;
     </Spread>
   )}
 
+  {/* ACCESS & EQUITY — shared note on every program detail page, below the signup CTA */}
+  <div class="bg-ink on-dark text-center px-5 lg:px-12 pb-section">
+    <p class="text-body-lg italic font-serif font-light max-w-2xl mx-auto" style="color:#F7EFD8;">
+      All of our programming prioritizes access and equity
+    </p>
+    <p class="text-body max-w-2xl mx-auto mt-3" style="color: rgba(247,239,216,0.85);">
+      Subscribe to events at <a href="https://dashboard.spiritofthefrontrange.org/subscribe" rel="noopener" style="color:#E8B58A;">dashboard.spiritofthefrontrange.org/subscribe</a>
+    </p>
+    <p class="text-body max-w-2xl mx-auto mt-1" style="color: rgba(247,239,216,0.85);">
+      For inquiries, email <a href="mailto:hello@spiritofthefrontrange.org" style="color:#E8B58A;">hello@spiritofthefrontrange.org</a>
+    </p>
+  </div>
+
   {/* RELATED — "all SPIRIT paths interconnect" strip */}
   {related.length > 0 && (
     <Spread folio="06.4" section="All paths interconnect" bg="bone-deep" class="border-t border-ink">
       <div class="px-5 lg:px-12 py-section">
-        <p class="eyebrow mb-3">★ The SPIRIT paths all interconnect</p>
+        <p class="eyebrow mb-3">The SPIRIT programs all interconnect.</p>
         <h2 class="display-m text-ink mb-8 max-w-3xl leading-[1.0]">
           Each program weaves with <span class="italic font-serif font-light">the others.</span>
         </h2>
         <p class="text-body-lg text-shadow leading-snug max-w-2xl mb-10">
-          Solidarity Suppers build relationships. Commons Teach-Ins build understanding. The Neighborhood Resiliency Program builds capacity. Allocation Rounds put resources in motion. You can enter anywhere.
+          Solidarity Suppers foster relationships, the Commons Sense teachings build understanding, the Neighborhood Resiliency Program builds enduring capacity, and the Grant Rounds put resources in motion.
         </p>
         <div class="grid sm:grid-cols-3 gap-6">
           {related.slice(0, 3).map((p) => {
             const rslug = p.id.replace(/^\d+-/, '').replace(/\.md$/, '');
             return (
               <a href={`${BASE}programs/${rslug}/`} class="block group border-t border-rule pt-4 no-underline">
-                <p class="caption mb-1 opacity-70">→ {p.data.pillarLabel ?? 'Program'}</p>
+                <p class="caption mb-1 opacity-70">{p.data.pillarLabel ?? 'Program'}</p>
                 <p class="font-display font-bold text-h3 text-ink group-hover:text-clay-deep transition-colors">
                   {p.data.title}
                 </p>

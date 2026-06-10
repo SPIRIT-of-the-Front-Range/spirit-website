@@ -8,6 +8,7 @@ import BioregionMap from '../components/interactive/BioregionMap.astro';
 import { getEntry } from 'astro:content';
 import { basePath, resolveLink } from '../lib/paths';
 import { mdToHtml, mdToInline } from '../lib/markdown';
+import { injectTermTooltips } from '../lib/terms';
 
 const entry = await getEntry('pages', 'the-commons');
 if (!entry) throw new Error('Missing src/content/pages/the-commons.md');
@@ -55,8 +56,13 @@ const relationshipLink = spreads?.relationship ? resolveLink(spreads.relationshi
               {spreads.inBrief.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.inBrief.italicHeading}</span>
             </h2>
             <div class="text-body-lg text-ink leading-snug space-y-4 dropcap max-w-2xl">
-              <Fragment set:html={mdToHtml(spreads.inBrief.body)} />
+              <Fragment set:html={injectTermTooltips(mdToHtml(spreads.inBrief.body))} />
             </div>
+            {spreads.inBrief.bodyItalic && (
+              <div class="mt-6 pt-5 border-t border-rule font-serif italic text-body-lg text-ink leading-snug max-w-2xl">
+                <Fragment set:html={mdToInline(spreads.inBrief.bodyItalic)} />
+              </div>
+            )}
           </div>
 
           <div class="col-span-12 lg:col-span-5">
@@ -80,7 +86,17 @@ const relationshipLink = spreads?.relationship ? resolveLink(spreads.relationshi
             </h2>
           </div>
           <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
-            <p class="caption text-shadow">{spreads.glossary.caption}</p>
+            {spreads.glossary.intro && (
+              <p class="text-body text-shadow leading-snug mb-4">
+                <Fragment set:html={mdToInline(spreads.glossary.intro)} />
+              </p>
+            )}
+            {spreads.glossary.ctaLabel && spreads.glossary.ctaHref && (
+              <a href={basePath(spreads.glossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
+                {spreads.glossary.ctaLabel}
+              </a>
+            )}
+            {spreads.glossary.caption && <p class="caption text-shadow">{spreads.glossary.caption}</p>}
           </div>
         </div>
 
@@ -89,7 +105,7 @@ const relationshipLink = spreads?.relationship ? resolveLink(spreads.relationshi
             <article>
               <p class={`num-badge ${numBadgeColor[t.color]} mb-2`}>{t.number}</p>
               <h3 class="font-display font-bold text-h2 text-ink leading-tight mb-1">{t.term}</h3>
-              <p class="caption-italic mb-3">{t.pronunciation}</p>
+              {t.pronunciation && <p class="caption-italic mb-3">{t.pronunciation}</p>}
               <div class="text-body text-ink leading-relaxed glossary-body">
                 <Fragment set:html={mdToInline(t.body)} />
               </div>
