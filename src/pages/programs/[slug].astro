@@ -63,7 +63,7 @@ const signupLink = detail.signup ? resolveLink(detail.signup.ctaHref) : null;
     eyebrow={data.status === 'upcoming' ? 'upcoming · enrollment opening' : 'live · open enrollment'}
     title={data.title}
     italicTitle={detail.tagline ?? ''}
-    subtitle={data.shortDescription}
+    subtitle={data.shortDescription.replace(/\*+/g, '')}
     imageSrc={basePath(heroImage)}
     imageAlt={heroAlt}
     plate=""
@@ -190,7 +190,7 @@ const signupLink = detail.signup ? resolveLink(detail.signup.ctaHref) : null;
                   {p.data.title}
                 </p>
                 <p class="text-body text-shadow leading-snug mt-2">
-                  {p.data.shortDescription}
+                  <Fragment set:html={mdToInline(p.data.shortDescription)} />
                 </p>
               </a>
             );
