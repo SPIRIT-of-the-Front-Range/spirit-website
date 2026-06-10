@@ -3,7 +3,7 @@ title: "Solidarity Suppers"
 abbrev: "SS"
 pillar: "belonging"
 pillarLabel: "Belonging"
-shortDescription: "Long-table dinners that bring together community leaders, elders, and Indigenous neighbors — with listening circles, storytelling, and the slow building of relationships."
+shortDescription: "We host small **Solidarity Suppers** to nourish and council with indigenous relatives, community elders, mothers, and movement leaders."
 status: "active"
 order: 2
 detail:
@@ -12,16 +12,14 @@ detail:
   heroAlt: "Overhead view of Solidarity Supper offerings — pink dahlia, gourds, prayer ties laid on grass with feet in moccasins."
   heroTreatment: "duotone-clay"
   heroBrightness: 0.6
-  heroPlateCaption: "offerings · long table · August"
+  heroPlateCaption: "nourish · long table · listening"
   tone: "clay"
   sections:
     - eyebrow: "What they are"
       heading: "Long-table dinners,"
       italicHeading: "and what happens around them."
       body: |
-        Solidarity Suppers are seasonal long-table dinners. We share a slow meal. We listen carefully. We host *listening circles* and storytellings — the kind of conversation that rarely happens in the rooms most of us spend our days in.
-
-        We center community leaders and elders — especially our Indigenous neighbors, whose knowledge of this place goes back generations. We take the pulse of the region together: what people are working on, what they need, where the connections want to be made.
+        Solidarity Suppers are seasonal long-table dinners. We share a slow meal. We listen carefully. We center community leaders and elders — especially our Indigenous neighbors, whose knowledge of this place goes back generations. We take the pulse of the region together: what people are working on, what they need, where the connections want to be made.
     - eyebrow: "What they aren't"
       heading: "Not a networking event."
       italicHeading: "Not a fundraiser. Not a panel."
@@ -36,7 +34,7 @@ detail:
         At the heart of each Supper is a *listening circle* — a simple form drawn from many traditions (Indigenous councils, Quaker meetings, the Way of Council). One person speaks at a time, holding a token. Others listen without preparing a response. No cross-talk. No debate.
 
         It sounds simple. It changes everything. In a culture that has nearly forgotten how to listen, this practice is itself an act of repair.
-    - eyebrow: "How to come"
+    - eyebrow: "How to Join"
       heading: "By invitation —"
       italicHeading: "but the invitation is open."
       body: |
@@ -44,8 +42,8 @@ detail:
   pullQuote:
     text: "A place creates relationships that politics can't sever. The conservative rancher and the progressive farmer share an aquifer. We learn how to share the table before we can share the watershed."
   signup:
-    eyebrow: "★ Ask for an invitation"
-    heading: "Ask to come"
+    eyebrow: "Ask for an invitation"
+    heading: "Apply to Join"
     italicHeading: "to the next Supper."
     body: "Tell us a little about you, the community or work you'd be representing at the table, and what you're paying attention to right now. We answer every message personally."
     ctaLabel: "✉ Apply →"
@@ -54,6 +52,4 @@ detail:
 
 *Solidarity Suppers are how we practice taking care of a place together — before we make it formal.*
 
-These are not networking events. They are invitation-based long-table dinners where people come on behalf of their neighborhoods, organizations, and places. The shared meal opens the door to honest conversation. We host *listening circles* and storytellings — the kind of slow conversation that lets people say what they're actually working on, what they need, and where the connections want to be made.
-
-We center community leaders and elders — especially our Indigenous neighbors, whose knowledge of this place goes back generations. **The shared meal opens the door to everything that comes after.**
+Solidarity Suppers are long-table dinners where we nourish our Indigenous and community leaders with a lovingly-prepared meal, open ears, and open hearts. These may include Listeners' Councils, tellings of stories, or emergent rituals. These are not networking events. They are invitational spaces where people show up on behalf of their communities, organizations, neighborhoods, and ecologies in the spirit of regenerating our capacities for fellowship and solidarity.

@@ -16,6 +16,9 @@ const settings = await getEntry('settings', 'site');
 if (!settings) throw new Error('Missing src/content/settings/site.md');
 const everyOrgUrl = settings.data.donation.url;
 const everyOrgReady = settings.data.donation.ready;
+
+const raiseTarget: any = (spreads as any)?.raiseTarget;
+const allocationTables = raiseTarget ? [raiseTarget.floorTable, raiseTarget.reachTable].filter(Boolean) : [];
 ---
 
 <Base title={seo.title} description={seo.description}>
@@ -79,7 +82,64 @@ const everyOrgReady = settings.data.donation.ready;
     </Spread>
   )}
 
-  {/* CASCADE */}
+  {/* RAISE TARGET — the ask + allocation tables */}
+  {raiseTarget && (
+    <Spread folio="08.2" section={raiseTarget.sectionLabel} bg="bone-pale" class="border-y border-ink">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="rule-bold mb-6"></div>
+        <p class="eyebrow mb-3">{raiseTarget.eyebrow}</p>
+        <h2 class="display-l text-ink leading-[1.0] mb-8 max-w-3xl">
+          {raiseTarget.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{raiseTarget.italicHeading}</span>{raiseTarget.headingTail && (<Fragment> {raiseTarget.headingTail}</Fragment>)}
+        </h2>
+
+        {raiseTarget.leadStatement && (
+          <p class="text-body-lg text-ink leading-snug max-w-3xl mb-4">
+            <Fragment set:html={mdToInline(raiseTarget.leadStatement)} />
+          </p>
+        )}
+        {raiseTarget.body && (
+          <p class="text-body text-shadow leading-snug max-w-3xl mb-12">
+            <Fragment set:html={mdToInline(raiseTarget.body)} />
+          </p>
+        )}
+
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          {allocationTables.map((tbl: any) => (
+            <div>
+              <p class="caption text-clay-deep mb-3">{tbl.title}</p>
+              <table class="w-full text-body border-collapse">
+                <thead>
+                  <tr class="border-b-2 border-ink text-left">
+                    <th class="py-2 pr-3 font-mono text-micro uppercase tracking-[0.14em] text-shadow font-bold">Amount</th>
+                    <th class="py-2 pr-3 font-mono text-micro uppercase tracking-[0.14em] text-shadow font-bold">Use</th>
+                    <th class="py-2 pl-3 text-right font-mono text-micro uppercase tracking-[0.14em] text-shadow font-bold">%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tbl.rows.map((r: any) => (
+                    <tr class="border-b border-rule align-top">
+                      <td class="py-3 pr-3 font-display font-bold text-ink whitespace-nowrap">{r.amount}</td>
+                      <td class="py-3 pr-3 text-shadow leading-snug">{r.use}</td>
+                      <td class="py-3 pl-3 text-right text-clay-deep font-bold whitespace-nowrap">{r.pct}</td>
+                    </tr>
+                  ))}
+                  {tbl.total && (
+                    <tr class="border-t-2 border-ink align-top">
+                      <td class="py-3 pr-3 font-display font-extrabold text-ink whitespace-nowrap">{tbl.total.amount}</td>
+                      <td class="py-3 pr-3 font-bold text-ink">{tbl.total.use}</td>
+                      <td class="py-3 pl-3 text-right font-extrabold text-ink whitespace-nowrap">{tbl.total.pct}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* CASCADE — HOW IT SCALES */}
   {spreads?.cascade && (
     <Spread folio="08.2" section={spreads.cascade.sectionLabel} bg="ink" class="border-y-2 border-ink">
       <div class="px-5 lg:px-12 py-section on-dark">

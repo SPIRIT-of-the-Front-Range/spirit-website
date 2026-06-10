@@ -1,32 +1,32 @@
 ---
-title: "Commons Teach-Ins"
-abbrev: "CTI"
+title: "Commons Sense Education"
+abbrev: "CSE"
 pillar: "culturing"
 pillarLabel: "Culturing"
-shortDescription: "Free monthly sessions on how communities have actually taken care of land together — past and present. Open to everyone. No prerequisites."
+shortDescription: "We offer **Commons Sense** teachings to educate people on the history, present, and future of the Commons, particularly as it relates to our responsibilities to the living land and to each other."
 status: "active"
 order: 1
 detail:
-  tagline: "free, open to all, every month."
+  tagline: "We all benefit from Commons Sense."
   heroImage: "/images/community/gathering-02.jpg"
   heroAlt: "Driftwood resting in shallow water at the edge of a creek — quiet, attentive light."
   heroTreatment: "duotone-sage"
   heroBrightness: 0.62
-  heroPlateCaption: "creek edge · evening"
+  heroPlateCaption: "creek edge · Longmont, CO"
   tone: "sage"
   sections:
     - eyebrow: "Why this matters"
       heading: "Before we can build something together,"
       italicHeading: "we have to share a language for it."
       body: |
-        Most people have heard the phrase "tragedy of the commons" — the idea that when something is shared, it inevitably gets used up. What fewer people know is that this was an argument made about *unmanaged open access*, not about actual community-managed commons. And fewer still know that **real commons have thrived for centuries** — Japanese forests, Spanish irrigation systems, Maine fisheries, watershed councils, neighborhood groups — once communities agree on how to take care of the thing.
+        Most people have heard the phrase "tragedy of the commons" — the idea that when something is shared, it inevitably gets used up. What fewer people know is that this was an argument made about *unmanaged open access*, not about actual community-managed commons. And fewer still know that **real commons have thrived for centuries**.
 
         Elinor Ostrom won the Nobel Prize in economics for documenting this. The Commons Teach-Ins exist because **taking care of shared things together is one of the oldest, most successful human practices** — and most of us have forgotten how to do it. Recovering that knowledge is preparation for the work ahead.
     - eyebrow: "What we cover"
-      heading: "From a time when all peoples"
-      italicHeading: "were native to a place — to now."
+      heading: "We learn from the past and observe our now"
+      italicHeading: "to co-create our shared future"
       body: |
-        Each session sits inside a longer story. We move from a time when all peoples were *indigenous* to a place, through the centuries of fencing-off shared land into private property, through the cooperatives and movements that kept community-care alive, to the new local experiments emerging today.
+        We move from a time when all peoples were *indigenous* to a place, through the centuries of fencing-off shared land into private property, through the cooperatives and movements that kept community-care alive, to the new local experiments emerging today.
 
         We draw on Ostrom's research, Indigenous traditions of stewardship, the long European history of shared land, and the practical wisdom of the communities that never stopped doing this work.
     - eyebrow: "How it runs"
@@ -45,7 +45,7 @@ detail:
     text: "A garden doesn't maintain itself. It needs ongoing attention, seasonal work, shared decisions, and a community that keeps showing up. Caring for what we share is the same."
     attribution: "from a recent Teach-In"
   signup:
-    eyebrow: "★ Get on the list"
+    eyebrow: "Get on the list"
     heading: "Be invited to the next"
     italicHeading: "monthly session."
     body: "Sessions are free and open to everyone. Sign up and we'll send you the date, time, place, and the reading we'll be sitting with."
@@ -53,8 +53,6 @@ detail:
     ctaHref: "https://dashboard.spiritofthefrontrange.org/subscribe"
 ---
 
-*"What does it actually mean to take care of something together?"*
+*"What even IS the Commons?" "What does being part of the Commons mean for us?"*
 
-Commons Teach-Ins are free monthly sessions on the long history, the practical ecology, and the everyday practice of caring for shared things. **No prerequisites. No specialized vocabulary required.** Bring your questions. Stay for the conversation.
-
-We cover the long story — from a time when all peoples were native to a place, through the centuries of fencing-off shared land, to the communities that kept this work alive, to the new local experiments emerging today. Each session leaves something behind — a reading list, a recording, notes — building toward a free curriculum and book on this work.
+Commons Sense is a broadcast teaching on the philosophical, historical, and practical roots of the Commons, particularly the "commons sense" that we all share responsibility for our most elemental resources – the land, the water, the air, and each other. Drawing on Elinor Ostrom's Nobel Prize-winning research, Indigenous stewardship traditions, and the practical wisdom of communities that never stopped commoning, we educate our viewers on practical paths toward bioregional self-organizing, resiliency, and regeneration that address the Common Good.

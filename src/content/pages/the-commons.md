@@ -4,7 +4,7 @@ seo:
   description: "The Front Range Commons — a member-led civic body forming now for the cultural and ecological stewardship of the Front Range bioregion."
 
 cover:
-  eyebrow: "What we're building toward · SPIRIT supports it, does not control it"
+  eyebrow: "What we're building toward"
   title: "The Front Range"
   italicTitle: "Commons."
   subtitle: "A community body — forming now — where the people who live on the Front Range can make collective decisions about how to take care of where they live. Anyone who lives here can join."
@@ -21,41 +21,41 @@ spreads:
     heading: "A way for us to"
     italicHeading: "take care of this place together."
     body: |
+      A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in organizational governance.
+
       The Front Range Commons is **a way for the people who live on the Front Range to make collective decisions about how to care for where we live.** Anyone who lives here can join. Members can propose projects, share resources, and vote on how community-raised money gets used.
 
       Members elect a **Wisdom Council** — especially elders and Indigenous neighbors — who in turn pick **Common Stewards** to handle the day-to-day work.
 
       SPIRIT is the **scaffolding** that makes this possible. SPIRIT handles the legal pieces and the paperwork — what a nonprofit can do that a community body cannot. **The Commons does the actual work of caring for this place.**
-
-      Money flows in three steps. The first funds raised cover SPIRIT's basic operations. The next pay the Common Stewards. **Everything beyond that — at least 50% of every dollar — goes into a community grant pool, where members decide together which local projects get funded.**
+    bodyItalic: "SPIRIT is a 501(c)(3) nonprofit that exists to serve the Commons, and not to perpetuate itself. SPIRIT is the vessel that interfaces with the existing world of foundations, governments, and formal partnerships to offer programming, education, and fiscal sponsorship to serve the regeneration of the Front Range. We are a Transitional Stewardship team designing the SPIRIT institution to be replaced by the decentralized, member-directed Commons."
 
   glossary:
     sectionLabel: "The words we use"
-    eyebrow: "The words we use"
+    eyebrow: "A few terms, plainly"
     heading: "Begin with"
     italicHeading: "the words."
-    caption: "★ language is the first thing we share"
+    intro: "A few words come up often on this site. Here's the short version of each. Hover any *underlined* word elsewhere on the site for an inline definition."
+    ctaLabel: "→ More definitions on Words page"
+    ctaHref: "words/#glossary"
     terms:
       - number: "01"
         color: "clay"
         term: "Bioregion"
-        pronunciation: "noun"
-        body: "A region defined by its land, water, and life rather than by political lines — a watershed, an ecosystem, the human and natural communities that depend on each other. **The Front Range is one:** a long, narrow corridor where the Rocky Mountains meet the Great Plains, defined by its rivers, its in-between ecology, and the communities that call it home."
+        pronunciation: "(noun)"
+        body: "A geographically and hydrologically defined area characterized by distinct ecological features that together form a coherent biocultural home."
       - number: "02"
         color: "creek"
         term: "The Commons"
-        pronunciation: "noun"
-        body: "What we share and are responsible for together. Not an abstraction — the water you drink, the air you breathe, the soil that grows your food, and the relationships that hold the community."
+        body: "\"The Commons\" points to the living realities of shared place — the commonality of the ecologies and resources for which all residents of a place share responsibility, and on which all residents depend."
       - number: "03"
         color: "sage"
-        term: "Commoning"
-        pronunciation: "verb"
-        body: "The everyday practice of caring for what we share. A *commons* is the garden. *Commoning* is the gardening — the regular work of tending and looking after a shared thing together."
+        term: "The Front Range Commons"
+        body: "A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in organizational governance."
       - number: "04"
         color: "grass"
-        term: "Why Bioregional?"
-        pronunciation: "a fair question"
-        body: "Because at this scale, we can actually see the results of our care — and ecological reality forces us to work together across our differences. *A watershed isn't something you can leave. A wildfire isn't something you can opt out of.*"
+        term: "Commoning"
+        body: "Commoning on a bioregional level directs our attentions and energies to where we can directly relate to the consequences of our stewardship, labor, and care."
 
   relationship:
     sectionLabel: "Two bodies, one project"

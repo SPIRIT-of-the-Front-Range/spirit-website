@@ -3,7 +3,7 @@ title: "Neighborhood Resiliency Programs"
 abbrev: "NRP"
 pillar: "coordination"
 pillarLabel: "Coordination"
-shortDescription: "Free 12-session training that gives a small group of neighbors the relationships, skills, and plan to weather an emergency together — instead of alone."
+shortDescription: "When the power goes out on your block, do you know which neighbor has a generator? When the creek floods, do you know the evacuation routes?  We run our **Neighborhood Resiliency Program** to help neighborhoods organize their resources, relationships, and knowledge to support healthy, vibrant, and connected communities-of-place to cultivate their practical preparedness in case of emergency."
 status: "active"
 order: 3
 detail:
@@ -15,7 +15,7 @@ detail:
   heroPlateCaption: "harvest · neighborhood garden · summer"
   tone: "creek"
   sections:
-    - eyebrow: "01 · Why before how"
+    - eyebrow: "01 · Why before the How"
       heading: "Start with"
       italicHeading: "what matters."
       body: |
@@ -48,7 +48,7 @@ detail:
   pullQuote:
     text: "A watershed isn't something you can leave. A wildfire isn't something you can opt out of. The only question is whether we build the relationships and the plan to handle it well — before we need to."
   signup:
-    eyebrow: "★ Sign up for the next group"
+    eyebrow: "Sign up for the next group"
     heading: "Twelve sessions."
     italicHeading: "One neighborhood at a time."
     body: "The program is free, runs in groups of about 12 people, and is delivered with the Neighborhood Villaging Project. Tell us where you live and who you'd bring along, and we'll put you on the list for the next opening in your area."
@@ -58,6 +58,6 @@ detail:
 
 *Because there's no going it alone.*
 
-A free 12-session program, run with the Neighborhood Villaging Project, that gives a small group of neighbors the relationships, the skills, and the plan to weather an emergency together. You leave with a finished Community Resiliency Plan for your block — and the people you wrote it with.
+When the power goes out on your block, do you know which neighbor has a generator? When the creek floods, do you know the evacuation routes? When you grow more tomatoes than you can eat, do you know who down the street could use them? When a wildfire pushes toward your neighborhood, do you have a plan — and did you compose it with the people you'd be evacuating alongside?
 
-The program moves from *why* (values and accountability), through *who* (your actual neighbors), through *where* (the risks and resources on your block), through *how* (water, power, first aid, taking care of each other), through *what if* (a full practice scenario), and finally to the capstone Resiliency Dinner. **Relationships are the foundation. Readiness is what they make possible.**
+Right now, for many people on the Front Range, the answer to those questions is "no." SPIRIT rises to change that. That's why we created the Neighborhood Resiliency Program – to support denizens taking responsibility with their neighbors to cultivate patterns of relationship, solidarity, and resiliency so that we know whose backs we've got and whose got ours.

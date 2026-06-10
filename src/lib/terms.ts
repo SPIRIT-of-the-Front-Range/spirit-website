@@ -2,11 +2,12 @@
 //
 // Used by:
 //   - <Term> component for hover/tap definitions inline in templates
-//   - Home page glossary spread (subset, see homeGlossary.terms)
-//   - The Commons page glossary (richer entries — see src/content/pages/the-commons.md)
+//   - injectTermTooltips() — wraps the first occurrence of each term in body copy
+//   - Page glossary spreads render their own card definitions (see each page .md)
 //
-// Keep entries short — one or two sentences. Link out to the longer glossary
-// on /the-commons/ when readers want more.
+// The first eight entries are the canonical SPIRIT Glossary (verbatim from the
+// copy doc); the full set lives on /words/#glossary. Keep entries short — one or
+// two sentences. Link out to the long glossary on /words/ when readers want more.
 
 export interface TermDef {
   /** Canonical term (also the lookup key). */
@@ -20,40 +21,65 @@ export interface TermDef {
 }
 
 export const TERMS: Record<string, TermDef> = {
+  // ── Canonical SPIRIT Glossary (verbatim from the copy doc) ──
   bioregion: {
     term: 'bioregion',
     short:
-      'A region defined by its land, water, and life — not by political lines. A watershed, an ecosystem, the human and natural communities that depend on each other. The Front Range is one.',
+      'A geographically and hydrologically defined area characterized by distinct ecological features that together form a coherent biocultural home.',
     tone: 'clay',
-    href: '/the-commons/#glossary',
+    href: '/words/#glossary',
   },
   commons: {
     term: 'commons',
     short:
-      'What we share and are responsible for together — the air, the water, the soil, the relationships that hold the community. Not an abstraction.',
+      '“The Commons” points to the living realities of shared place — the commonality of the ecologies and resources for which all residents of a place share responsibility, and on which all residents depend.',
     tone: 'creek',
-    href: '/the-commons/#glossary',
+    href: '/words/#glossary',
+  },
+  'the front range commons': {
+    term: 'the front range commons',
+    short:
+      'A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in organizational governance.',
+    tone: 'sage',
+    href: '/words/#glossary',
   },
   commoning: {
     term: 'commoning',
     short:
-      'A verb. The everyday work of taking care of what we share together. A commons is the garden; commoning is the gardening.',
+      'Commoning on a bioregional level directs our attentions and energies to where we can directly relate to the consequences of our stewardship, labor, and care.',
     tone: 'sage',
-    href: '/the-commons/#glossary',
+    href: '/words/#glossary',
   },
-  'bioregional commons': {
-    term: 'bioregional commons',
+  'bioregional commoning': {
+    term: 'bioregional commoning',
     short:
-      'The people who live in a region taking care of its shared land, water, and culture together.',
+      'Recognizes the wellbeing of human and natural systems (neighborhoods, watersheds, ecosystems, soil) as shared resources that the people who live in and depend on that land take responsibility to steward collectively.',
     tone: 'grass',
-    href: '/the-commons/#glossary',
+    href: '/words/#glossary',
+  },
+  resilience: {
+    term: 'resilience',
+    short:
+      'The capacity of a community to absorb shocks — storms, outages, economic disruption, supply chain failure — and recover together. Not bunkers, but networks.',
+    tone: 'creek',
+    href: '/words/#glossary',
+  },
+  'the lattice': {
+    term: 'the lattice',
+    short:
+      "SPIRIT's operating metaphor. The minimum infrastructure that enables Commons activity without controlling it.",
+    tone: 'clay',
+    href: '/words/#glossary',
   },
   'institutional self-negation': {
     term: 'institutional self-negation',
     short:
-      'Our promise that SPIRIT is a starting scaffold — not a permanent institution. Success means handing the work to the community and stepping aside.',
+      'The deliberate practice of transferring responsibility from SPIRIT to the Commons as fast as the Commons can absorb it.',
     tone: 'clay',
+    href: '/words/#glossary',
   },
+
+  // ── Supporting vocabulary that appears in body copy (not in the printed glossary) ──
   enclosure: {
     term: 'enclosure',
     short:
@@ -71,12 +97,6 @@ export const TERMS: Record<string, TermDef> = {
     short:
       'A way of making decisions by consent rather than majority vote. A proposal moves forward unless someone has a serious objection that the group needs to address.',
     tone: 'grass',
-  },
-  'community-decided': {
-    term: 'community-decided',
-    short:
-      'Funding that goes where the community itself directs it — through a system designed to amplify many small contributors rather than a few large donors.',
-    tone: 'creek',
   },
 };
 

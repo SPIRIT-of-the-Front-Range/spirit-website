@@ -8,29 +8,30 @@ import { injectTermTooltips } from '../lib/terms';
 
 const entry = await getEntry('pages', 'home');
 if (!entry) throw new Error('Missing src/content/pages/home.md');
-const { seo, homeCover, spreads } = entry.data;
+const { seo, homeCover } = entry.data;
+const sp: any = entry.data.spreads ?? {};
 if (!homeCover) throw new Error('home.md missing homeCover');
 
 const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
 
-// In-page jump nav — labels match the new homepage section order.
+// In-page jump nav — labels follow the canonical homepage section order.
 const jumpNav = [
-  { label: 'What SPIRIT is', href: '#vessel' },
+  { label: 'What SPIRIT is', href: '#mission' },
   { label: 'Programs', href: '#programs' },
-  { label: 'Four Threads', href: '#pillars' },
-  { label: 'What guides us', href: '#ethics' },
+  { label: 'The present moment', href: '#why' },
   { label: 'The Commons', href: '#commons' },
+  { label: 'Four threads', href: '#pillars' },
   { label: 'Glossary', href: '#glossary' },
   { label: 'Donate', href: '#funding' },
 ];
 
 // Per-pillar Tailwind class strings (literal so Tailwind discovers them).
-const pillarTone = {
+const pillarTone: Record<string, { text: string; photo: string }> = {
   clay: { text: 'text-clay-deep', photo: 'duotone-clay' },
   creek: { text: 'text-creek-deep', photo: 'duotone-creek' },
   sage: { text: 'text-sage-deep', photo: 'duotone-sage' },
   grass: { text: 'text-grass-deep', photo: 'duotone-sage' },
-} as const;
+};
 
 // Programs teaser tones — first 3 programs use clay/creek/sage on home
 const teaserTones = ['clay', 'creek', 'sage'] as const;
@@ -38,14 +39,15 @@ const teaserPhotos = ['02', '07', '11'];
 
 const coverPrimary = resolveLink(homeCover.primaryCtaHref);
 const coverSecondary = resolveLink(homeCover.secondaryCtaHref);
-const vesselPrimary = spreads?.vessel ? resolveLink(spreads.vessel.primaryCtaHref) : null;
-const vesselSecondary = spreads?.vessel ? resolveLink(spreads.vessel.secondaryCtaHref) : null;
-const programsTeaserCta = spreads?.programsTeaser ? resolveLink(spreads.programsTeaser.ctaHref) : null;
-const ethicsTeaserCta = spreads?.ethicsTeaser ? resolveLink(spreads.ethicsTeaser.ctaHref) : null;
-const commonsTeaserPrimary = spreads?.commonsTeaser ? resolveLink(spreads.commonsTeaser.primaryCtaHref) : null;
-const commonsTeaserSecondary = spreads?.commonsTeaser ? resolveLink(spreads.commonsTeaser.secondaryCtaHref) : null;
-const fundingPrimary = spreads?.funding ? resolveLink(spreads.funding.primaryCtaHref) : null;
-const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondaryCtaHref) : null;
+const missionPrimary = sp.mission ? resolveLink(sp.mission.primaryCtaHref) : null;
+const missionSecondary = sp.mission ? resolveLink(sp.mission.secondaryCtaHref) : null;
+const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaHref) : null;
+const whyCta = sp.whyThisMatters ? resolveLink(sp.whyThisMatters.ctaHref) : null;
+const commonsTeaserPrimary = sp.commonsTeaser ? resolveLink(sp.commonsTeaser.primaryCtaHref) : null;
+const commonsTeaserSecondary = sp.commonsTeaser ? resolveLink(sp.commonsTeaser.secondaryCtaHref) : null;
+const fundingPrimary = sp.funding ? resolveLink(sp.funding.primaryCtaHref) : null;
+const fundingSecondary = sp.funding ? resolveLink(sp.funding.secondaryCtaHref) : null;
+const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null;
 ---
 
 <Base title={seo.title} description={seo.description}>
@@ -88,7 +90,7 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
         </div>
 
         <aside class="hidden lg:block lg:col-span-5 lg:pl-6 lg:border-l border-bone-pale/40">
-          <p class="block mb-3 font-bold text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#E8B58A;">★ In this issue —</p>
+          <p class="block mb-3 font-bold text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#E8B58A;">In this issue —</p>
           <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[10px] font-mono uppercase tracking-[0.16em]">
             {jumpNav.map((j) => (
               <li><a href={j.href} class="no-underline hover:text-clay group inline-flex items-center gap-1.5 transition-colors" style="color: rgba(247,239,216,0.95); text-decoration-color: rgba(232,181,138,0.6);"><span style="color:#E8B58A;">·</span> <span class="group-hover:translate-x-0.5 transition-transform">{j.label}</span></a></li>
@@ -110,37 +112,88 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
   </Spread>
 
   {/* ====================================================== */}
-  {/* SPREAD 02 — THE VESSEL (What SPIRIT is)                 */}
+  {/* SPREAD 02 — SETTING CONTEXT                             */}
   {/* ====================================================== */}
-  {spreads?.vessel && vesselPrimary && vesselSecondary && (
-    <Spread folio="02" section={spreads.vessel.sectionLabel} bg="bone-pale" class="vessel-spread border-y-2 border-ink" id="vessel">
+  {sp.context && (
+    <Spread folio="02" section={sp.context.sectionLabel} bg="bone-pale" class="border-y-2 border-ink" id="context">
       <div class="px-5 lg:px-10 pt-12 lg:pt-20 pb-16 lg:pb-24">
 
-        <div class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-3 mb-10 lg:mb-14">
-          {[2, 5, 7, 8, 9, 12].map((n, i) => (
-            <div class="contact-thumb relative aspect-[4/3] photo">
-              <img src={basePath(`images/community/gathering-${String(n).padStart(2,'0')}.jpg`)} alt="" class="w-full h-full object-cover" loading="lazy" />
-              <span class="absolute bottom-1 left-1.5 caption text-bone-pale/95 text-[8px] tracking-[0.18em]">P. {String(i+1).padStart(2,'0')}</span>
+        <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start mb-10">
+          <div class="col-span-12 lg:col-span-9">
+            <div class="flex items-baseline gap-5 mb-3 flex-wrap">
+              <span class="folio-num text-5xl lg:text-6xl text-clay-deep">02</span>
+              <p class="eyebrow">{sp.context.eyebrow}</p>
             </div>
-          ))}
+            <h2 class="display-l text-ink break-words leading-[0.95]">
+              {sp.context.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.context.italicHeading}</span>{sp.context.headingTail && (<Fragment>{sp.context.headingTail}</Fragment>)}
+            </h2>
+          </div>
         </div>
 
         <div class="rule-triple mb-8"></div>
 
+        <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start">
+          <div class="col-span-12 lg:col-span-8">
+            <div class="body-cols-3 text-body text-ink leading-snug context-body">
+              <Fragment set:html={injectTermTooltips(mdToHtml(sp.context.body))} />
+            </div>
+          </div>
+
+          <aside class="col-span-12 lg:col-span-4 space-y-6 lg:border-l border-ink lg:pl-6">
+            <p class="font-serif italic text-body-lg leading-snug text-ink">
+              <Fragment set:html={mdToInline(sp.context.italicNote)} />
+            </p>
+            <div class="rule"></div>
+            <p class="font-serif italic font-bold text-body leading-snug text-ink">
+              <Fragment set:html={mdToInline(sp.context.italicBoldSubNote)} />
+            </p>
+            {sp.context.definitionBody && (
+              <div class="diagram-box border-2 border-ink p-4 bg-bone">
+                <p class="caption text-clay-deep mb-2">definition · {sp.context.definitionTerm}</p>
+                <p class="text-body text-shadow leading-snug">{sp.context.definitionBody}</p>
+              </div>
+            )}
+          </aside>
+        </div>
+
+        {sp.context.imageSrc && (
+          <figure class="mt-12">
+            <div class="aspect-[16/9] photo duotone-clay">
+              <img src={basePath(sp.context.imageSrc)} alt={sp.context.imageAlt} class="w-full h-full object-cover ken-burns" loading="lazy" />
+            </div>
+            <figcaption class="caption text-clay-deep mt-2">{sp.context.imageCaption}</figcaption>
+          </figure>
+        )}
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 03 — MISSION                                     */}
+  {/* ====================================================== */}
+  {sp.mission && missionPrimary && missionSecondary && (
+    <Spread folio="03" section={sp.mission.sectionLabel} bg="bone" class="border-b-2 border-ink" id="mission">
+      <div class="px-5 lg:px-10 pt-12 lg:pt-20 pb-16 lg:pb-24">
+
         <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start mb-12">
           <div class="col-span-12 lg:col-span-8">
             <div class="flex items-baseline gap-5 mb-3 flex-wrap">
-              <span class="folio-num text-5xl lg:text-6xl text-clay-deep">02</span>
-              <p class="eyebrow">{spreads.vessel.eyebrow}</p>
+              <span class="folio-num text-5xl lg:text-6xl text-creek-deep">03</span>
+              <p class="eyebrow eyebrow-creek">{sp.mission.eyebrow}</p>
             </div>
             <h2 class="display-l text-ink break-words leading-[0.95]">
-              {spreads.vessel.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.vessel.italicHeading}</span>{spreads.vessel.headingTail && (<Fragment>{spreads.vessel.headingTail}</Fragment>)}
+              {sp.mission.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.mission.italicHeading}</span>
             </h2>
+            {sp.mission.marginalia && (
+              <p class="mt-4 text-body text-shadow leading-snug max-w-xl">
+                <Fragment set:html={mdToInline(sp.mission.marginalia)} />
+              </p>
+            )}
           </div>
 
           <aside class="col-span-12 lg:col-span-4">
             <div class="diagram-box border-2 border-ink p-4 bg-bone relative">
-              <p class="caption text-clay-deep mb-3">{spreads.vessel.diagramCaption}</p>
+              <p class="caption text-clay-deep mb-3">{sp.mission.diagramCaption}</p>
               <svg viewBox="0 0 240 150" class="w-full" aria-hidden="true">
                 <text x="120" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" fill="#7E4226" letter-spacing="2">FEEDS &amp; PROTECTS</text>
                 <path d="M 50 30 L 50 36 L 190 36 L 190 30" fill="none" stroke="#B8704D" stroke-width="1.2"/>
@@ -164,32 +217,36 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
         <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start">
 
           <div class="col-span-12 lg:col-span-8">
-            <div class="body-cols-3 text-body text-ink leading-snug vessel-body">
-              <Fragment set:html={injectTermTooltips(mdToHtml(spreads.vessel.body), ['bioregion', 'commons'])} />
+            <div class="body-cols-2 text-body text-ink leading-snug mission-body">
+              <Fragment set:html={injectTermTooltips(mdToHtml(sp.mission.body))} />
             </div>
 
             <div class="mt-8 flex flex-wrap gap-3">
-              <a href={vesselPrimary.href} rel={vesselPrimary.rel} class="btn-line">{spreads.vessel.primaryCtaLabel}</a>
-              <a href={vesselSecondary.href} rel={vesselSecondary.rel} class="btn-line">{spreads.vessel.secondaryCtaLabel}</a>
+              <a href={missionPrimary.href} rel={missionPrimary.rel} class="btn-line">{sp.mission.primaryCtaLabel}</a>
+              <a href={missionSecondary.href} rel={missionSecondary.rel} class="btn-line">{sp.mission.secondaryCtaLabel}</a>
             </div>
           </div>
 
           <aside class="col-span-12 lg:col-span-4 space-y-6 lg:border-l border-ink lg:pl-6">
             <div>
-              <p class="sticker sticker-clay inline-block mb-3">{spreads.vessel.editorsNoteTitle}</p>
+              <p class="sticker sticker-clay inline-block mb-3">{sp.mission.editorsNoteTitle}</p>
               <p class="text-body text-shadow leading-snug">
-                <Fragment set:html={mdToInline(spreads.vessel.editorsNoteBody)} />
+                <Fragment set:html={mdToInline(sp.mission.editorsNoteBody)} />
               </p>
             </div>
 
             <div class="rule"></div>
 
             <div>
-              <p class="sticker sticker-clay inline-block mb-3">{spreads.vessel.languageNoteTitle}</p>
+              <p class="sticker sticker-clay inline-block mb-3">{sp.mission.languageNoteTitle}</p>
               <p class="font-serif italic text-body-lg leading-snug text-ink">
-                "<Fragment set:html={mdToInline(spreads.vessel.languageNoteQuote)} />"
+                <Fragment set:html={mdToInline(sp.mission.languageNoteBody)} />
               </p>
-              <p class="caption mt-2">{spreads.vessel.languageNoteAttribution}</p>
+              {sp.mission.languageNoteSubNote && (
+                <p class="font-serif italic font-bold text-body leading-snug text-ink mt-3">
+                  <Fragment set:html={mdToInline(sp.mission.languageNoteSubNote)} />
+                </p>
+              )}
             </div>
           </aside>
         </div>
@@ -198,24 +255,26 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD 03 — PROGRAMS (Easy ways to get involved)        */}
+  {/* SPREAD 04 — PROGRAMS (Easy ways to get involved)        */}
   {/* ====================================================== */}
-  {spreads?.programsTeaser && programsTeaserCta && (
-    <Spread folio="03" section={spreads.programsTeaser.sectionLabel} bg="bone-deep" class="programs-spread border-y-2 border-ink" id="programs">
+  {sp.programsTeaser && programsTeaserCta && (
+    <Spread folio="04" section={sp.programsTeaser.sectionLabel} bg="bone-deep" class="programs-spread border-y-2 border-ink" id="programs">
       <div class="px-5 lg:px-10 pt-14 lg:pt-20 pb-16 lg:pb-24">
 
         <div class="grid grid-cols-12 gap-6 mb-10 lg:mb-14 items-baseline">
           <div class="col-span-12 lg:col-span-7">
-            <p class="eyebrow eyebrow-creek mb-3">{spreads.programsTeaser.eyebrow}</p>
+            <p class="eyebrow eyebrow-creek mb-3">{sp.programsTeaser.eyebrow}</p>
             <h2 class="display-l text-ink break-words leading-[1.05]">
-              {spreads.programsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.programsTeaser.italicHeading}</span>
+              {sp.programsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.programsTeaser.italicHeading}</span>
             </h2>
           </div>
           <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
-            <p class="text-body text-shadow leading-snug mb-2 programs-intro">
-              <Fragment set:html={mdToInline(spreads.programsTeaser.intro)} />
+            <p class="text-body text-shadow leading-snug mb-3 programs-intro">
+              <Fragment set:html={mdToInline(sp.programsTeaser.intro)} />
             </p>
-            <p class="caption text-shadow">{spreads.programsTeaser.caption}</p>
+            <p class="caption text-shadow">
+              <Fragment set:html={mdToInline(sp.programsTeaser.caption)} />
+            </p>
           </div>
         </div>
 
@@ -247,39 +306,120 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
         </div>
 
         <div class="mt-12 flex items-baseline justify-between gap-3 pt-6 border-t-2 border-ink">
-          <p class="caption">{spreads.programsTeaser.footnote}</p>
-          <a href={programsTeaserCta.href} rel={programsTeaserCta.rel} class="btn-ink">{spreads.programsTeaser.ctaLabel}</a>
+          <p class="font-serif italic text-body text-shadow">{sp.programsTeaser.closingItalic}</p>
+          <a href={programsTeaserCta.href} rel={programsTeaserCta.rel} class="btn-ink">{sp.programsTeaser.ctaLabel}</a>
+        </div>
+        {sp.programsTeaser.closingNote && (
+          <p class="caption text-shadow mt-4 programs-intro">
+            <Fragment set:html={mdToInline(sp.programsTeaser.closingNote)} />
+          </p>
+        )}
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 05 — WHY THIS MATTERS                            */}
+  {/* ====================================================== */}
+  {sp.whyThisMatters && whyCta && (
+    <Spread folio="05" section={sp.whyThisMatters.sectionLabel} bg="bone" class="border-b-2 border-ink" id="why">
+      <div class="px-5 lg:px-12 py-16 lg:py-24">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div class="col-span-12 lg:col-span-5">
+            <span class="folio-num text-7xl text-clay-deep block leading-none">05</span>
+            <p class="eyebrow text-clay-deep mt-4 mb-3">{sp.whyThisMatters.eyebrow}</p>
+            <h2 class="display-m text-ink leading-[1.0] break-words">{sp.whyThisMatters.heading}</h2>
+          </div>
+          <div class="col-span-12 lg:col-span-7 lg:pl-8 lg:border-l border-ink">
+            <div class="border-t border-ink/30">
+              {sp.whyThisMatters.items.map((item: any, i: number) => (
+                <details class="why-item border-b border-ink/30 py-4" open={i === 0}>
+                  <summary class="flex items-baseline gap-3 cursor-pointer list-none">
+                    <span class="folio-num text-2xl text-clay-deep leading-none">{String(i + 1).padStart(2, '0')}</span>
+                    <h3 class="font-display font-bold text-h3 text-ink leading-tight flex-1">{item.heading}</h3>
+                    <span class="why-marker font-mono text-clay-deep text-lg leading-none">+</span>
+                  </summary>
+                  <p class="text-body text-shadow leading-snug mt-3 pl-9">{item.body}</p>
+                </details>
+              ))}
+            </div>
+            <a href={whyCta.href} rel={whyCta.rel} class="btn-line mt-8 inline-flex">{sp.whyThisMatters.ctaLabel}</a>
+          </div>
         </div>
       </div>
     </Spread>
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD 04 — FOUR PILLARS                                */}
+  {/* SPREAD 06 — THE COMMONS (compact card link-out)        */}
   {/* ====================================================== */}
-  {spreads?.pillars && (
-    <Spread folio="04" section={spreads.pillars.sectionLabel} bg="bone" class="pillars-spread" id="pillars">
+  {sp.commonsTeaser && commonsTeaserPrimary && commonsTeaserSecondary && (
+    <Spread folio="06" section={sp.commonsTeaser.sectionLabel} bg="bone-deep" class="commons-card-spread border-b-2 border-ink" id="commons">
+      <div class="px-5 lg:px-12 py-16 lg:py-24">
+        <div class="grid grid-cols-12 gap-6 lg:gap-10 items-stretch">
+
+          <div class="col-span-12 lg:col-span-5 relative bg-creek-deep min-h-[280px] lg:min-h-[360px] border border-ink">
+            <div class="absolute inset-0 photo duotone-creek">
+              <img src={basePath(sp.commonsTeaser.imageSrc ?? 'images/community/gathering-08.jpg')} alt="Water pooled in a red rock crevice." class="w-full h-full object-cover ken-burns" loading="lazy" />
+            </div>
+            {sp.commonsTeaser.imageCaption && (
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-creek-deep/85 to-transparent">
+                <span class="caption text-bone-pale/90">{sp.commonsTeaser.imageCaption}</span>
+              </div>
+            )}
+          </div>
+
+          <div class="col-span-12 lg:col-span-7 lg:pl-2 flex flex-col justify-center">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="folio-num text-5xl text-creek-deep">06</span>
+              <p class="eyebrow eyebrow-creek">{sp.commonsTeaser.eyebrow}</p>
+            </div>
+            <h2 class="display-m text-ink mb-5 leading-[0.95] break-words">
+              {sp.commonsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.commonsTeaser.italicHeading}</span>{sp.commonsTeaser.headingTail && (<Fragment>{sp.commonsTeaser.headingTail}</Fragment>)}
+            </h2>
+            <div class="text-body text-ink leading-snug max-w-2xl mb-4 commons-card-body">
+              <Fragment set:html={injectTermTooltips(mdToInline(sp.commonsTeaser.body))} />
+            </div>
+            <div class="font-serif italic text-body-lg text-ink leading-snug max-w-2xl mb-6 commons-card-body">
+              <Fragment set:html={injectTermTooltips(mdToInline(sp.commonsTeaser.bodyItalic))} />
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href={commonsTeaserPrimary.href} rel={commonsTeaserPrimary.rel} class="btn-ink">{sp.commonsTeaser.primaryCtaLabel}</a>
+              <a href={commonsTeaserSecondary.href} rel={commonsTeaserSecondary.rel} class="btn-line">{sp.commonsTeaser.secondaryCtaLabel}</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 07 — FOUR PILLARS                                */}
+  {/* ====================================================== */}
+  {sp.pillars && (
+    <Spread folio="07" section={sp.pillars.sectionLabel} bg="bone" class="pillars-spread" id="pillars">
       <div class="px-5 lg:px-10 pt-16 lg:pt-24 pb-20 lg:pb-32 relative">
 
         <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-10 lg:mb-12 items-end">
           <div class="col-span-12 lg:col-span-7">
-            <p class="eyebrow mb-3">{spreads.pillars.eyebrow}</p>
+            <p class="eyebrow mb-3">{sp.pillars.eyebrow}</p>
             <h2 class="display-l text-ink break-words leading-[0.92]">
-              {spreads.pillars.heading} <span class="italic font-serif font-light" style="font-weight:300;">{spreads.pillars.italicHeading}</span>
+              {sp.pillars.heading} <span class="italic font-serif font-light" style="font-weight:300;">{sp.pillars.italicHeading}</span>
             </h2>
           </div>
           <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
             <p class="text-body text-shadow leading-snug">
-              <Fragment set:html={mdToInline(spreads.pillars.intro)} />
+              <Fragment set:html={mdToInline(sp.pillars.intro)} />
             </p>
-            <p class="caption mt-3 text-shadow">{spreads.pillars.caption}</p>
+            <p class="caption mt-3 text-shadow">{sp.pillars.caption}</p>
           </div>
         </div>
 
         <div class="rule-double mb-12"></div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-12 lg:gap-y-16 relative">
-          {spreads.pillars.items.map((item, i) => {
+          {sp.pillars.items.map((item: any, i: number) => {
             const photoMap = ['09', '07', '06', '04'];
             return (
               <article class="pillar-cat group flex flex-col">
@@ -307,113 +447,10 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
         </div>
 
         <div class="rule-double mt-16"></div>
-        <p class="caption text-shadow mt-3 text-right">{spreads.pillars.footnote}</p>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD 05 — ETHICS TEASER (short, links to mission)    */}
-  {/* ====================================================== */}
-  {spreads?.ethicsTeaser && ethicsTeaserCta && (
-    <Spread folio="05" section={spreads.ethicsTeaser.sectionLabel} bg="bone-deep" class="border-y border-ink" id="ethics">
-      <div class="px-5 lg:px-12 py-16 lg:py-24">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
-          <div class="col-span-12 lg:col-span-5">
-            <span class="folio-num text-7xl text-clay-deep block leading-none">05</span>
-            <p class="eyebrow text-clay-deep mt-4 mb-3">{spreads.ethicsTeaser.eyebrow}</p>
-            <h2 class="display-l text-ink leading-[0.95] break-words">
-              {spreads.ethicsTeaser.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.ethicsTeaser.italicHeading}</span>{spreads.ethicsTeaser.headingTail && (<Fragment>{spreads.ethicsTeaser.headingTail}</Fragment>)}
-            </h2>
-          </div>
-          <div class="col-span-12 lg:col-span-7 lg:pl-8 lg:border-l border-ink">
-            <p class="text-body-lg text-ink leading-snug max-w-2xl mb-8 ethics-teaser-body">
-              <Fragment set:html={mdToInline(spreads.ethicsTeaser.body)} />
-            </p>
-            <a href={ethicsTeaserCta.href} rel={ethicsTeaserCta.rel} class="btn-line">{spreads.ethicsTeaser.ctaLabel}</a>
-          </div>
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD 06 — THE COMMONS (compact card link-out)        */}
-  {/* ====================================================== */}
-  {spreads?.commonsTeaser && commonsTeaserPrimary && commonsTeaserSecondary && (
-    <Spread folio="06" section={spreads.commonsTeaser.sectionLabel} bg="bone" class="commons-card-spread" id="commons">
-      <div class="px-5 lg:px-12 py-16 lg:py-24">
-        <div class="grid grid-cols-12 gap-6 lg:gap-10 items-stretch">
-
-          {/* LEFT — compact image */}
-          <div class="col-span-12 lg:col-span-5 relative bg-creek-deep min-h-[280px] lg:min-h-[360px] border border-ink">
-            <div class="absolute inset-0 photo duotone-creek">
-              <img src={basePath(spreads.commonsTeaser.imageSrc ?? 'images/community/gathering-08.jpg')} alt="Water pooled in a red rock crevice." class="w-full h-full object-cover ken-burns" loading="lazy" />
-            </div>
-            {spreads.commonsTeaser.imageCaption && (
-              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-creek-deep/85 to-transparent">
-                <span class="caption text-bone-pale/90">{spreads.commonsTeaser.imageCaption}</span>
-              </div>
-            )}
-          </div>
-
-          {/* RIGHT — heading + ~50 word body + 2 CTAs */}
-          <div class="col-span-12 lg:col-span-7 lg:pl-2 flex flex-col justify-center">
-            <div class="flex items-baseline gap-4 mb-4">
-              <span class="folio-num text-5xl text-creek-deep">06</span>
-              <p class="eyebrow eyebrow-creek">{spreads.commonsTeaser.eyebrow}</p>
-            </div>
-            <h2 class="display-m text-ink mb-5 leading-[0.95] break-words">
-              {spreads.commonsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.commonsTeaser.italicHeading}</span>{spreads.commonsTeaser.headingTail && (<Fragment>{spreads.commonsTeaser.headingTail}</Fragment>)}
-            </h2>
-            <div class="text-body text-ink leading-snug max-w-2xl mb-6 commons-card-body">
-              <Fragment set:html={injectTermTooltips(mdToInline(spreads.commonsTeaser.body), ['bioregion', 'commons'])} />
-            </div>
-            <div class="flex flex-wrap gap-3">
-              <a href={commonsTeaserPrimary.href} rel={commonsTeaserPrimary.rel} class="btn-ink">{spreads.commonsTeaser.primaryCtaLabel}</a>
-              <a href={commonsTeaserSecondary.href} rel={commonsTeaserSecondary.rel} class="btn-line">{spreads.commonsTeaser.secondaryCtaLabel}</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD 07 — HOME GLOSSARY (Words section)              */}
-  {/* ====================================================== */}
-  {spreads?.homeGlossary && (
-    <Spread folio="07" section={spreads.homeGlossary.sectionLabel} bg="bone-pale" class="border-y border-ink" id="glossary">
-      <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
-          <div class="col-span-12 lg:col-span-4">
-            <span class="folio-num text-7xl text-creek-deep block leading-none">07</span>
-            <p class="eyebrow eyebrow-creek mt-4 mb-3">{spreads.homeGlossary.eyebrow}</p>
-            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
-              {spreads.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.homeGlossary.italicHeading}</span>
-            </h2>
-            <p class="text-body text-shadow leading-snug max-w-md mb-6">
-              {spreads.homeGlossary.intro}
-            </p>
-            {spreads.homeGlossary.ctaLabel && spreads.homeGlossary.ctaHref && (
-              <a href={basePath(spreads.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
-                {spreads.homeGlossary.ctaLabel}
-              </a>
-            )}
-          </div>
-          <div class="col-span-12 lg:col-span-8">
-            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-              {spreads.homeGlossary.terms.map((t) => (
-                <article class="border-t border-ink pt-4">
-                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
-                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
-                  <p class="text-body text-shadow leading-snug">{t.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
+        <p class="caption text-shadow mt-3 text-right">{sp.pillars.footnote}</p>
+        {sp.pillars.closingBody && (
+          <p class="font-serif italic text-body-lg text-ink leading-snug max-w-3xl mt-8">{sp.pillars.closingBody}</p>
+        )}
       </div>
     </Spread>
   )}
@@ -421,8 +458,8 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
   {/* ====================================================== */}
   {/* SPREAD 08 — DONATE / BACK COVER                         */}
   {/* ====================================================== */}
-  {spreads?.funding && fundingPrimary && fundingSecondary && (
-    <Spread folio="08" section={spreads.funding.sectionLabel} bg="image" minHeight="100svh" class="donate-spread overflow-hidden" id="funding">
+  {sp.funding && fundingPrimary && fundingSecondary && (
+    <Spread folio="08" section={sp.funding.sectionLabel} bg="image" minHeight="100svh" class="donate-spread overflow-hidden" id="funding">
 
       <div class="absolute inset-0 photo" aria-hidden="true">
         <img src={basePath('images/community/gathering-02.jpg')} alt="" class="w-full h-full object-cover ken-burns" loading="lazy" style="filter: contrast(1.05) brightness(0.5) saturate(0.8);" />
@@ -437,26 +474,26 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-end min-h-[80svh]">
 
           <div class="col-span-12 lg:col-span-7">
-            <p class="eyebrow mb-4" style="color:#E8B58A;">{spreads.funding.eyebrow}</p>
+            <p class="eyebrow mb-4" style="color:#E8B58A;">{sp.funding.eyebrow}</p>
             <h2 class="display-l leading-[1.0]" style="color: #F7EFD8;">
-              {spreads.funding.heading} <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">{spreads.funding.italicHeading}</span>{spreads.funding.headingTail && (<Fragment>{spreads.funding.headingTail}</Fragment>)}
+              {sp.funding.heading} <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">{sp.funding.italicHeading}</span>{sp.funding.headingTail && (<Fragment>{sp.funding.headingTail}</Fragment>)}
             </h2>
-            <p class="mt-8 text-body-lg leading-snug max-w-2xl text-bone-pale/90 funding-body">
-              <Fragment set:html={mdToInline(spreads.funding.body)} />
-            </p>
+            <div class="mt-8 text-body-lg leading-snug max-w-2xl text-bone-pale/90 funding-body">
+              <Fragment set:html={mdToHtml(sp.funding.body)} />
+            </div>
             <div class="mt-10 flex flex-wrap gap-3">
-              <a href={fundingPrimary.href} rel={fundingPrimary.rel} class="btn-ink" style="background: #F2EAD8; color: #1F1E1B; border-color: #F2EAD8;">{spreads.funding.primaryCtaLabel}</a>
-              <a href={fundingSecondary.href} rel={fundingSecondary.rel} class="btn-line" style="border-color: rgba(242,234,216,0.7); color: #F2EAD8;">{spreads.funding.secondaryCtaLabel}</a>
+              <a href={fundingPrimary.href} rel={fundingPrimary.rel} class="btn-ink" style="background: #F2EAD8; color: #1F1E1B; border-color: #F2EAD8;">{sp.funding.primaryCtaLabel}</a>
+              <a href={fundingSecondary.href} rel={fundingSecondary.rel} class="btn-line" style="border-color: rgba(242,234,216,0.7); color: #F2EAD8;">{sp.funding.secondaryCtaLabel}</a>
             </div>
           </div>
 
           <aside class="col-span-12 lg:col-span-5">
             <div class="border-2 border-bone-pale/70 p-5 lg:p-6 backdrop-blur-sm" style="background: rgba(31,30,27,0.40);">
-              <p class="caption mb-4" style="color:#E8B58A;">{spreads.funding.cascadeTitle}</p>
+              <p class="caption mb-4" style="color:#E8B58A;">{sp.funding.cascadeTitle}</p>
               <ol class="space-y-5 text-bone-pale/95">
-                {spreads.funding.cascadeTiers.map((tier, i) => (
-                  <li class={`flex gap-4 items-start ${i < spreads!.funding!.cascadeTiers.length - 1 ? 'pb-4 border-b border-bone-pale/30' : ''}`}>
-                    <span class="font-display font-extrabold text-4xl" style="color:#E8B58A;">{tier.number}</span>
+                {sp.funding.cascadeTiers.map((tier: any, i: number) => (
+                  <li class={`flex gap-4 items-start ${i < sp.funding.cascadeTiers.length - 1 ? 'pb-4 border-b border-bone-pale/30' : ''}`}>
+                    <span class="font-display font-extrabold text-4xl shrink-0" style="color:#E8B58A;">{tier.number}</span>
                     <div>
                       <p class="font-display font-bold text-h3 leading-tight">{tier.title}</p>
                       <p class="caption opacity-80 mt-1">{tier.caption}</p>
@@ -466,15 +503,70 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
               </ol>
             </div>
             <p class="mt-3 caption text-bone-pale/70 text-right">
-              {spreads.funding.cascadeCaption}
+              {sp.funding.cascadeCaption}
             </p>
           </aside>
         </div>
 
         <div class="mt-12 pt-6 border-t border-bone-pale/30 grid grid-cols-12 gap-3 caption text-bone-pale/70">
-          <span class="col-span-3">{spreads.funding.footerLeft}</span>
-          <span class="col-span-6 text-center hidden sm:block">{spreads.funding.footerCenter}</span>
-          <span class="col-span-3 text-right">{spreads.funding.footerRight}</span>
+          <span class="col-span-3">{sp.funding.footerLeft}</span>
+          <span class="col-span-6 text-center hidden sm:block">{sp.funding.footerCenter}</span>
+          <span class="col-span-3 text-right">{sp.funding.footerRight}</span>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 09 — HOME GLOSSARY (Begin with the words)        */}
+  {/* ====================================================== */}
+  {sp.homeGlossary && (
+    <Spread folio="09" section={sp.homeGlossary.sectionLabel} bg="bone-pale" class="border-y border-ink" id="glossary">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div class="col-span-12 lg:col-span-4">
+            <span class="folio-num text-7xl text-creek-deep block leading-none">09</span>
+            <p class="eyebrow eyebrow-creek mt-4 mb-3">{sp.homeGlossary.eyebrow}</p>
+            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
+              {sp.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.homeGlossary.italicHeading}</span>
+            </h2>
+            <p class="text-body text-shadow leading-snug max-w-md mb-6">
+              {sp.homeGlossary.intro}
+            </p>
+            {sp.homeGlossary.ctaLabel && sp.homeGlossary.ctaHref && (
+              <a href={basePath(sp.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
+                {sp.homeGlossary.ctaLabel}
+              </a>
+            )}
+          </div>
+          <div class="col-span-12 lg:col-span-8">
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+              {sp.homeGlossary.terms.map((t: any) => (
+                <article class="border-t border-ink pt-4">
+                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
+                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
+                  <p class="text-body text-shadow leading-snug">
+                    <Fragment set:html={mdToInline(t.body)} />
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* ====================================================== */}
+  {/* SPREAD 10 — CLOSING CTA                                 */}
+  {/* ====================================================== */}
+  {sp.closingCta && closingCtaLink && (
+    <Spread folio="10" section="All for the Commons" bg="ink" class="closing-cta-spread">
+      <div class="px-5 lg:px-12 py-20 lg:py-32 text-center on-dark">
+        <p class="eyebrow mb-6" style="color:#E8B58A;">{sp.closingCta.eyebrow}</p>
+        <h2 class="display-l mx-auto max-w-4xl leading-[1.0]" style="color:#F7EFD8;">{sp.closingCta.closingText}</h2>
+        <div class="mt-10 flex justify-center">
+          <a href={closingCtaLink.href} rel={closingCtaLink.rel} class="btn-ink" style="background:#F2EAD8;color:#1F1E1B;border-color:#F2EAD8;">{sp.closingCta.ctaLabel}</a>
         </div>
       </div>
     </Spread>
@@ -484,12 +576,17 @@ const fundingSecondary = spreads?.funding ? resolveLink(spreads.funding.secondar
 
 <style>
   main { display: block; }
-  .vessel-body :global(p) { margin-top: 0.75rem; }
-  .vessel-body :global(p:first-child) { margin-top: 0; }
+  .context-body :global(p) { margin-top: 0.75rem; }
+  .context-body :global(p:first-child) { margin-top: 0; }
+  .mission-body :global(p) { margin-top: 0.75rem; }
+  .mission-body :global(p:first-child) { margin-top: 0; }
   .commons-card-body :global(p) { margin-top: 0.6rem; }
   .commons-card-body :global(p:first-child) { margin-top: 0; }
-  .ethics-teaser-body :global(p) { margin-top: 0.5rem; }
-  .ethics-teaser-body :global(p:first-child) { margin-top: 0; }
   .pillar-body :global(p) { margin: 0; }
+  .funding-body :global(p) { margin-top: 0.75rem; }
+  .funding-body :global(p:first-child) { margin-top: 0; }
   .programs-intro :global(a) { color: var(--color-creek-deep); text-decoration: underline; }
+  .why-item summary::-webkit-details-marker { display: none; }
+  .why-item[open] .why-marker { transform: rotate(45deg); }
+  .why-marker { transition: transform 0.2s ease; display: inline-block; }
 </style>

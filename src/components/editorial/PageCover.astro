@@ -7,6 +7,7 @@ interface Props {
   title: string;
   italicTitle?: string;     // italic part of title (renders as serif italic light)
   subtitle?: string;
+  body?: string;            // optional extra paragraph below the subtitle
   imageSrc: string;
   imageAlt: string;
   plate: string;            // "Plate IX"
@@ -22,6 +23,7 @@ const {
   title,
   italicTitle,
   subtitle,
+  body,
   imageSrc,
   imageAlt,
   plate,
@@ -69,7 +71,7 @@ const treatmentClass =
     {/* Title block — pushed to bottom of available space */}
     <div class={`flex-1 flex flex-col justify-end max-w-5xl w-full anim-fade-up ${align === 'right' ? 'ml-auto' : ''}`}>
       {eyebrow && (
-        <p class="eyebrow mb-4" style="color: #E8B58A; letter-spacing: 0.22em;">★ {eyebrow}</p>
+        <p class="eyebrow mb-4" style="color: #E8B58A; letter-spacing: 0.22em;">{eyebrow}</p>
       )}
       <h1 class="leading-[0.86]" style="color: #F7EFD8; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 1.4rem + 5.6vw, 9rem); letter-spacing: -0.035em;">
         <span class="block">{title}</span>
@@ -81,6 +83,12 @@ const treatmentClass =
         <p class="font-serif italic leading-tight mt-10 lg:mt-12 max-w-3xl"
            style="font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.45rem); color: #F7EFD8;">
           {subtitle}
+        </p>
+      )}
+      {body && (
+        <p class="leading-snug mt-5 max-w-2xl text-bone-pale/90"
+           style="font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem); color: rgba(247,239,216,0.9);">
+          {body}
         </p>
       )}
       {Astro.slots.has('cta') && (

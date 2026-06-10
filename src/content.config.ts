@@ -129,6 +129,7 @@ const pages = defineCollection({
           title: z.string(),
           italicTitle: z.string(),
           subtitle: z.string(),
+          body: z.string().optional(),
           imageSrc: z.string(),
           imageAlt: z.string(),
           plateCaption: z.string().default(''),
@@ -179,10 +180,11 @@ const pages = defineCollection({
               marginalia: z.string(),
               body: z.string(),
               italicNote: z.string().optional(),
-              image: z.string(),
-              imageAlt: z.string(),
-              imageCaption: z.string(),
+              image: z.string().optional(),
+              imageAlt: z.string().optional(),
+              imageCaption: z.string().optional(),
             })
+            .passthrough()
             .optional(),
           strategy: z
             .object({
@@ -347,6 +349,7 @@ const pages = defineCollection({
               italicHeading: z.string(),
               body: z.string(),
             })
+            .passthrough()
             .optional(),
           glossary: z
             .object({
@@ -354,17 +357,18 @@ const pages = defineCollection({
               eyebrow: z.string(),
               heading: z.string(),
               italicHeading: z.string(),
-              caption: z.string(),
+              caption: z.string().optional(),
               terms: z.array(
                 z.object({
                   number: z.string(),
                   color: pillarColor,
                   term: z.string(),
-                  pronunciation: z.string(),
+                  pronunciation: z.string().optional(),
                   body: z.string(),
                 }),
               ),
             })
+            .passthrough()
             .optional(),
           relationship: z
             .object({
@@ -451,6 +455,7 @@ const pages = defineCollection({
                 }),
               ),
             })
+            .passthrough()
             .optional(),
           ethics: z
             .object({
@@ -470,6 +475,7 @@ const pages = defineCollection({
               ),
               closingNote: z.string().optional(),
             })
+            .passthrough()
             .optional(),
           homeGlossary: z
             .object({
@@ -498,10 +504,11 @@ const pages = defineCollection({
               italicHeading: z.string(),
               intro: z.string(),
               caption: z.string(),
-              footnote: z.string(),
+              footnote: z.string().optional(),
               ctaLabel: z.string(),
               ctaHref: z.string(),
             })
+            .passthrough()
             .optional(),
           commonsTeaser: z
             .object({
@@ -523,6 +530,7 @@ const pages = defineCollection({
               secondaryCtaLabel: z.string(),
               secondaryCtaHref: z.string(),
             })
+            .passthrough()
             .optional(),
           ethicsTeaser: z
             .object({
@@ -563,6 +571,7 @@ const pages = defineCollection({
             })
             .optional(),
         })
+        .passthrough()
         .optional(),
       pullQuote: z
         .object({

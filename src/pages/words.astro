@@ -11,6 +11,7 @@ import Spread from '../components/editorial/Spread.astro';
 import PullQuote from '../components/editorial/PullQuote.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { basePath, resolveLink } from '../lib/paths';
+import { mdToInline } from '../lib/markdown';
 
 const entry = await getEntry('pages', 'words');
 if (!entry) throw new Error('Missing src/content/pages/words.md');
@@ -32,6 +33,14 @@ const toneClasses: Record<string, { folio: string; eyebrow: string }> = {
   sage:  { folio: 'text-sage-deep',  eyebrow: 'eyebrow eyebrow-sage' },
   grass: { folio: 'text-grass-deep', eyebrow: 'eyebrow text-grass-deep' },
 };
+
+// Per-glossary-term num-badge colors: literal class strings for Tailwind.
+const numBadgeColor = {
+  clay: 'text-clay-deep',
+  creek: 'text-creek-deep',
+  sage: 'text-sage-deep',
+  grass: 'text-grass-deep',
+} as const;
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -98,7 +107,7 @@ function formatDate(iso: string): string {
     <Spread folio="04.2" section="Featured" bg="bone-pale" class="border-y border-ink">
       <div class="px-5 lg:px-12 py-section">
         <div class="rule-bold mb-6"></div>
-        <p class="eyebrow mb-3">★ Featured</p>
+        <p class="eyebrow mb-3">Featured</p>
         <h2 class="display-l text-ink mb-12 max-w-3xl leading-[1.0]">
           Worth your <span class="italic font-serif font-light">long attention.</span>
         </h2>
@@ -157,7 +166,7 @@ function formatDate(iso: string): string {
     <Spread folio="04.3" section="More" bg="bone-deep" class="border-t border-ink">
       <div class="px-5 lg:px-12 py-section">
         <div class="rule-bold mb-6"></div>
-        <p class="eyebrow mb-3">★ Also in the library</p>
+        <p class="eyebrow mb-3">Also in the library</p>
         <h2 class="display-l text-ink mb-12 max-w-3xl leading-[1.0]">
           Further <span class="italic font-serif font-light">reading.</span>
         </h2>
@@ -199,7 +208,7 @@ function formatDate(iso: string): string {
   {/* CTA — submit or get involved */}
   <Spread folio="04.x" section="Submit" bg="ink">
     <div class="px-5 lg:px-12 py-section on-dark text-center">
-      <p class="eyebrow mb-4" style="color:#E8B58A;">★ Are you a writer in this space?</p>
+      <p class="eyebrow mb-4" style="color:#E8B58A;">Are you a writer in this space?</p>
       <h2 class="display-l max-w-3xl mx-auto leading-[1.0] mb-6" style="color:#F7EFD8;">
         We're always reading. <span class="italic font-serif font-light" style="font-weight:300; color:#E8B58A;">Send us your work.</span>
       </h2>
@@ -209,6 +218,39 @@ function formatDate(iso: string): string {
       <a href={`${BASE}connect/`} class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">✉ Send us a piece</a>
     </div>
   </Spread>
+
+  {/* SPIRIT GLOSSARY — begin with the words */}
+  {spreads?.glossary && (
+    <Spread folio="04.g" section={spreads.glossary.sectionLabel} bg="bone-pale" class="border-t border-ink" id="glossary">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="rule-bold mb-6"></div>
+        <div class="grid grid-cols-12 gap-6 mb-12 items-end">
+          <div class="col-span-12 lg:col-span-7">
+            <p class="eyebrow mb-3">{spreads.glossary.eyebrow}</p>
+            <h2 class="display-l text-ink break-words leading-[0.95]">
+              {spreads.glossary.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.glossary.italicHeading}</span>
+            </h2>
+          </div>
+          <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
+            <p class="caption text-shadow" set:html={mdToInline(spreads.glossary.caption)}></p>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-x-12 gap-y-12">
+          {spreads.glossary.terms.map((t) => (
+            <article>
+              <p class={`num-badge ${numBadgeColor[t.color]} mb-2`}>{t.number}</p>
+              <h3 class="font-display font-bold text-h2 text-ink leading-tight mb-1">{t.term}</h3>
+              <p class="caption-italic mb-3">{t.pronunciation}</p>
+              <div class="text-body text-ink leading-relaxed glossary-body">
+                <Fragment set:html={mdToInline(t.body)} />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Spread>
+  )}
 
 </Base>
 

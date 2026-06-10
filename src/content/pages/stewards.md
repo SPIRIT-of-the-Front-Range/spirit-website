@@ -1,7 +1,7 @@
 ---
 seo:
   title: "Stewards"
-  description: "The Transitional Stewards Team — the activating team for Spirit of the Front Range."
+  description: "The Transitional Stewards Team — the activating team for SPIRIT of the Front Range."
 
 cover:
   eyebrow: "Who is doing the work, and why"
@@ -17,26 +17,22 @@ cover:
 spreads:
   manifesto:
     sectionLabel: "Who we are"
-    marginaliaPrimary: "**A starting team, not a permanent one.** SPIRIT's leadership is designed to be handed off to the community itself."
-    marginaliaSecondary: "Taking care of a place, being responsible for a place, and being given the *role* of taking care of it on behalf of others — these are three different things."
-    eyebrow: "A starting team"
+    marginaliaPrimary: "**A transitional team, not a permanent one.**"
+    marginaliaSecondary: "SPIRIT's leadership is designed to be handed off to the community itself."
+    eyebrow: "Transitional Stewards"
     heading: "We are a small team at the"
     italicHeading: "beginning of something"
     headingTail: ", and we don't have all the answers."
     body: |
-      The current SPIRIT team is small — five people — building the scaffolding so the Front Range Commons (the larger community body we are working toward) can eventually carry this work itself. **Our explicit goal is to build something that no longer needs us in our current roles.**
+      SPIRIT is guided by a small team of *Transitional Stewards* whose aim is to establish the Bioregional Commons that will determine its own character and trajectories through distributed, decentralized decision-making. Our explicit goal is to build something that will no longer need us so that we, too, can join the Commons as fellow commoners, with no more authority or say than anyone else. We do not pretend to have all the answers. *(Who does!?)* What we have is our commitment to this place and to each other, and a willingness to learn in public.
 
-      The team holds five areas of work: **Stewarding** (the operational center), **Coordination** (decision-making and structure), **Creative** (storytelling and design), **Community** (relationships and outreach), and **Technology** (the practical tools).
-
-      Each of us has decision-making authority in our area, and we make bigger decisions together by *consent* — meaning we move forward together or not at all, instead of voting some of us down.
-
-      What we have is our commitment to this place and to each other, and the willingness to learn in public.
+      Our aim is for SPIRIT’s board to be comprised of highly-regarded community leaders, particularly elders and Indigenous relatives. For now, we Transitional Stewards show up with full commitment and open hands, oriented towards that ultimate transition.
 
   team:
     sectionLabel: "Meet the team"
-    eyebrow: "★ Meet the team"
-    heading: "Five people. Five areas of work."
-    countLabel: "5 people"
+    eyebrow: "Meet the team"
+    heading: "The current Transitional Stewards"
+    countLabel: "6 people"
 
   futureBoard:
     sectionLabel: "Where the team is headed"
@@ -46,7 +42,7 @@ spreads:
     body: |
       In time, we hope SPIRIT's Board will be made up of **Indigenous leaders, elders, and longtime community stewards** — people who actually represent who lives on the Front Range.
 
-      For now, the five of us are the starting team. Our goal is to become regular members of the Front Range Commons, with no more authority than anyone else. **SPIRIT exists to serve the Commons, not to keep itself going.**
+      For now, the six of us are the starting team. Our goal is to become regular members of the Front Range Commons, with no more authority than anyone else. As **SPIRIT exists to serve the Commons**, not to keep itself going.
 
 pullQuote:
   text: "Inside SPIRIT, we use appointments — the board names the team, the team names the area leads, the area leads name project leads. The Commons works differently: members elect their own leaders. Two bodies, two ways of choosing."

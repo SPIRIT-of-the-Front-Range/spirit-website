@@ -10,7 +10,7 @@ cover:
   subtitle: "We're early in this work — and it's growing the way real things grow: slowly, rooted, built to last. There are many ways in."
   imageSrc: "/images/community/gathering-07.jpg"
   imageAlt: "A still pond at dusk reflecting trees and dramatic clouds."
-  plateCaption: "pond at dusk · Boulder Creek watershed"
+  plateCaption: "Walden Pond at dusk · Boulder, CO"
   treatment: "duotone-creek"
   brightness: 0.65
 
@@ -19,9 +19,9 @@ spreads:
     sectionLabel: "Four ways in"
     marginaliaPrimary: "We answer email. Sometimes slowly. Always personally."
     marginaliaSecondary: "★ The fastest way to feel the work is to come to an event."
-    eyebrow: "★ Feeling inspired? Let's talk."
-    heading: "Questions. Projects. Partnerships."
-    italicHeading: "Stories."
+    eyebrow: "Feeling inspired? Let's talk."
+    heading: "Questions. Projects. Partnerships. Knowledge. Stories."
+    italicHeading: "Inspiration."
     subheading: "We would love to hear from you."
     cards:
       - number: "01"
@@ -51,11 +51,11 @@ spreads:
         title: "Make a tax-deductible gift"
         body: "Your gift funds the programs, the community grant rounds, and the shared work of a healthy Front Range."
         ctaLabel: "◈ Donate →"
-        ctaHref: "donate/"
+        ctaHref: "/donate/"
 
   newsletter:
     sectionLabel: "Our slow newsletter"
-    eyebrow: "★ Newsletter"
+    eyebrow: "Newsletter"
     heading: "Slow letters from"
     italicHeading: "the Front Range."
     body: "Occasional notes — event invitations, program openings, what's growing in the work. We don't send often. We don't sell your address. Ever."
