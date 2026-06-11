@@ -2,7 +2,7 @@
 siteName: "SPIRIT of the Front Range"
 issueNumber: "No. 01"
 establishedYear: "est. 2026"
-wordmarkSrc: "/images/logos/wordmark-sm.png"
+wordmarkSrc: "/images/logos/spirit-logo.png"
 
 header:
   donateLabel: "✦ Donate"

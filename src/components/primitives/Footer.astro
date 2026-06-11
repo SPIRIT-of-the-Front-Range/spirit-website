@@ -1,5 +1,4 @@
 ---
-import Mark from './Mark.astro';
 import { getEntry } from 'astro:content';
 import { basePath, resolveLink } from '../../lib/paths';
 
@@ -65,7 +64,15 @@ const year = new Date().getFullYear();
     {/* Bottom: colophon */}
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
       <div class="flex items-center gap-4">
-        <Mark variant="compact" />
+        <img
+          src={basePath('/images/logos/spirit-logo.png')}
+          alt={settings.data.siteName}
+          width="1067"
+          height="1067"
+          class="block h-12 w-auto object-contain"
+          loading="lazy"
+          decoding="async"
+        />
         <p class="font-mono text-micro uppercase tracking-[0.16em] text-shadow">
           {footer.colophon}
         </p>
