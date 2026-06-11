@@ -37,8 +37,12 @@ const subscribeLabel = header.subscribeLabel ?? 'Subscribe';
   <div class="border-b-4 border-ink">
     <div class="almanac-edge grid grid-cols-12 items-center gap-4 py-3 lg:py-4">
 
-      {/* Left: spacer to keep the nameplate optically centered */}
-      <div class="col-span-3 lg:col-span-3" aria-hidden="true"></div>
+      {/* Left: subscribe — mirrors donate on the right */}
+      <div class="col-span-3 lg:col-span-3 flex justify-start items-center">
+        <a href={subscribeHref} rel="noopener" target="_blank" class="hidden lg:inline-flex btn-line !py-2 !px-3 !text-[10px]">
+          {subscribeLabel}
+        </a>
+      </div>
 
       {/* Center: nameplate — hand-drawn wordmark */}
       <a href={basePath('')} class="col-span-6 lg:col-span-6 no-underline flex justify-center" aria-label={`${siteName} — home`}>
@@ -53,11 +57,8 @@ const subscribeLabel = header.subscribeLabel ?? 'Subscribe';
         />
       </a>
 
-      {/* Right: subscribe + donate */}
+      {/* Right: donate — mirrors subscribe on the left */}
       <div class="col-span-3 lg:col-span-3 flex justify-end items-center gap-2">
-        <a href={subscribeHref} rel="noopener" target="_blank" class="hidden lg:inline-flex btn-line !py-2 !px-3 !text-[10px]">
-          {subscribeLabel}
-        </a>
         <a href={donateLink.href} class="hidden lg:inline-flex btn-ink !py-2 !px-3 !text-[10px]">
           {header.donateLabel}
         </a>
