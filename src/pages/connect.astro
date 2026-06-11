@@ -21,6 +21,15 @@ const cardClasses = {
 } as const;
 
 const newsletterCta = spreads?.newsletter ? resolveLink(spreads.newsletter.ctaHref) : null;
+
+// Social / community channels. Substack = writing, Luma = events,
+// WhatsApp = the Front Range Commons chat space.
+// TODO: add the real Luma URL (still pending).
+const socials = [
+  { label: 'Substack', handle: 'Essays & field notes', href: 'https://spiritofthefrontrange.substack.com/', glyph: '✎' },
+  { label: 'Luma', handle: 'Upcoming gatherings', href: '#', glyph: '◷' },
+  { label: 'WhatsApp', handle: 'Front Range Commons chat', href: 'https://chat.whatsapp.com/H91qNHe6m0JA2JGyJKlvoU?s=cl&p=i&ilr=2', glyph: '✦' },
+];
 ---
 
 <Base title={seo.title} description={seo.description}>
@@ -40,13 +49,84 @@ const newsletterCta = spreads?.newsletter ? resolveLink(spreads.newsletter.ctaHr
     brightness={cover.brightness}
   />
 
-  {/* FOUR WAYS */}
+  {/* SUBSCRIBE — primary CTA, first */}
+  {spreads?.newsletter && newsletterCta && (
+    <Spread folio="07.1" section={spreads.newsletter.sectionLabel} bg="bone-pale" class="border-b border-ink">
+      <div class="px-5 lg:px-12 py-section">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-center">
+
+          <div class="col-span-12 lg:col-span-6">
+            <span class="folio-num text-6xl text-creek-deep mb-4 block">07.1</span>
+            <p class="eyebrow eyebrow-creek mb-3">Stay connected</p>
+            <h2 class="display-m text-ink leading-[1.0] mb-5">
+              Subscribe for <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">what matters to you.</span>
+            </h2>
+            <p class="text-body-lg text-shadow leading-snug max-w-lg mb-4">
+              Sign up to receive updates about the programs you care about — teach-ins,
+              Solidarity Suppers, neighborhood preparedness, and grant rounds.
+            </p>
+            <p class="text-body-lg text-shadow leading-snug max-w-lg">
+              You can also express interest in becoming a founding member of the
+              <strong class="text-ink">Front Range Commons</strong> — the community
+              of people deciding together how to care for this place.
+            </p>
+          </div>
+
+          <div class="col-span-12 lg:col-span-6">
+            <div class="paper p-8 lg:p-10 flex flex-col items-start gap-5">
+              <p class="eyebrow eyebrow-clay">The main way in</p>
+              <p class="text-body text-shadow leading-snug">
+                One place for events, program openings, and interest in the
+                Commons — handled on our community dashboard.
+              </p>
+              <a
+                href={newsletterCta.href}
+                rel={newsletterCta.rel}
+                target="_blank"
+                class="btn-ink w-full justify-center !py-4 !text-base"
+              >
+                ✦ Subscribe & express interest →
+              </a>
+              <p class="caption text-shadow">
+                {spreads.newsletter.footnote}
+              </p>
+
+              {/* Community channels */}
+              <div class="w-full pt-5 mt-1 border-t border-rule">
+                <p class="eyebrow eyebrow-creek mb-4">Find us elsewhere</p>
+                <ul class="flex flex-col gap-3">
+                  {socials.map((s) => (
+                    <li>
+                      <a
+                        href={s.href}
+                        rel="noopener"
+                        target="_blank"
+                        class="group flex items-baseline justify-between gap-3 no-underline border-b border-transparent hover:border-ink transition-colors"
+                      >
+                        <span class="flex items-baseline gap-3">
+                          <span class="text-clay-deep" aria-hidden="true">{s.glyph}</span>
+                          <span class="font-display font-bold text-h3 text-ink group-hover:text-clay-deep transition-colors">{s.label}</span>
+                        </span>
+                        <span class="caption text-shadow text-right">{s.handle}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Spread>
+  )}
+
+  {/* FOUR WAYS — 07.2 */}
   {spreads?.fourWays && (
-    <Spread folio="07.1" section={spreads.fourWays.sectionLabel} bg="bone">
+    <Spread folio="07.2" section={spreads.fourWays.sectionLabel} bg="bone">
       <div class="px-5 lg:px-12 py-section">
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-10">
           <div class="col-span-12 lg:col-span-4 lg:sticky lg:top-8 self-start space-y-5">
-            <span class="folio-num text-7xl text-clay-deep">07.i</span>
+            <span class="folio-num text-7xl text-clay-deep">07.2</span>
             <Marginalia number="01">
               <Fragment set:html={mdToInline(spreads.fourWays.marginaliaPrimary)} />
             </Marginalia>
@@ -58,7 +138,7 @@ const newsletterCta = spreads?.newsletter ? resolveLink(spreads.newsletter.ctaHr
           <div class="col-span-12 lg:col-span-8">
             <div class="rule-double mb-6"></div>
             <p class="eyebrow mb-3">{spreads.fourWays.eyebrow}</p>
-            <h2 class="display-l text-ink break-words leading-[0.95] mb-6">
+            <h2 class="font-display font-bold text-ink break-words mb-6" style="font-size: clamp(1.8rem, 1.35rem + 2.1vw, 3.3rem); line-height: 1.08; letter-spacing: -0.015em;">
               {spreads.fourWays.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.fourWays.italicHeading}</span>
             </h2>
             <p class="text-body-lg text-shadow italic font-serif leading-snug mb-10 max-w-2xl">
@@ -91,48 +171,6 @@ const newsletterCta = spreads?.newsletter ? resolveLink(spreads.newsletter.ctaHr
                   </article>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* NEWSLETTER — link out to dashboard subscribe */}
-  {spreads?.newsletter && newsletterCta && (
-    <Spread folio="07.2" section={spreads.newsletter.sectionLabel} bg="bone-pale" class="border-y border-ink">
-      <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-center">
-
-          <div class="col-span-12 lg:col-span-6">
-            <span class="folio-num text-6xl text-creek-deep mb-4 block">07.ii</span>
-            <p class="eyebrow eyebrow-creek mb-3">{spreads.newsletter.eyebrow}</p>
-            <h2 class="display-m text-ink leading-[1.0] mb-5">
-              {spreads.newsletter.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{spreads.newsletter.italicHeading}</span>
-            </h2>
-            <p class="text-body-lg text-shadow leading-snug max-w-lg">
-              {spreads.newsletter.body}
-            </p>
-          </div>
-
-          <div class="col-span-12 lg:col-span-6">
-            <div class="paper p-8 lg:p-10 flex flex-col items-start gap-5">
-              <p class="eyebrow eyebrow-clay">{spreads.newsletter.eyebrow}</p>
-              <p class="text-body text-shadow leading-snug">
-                Subscriptions are handled on our community dashboard — events,
-                program openings, and the slow newsletter, all in one place.
-              </p>
-              <a
-                href={newsletterCta.href}
-                rel={newsletterCta.rel}
-                target="_blank"
-                class="btn-ink w-full justify-center !py-3"
-              >
-                {spreads.newsletter.ctaLabel}
-              </a>
-              <p class="caption text-shadow">
-                {spreads.newsletter.footnote}
-              </p>
             </div>
           </div>
         </div>

@@ -602,6 +602,8 @@ const settings = defineCollection({
     header: z.object({
       donateLabel: z.string(),
       mobileDonateLabel: z.string(),
+      subscribeLabel: z.string().optional(),
+      subscribeHref: z.string().optional(),
       nav: z.array(z.object({ label: z.string(), href: z.string() })),
     }),
     footer: z.object({

@@ -107,9 +107,9 @@ spreads:
     ctaLabel: → See all programs
     ctaHref: programs/
     closingItalic: All of our programming prioritizes access and equity.
-    closingNote: "Subscribe to events at
-      [dashboard.spiritofthefrontrange.org/subscribe](https://dashboard.spiritofthefrontrange.org/subscribe).
-      For inquiries, email hello@spiritofthefrontrange.org"
+    closingNote: "[Subscribe to events](https://dashboard.spiritofthefrontrange.org/subscribe)
+      on our community dashboard. For inquiries, email
+      [hello@spiritofthefrontrange.org](mailto:hello@spiritofthefrontrange.org)."
   whyThisMatters:
     sectionLabel: The present moment
     eyebrow: The Present Moment

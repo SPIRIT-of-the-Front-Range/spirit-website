@@ -1,8 +1,8 @@
 ---
 name: "Benjamin Life"
 role: "Co-Founder and Civic Technology Designer"
-website: "https://opencivics.co"
-websiteLabel: "opencivics.co"
+website: "https://www.omniharmonic.com"
+websiteLabel: "omniharmonic.com"
 order: 2
 ---
 

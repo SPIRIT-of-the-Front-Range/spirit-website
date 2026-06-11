@@ -4,7 +4,7 @@ import { basePath, resolveLink } from '../../lib/paths';
 
 const settings = await getEntry('settings', 'site');
 if (!settings) throw new Error('Missing src/content/settings/site.md');
-const { siteName, issueNumber, establishedYear, wordmarkSrc, header } = settings.data;
+const { siteName, wordmarkSrc, header } = settings.data;
 
 const nav = header.nav.map((item) => ({
   label: item.label,
@@ -14,6 +14,8 @@ const nav = header.nav.map((item) => ({
 const path = Astro.url.pathname;
 const today = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
 const donateLink = resolveLink('donate/');
+const subscribeHref = header.subscribeHref ?? 'https://dashboard.spiritofthefrontrange.org/subscribe';
+const subscribeLabel = header.subscribeLabel ?? 'Subscribe';
 ---
 
 {/* Masthead — true periodical nameplate */}
@@ -35,16 +37,11 @@ const donateLink = resolveLink('donate/');
   <div class="border-b-4 border-ink">
     <div class="almanac-edge grid grid-cols-12 items-center gap-4 py-3 lg:py-4">
 
-      {/* Left: meta */}
-      <div class="col-span-3 lg:col-span-2 flex items-center gap-3">
-        <span class="hidden lg:flex flex-col leading-none gap-1">
-          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">{issueNumber}</span>
-          <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-shadow">{establishedYear}</span>
-        </span>
-      </div>
+      {/* Left: spacer to keep the nameplate optically centered */}
+      <div class="col-span-3 lg:col-span-3" aria-hidden="true"></div>
 
       {/* Center: nameplate — hand-drawn wordmark */}
-      <a href={basePath('')} class="col-span-6 lg:col-span-8 no-underline flex justify-center" aria-label={`${siteName} — home`}>
+      <a href={basePath('')} class="col-span-6 lg:col-span-6 no-underline flex justify-center" aria-label={`${siteName} — home`}>
         <img
           src={basePath(wordmarkSrc)}
           alt={siteName}
@@ -56,8 +53,11 @@ const donateLink = resolveLink('donate/');
         />
       </a>
 
-      {/* Right: donate */}
-      <div class="col-span-3 lg:col-span-2 flex justify-end items-center">
+      {/* Right: subscribe + donate */}
+      <div class="col-span-3 lg:col-span-3 flex justify-end items-center gap-2">
+        <a href={subscribeHref} rel="noopener" target="_blank" class="hidden lg:inline-flex btn-line !py-2 !px-3 !text-[10px]">
+          {subscribeLabel}
+        </a>
         <a href={donateLink.href} class="hidden lg:inline-flex btn-ink !py-2 !px-3 !text-[10px]">
           {header.donateLabel}
         </a>
@@ -80,6 +80,11 @@ const donateLink = resolveLink('donate/');
                 </li>
               ))}
               <li class="border-t-2 border-ink pt-3 mt-2">
+                <a href={subscribeHref} rel="noopener" target="_blank" class="block no-underline font-mono uppercase text-[11px] tracking-[0.2em] font-bold py-2 text-creek-deep">
+                  ✦ {subscribeLabel}
+                </a>
+              </li>
+              <li>
                 <a href={donateLink.href} class="block no-underline font-mono uppercase text-[11px] tracking-[0.2em] font-bold py-2 text-clay-deep">
                   {header.mobileDonateLabel}
                 </a>

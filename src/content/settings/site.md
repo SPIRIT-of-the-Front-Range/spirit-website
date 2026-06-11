@@ -7,6 +7,8 @@ wordmarkSrc: "/images/logos/wordmark-sm.png"
 header:
   donateLabel: "✦ Donate"
   mobileDonateLabel: "✦ Donate"
+  subscribeLabel: "Subscribe"
+  subscribeHref: "https://dashboard.spiritofthefrontrange.org/subscribe"
   nav:
     - { label: "Mission", href: "mission/" }
     - { label: "Programs", href: "programs/" }
