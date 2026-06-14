@@ -45,8 +45,6 @@ detail:
       italicHeading: "neighborhood's plan."
       body: |
         Each participant presents their finished Community Resiliency Plan — ideally alongside a neighbor they walked the program with. We close with a Resiliency Dinner — because **the relationships you built in this program are the resilience.** Everything else is scaffolding.
-  pullQuote:
-    text: "A watershed isn't something you can leave. A wildfire isn't something you can opt out of. The only question is whether we build the relationships and the plan to handle it well — before we need to."
   signup:
     eyebrow: "Sign up for the next group"
     heading: "Twelve sessions."

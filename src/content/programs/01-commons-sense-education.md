@@ -64,11 +64,6 @@ detail:
   heroAlt: Driftwood resting in shallow water at the edge of a creek — quiet,
     attentive light.
   tone: sage
-  pullQuote:
-    text: A garden doesn't maintain itself. It needs ongoing attention, seasonal
-      work, shared decisions, and a community that keeps showing up. Caring for
-      what we share is the same.
-    attribution: from a recent Teach-In
   signup:
     eyebrow: Get on the list
     heading: Be invited to the next

@@ -5,7 +5,7 @@ import Spread from '../components/editorial/Spread.astro';
 import Plate from '../components/editorial/Plate.astro';
 import PullQuote from '../components/editorial/PullQuote.astro';
 import Marginalia from '../components/editorial/Marginalia.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { basePath, resolveLink } from '../lib/paths';
 import { mdToHtml, mdToInline } from '../lib/markdown';
 import { injectTermTooltips } from '../lib/terms';
@@ -15,20 +15,8 @@ if (!entry) throw new Error('Missing src/content/pages/mission.md');
 const { seo, cover, pullQuote, closing } = entry.data;
 const sp: any = entry.data.spreads ?? {};
 
-const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
-
-const pillarTone: Record<string, { text: string; photo: string }> = {
-  clay: { text: 'text-clay-deep', photo: 'duotone-clay' },
-  creek: { text: 'text-creek-deep', photo: 'duotone-creek' },
-  sage: { text: 'text-sage-deep', photo: 'duotone-sage' },
-  grass: { text: 'text-grass-deep', photo: 'duotone-sage' },
-};
-const teaserTones = ['clay', 'creek', 'sage'] as const;
-const teaserPhotos = ['02', '07', '11'];
-
 const ethicsCta = sp.ethics?.ctaHref ? resolveLink(sp.ethics.ctaHref) : null;
-const whyCta = sp.whyThisMatters ? resolveLink(sp.whyThisMatters.ctaHref) : null;
-const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaHref) : null;
+const missionCta = sp.mission?.ctaHref ? resolveLink(sp.mission.ctaHref) : null;
 ---
 
 <Base title={seo.title} description={seo.description}>
@@ -55,7 +43,6 @@ const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaH
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
           <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
-            <span class="folio-num text-7xl text-clay-deep">02.1</span>
             <Marginalia number="01">
               <Fragment set:html={mdToInline(sp.vision.marginalia)} />
             </Marginalia>
@@ -103,13 +90,20 @@ const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaH
             </h2>
 
             <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start">
-              <div class="col-span-12 lg:col-span-7 text-body-lg text-ink leading-snug space-y-4">
+              <div class="col-span-12 lg:col-span-7 text-body-lg text-ink leading-snug">
                 <Fragment set:html={injectTermTooltips(mdToHtml(sp.mission.body))} />
-                {sp.mission.italicNote && (
-                  <p class="font-serif italic text-sage-deep">{sp.mission.italicNote}</p>
+                {sp.mission.programLines && (
+                  <ul class="mt-7 pt-6 border-t border-rule space-y-4">
+                    {sp.mission.programLines.map((line: string) => (
+                      <li class="flex gap-3 text-body text-ink leading-snug">
+                        <span class="text-sage-deep" aria-hidden="true">→</span>
+                        <span><Fragment set:html={mdToInline(line)} /></span>
+                      </li>
+                    ))}
+                  </ul>
                 )}
-                {sp.mission.italicBoldSubNote && (
-                  <p class="font-serif italic font-bold text-ink">{sp.mission.italicBoldSubNote}</p>
+                {sp.mission.ctaLabel && missionCta && (
+                  <a href={missionCta.href} rel={missionCta.rel} class="btn-line mt-8 inline-flex">{sp.mission.ctaLabel}</a>
                 )}
               </div>
               <div class="col-span-12 lg:col-span-5">
@@ -126,7 +120,6 @@ const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaH
           </div>
 
           <div class="col-span-12 lg:col-span-3 lg:order-1 lg:sticky lg:top-8 self-start space-y-5">
-            <span class="folio-num text-7xl text-sage-deep">02.2</span>
             <Marginalia number="02">
               <Fragment set:html={mdToInline(sp.mission.marginalia)} />
             </Marginalia>
@@ -142,7 +135,6 @@ const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaH
       <div class="px-5 lg:px-12 py-section">
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
           <div class="col-span-12 lg:col-span-7">
-            <span class="folio-num text-7xl text-clay-deep block leading-none mb-3">02.3</span>
             <p class="eyebrow text-clay-deep mb-3">{sp.ethics.eyebrow}</p>
             <h2 class="font-display font-bold text-ink leading-[1.0] lg:whitespace-nowrap" style="font-size: clamp(2.1rem, 1.4rem + 3vw, 4.4rem); letter-spacing: -0.02em;">
               {sp.ethics.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{sp.ethics.italicHeading}</span>{sp.ethics.headingTail && (<Fragment>{sp.ethics.headingTail}</Fragment>)}
@@ -183,157 +175,6 @@ const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaH
     </Spread>
   )}
 
-  {/* SPREAD — WHY THIS MATTERS */}
-  {sp.whyThisMatters && whyCta && (
-    <Spread folio="02.4" section={sp.whyThisMatters.sectionLabel} bg="bone" class="border-b border-ink" id="why">
-      <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
-          <div class="col-span-12 lg:col-span-5">
-            <span class="folio-num text-7xl text-clay-deep block leading-none">02.4</span>
-            <p class="eyebrow text-clay-deep mt-4 mb-3">{sp.whyThisMatters.eyebrow}</p>
-            <h2 class="font-display font-bold text-ink leading-[1.12]" style="font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.6rem); hyphens: none; -webkit-hyphens: none; overflow-wrap: normal; text-wrap: balance;">{sp.whyThisMatters.heading}</h2>
-          </div>
-          <div class="col-span-12 lg:col-span-7 lg:pl-8 lg:border-l border-ink">
-            <div class="border-t border-ink/30">
-              {sp.whyThisMatters.items.map((item: any, i: number) => (
-                <details class="why-item border-b border-ink/30 py-4" open={i === 0}>
-                  <summary class="flex items-baseline gap-3 cursor-pointer list-none">
-                    <span class="folio-num text-2xl text-clay-deep leading-none">{String(i + 1).padStart(2, '0')}</span>
-                    <h3 class="font-display font-bold text-h3 text-ink leading-tight flex-1">{item.heading}</h3>
-                    <span class="why-marker font-mono text-clay-deep text-lg leading-none">+</span>
-                  </summary>
-                  <p class="text-body text-shadow leading-snug mt-3 pl-9">{item.body}</p>
-                </details>
-              ))}
-            </div>
-            <a href={whyCta.href} rel={whyCta.rel} class="btn-line mt-8 inline-flex">{sp.whyThisMatters.ctaLabel}</a>
-          </div>
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* SPREAD — PROGRAMS TEASER */}
-  {sp.programsTeaser && programsTeaserCta && (
-    <Spread folio="02.5" section={sp.programsTeaser.sectionLabel} bg="bone-deep" class="programs-spread border-b-2 border-ink" id="programs">
-      <div class="px-5 lg:px-10 pt-14 lg:pt-20 pb-16 lg:pb-24">
-
-        <div class="grid grid-cols-12 gap-6 mb-10 lg:mb-14 items-baseline">
-          <div class="col-span-12 lg:col-span-7">
-            <p class="eyebrow eyebrow-creek mb-3">{sp.programsTeaser.eyebrow}</p>
-            <h2 class="display-l text-ink break-words leading-[1.05]">
-              {sp.programsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.programsTeaser.italicHeading}</span>
-            </h2>
-          </div>
-          <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
-            <p class="text-body text-shadow leading-snug mb-3 programs-intro">
-              <Fragment set:html={mdToInline(sp.programsTeaser.intro)} />
-            </p>
-            <p class="caption text-shadow">
-              <Fragment set:html={mdToInline(sp.programsTeaser.caption)} />
-            </p>
-          </div>
-        </div>
-
-        <div class="rule-bold mb-10"></div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 md:[grid-template-rows:auto_auto_auto_auto_1fr_auto] gap-x-6 lg:gap-x-10 gap-y-12 md:gap-y-3">
-          {programs.slice(0, 3).map((p, i) => {
-            const photoNum = teaserPhotos[i];
-            const tone = teaserTones[i];
-            return (
-              <article class="program-cat md:grid md:[grid-template-rows:subgrid] md:row-span-6 flex flex-col gap-y-3 md:gap-y-0">
-                <div class="aspect-[4/5] photo duotone-cover md:mb-2">
-                  <img src={basePath(`images/community/gathering-${photoNum}.jpg`)} alt="" class="ken-burns" loading="lazy" />
-                </div>
-                <div class="flex items-baseline justify-between gap-2">
-                  <span class={`folio-num text-3xl ${pillarTone[tone].text} leading-none`}>{String(i + 1).padStart(2, '0')}</span>
-                  <span class="sticker sticker-bone">{p.data.abbrev}</span>
-                </div>
-                <p class={`eyebrow ${pillarTone[tone].text}`}>{p.data.pillarLabel}</p>
-                <h3 class="font-display font-bold text-h2 text-ink leading-[1.05] break-words md:min-h-[2.4em]">{p.data.title}</h3>
-                <p class="text-body text-shadow leading-snug self-start mt-3 pb-6 lg:pb-8">{p.data.shortDescription}</p>
-                <div class="flex items-baseline justify-between gap-2 caption pt-3 border-t border-rule self-end w-full">
-                  <span class={pillarTone[tone].text}>● {p.data.status}</span>
-                  <a href="https://dashboard.spiritofthefrontrange.org/subscribe" rel="noopener" target="_blank" class={`${pillarTone[tone].text} no-underline hover:underline`}>get on list →</a>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div class="mt-12 flex items-baseline justify-between gap-3 pt-6 border-t-2 border-ink">
-          <p class="font-serif italic text-body text-shadow">{sp.programsTeaser.closingItalic}</p>
-          <a href={programsTeaserCta.href} rel={programsTeaserCta.rel} class="btn-ink">{sp.programsTeaser.ctaLabel}</a>
-        </div>
-        {sp.programsTeaser.closingNote && (
-          <p class="caption text-shadow mt-4 programs-intro">
-            <Fragment set:html={mdToInline(sp.programsTeaser.closingNote)} />
-          </p>
-        )}
-      </div>
-    </Spread>
-  )}
-
-  {/* SPREAD — FOUR PILLARS */}
-  {sp.pillars && (
-    <Spread folio="02.6" section={sp.pillars.sectionLabel} bg="bone" class="pillars-spread" id="pillars">
-      <div class="px-5 lg:px-10 pt-16 lg:pt-24 pb-20 lg:pb-32 relative">
-
-        <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-10 lg:mb-12 items-end">
-          <div class="col-span-12 lg:col-span-7">
-            <p class="eyebrow mb-3">{sp.pillars.eyebrow}</p>
-            <h2 class="display-l text-ink break-words leading-[0.92]">
-              {sp.pillars.heading} <span class="italic font-serif font-light" style="font-weight:300;">{sp.pillars.italicHeading}</span>
-            </h2>
-          </div>
-          <div class="col-span-12 lg:col-span-5 lg:pl-8 lg:border-l border-ink">
-            <p class="text-body text-shadow leading-snug">
-              <Fragment set:html={mdToInline(sp.pillars.intro)} />
-            </p>
-            <p class="caption mt-3 text-shadow">{sp.pillars.caption}</p>
-          </div>
-        </div>
-
-        <div class="rule-double mb-12"></div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-12 lg:gap-y-16 relative">
-          {sp.pillars.items.map((item: any, i: number) => {
-            const photoMap = ['09', '07', '06', '04'];
-            return (
-              <article class="pillar-cat group flex flex-col">
-                <p class={`eyebrow ${pillarTone[item.color].text} mb-2`}>{item.pillar}</p>
-                <div class="flex items-baseline gap-3 mb-5 flex-wrap">
-                  <span class={`folio-num text-3xl lg:text-4xl ${pillarTone[item.color].text} leading-none`}>{item.number}</span>
-                  <h3 class="display-m text-ink leading-[0.92]">{item.title}</h3>
-                </div>
-                <div class={`aspect-[5/3] mb-4 photo ${pillarTone[item.color].photo}`}>
-                  <img src={basePath(`images/community/gathering-${photoMap[i]}.jpg`)} alt={item.title} loading="lazy" />
-                </div>
-                <p class={`caption ${pillarTone[item.color].text} mb-3`}>{item.photoCaption}</p>
-                <p class="text-body text-ink leading-snug mb-4 flex-1 pillar-body">
-                  <Fragment set:html={mdToInline(item.body)} />
-                </p>
-                <div class="flex items-baseline gap-3 caption mt-auto pt-3 border-t border-rule">
-                  <span class={pillarTone[item.color].text}>★ outcome:</span>
-                  <span>{item.outcome}</span>
-                </div>
-              </article>
-            );
-          })}
-
-          <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-ink/40 pointer-events-none"></div>
-        </div>
-
-        <div class="rule-double mt-16"></div>
-        <p class="caption text-shadow mt-3 text-right">{sp.pillars.footnote}</p>
-        {sp.pillars.closingBody && (
-          <p class="font-serif italic text-body-lg text-ink leading-snug max-w-3xl mt-8">{sp.pillars.closingBody}</p>
-        )}
-      </div>
-    </Spread>
-  )}
-
   {/* PULL QUOTE */}
   {pullQuote && (
     <div class="bg-bone-pale py-section border-y border-ink">
@@ -343,44 +184,6 @@ const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaH
         </PullQuote>
       </div>
     </div>
-  )}
-
-  {/* SPREAD — GLOSSARY (Words) */}
-  {sp.homeGlossary && (
-    <Spread folio="02.7" section={sp.homeGlossary.sectionLabel} bg="bone-pale" class="border-b border-ink" id="glossary">
-      <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
-          <div class="col-span-12 lg:col-span-4">
-            <span class="folio-num text-7xl text-creek-deep block leading-none">02.7</span>
-            <p class="eyebrow eyebrow-creek mt-4 mb-3">{sp.homeGlossary.eyebrow}</p>
-            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
-              {sp.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.homeGlossary.italicHeading}</span>
-            </h2>
-            <p class="text-body text-shadow leading-snug max-w-md mb-6">
-              <Fragment set:html={mdToInline(sp.homeGlossary.intro)} />
-            </p>
-            {sp.homeGlossary.ctaLabel && sp.homeGlossary.ctaHref && (
-              <a href={basePath(sp.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
-                {sp.homeGlossary.ctaLabel}
-              </a>
-            )}
-          </div>
-          <div class="col-span-12 lg:col-span-8">
-            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-              {sp.homeGlossary.terms.map((t: any) => (
-                <article class="border-t border-ink pt-4">
-                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
-                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
-                  <p class="text-body text-shadow leading-snug">
-                    <Fragment set:html={mdToInline(t.body)} />
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </Spread>
   )}
 
   {/* CLOSING */}

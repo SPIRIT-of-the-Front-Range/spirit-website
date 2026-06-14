@@ -58,7 +58,6 @@ const allocationTables = raiseTarget ? [raiseTarget.floorTable, raiseTarget.reac
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
           <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
-            <span class="folio-num text-7xl text-clay-deep">08.1</span>
             <Marginalia number="01">
               <Fragment set:html={mdToInline(spreads.roots.marginaliaPrimary)} />
             </Marginalia>
@@ -172,7 +171,6 @@ const allocationTables = raiseTarget ? [raiseTarget.floorTable, raiseTarget.reac
     <Spread folio="08.3" section={spreads.contribute.sectionLabel} bg="bone-pale">
       <div class="px-5 lg:px-12 py-section">
         <div class="text-center max-w-2xl mx-auto">
-          <span class="folio-num text-6xl text-clay-deep mb-4 block">08.3</span>
           <p class="eyebrow mb-3">{spreads.contribute.eyebrow}</p>
           <h2 class="display-l text-ink leading-[0.95] mb-10">
             {spreads.contribute.heading} <span class="italic font-serif font-light text-clay-deep" style="font-weight:300;">{spreads.contribute.italicHeading}</span>{spreads.contribute.headingTail && (<Fragment> {spreads.contribute.headingTail}</Fragment>)}

@@ -23,9 +23,9 @@ spreads:
   context:
     sectionLabel: We belong to more places than we have names for
     eyebrow: If you live on the Earth, you already share a home.
-    heading: Remembering our relationship
-    italicHeading: to the living world
-    headingTail: " invites us to reimagine our social, cultural, and economic responsibilities."
+    heading: We belong to
+    italicHeading: more places than we have names for.
+    headingTail: ""
     body: >-
       Here on the Front Range of the Rocky Mountains in Colorado, we live in our
       homes, communities, and neighborhoods, but we also live in a watershed, a
@@ -37,14 +37,11 @@ spreads:
 
 
       As people who call this bioregion home, we choose to take responsibility for taking care of what takes care of us – the lands, the water, the air, and each other.
-    italicNote: Core to the philosophy of SPIRIT of the Front Range is the
-      recognition that the most meaningful units of collective life are not the
-      county or the state; they are the neighborhood and the bioregion. The
-      bioregion is the living landscape that we share, defined by watershed,
-      ecology, and the human and other-than-human communities nested within them.
-    italicBoldSubNote: SPIRIT exists to coordinate a decentralized movement of
-      local leaders engaged in economic re-localization, Indigenous
-      revitalization, neighborhood resiliency, and bioregional regeneration.
+    italicBoldSubNote: SPIRIT is a Colorado nonprofit that fosters local
+      resilience and regeneration along the Rocky Mountain Front Range by offering
+      cultural and educational programs, tools for community coordination, and
+      community-directed funding. We bring together the people, neighborhoods, and
+      organizations already working to care for this bioregion.
     definitionTerm: regeneration
     definitionBody: Regeneration means renewing the capacity to renew. Consider the
       old adage about teaching someone to fish, rather than giving them a fish.
@@ -161,19 +158,14 @@ spreads:
   pillars:
     sectionLabel: Four kinds of work
     eyebrow: The work, in four parts
-    heading: Four threads,
+    heading: Four Pillars,
     italicHeading: woven together.
-    intro: SPIRIT is a Colorado nonprofit that fosters local resilience and
-      regeneration along the Rocky Mountain Front Range by offering cultural and
-      educational programs, tools for community coordination, and
-      community-directed funding. We bring together the people, neighborhoods,
-      and organizations already working to care for this bioregion.
-    caption: ↓ see Programs above for what these look like in practice
+    intro: SPIRIT exists to coordinate a decentralized movement of local leaders
+      engaged in economic re-localization, Indigenous revitalization, neighborhood
+      resiliency, and bioregional regeneration. Our four pillars guide us toward
+      alignment with that purpose.
+    caption: ↓ see Programs below for what these look like in practice
     footnote: ★ the four pillars are activated through the programs we run
-    closingBody: SPIRIT's ultimate mission is to make itself obsolete, supporting,
-      developing and eventually composting itself into the self-organized,
-      community-led commons. All funds received by SPIRIT will be used to develop
-      the Bioregional Commons or fund the Commons projects directly.
     items:
       - number: "01"
         color: clay

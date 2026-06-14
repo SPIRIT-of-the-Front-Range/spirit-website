@@ -6,6 +6,14 @@ pillarLabel: "Flowing money to the work"
 shortDescription: "We raise money for the members of the Front Range Bioregional Commons to **allocate to regenerative cultural and ecological projects** along the Front Range using community-led coordination and resource-disbursement technologies."
 status: "upcoming"
 order: 4
+detail:
+  signup:
+    eyebrow: Be the first to know
+    heading: The first round is
+    italicHeading: being designed now.
+    body: Sign up and we'll tell you when project proposals and community voting open for the first Community Grant Round.
+    ctaLabel: ✉ Sign up →
+    ctaHref: https://dashboard.spiritofthefrontrange.org/subscribe
 ---
 
 *Community-decided grant rounds that put funds directly into the hands of the people doing the work of caring for the Front Range.*

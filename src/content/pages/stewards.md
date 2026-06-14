@@ -43,8 +43,4 @@ spreads:
       In time, we hope SPIRIT's Board will be made up of **Indigenous leaders, elders, and longtime community stewards** — people who actually represent who lives on the Front Range.
 
       For now, the six of us are the starting team. Our goal is to become regular members of the Front Range Commons, with no more authority than anyone else. As **SPIRIT exists to serve the Commons**, not to keep itself going.
-
-pullQuote:
-  text: "Inside SPIRIT, we use appointments — the board names the team, the team names the area leads, the area leads name project leads. The Commons works differently: members elect their own leaders. Two bodies, two ways of choosing."
-  attribution: "Notes on how SPIRIT works · April 2026"
 ---

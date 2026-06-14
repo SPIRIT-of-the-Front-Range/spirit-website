@@ -85,7 +85,4 @@ spreads:
         - "Holds the actual stewardship"
     ctaLabel: "◇ Visit the Commons site →"
     ctaHref: "https://www.frontrangecommons.org/"
-
-pullQuote:
-  text: "The next generation of civic life won't come from legislatures or Silicon Valley. It will come from communities that learn to take care of what they share, where they live."
 ---

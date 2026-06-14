@@ -60,10 +60,6 @@ detail:
   heroAlt: Overhead view of Solidarity Supper offerings — pink dahlia, gourds,
     prayer ties laid on grass with feet in moccasins.
   tone: clay
-  pullQuote:
-    text: A place creates relationships that politics can't sever. The conservative
-      rancher and the progressive farmer share an aquifer. We learn how to share
-      the table before we can share the watershed.
   signup:
     eyebrow: Ask for an invitation
     heading: Apply to Join
