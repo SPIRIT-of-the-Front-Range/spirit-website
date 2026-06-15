@@ -100,8 +100,8 @@ const relationshipLink = spreads?.relationship ? resolveLink(spreads.relationshi
         </div>
 
         <div class="grid lg:grid-cols-2 gap-x-12 gap-y-12">
-          {spreads.glossary.terms.map((t) => (
-            <article>
+          {spreads.glossary.terms.map((t, i, arr) => (
+            <article class:list={[i === arr.length - 1 && arr.length % 2 === 1 && 'lg:col-span-2']}>
               <p class={`num-badge ${numBadgeColor[t.color]} mb-2`}>{t.number}</p>
               <h3 class="font-display font-bold text-h2 text-ink leading-tight mb-1">{t.term}</h3>
               {t.pronunciation && <p class="caption-italic mb-3">{t.pronunciation}</p>}
