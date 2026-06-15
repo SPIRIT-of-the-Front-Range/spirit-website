@@ -235,21 +235,11 @@ spreads:
     primaryCtaHref: donate/
     cascadeTiers:
       - number: "01"
-        title: Running SPIRIT Programs
-        caption: $49,190 in direct program costs
+        title: Supporting bioregional organizing team
       - number: "02"
-        title: Repay the startup capital
-        caption: $6,409 in legal, hosting, and early steward costs that a steward
-          personally fronted as loans to get SPIRIT off the ground.
+        title: Funding SPIRIT programs to seed the commons
       - number: "03"
-        title: Pay the Stewards a Baseline
-        caption: $144k for the next 12 months, funding each steward at ~10 hrs/week
-          ($2,000/mo). This is the floor.
-      - number: "04"
-        title: Fund the Commons Grant Pool
-        caption: up to $150k, regranted funds go directly to local community
-          projects across the Front Range. The fund allocations chosen by the
-          people who live here.
+        title: Funding the Commons Grant Pool
   homeGlossary:
     sectionLabel: The words we use
     eyebrow: A few terms, plainly

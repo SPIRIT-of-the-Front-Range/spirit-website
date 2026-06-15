@@ -561,7 +561,7 @@ const pages = defineCollection({
                 z.object({
                   number: z.string(),
                   title: z.string(),
-                  caption: z.string(),
+                  caption: z.string().optional(),
                 }),
               ),
               cascadeCaption: z.string(),

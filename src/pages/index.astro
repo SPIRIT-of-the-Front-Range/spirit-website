@@ -476,7 +476,7 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
                     <span class="font-display font-extrabold text-4xl shrink-0" style="color:#E8B58A;">{tier.number}</span>
                     <div>
                       <p class="font-display font-bold text-h3 leading-tight">{tier.title}</p>
-                      <p class="caption opacity-80 mt-1">{tier.caption}</p>
+                      {tier.caption && <p class="caption opacity-80 mt-1">{tier.caption}</p>}
                     </div>
                   </li>
                 ))}
