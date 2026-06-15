@@ -73,7 +73,7 @@ spreads:
       county or the state; they are the neighborhood and the bioregion. The
       bioregion is the living landscape that we share, defined by watershed,
       ecology, and the human and other-than-human communities nested within them.
-    languageNoteTitle: We are optimizing what is already happening.
+    languageNoteTitle: We are organizing around what is already happening.
     languageNoteBody: SPIRIT's ultimate mission is to make itself obsolete,
       supporting, developing and eventually composting itself into the
       self-organized, community-led commons.
