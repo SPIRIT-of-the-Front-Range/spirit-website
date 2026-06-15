@@ -24,7 +24,7 @@ spreads:
     italicHeading: "connected"
     headingTail: " Front Range."
     body: |
-      Every donation moves toward a more resilient, more connected Front Range — through Commons Sense education that opens understanding, Solidarity Suppers that deepen relationships, Neighborhood Resiliency Programs that build real preparedness, and Community Grant Rounds that put resources directly in the hands of the communities doing the most vital work.
+      Your donation directly contributes to a more resilient and vital Front Range — through Commons Sense education that opens understanding, Solidarity Suppers that deepen relationships, Neighborhood Resiliency Programs that build real preparedness, and Community Grant Rounds that put resources directly in the hands of the communities doing the most vital work.
 
   raiseTarget:
     sectionLabel: "Our ask raise"
