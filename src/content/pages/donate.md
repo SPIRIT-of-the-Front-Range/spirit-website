@@ -33,7 +33,7 @@ spreads:
     italicHeading: "clear path."
     headingTail: ""
     leadStatement: "**We are raising $300k–$500k over 18 months to seed the Commons.**"
-    body: "Our floor is **$300k**. Our reach is **$500k**. Steward rates never go up — they stay flat at **$50/hr**. What grows as we raise more is the **number of paid hours** our stewards can give to this work, and the **size of the Commons Grant Pool** we put directly into community hands."
+    body: "Our floor is **$300k**. Our reach is **$500k**. What grows as we raise more is the **number of paid hours** our stewards can give to this work, and the **size of the Commons Grant Pool** we put directly into community hands."
     floorTable:
       title: "Where the money goes — at our $300k floor"
       rows:
