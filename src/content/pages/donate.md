@@ -86,7 +86,4 @@ spreads:
     fallbackCtaHref: "mailto:hello@spiritofthefrontrange.org?subject=Donation%20inquiry"
     donateCtaLabel: "★ Donate via Every.org →"
     taxNote: "SPIRIT of the Front Range is a 501(c)(3) nonprofit. Gifts are tax-deductible to the extent allowed by law."
-
-pullQuote:
-  text: "A watershed isn't something you can leave. A wildfire isn't something you can opt out of. We are in this together — the only question is whether we build the relationships and the tools to do it well."
 ---
