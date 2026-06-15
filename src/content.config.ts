@@ -243,7 +243,7 @@ const pages = defineCollection({
           roots: z
             .object({
               sectionLabel: z.string(),
-              marginaliaPrimary: z.string(),
+              marginaliaPrimary: z.string().optional(),
               marginaliaSecondary: z.string(),
               eyebrow: z.string(),
               heading: z.string(),

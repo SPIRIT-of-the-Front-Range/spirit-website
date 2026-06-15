@@ -58,9 +58,11 @@ const allocationTables = raiseTarget ? [raiseTarget.floorTable, raiseTarget.reac
         <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
           <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start space-y-5">
-            <Marginalia number="01">
-              <Fragment set:html={mdToInline(spreads.roots.marginaliaPrimary)} />
-            </Marginalia>
+            {spreads.roots.marginaliaPrimary && (
+              <Marginalia number="01">
+                <Fragment set:html={mdToInline(spreads.roots.marginaliaPrimary)} />
+              </Marginalia>
+            )}
             <Marginalia>
               <Fragment set:html={mdToInline(spreads.roots.marginaliaSecondary)} />
             </Marginalia>

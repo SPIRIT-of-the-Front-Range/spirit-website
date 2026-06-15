@@ -18,7 +18,6 @@ cover:
 spreads:
   roots:
     sectionLabel: "Where it goes"
-    marginaliaPrimary: "**Where your money goes.** Less than 35% on overhead — well below the standard watchdog limits. At least 50% goes straight to programming and community grants."
     marginaliaSecondary: "Donations are processed through **Every.org** — a nonprofit platform that takes 0% if you cover the transaction fee."
     eyebrow: "Why your gift matters"
     heading: "Every gift moves us toward a more"
@@ -73,34 +72,6 @@ spreads:
         amount: "$500,000"
         use: "Total"
         pct: "100%"
-
-  cascade:
-    sectionLabel: "How it scales"
-    eyebrow: "★ How it scales"
-    heading: "Every dollar follows"
-    italicHeading: "a priority order:"
-    headingTail: ""
-    tiers:
-      - number: "01"
-        tier: "First"
-        title: "Keep the programs running"
-        body: "$49,190 in direct program costs. Salaries, operations, and legal compliance — what it takes to keep the nonprofit running so the rest of this work can happen."
-      - number: "02"
-        tier: "Then"
-        title: "Repay the startup capital"
-        body: "$6,409 in legal, hosting, and early steward costs that a steward personally fronted as loans to get SPIRIT off the ground."
-      - number: "03"
-        tier: "Then"
-        title: "Pay the stewards a baseline"
-        body: "$144k for the next 12 months, funding each steward at ~10 hrs/week ($2,000/mo). This is the floor."
-      - number: "04"
-        tier: "Then"
-        title: "Fund the Community Grant Pool"
-        body: "up to $150k, regranted funds go directly to local community projects across the Front Range — with the allocations chosen by the people who live here."
-      - number: "05"
-        tier: "And Beyond"
-        title: "Back-pay and deepen steward time"
-        body: "At our reach, we cover $36k of steward hours already worked in early 2026 and lift everyone from ~10 to ~17.9 hrs/week ($3,575/mo). The rate stays $50/hr; the commitment deepens."
 
   contribute:
     sectionLabel: "Make a gift"
