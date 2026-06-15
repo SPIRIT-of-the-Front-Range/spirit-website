@@ -56,6 +56,11 @@ spreads:
         color: "grass"
         term: "Commoning"
         body: "Commoning on a bioregional level directs our attentions and energies to where we can directly relate to the consequences of our stewardship, labor, and care."
+      - number: "05"
+        color: "clay"
+        term: "Regeneration"
+        pronunciation: "(noun)"
+        body: "Regeneration means renewing the capacity to renew. Consider the old adage about teaching someone to fish, rather than giving them a fish. Regeneration is about teaching them how to fish, how to make their own fishing poles, how to keep the fish in the pond happily reproducing. Cultural regeneration would teach them how to prepare the fish and share the meal with their relatives."
 
   relationship:
     sectionLabel: "Two bodies, one project"

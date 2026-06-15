@@ -42,13 +42,6 @@ spreads:
       cultural and educational programs, tools for community coordination, and
       community-directed funding. We bring together the people, neighborhoods, and
       organizations already working to care for this bioregion.
-    definitionTerm: regeneration
-    definitionBody: Regeneration means renewing the capacity to renew. Consider the
-      old adage about teaching someone to fish, rather than giving them a fish.
-      Regeneration is about teaching them how to fish, how to make their own
-      fishing poles, how to keep the fish in the pond happily reproducing.
-      Cultural regeneration would teach them how to prepare the fish and share
-      the meal with their relatives.
     imageSrc: /images/community/gathering-04.jpg
     imageAlt: Overhead view of Revolution Roll Call event in 2024 — pink dahlia,
       gourds, seeds, and prayers laid on grass with feet of the community.
