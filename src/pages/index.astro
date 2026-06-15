@@ -102,7 +102,7 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
       <div class="mt-8 pt-3 border-t border-bone-pale/40 grid grid-cols-12 gap-3 font-mono uppercase" style="color: rgba(247,239,216,0.85); font-size: 0.625rem; letter-spacing: 0.14em;">
         <span class="col-span-4 lg:col-span-3 whitespace-nowrap"><span style="color:#E8B58A;">●</span> {homeCover.captionLabel}</span>
         <span class="col-span-4 lg:col-span-6 text-center hidden sm:block whitespace-nowrap overflow-hidden text-ellipsis">{homeCover.captionLocation}</span>
-        <span class="col-span-4 lg:col-span-3 text-right opacity-75 whitespace-nowrap">{homeCover.captionCredit}</span>
+        <span class="col-span-4 lg:col-span-3 text-right opacity-75 whitespace-nowrap" set:html={homeCover.captionCredit.replace('True To Essence', '<a href="https://www.truetoessence.com" target="_blank" rel="noopener" class="underline underline-offset-2 hover:opacity-80" style="color:#E8B58A;">True To Essence</a>')}></span>
       </div>
     </div>
 
