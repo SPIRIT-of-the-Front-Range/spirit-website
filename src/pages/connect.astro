@@ -81,7 +81,7 @@ const socials = [
                 href={newsletterCta.href}
                 rel={newsletterCta.rel}
                 target="_blank"
-                class="btn-ink w-full justify-center !py-4 !text-base"
+                class="btn-ink w-full justify-center !py-4 !text-sm whitespace-nowrap"
               >
                 ✦ Subscribe & express interest →
               </a>
@@ -163,7 +163,12 @@ const socials = [
                         link.isMailto && 'break-all',
                       ]}
                     >
-                      {c.ctaLabel}
+                      {c.ctaLabel.startsWith('✉ ') ? (
+                        <span class="inline-flex items-baseline gap-1.5">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 self-center shrink-0" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+                          <span>{c.ctaLabel.slice(2)}</span>
+                        </span>
+                      ) : c.ctaLabel}
                     </a>
                   </article>
                 );
