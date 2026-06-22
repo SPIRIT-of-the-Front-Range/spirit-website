@@ -35,7 +35,7 @@ footer:
     - { label: "Stewards", href: "stewards/" }
     - { label: "Dashboard", href: "https://dashboard.spiritofthefrontrange.org" }
   reachUsTitle: "Reach us"
-  email: "hello@spiritofthefrontrange.org"
+  email: "admin@spiritofthefrontrange.org"
   externalLinks:
     - { label: "Front Range Commons →", href: "https://www.frontrangecommons.org/" }
   editorSignInLabel: "Editor sign-in"

@@ -99,7 +99,7 @@ spreads:
     closingItalic: All of our programming prioritizes access and equity.
     closingNote: "[Subscribe to events](https://dashboard.spiritofthefrontrange.org/subscribe)
       on our community dashboard. For inquiries, email
-      [hello@spiritofthefrontrange.org](mailto:hello@spiritofthefrontrange.org)."
+      [admin@spiritofthefrontrange.org](mailto:admin@spiritofthefrontrange.org)."
   whyThisMatters:
     sectionLabel: The present moment
     eyebrow: The Present Moment

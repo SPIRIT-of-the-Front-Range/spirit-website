@@ -83,7 +83,7 @@ spreads:
     fallbackHeading: "Our Every.org page is being set up."
     fallbackBody: "In the meantime, please reach out and we'll arrange a direct, tax-deductible gift."
     fallbackCtaLabel: "✉ Email us about giving"
-    fallbackCtaHref: "mailto:hello@spiritofthefrontrange.org?subject=Donation%20inquiry"
+    fallbackCtaHref: "mailto:admin@spiritofthefrontrange.org?subject=Donation%20inquiry"
     donateCtaLabel: "★ Donate via Every.org →"
     taxNote: "SPIRIT of the Front Range is a 501(c)(3) nonprofit. Gifts are tax-deductible to the extent allowed by law."
 ---
