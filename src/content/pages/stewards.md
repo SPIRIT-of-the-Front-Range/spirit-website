@@ -42,5 +42,5 @@ spreads:
     body: |
       In time, we hope SPIRIT's Board will be made up of **Indigenous leaders, elders, and longtime community stewards** — people who actually represent who lives on the Front Range.
 
-      For now, the six of us are the starting team. Our goal is to become regular members of the Front Range Commons, with no more authority than anyone else. As **SPIRIT exists to serve the Commons**, not to keep itself going.
+      For now, the six of us are the starting team. Our goal is to become regular members of the Front Range Commons, with no more authority than anyone else. **SPIRIT exists to serve the Commons**, not to keep itself going.
 ---

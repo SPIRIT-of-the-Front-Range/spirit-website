@@ -2,8 +2,8 @@
 title: "Community Grant Rounds"
 abbrev: "CGR"
 pillar: "allocation"
-pillarLabel: "Flowing money to the work"
-shortDescription: "We raise money for the members of the Front Range Bioregional Commons to **allocate to regenerative cultural and ecological projects** along the Front Range using community-led coordination and resource-disbursement technologies."
+pillarLabel: "Allocation"
+shortDescription: "We raise money for the members of the Front Range Bioregional Commons to **allocate to regenerative cultural and ecological projects** along the Front Range using community-led coordination and resource-disbursement technologies. Anyone from the Commons can propose a regenerative project to the Bioregional Flow Fund, and then the larger body of the Commons votes on which projects will receive allocations."
 status: "upcoming"
 order: 4
 detail:

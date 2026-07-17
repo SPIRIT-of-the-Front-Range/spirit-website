@@ -19,9 +19,7 @@ const jumpNav = [
   { label: 'What SPIRIT is', href: '#mission' },
   { label: 'Programs', href: '#programs' },
   { label: 'The present moment', href: '#why' },
-  { label: 'The Commons', href: '#commons' },
   { label: 'Four Pillars', href: '#pillars' },
-  { label: 'Glossary', href: '#glossary' },
   { label: 'Donate', href: '#funding' },
 ];
 
@@ -35,16 +33,19 @@ const pillarTone: Record<string, { text: string; photo: string }> = {
 
 // Programs teaser tones — first 3 programs use clay/creek/sage on home
 const teaserTones = ['clay', 'creek', 'sage'] as const;
-const teaserPhotos = ['02', '07', '11'];
+const teaserPhotos = [
+  'images/site/program-teach-ins.jpg',
+  'images/site/program-suppers.jpg',
+  'images/site/program-resiliency.jpg',
+];
 
 const coverPrimary = resolveLink(homeCover.primaryCtaHref);
 const coverSecondary = resolveLink(homeCover.secondaryCtaHref);
 const missionPrimary = sp.mission ? resolveLink(sp.mission.primaryCtaHref) : null;
 const missionSecondary = sp.mission ? resolveLink(sp.mission.secondaryCtaHref) : null;
+const missionTertiary = sp.mission?.tertiaryCtaHref ? resolveLink(sp.mission.tertiaryCtaHref) : null;
 const programsTeaserCta = sp.programsTeaser ? resolveLink(sp.programsTeaser.ctaHref) : null;
 const whyCta = sp.whyThisMatters ? resolveLink(sp.whyThisMatters.ctaHref) : null;
-const commonsTeaserPrimary = sp.commonsTeaser ? resolveLink(sp.commonsTeaser.primaryCtaHref) : null;
-const commonsTeaserSecondary = sp.commonsTeaser ? resolveLink(sp.commonsTeaser.secondaryCtaHref) : null;
 const fundingPrimary = sp.funding ? resolveLink(sp.funding.primaryCtaHref) : null;
 const fundingSecondary = sp.funding ? resolveLink(sp.funding.secondaryCtaHref) : null;
 const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null;
@@ -204,6 +205,9 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
             <div class="mt-8 flex flex-wrap gap-3">
               <a href={missionPrimary.href} rel={missionPrimary.rel} class="btn-line">{sp.mission.primaryCtaLabel}</a>
               <a href={missionSecondary.href} rel={missionSecondary.rel} class="btn-line">{sp.mission.secondaryCtaLabel}</a>
+              {sp.mission.tertiaryCtaLabel && missionTertiary && (
+                <a href={missionTertiary.href} rel={missionTertiary.rel} class="btn-line">{sp.mission.tertiaryCtaLabel}</a>
+              )}
             </div>
           </div>
 
@@ -235,7 +239,7 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD 04 — PROGRAMS (Easy ways to get involved)        */}
+  {/* SPREAD 04 — PROGRAMS (Ways to get involved)             */}
   {/* ====================================================== */}
   {sp.programsTeaser && programsTeaserCta && (
     <Spread folio="04" section={sp.programsTeaser.sectionLabel} bg="bone-deep" class="programs-spread border-y-2 border-ink" id="programs">
@@ -252,7 +256,7 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
             <p class="text-body text-shadow leading-snug mb-3 programs-intro">
               <Fragment set:html={mdToInline(sp.programsTeaser.intro)} />
             </p>
-            <p class="caption text-shadow">
+            <p class="text-body text-shadow leading-snug programs-intro">
               <Fragment set:html={mdToInline(sp.programsTeaser.caption)} />
             </p>
           </div>
@@ -267,7 +271,7 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
             return (
               <article class="program-cat md:grid md:[grid-template-rows:subgrid] md:row-span-6 flex flex-col gap-y-3 md:gap-y-0">
                 <div class="aspect-[4/5] photo duotone-cover md:mb-2">
-                  <img src={basePath(`images/community/gathering-${photoNum}.jpg`)} alt="" class="ken-burns" loading="lazy" />
+                  <img src={basePath(photoNum)} alt="" class="ken-burns" loading="lazy" />
                 </div>
                 <div class="flex items-baseline justify-between gap-2">
                   <span class={`folio-num text-3xl ${pillarTone[tone].text} leading-none`}>{String(i + 1).padStart(2, '0')}</span>
@@ -310,6 +314,7 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
           <div class="col-span-12 lg:col-span-5">
             <p class="eyebrow text-clay-deep mb-3">{sp.whyThisMatters.eyebrow}</p>
             <h2 class="font-display font-bold text-ink leading-[1.12]" style="font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.6rem); hyphens: none; -webkit-hyphens: none; overflow-wrap: normal; text-wrap: balance;">{sp.whyThisMatters.heading}</h2>
+            <p class="caption text-shadow mt-4">Toggle Headings unfold to reveal content.</p>
           </div>
           <div class="col-span-12 lg:col-span-7 lg:pl-8 lg:border-l border-ink">
             <div class="border-t border-ink/30">
@@ -332,53 +337,10 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD 06 — THE COMMONS (compact card link-out)        */}
-  {/* ====================================================== */}
-  {sp.commonsTeaser && commonsTeaserPrimary && commonsTeaserSecondary && (
-    <Spread folio="06" section={sp.commonsTeaser.sectionLabel} bg="bone-deep" class="commons-card-spread border-b-2 border-ink" id="commons">
-      <div class="px-5 lg:px-12 py-16 lg:py-24">
-        <div class="grid grid-cols-12 gap-6 lg:gap-10 items-stretch">
-
-          <div class="col-span-12 lg:col-span-5 relative bg-creek-deep min-h-[280px] lg:min-h-[360px] border border-ink">
-            <div class="absolute inset-0 photo duotone-creek">
-              <img src={basePath(sp.commonsTeaser.imageSrc ?? 'images/community/gathering-08.jpg')} alt="Water pooled in a red rock crevice." class="w-full h-full object-cover ken-burns" loading="lazy" />
-            </div>
-            {sp.commonsTeaser.imageCaption && (
-              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-creek-deep/85 to-transparent">
-                <span class="caption text-bone-pale/90">{sp.commonsTeaser.imageCaption}</span>
-              </div>
-            )}
-          </div>
-
-          <div class="col-span-12 lg:col-span-7 lg:pl-2 flex flex-col justify-center">
-            <div class="flex items-baseline gap-4 mb-4">
-              <p class="eyebrow eyebrow-creek">{sp.commonsTeaser.eyebrow}</p>
-            </div>
-            <h2 class="display-m text-ink mb-5 leading-[0.95] break-words">
-              {sp.commonsTeaser.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.commonsTeaser.italicHeading}</span>{sp.commonsTeaser.headingTail && (<Fragment>{sp.commonsTeaser.headingTail}</Fragment>)}
-            </h2>
-            <div class="text-body text-ink leading-snug max-w-2xl mb-4 commons-card-body">
-              <Fragment set:html={injectTermTooltips(mdToInline(sp.commonsTeaser.body))} />
-            </div>
-            <div class="font-serif italic text-body-lg text-ink leading-snug max-w-2xl mb-6 commons-card-body">
-              <Fragment set:html={injectTermTooltips(mdToInline(sp.commonsTeaser.bodyItalic))} />
-            </div>
-            <div class="flex flex-wrap gap-3">
-              <a href={commonsTeaserPrimary.href} rel={commonsTeaserPrimary.rel} class="btn-ink">{sp.commonsTeaser.primaryCtaLabel}</a>
-              <a href={commonsTeaserSecondary.href} rel={commonsTeaserSecondary.rel} class="btn-line">{sp.commonsTeaser.secondaryCtaLabel}</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD 07 — FOUR PILLARS                                */}
+  {/* SPREAD 06 — FOUR PILLARS                                */}
   {/* ====================================================== */}
   {sp.pillars && (
-    <Spread folio="07" section={sp.pillars.sectionLabel} bg="bone" class="pillars-spread" id="pillars">
+    <Spread folio="06" section={sp.pillars.sectionLabel} bg="bone" class="pillars-spread" id="pillars">
       <div class="px-5 lg:px-10 pt-16 lg:pt-24 pb-20 lg:pb-32 relative">
 
         <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-10 lg:mb-12 items-end">
@@ -400,7 +362,12 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-12 lg:gap-y-16 relative">
           {sp.pillars.items.map((item: any, i: number) => {
-            const photoMap = ['09', '07', '06', '04'];
+            const photoMap = [
+              'images/site/pillar-culturing.jpg',
+              'images/site/pillar-solidarity.jpg',
+              'images/site/pillar-coordination.jpg',
+              'images/site/pillar-allocation.jpg',
+            ];
             return (
               <article class="pillar-cat group flex flex-col">
                 <p class={`eyebrow ${pillarTone[item.color].text} mb-2`}>{item.pillar}</p>
@@ -409,7 +376,7 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
                   <h3 class="display-m text-ink leading-[0.92]">{item.title}</h3>
                 </div>
                 <div class={`aspect-[5/3] mb-4 photo ${pillarTone[item.color].photo}`}>
-                  <img src={basePath(`images/community/gathering-${photoMap[i]}.jpg`)} alt={item.title} loading="lazy" />
+                  <img src={basePath(photoMap[i])} alt={item.title} loading="lazy" />
                 </div>
                 <p class={`caption ${pillarTone[item.color].text} mb-3`}>{item.photoCaption}</p>
                 <p class="text-body text-ink leading-snug mb-4 flex-1 pillar-body">
@@ -429,20 +396,22 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
         <div class="rule-double mt-16"></div>
         <p class="caption text-shadow mt-3 text-right">{sp.pillars.footnote}</p>
         {sp.pillars.closingBody && (
-          <p class="font-serif italic text-body-lg text-ink leading-snug max-w-3xl mt-8">{sp.pillars.closingBody}</p>
+          <p class="font-serif italic text-body-lg text-ink leading-snug max-w-3xl mt-8 pillars-closing">
+            <Fragment set:html={mdToInline(sp.pillars.closingBody)} />
+          </p>
         )}
       </div>
     </Spread>
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD 08 — DONATE / BACK COVER                         */}
+  {/* SPREAD 07 — DONATE / BACK COVER                         */}
   {/* ====================================================== */}
   {sp.funding && fundingPrimary && fundingSecondary && (
-    <Spread folio="08" section={sp.funding.sectionLabel} bg="image" minHeight="100svh" class="donate-spread overflow-hidden" id="funding">
+    <Spread folio="07" section={sp.funding.sectionLabel} bg="image" minHeight="100svh" class="donate-spread overflow-hidden" id="funding">
 
       <div class="absolute inset-0 photo" aria-hidden="true">
-        <img src={basePath('images/community/gathering-02.jpg')} alt="" class="w-full h-full object-cover ken-burns" loading="lazy" style="filter: contrast(1.05) brightness(0.5) saturate(0.8);" />
+        <img src={basePath('images/site/funding-dusk-ridge.jpg')} alt="" class="w-full h-full object-cover ken-burns" loading="lazy" style="filter: contrast(1.05) brightness(0.6) saturate(0.85);" />
       </div>
       <div class="absolute inset-0 pointer-events-none"
            style="background:
@@ -498,49 +467,10 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
   )}
 
   {/* ====================================================== */}
-  {/* SPREAD 09 — HOME GLOSSARY (Begin with the words)        */}
-  {/* ====================================================== */}
-  {sp.homeGlossary && (
-    <Spread folio="09" section={sp.homeGlossary.sectionLabel} bg="bone-pale" class="border-y border-ink" id="glossary">
-      <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
-          <div class="col-span-12 lg:col-span-4">
-            <p class="eyebrow eyebrow-creek mb-3">{sp.homeGlossary.eyebrow}</p>
-            <h2 class="display-l text-ink leading-[0.95] mb-6 break-words">
-              {sp.homeGlossary.heading} <span class="italic font-serif font-light text-creek-deep" style="font-weight:300;">{sp.homeGlossary.italicHeading}</span>
-            </h2>
-            <p class="text-body text-shadow leading-snug max-w-md mb-6">
-              <Fragment set:html={mdToInline(sp.homeGlossary.intro)} />
-            </p>
-            {sp.homeGlossary.ctaLabel && sp.homeGlossary.ctaHref && (
-              <a href={basePath(sp.homeGlossary.ctaHref)} class="no-underline font-mono text-xs uppercase tracking-[0.18em] font-bold text-creek-deep hover:text-clay-deep">
-                {sp.homeGlossary.ctaLabel}
-              </a>
-            )}
-          </div>
-          <div class="col-span-12 lg:col-span-8">
-            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-              {sp.homeGlossary.terms.map((t: any) => (
-                <article class="border-t border-ink pt-4">
-                  <span class={`folio-num text-2xl text-${t.color}-deep block mb-1`}>{t.number}</span>
-                  <p class={`eyebrow text-${t.color}-deep mb-2`}>{t.term}</p>
-                  <p class="text-body text-shadow leading-snug">
-                    <Fragment set:html={mdToInline(t.body)} />
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </Spread>
-  )}
-
-  {/* ====================================================== */}
-  {/* SPREAD 10 — CLOSING CTA                                 */}
+  {/* SPREAD 08 — CLOSING CTA                                 */}
   {/* ====================================================== */}
   {sp.closingCta && closingCtaLink && (
-    <Spread folio="10" section="All for the Commons" bg="ink" class="closing-cta-spread">
+    <Spread folio="08" section="All for the Commons" bg="ink" class="closing-cta-spread">
       <div class="px-5 lg:px-12 py-20 lg:py-32 text-center on-dark">
         <p class="eyebrow mb-6" style="color:#E8B58A;">{sp.closingCta.eyebrow}</p>
         <h2 class="display-l mx-auto max-w-4xl leading-[1.0]" style="color:#F7EFD8;">{sp.closingCta.closingText}</h2>
@@ -559,12 +489,12 @@ const closingCtaLink = sp.closingCta ? resolveLink(sp.closingCta.ctaHref) : null
   .context-body :global(p:first-child) { margin-top: 0; }
   .mission-body :global(p) { margin-top: 0.75rem; }
   .mission-body :global(p:first-child) { margin-top: 0; }
-  .commons-card-body :global(p) { margin-top: 0.6rem; }
-  .commons-card-body :global(p:first-child) { margin-top: 0; }
   .pillar-body :global(p) { margin: 0; }
   .funding-body :global(p) { margin-top: 0.75rem; }
   .funding-body :global(p:first-child) { margin-top: 0; }
   .programs-intro :global(a) { color: var(--color-creek-deep); text-decoration: underline; }
+  .pillars-closing :global(a) { color: var(--color-creek-deep); text-decoration: underline; text-underline-offset: 2px; }
+  .pillars-closing :global(a:hover) { color: var(--color-clay-deep); }
   .program-teaser-desc :global(strong) { font-weight: 700; color: var(--color-ink); }
   .program-teaser-desc :global(em) { font-style: italic; color: var(--color-clay-deep); }
   .why-item summary::-webkit-details-marker { display: none; }

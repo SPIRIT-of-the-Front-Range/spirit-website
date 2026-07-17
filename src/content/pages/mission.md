@@ -59,14 +59,13 @@ spreads:
     ctaHref: programs/
     heading: We know the way is
     eyebrow: Our mission
-    imageCaption: Revolution Roll Call 2024
-    imageAlt: Overhead view of Revolution Roll Call event in 2024 — pink dahlia,
-      gourds, seeds, and prayers laid on grass with feet of the community.
+    imageCaption: Revolution Roll Call · council in the round
+    imageAlt: A community council gathered in a large circle inside a great hall.
     sectionLabel: Our mission
     marginalia: "**Mission.** SPIRIT serves as connective tissue for the
       regenerative bioregional movement activating here on the Front Range."
     italicHeading: together.
-    image: /images/community/gathering-04.jpg
+    image: /images/site/mission-council.jpg
   ethics:
     sectionLabel: How we work
     eyebrow: Six Values
@@ -80,7 +79,7 @@ spreads:
       necessary work of weaving our communities back together with the life that
       sustains us all.
     ctaLabel: Join our email list →
-    ctaHref: connect/
+    ctaHref: https://dashboard.spiritofthefrontrange.org/subscribe
     items:
       - number: "01"
         color: clay

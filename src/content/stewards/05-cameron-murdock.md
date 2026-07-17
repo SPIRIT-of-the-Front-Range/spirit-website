@@ -1,6 +1,6 @@
 ---
 name: "Cameron Ely-Murdock"
-role: "Infrastructuralist and Coordination Technology Designer"
+role: "Infrastructure Steward and Coordination Technology Designer"
 website: "https://rivr.social"
 websiteLabel: "rivr.social"
 order: 4

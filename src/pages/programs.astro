@@ -22,10 +22,10 @@ const renderedPrograms = await Promise.all(
 // programs collection schema — kept here for now since photos rarely change.
 const BASE = import.meta.env.BASE_URL;
 const programVisuals: Record<string, { photo: string; tone: 'clay' | 'creek' | 'sage' | 'grass'; plate: string }> = {
-  'commons-sense-education': { photo: `${BASE}images/community/gathering-02.jpg`, tone: 'sage',  plate: 'Plate XII'  },
-  'solidarity-suppers':      { photo: `${BASE}images/community/gathering-04.jpg`, tone: 'clay',  plate: 'Plate XIII' },
-  'neighborhood-resiliency': { photo: `${BASE}images/community/gathering-09.jpg`, tone: 'creek', plate: 'Plate XIV'  },
-  'community-grant-rounds':  { photo: `${BASE}images/community/gathering-07.jpg`, tone: 'grass', plate: 'Plate XV'   },
+  'commons-sense-education': { photo: `${BASE}images/site/plate-teach-ins-books.jpg`,    tone: 'sage',  plate: 'Plate XII'  },
+  'solidarity-suppers':      { photo: `${BASE}images/site/plate-suppers-nourish.jpg`,    tone: 'clay',  plate: 'Plate XIII' },
+  'neighborhood-resiliency': { photo: `${BASE}images/site/plate-resiliency-creek.jpg`,   tone: 'creek', plate: 'Plate XIV'  },
+  'community-grant-rounds':  { photo: `${BASE}images/site/plate-grant-rounds-garden.jpg`, tone: 'grass', plate: 'Plate XV'   },
 };
 
 const primaryLink = spreads?.getInvolved ? resolveLink(spreads.getInvolved.primaryCtaHref) : null;
@@ -119,6 +119,19 @@ const secondaryLink = spreads?.getInvolved ? resolveLink(spreads.getInvolved.sec
         <div class="flex flex-wrap gap-3 justify-center">
           <a href={primaryLink.href} rel={primaryLink.rel} class="btn-ink" style="background:#F2EAD8; color:#1F1E1B; border-color:#F2EAD8;">{spreads.getInvolved.primaryCtaLabel}</a>
           <a href={secondaryLink.href} rel={secondaryLink.rel} class="btn-line" style="border-color: rgba(242,234,216,0.85); color:#F2EAD8;">{spreads.getInvolved.secondaryCtaLabel}</a>
+        </div>
+
+        {/* Closing footnotes — shared with the program detail pages */}
+        <div class="mt-14 pt-8 max-w-2xl mx-auto" style="border-top: 1px solid rgba(247,239,216,0.3);">
+          <p class="text-body-lg italic font-serif font-light" style="color:#F7EFD8;">
+            All of our programming prioritizes access and equity
+          </p>
+          <p class="text-body mt-3" style="color: rgba(247,239,216,0.85); overflow-wrap: anywhere;">
+            Subscribe to events at <a href="https://dashboard.spiritofthefrontrange.org/subscribe" rel="noopener" style="color:#E8B58A;">dashboard.spiritofthefrontrange.org/subscribe</a>
+          </p>
+          <p class="text-body mt-1" style="color: rgba(247,239,216,0.85);">
+            For inquiries, email <a href="mailto:admin@spiritofthefrontrange.org" style="color:#E8B58A;">admin@spiritofthefrontrange.org</a>
+          </p>
         </div>
       </div>
     </Spread>

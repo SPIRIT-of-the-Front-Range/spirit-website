@@ -4,7 +4,8 @@ import { basePath, resolveLink } from '../../lib/paths';
 
 const settings = await getEntry('settings', 'site');
 if (!settings) throw new Error('Missing src/content/settings/site.md');
-const { siteName, wordmarkSrc, header } = settings.data;
+const { siteName, wordmarkSrc, header, announcement } = settings.data;
+const announcementLink = announcement?.enabled ? resolveLink(announcement.ctaHref) : null;
 
 const nav = header.nav.map((item) => ({
   label: item.label,
@@ -123,4 +124,26 @@ const subscribeLabel = header.subscribeLabel ?? 'Subscribe';
       </ul>
     </div>
   </nav>
+
+  {/* Announcement strip — site-wide notice under the masthead */}
+  {announcement?.enabled && announcementLink && (
+    <a
+      href={announcementLink.href}
+      rel={announcementLink.rel}
+      target={announcement.ctaHref.startsWith('http') ? '_blank' : undefined}
+      class="block no-underline bg-clay-deep border-b-2 border-ink group"
+    >
+      <div class="almanac-edge flex items-baseline justify-center gap-x-3 gap-y-0.5 flex-wrap py-2.5 text-center">
+        <span class="font-mono uppercase tracking-[0.22em] font-bold text-[10px]" style="color:#E8B58A;">
+          ★ {announcement.eyebrow}
+        </span>
+        <span class="font-serif italic text-[13px] sm:text-[14px] leading-snug" style="color:#F7EFD8;">
+          {announcement.message}
+        </span>
+        <span class="font-mono uppercase tracking-[0.18em] font-bold text-[10px] underline underline-offset-4 decoration-1 group-hover:decoration-2" style="color:#F2EAD8;">
+          {announcement.ctaLabel}
+        </span>
+      </div>
+    </a>
+  )}
 </header>

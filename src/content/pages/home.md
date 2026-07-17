@@ -42,10 +42,10 @@ spreads:
       cultural and educational programs, tools for community coordination, and
       community-directed funding. We bring together the people, neighborhoods, and
       organizations already working to care for this bioregion.
-    imageSrc: /images/community/gathering-04.jpg
-    imageAlt: Overhead view of Revolution Roll Call event in 2024 — pink dahlia,
-      gourds, seeds, and prayers laid on grass with feet of the community.
-    imageCaption: Revolution Roll Call 2024
+    imageSrc: /images/site/context-front-range-overlook.jpg
+    imageAlt: The Front Range plains seen from a rocky foothills overlook, a
+      wind-shaped pine in the foreground.
+    imageCaption: the Front Range, from the foothills
   mission:
     sectionLabel: Our mission
     marginalia: "**Mission.** SPIRIT serves as connective tissue for the
@@ -67,6 +67,8 @@ spreads:
     primaryCtaHref: stewards/
     secondaryCtaLabel: ◇ Our Vision & approach
     secondaryCtaHref: mission/
+    tertiaryCtaLabel: ◇ The Commons
+    tertiaryCtaHref: the-commons/
     editorsNoteTitle: The Bioregion at the Center
     editorsNoteBody: Core to the philosophy of SPIRIT of the Front Range is the
       recognition that the most meaningful units of collective life are not the
@@ -81,9 +83,9 @@ spreads:
       Bioregional Commons or fund the Commons projects directly.
     diagramCaption: How SPIRIT relates to the Commons
   programsTeaser:
-    sectionLabel: Easy ways in
+    sectionLabel: Ways in
     eyebrow: Live programs
-    heading: Easy ways to
+    heading: Ways to
     italicHeading: get involved.
     intro: With care-based programs to foster solidarity within our neighborhoods
       and communities, and to bridge with the displaced original ancestors of
@@ -123,41 +125,18 @@ spreads:
           other and are not well-incentivized to collaborate. Good work is
           already happening here, but the connective tissue that links it all
           together is missing.
-    ctaLabel: Read more of what we are noticing in Words
-    ctaHref: words/
-  commonsTeaser:
-    sectionLabel: What we're building toward
-    eyebrow: What we're building toward
-    heading: The
-    italicHeading: Front Range
-    headingTail: " Commons."
-    body: A decentralized, member-directed network-in-formation dedicated to
-      cultural and ecological stewardship, and community-led resource allocation;
-      a space where anyone can contribute, propose projects, share resources, and
-      participate in organizational governance.
-    bodyItalic: >-
-      **The Front Range Commons** is a way for the people who live here to decide
-      together how to care for this place — alongside the foundations, agencies,
-      and organizations already at work. Anyone who lives in this bioregion can
-      join. SPIRIT provides the legal scaffolding so the Commons can focus on the
-      actual work.
-    primaryCtaLabel: Read more about the Commons
-    primaryCtaHref: the-commons/
-    secondaryCtaLabel: Visit Front Range Commons
-    secondaryCtaHref: https://www.frontrangecommons.org/
-    imageSrc: /images/community/gathering-08.jpg
-    imageCaption: water in red rock
-    stickerLabel: "06"
+    ctaLabel: → Definitions
+    ctaHref: words/#glossary
   pillars:
-    sectionLabel: Four kinds of work
-    eyebrow: The work, in four parts
+    sectionLabel: Four threads, four pillars
+    eyebrow: Four threads, four pillars
     heading: Four Pillars,
     italicHeading: woven together.
     intro: SPIRIT exists to coordinate a decentralized movement of local leaders
       engaged in economic re-localization, Indigenous revitalization, neighborhood
       resiliency, and bioregional regeneration. Our four pillars guide us toward
       alignment with that purpose.
-    caption: ↓ see Programs below for what these look like in practice
+    caption: ↑ see Programs above for what these look like in practice
     footnote: ★ the four pillars are activated through the programs we run
     items:
       - number: "01"
@@ -204,6 +183,13 @@ spreads:
           broad support over large donations. We fund what matters to us."
         outcome: fairly-distributed care
         photoCaption: — harvest, summer
+    closingBody: "**SPIRIT is a 501(c)(3) nonprofit that** exists to serve the
+      [Commons](the-commons/), and *not* to perpetuate itself. SPIRIT is the
+      vessel that interfaces with the existing world of foundations,
+      governments, and formal partnerships to offer programming, education, and
+      fiscal sponsorship to serve the regeneration of the Front Range. We are a
+      *Transitional Stewardship* team designing the SPIRIT institution to be
+      replaced by the decentralized, member-directed Commons."
   funding:
     footerRight: → next update coming Spring
     footerLeft: thanks for reading
@@ -213,7 +199,7 @@ spreads:
       bioregion possible.**
 
 
-      Every donation moves toward a more resilient, more connected Front Range — through Commons Sense education that opens understanding, Solidarity Suppers that deepen relationships, Neighborhood Resiliency Programs that build real preparedness, and Community Grant Rounds that put resources directly in the hands of the communities doing the most vital work.
+      Every donation moves toward a more resilient, more connected Front Range — through Commons Sense Teach-Ins that open understanding, Solidarity Suppers that deepen relationships, Neighborhood Resiliency Programs that build real preparedness, and Community Grant Rounds that put resources directly in the hands of the communities doing the most vital work.
     heading: Every gift moves us toward a more
     cascadeTitle: How your dollar flows
     primaryCtaLabel: Donate
@@ -221,7 +207,7 @@ spreads:
     eyebrow: Support the work
     sectionLabel: Support the work
     footerCenter: SPIRIT of the Front Range · 501(c)(3) · est. 2026
-    cascadeCaption: driftwood · creek edge · 2024
+    cascadeCaption: dusk over the foothills
     headingTail: " Front Range."
     italicHeading: connected
     secondaryCtaLabel: ◇ See where it goes
@@ -233,42 +219,6 @@ spreads:
         title: Funding SPIRIT programs to seed the commons
       - number: "03"
         title: Funding the Commons Grant Pool
-  homeGlossary:
-    sectionLabel: The words we use
-    eyebrow: A few terms, plainly
-    heading: Begin with
-    italicHeading: the words.
-    intro: A few words come up often on this site. Here's the short version of
-      each. Hover any *underlined* word elsewhere on the site for an inline
-      definition.
-    ctaLabel: → More definitions on Words page
-    ctaHref: words/#glossary
-    terms:
-      - number: "01"
-        color: clay
-        term: Bioregion
-        body: "*(noun)* — A geographically and hydrologically defined area
-          characterized by distinct ecological features that together form a
-          coherent biocultural home."
-      - number: "02"
-        color: creek
-        term: The Commons
-        body: "\"The Commons\" points to the living realities of shared place —
-          the commonality of the ecologies and resources for which all residents
-          of a place share responsibility, and on which all residents depend."
-      - number: "03"
-        color: sage
-        term: The Front Range Commons
-        body: A decentralized, member-directed network-in-formation dedicated to
-          cultural and ecological stewardship, and community-led resource
-          allocation; a space where anyone can contribute, propose projects,
-          share resources, and participate in organizational governance.
-      - number: "04"
-        color: grass
-        term: Commoning
-        body: Commoning on a bioregional level directs our attentions and energies
-          to where we can directly relate to the consequences of our stewardship,
-          labor, and care.
   closingCta:
     eyebrow: All for the Commons
     closingText: We come together for something beautiful.

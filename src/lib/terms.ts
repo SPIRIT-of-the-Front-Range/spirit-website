@@ -39,7 +39,7 @@ export const TERMS: Record<string, TermDef> = {
   'the front range commons': {
     term: 'the front range commons',
     short:
-      'A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in organizational governance.',
+      'A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in network governance.',
     tone: 'sage',
     href: '/words/#glossary',
   },
@@ -75,6 +75,13 @@ export const TERMS: Record<string, TermDef> = {
     term: 'institutional self-negation',
     short:
       'The deliberate practice of transferring responsibility from SPIRIT to the Commons as fast as the Commons can absorb it.',
+    tone: 'clay',
+    href: '/words/#glossary',
+  },
+  regeneration: {
+    term: 'regeneration',
+    short:
+      'Regeneration means renewing the capacity to renew. Consider the old adage about teaching someone to fish, rather than giving them a fish. Regeneration is about teaching them how to fish, how to make their own fishing poles, how to keep the fish in the pond happily reproducing.',
     tone: 'clay',
     href: '/words/#glossary',
   },

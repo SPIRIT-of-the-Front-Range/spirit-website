@@ -58,4 +58,4 @@ detail:
 
 When the power goes out on your block, do you know which neighbor has a generator? When the creek floods, do you know the evacuation routes? When you grow more tomatoes than you can eat, do you know who down the street could use them? When a wildfire pushes toward your neighborhood, do you have a plan — and did you compose it with the people you'd be evacuating alongside?
 
-Right now, for many people on the Front Range, the answer to those questions is "no." SPIRIT rises to change that. That's why we created the Neighborhood Resiliency Program – to support denizens taking responsibility with their neighbors to cultivate patterns of relationship, solidarity, and resiliency so that we know whose backs we've got and whose got ours.
+Right now, for many people on the Front Range, the answer to those questions is "no." SPIRIT works to change that. The Neighborhood Resiliency Program supports denizens taking responsibility with their neighbors to cultivate patterns of relationship, solidarity, and resiliency so that we know whose backs we've got and whose got ours.

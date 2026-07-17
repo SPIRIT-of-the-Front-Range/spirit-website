@@ -630,6 +630,17 @@ const settings = defineCollection({
       url: z.string(),
       ready: z.boolean(),
     }),
+    // Optional site-wide announcement strip under the masthead.
+    // Delete the block or set enabled: false to retire it.
+    announcement: z
+      .object({
+        enabled: z.boolean().default(true),
+        eyebrow: z.string(),
+        message: z.string(),
+        ctaLabel: z.string(),
+        ctaHref: z.string(),
+      })
+      .optional(),
   }),
 });
 

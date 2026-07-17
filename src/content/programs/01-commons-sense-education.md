@@ -1,6 +1,6 @@
 ---
-title: Commons Sense Education
-abbrev: CSE
+title: Commons Sense Teach-Ins
+abbrev: CST
 pillar: culturing
 pillarLabel: Culturing
 shortDescription: We offer **Commons Sense** teachings to educate people on the

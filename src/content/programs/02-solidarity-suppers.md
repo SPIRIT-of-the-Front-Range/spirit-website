@@ -2,7 +2,7 @@
 title: Solidarity Suppers
 abbrev: SS
 pillar: belonging
-pillarLabel: Belonging
+pillarLabel: Solidarity
 shortDescription: We host small **Solidarity Suppers** to nourish and council
   with indigenous relatives, community elders, mothers, and movement leaders.
   They are invitational spaces where people show up on behalf of their

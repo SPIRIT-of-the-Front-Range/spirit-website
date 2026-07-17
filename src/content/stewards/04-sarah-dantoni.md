@@ -1,6 +1,6 @@
 ---
 name: "Sarah D'Antoni"
-role: "Relationship Cultivator and Culture Keeper"
+role: "Relationship Steward and Culture Keeper"
 website: "https://www.ancestralweavings.com"
 websiteLabel: "ancestralweavings.com"
 order: 3

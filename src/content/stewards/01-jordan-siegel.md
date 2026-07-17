@@ -1,6 +1,6 @@
 ---
 name: "Jordan Siegel"
-role: "Co-Founder and Commons Cultivator"
+role: "Co-Founding Steward and Commons Educator"
 website: "https://themysteryworks.com"
 websiteLabel: "themysteryworks.com"
 order: 1

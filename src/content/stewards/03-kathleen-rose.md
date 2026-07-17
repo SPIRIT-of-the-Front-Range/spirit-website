@@ -1,6 +1,6 @@
 ---
 name: "Kathleen Marie Rose"
-role: "Creative Director and Culture Keeper"
+role: "Creative Steward, Artifact Designer and Culture Keeper"
 website: "https://truetoessence.com"
 websiteLabel: "truetoessence.com"
 order: 2

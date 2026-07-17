@@ -45,4 +45,11 @@ footer:
 donation:
   url: "https://www.every.org/spiritofthefrontrange?suggestedAmounts=40%2C100%2C200%2C500%2C1000&theme_color=163857&designation=EVERY.ORG+GENERAL+FUNDING&utm_campaign=donate-link#/donate"
   ready: true
+
+announcement:
+  enabled: true
+  eyebrow: "Upcoming"
+  message: "Join us for the Reverse Gala — an evening to help fund the bioregion."
+  ctaLabel: "Register →"
+  ctaHref: "https://luma.com/u3dkz8vl"
 ---

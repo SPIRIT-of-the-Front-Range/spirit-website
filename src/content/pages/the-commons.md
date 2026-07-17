@@ -21,7 +21,7 @@ spreads:
     heading: "A way for us to"
     italicHeading: "take care of this place together."
     body: |
-      A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in organizational governance.
+      A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in network governance.
 
       The Front Range Commons is **a way for the people who live on the Front Range to make collective decisions about how to care for where we live.** Anyone who lives here can join. Members can propose projects, share resources, and vote on how community-raised money gets used.
 
@@ -29,38 +29,6 @@ spreads:
 
       SPIRIT is the **scaffolding** that makes this possible. SPIRIT handles the legal pieces and the paperwork — what a nonprofit can do that a community body cannot. **The Commons does the actual work of caring for this place.**
     bodyItalic: "SPIRIT is a 501(c)(3) nonprofit that exists to serve the Commons, and not to perpetuate itself. SPIRIT is the vessel that interfaces with the existing world of foundations, governments, and formal partnerships to offer programming, education, and fiscal sponsorship to serve the regeneration of the Front Range. We are a Transitional Stewardship team designing the SPIRIT institution to be replaced by the decentralized, member-directed Commons."
-
-  glossary:
-    sectionLabel: "The words we use"
-    eyebrow: "A few terms, plainly"
-    heading: "Begin with"
-    italicHeading: "the words."
-    intro: "A few words come up often on this site. Here's the short version of each. Hover any *underlined* word elsewhere on the site for an inline definition."
-    ctaLabel: "→ More definitions on Words page"
-    ctaHref: "words/#glossary"
-    terms:
-      - number: "01"
-        color: "clay"
-        term: "Bioregion"
-        pronunciation: "(noun)"
-        body: "A geographically and hydrologically defined area characterized by distinct ecological features that together form a coherent biocultural home."
-      - number: "02"
-        color: "creek"
-        term: "The Commons"
-        body: "\"The Commons\" points to the living realities of shared place — the commonality of the ecologies and resources for which all residents of a place share responsibility, and on which all residents depend."
-      - number: "03"
-        color: "sage"
-        term: "The Front Range Commons"
-        body: "A decentralized, member-directed network-in-formation dedicated to cultural and ecological stewardship, and community-led resource allocation; a space where anyone can contribute, propose projects, share resources, and participate in organizational governance."
-      - number: "04"
-        color: "grass"
-        term: "Commoning"
-        body: "Commoning on a bioregional level directs our attentions and energies to where we can directly relate to the consequences of our stewardship, labor, and care."
-      - number: "05"
-        color: "clay"
-        term: "Regeneration"
-        pronunciation: "(noun)"
-        body: "Regeneration means renewing the capacity to renew. Consider the old adage about teaching someone to fish, rather than giving them a fish. Regeneration is about teaching them how to fish, how to make their own fishing poles, how to keep the fish in the pond happily reproducing. Cultural regeneration would teach them how to prepare the fish and share the meal with their relatives."
 
   relationship:
     sectionLabel: "Two bodies, one project"

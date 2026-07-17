@@ -11,7 +11,7 @@ import Spread from '../../components/editorial/Spread.astro';
 import PullQuote from '../../components/editorial/PullQuote.astro';
 import { getCollection, render } from 'astro:content';
 import { basePath, resolveLink } from '../../lib/paths';
-import { mdToInline } from '../../lib/markdown';
+import { mdToHtml, mdToInline } from '../../lib/markdown';
 
 export async function getStaticPaths() {
   const programs = await getCollection('programs');
@@ -92,31 +92,42 @@ const signupLink = detail.signup ? resolveLink(detail.signup.ctaHref) : null;
     </div>
   </Spread>
 
-  {/* BODY SECTIONS — structured longform from detail.sections[] */}
+  {/* BODY SECTIONS — collapsible toggles from detail.sections[] */}
   {detail.sections && detail.sections.length > 0 && (
     <Spread folio="06.2" section="The Arc" bg="bone-pale" class="border-y border-ink">
       <div class="px-5 lg:px-12 py-section">
-        <div class="grid grid-cols-12 gap-6 lg:gap-12">
-          <div class="col-span-12">
-            <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+
+          <div class="col-span-12 lg:col-span-3 lg:sticky lg:top-8 self-start">
+            <p class={`${toneClasses.eyebrow} mb-2`}>The arc of the program</p>
+            <p class="caption text-shadow">Toggle Headings unfold to reveal content.</p>
+          </div>
+
+          <div class="col-span-12 lg:col-span-9 max-w-3xl">
+            <div class="border-t border-ink/30">
               {detail.sections.map((sec, i) => (
-                <article class="border-t border-rule pt-6">
-                  <span class={`folio-num text-3xl ${toneClasses.folio} mb-2 block`}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  {sec.eyebrow && (
-                    <p class={`${toneClasses.eyebrow} mb-2`}>{sec.eyebrow}</p>
-                  )}
-                  <h3 class="font-display font-bold text-h2 text-ink mb-3 leading-tight">
-                    {sec.heading}
-                    {sec.italicHeading && (
-                      <span class="italic font-serif font-light"> {sec.italicHeading}</span>
-                    )}
-                  </h3>
-                  <div class="text-body text-shadow leading-snug prose-program">
-                    <Fragment set:html={mdToInline(sec.body)} />
+                <details class="arc-item border-b border-ink/30 py-5" open={i === 0}>
+                  <summary class="flex items-baseline gap-4 cursor-pointer list-none">
+                    <span class={`font-mono text-xs font-bold ${toneClasses.folio} leading-none pt-1`}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span class="flex-1">
+                      {sec.eyebrow && (
+                        <span class={`${toneClasses.eyebrow} block mb-1`}>{sec.eyebrow.replace(/^\d+\s*·\s*/, '')}</span>
+                      )}
+                      <h3 class="font-display font-bold text-h2 text-ink leading-tight">
+                        {sec.heading}
+                        {sec.italicHeading && (
+                          <span class="italic font-serif font-light"> {sec.italicHeading}</span>
+                        )}
+                      </h3>
+                    </span>
+                    <span class={`arc-marker font-mono ${toneClasses.folio} text-lg leading-none`}>+</span>
+                  </summary>
+                  <div class="text-body text-shadow leading-snug prose-program mt-3 pl-8 lg:pl-9 max-w-2xl">
+                    <Fragment set:html={mdToHtml(sec.body)} />
                   </div>
-                </article>
+                </details>
               ))}
             </div>
           </div>
@@ -160,7 +171,7 @@ const signupLink = detail.signup ? resolveLink(detail.signup.ctaHref) : null;
     <p class="text-body-lg italic font-serif font-light max-w-2xl mx-auto" style="color:#F7EFD8;">
       All of our programming prioritizes access and equity
     </p>
-    <p class="text-body max-w-2xl mx-auto mt-3" style="color: rgba(247,239,216,0.85);">
+    <p class="text-body max-w-2xl mx-auto mt-3" style="color: rgba(247,239,216,0.85); overflow-wrap: anywhere;">
       Subscribe to events at <a href="https://dashboard.spiritofthefrontrange.org/subscribe" rel="noopener" style="color:#E8B58A;">dashboard.spiritofthefrontrange.org/subscribe</a>
     </p>
     <p class="text-body max-w-2xl mx-auto mt-1" style="color: rgba(247,239,216,0.85);">
@@ -219,4 +230,7 @@ const signupLink = detail.signup ? resolveLink(detail.signup.ctaHref) : null;
   .prose-program :global(ul) { list-style: disc; }
   .prose-program :global(li) { margin-block: 0.3rem; }
   .py-section { padding-block: var(--spacing-section); }
+  .arc-item summary::-webkit-details-marker { display: none; }
+  .arc-item[open] .arc-marker { transform: rotate(45deg); }
+  .arc-marker { transition: transform 0.2s ease; display: inline-block; }
 </style>
