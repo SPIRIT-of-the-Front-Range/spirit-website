@@ -47,7 +47,7 @@ donation:
   ready: true
 
 announcement:
-  enabled: true
+  enabled: false
   eyebrow: "Upcoming"
   message: "Join us for the Reverse Gala — an evening to help fund the bioregion."
   ctaLabel: "Register →"
