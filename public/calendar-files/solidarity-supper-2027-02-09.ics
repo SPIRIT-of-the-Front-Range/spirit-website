@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SPIRIT of the Front Range//Solidarity Suppers//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:solidarity-supper-feb@spiritofthefrontrange.org
+DTSTAMP:20261118T000000Z
+DTSTART:20270210T000000Z
+DTEND:20270210T040000Z
+SUMMARY:Solidarity Supper — February 9
+LOCATION:Front Range\, Colorado — location to be announced.
+DESCRIPTION:Save the date for the February SPIRIT of the Front Range Solid
+ arity Supper. Program\, councilmembers\, and location details are forthco
+ ming.\n\nhttps://luma.com/y0rxdwx7
+URL:https://luma.com/y0rxdwx7
+END:VEVENT
+END:VCALENDAR

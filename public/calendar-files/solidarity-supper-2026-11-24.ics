@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SPIRIT of the Front Range//Solidarity Suppers//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:solidarity-supper-nov@spiritofthefrontrange.org
+DTSTAMP:20261118T000000Z
+DTSTART:20261125T000000Z
+DTEND:20261125T040000Z
+SUMMARY:Solidarity Supper: Cultural Resiliency Council
+LOCATION:Nyland Cohousing Community\, 3525 Nyland Way\, Lafayette\, CO 800
+ 26.
+DESCRIPTION:Join SPIRIT of the Front Range for a long-table dinner and cou
+ ncil with our guest elders. In a season shaped by the Thankstaking story\
+ , we come together to listen: How do we feed a healthy\, reciprocal cultu
+ re amid the collapse of settler colonial structures? What does repair act
+ ually ask of us?\n\nhttps://luma.com/12q4x7mp
+URL:https://luma.com/12q4x7mp
+END:VEVENT
+END:VCALENDAR

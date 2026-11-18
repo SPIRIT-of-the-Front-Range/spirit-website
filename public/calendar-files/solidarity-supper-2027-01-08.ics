@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SPIRIT of the Front Range//Solidarity Suppers//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:solidarity-supper-jan@spiritofthefrontrange.org
+DTSTAMP:20261118T000000Z
+DTSTART:20270109T000000Z
+DTEND:20270109T040000Z
+SUMMARY:Solidarity Supper — January 8
+LOCATION:Front Range\, Colorado — location to be announced.
+DESCRIPTION:Save the date for the next SPIRIT of the Front Range Solidarit
+ y Supper. Program\, councilmembers\, and location details are forthcoming
+ .\n\nhttps://luma.com/zj98skou
+URL:https://luma.com/zj98skou
+END:VEVENT
+END:VCALENDAR
